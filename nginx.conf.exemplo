@@ -1,0 +1,24 @@
+server {
+    listen 80;
+    server_name teste.seudominio.com.br;
+
+    root /var/www/app-consultor;
+    index index.html;
+
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+
+    location /assets/ {
+        expires 7d;
+        add_header Cache-Control "public";
+    }
+
+    # o index.html sempre atualizado para os testadores verem a última versão
+    location = /index.html {
+        add_header Cache-Control "no-cache";
+    }
+
+    gzip on;
+    gzip_types text/html text/css application/javascript image/svg+xml;
+}
