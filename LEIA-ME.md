@@ -5,8 +5,10 @@ Não precisa de backend: os dados são fictícios e o que o usuário altera fica
 
 ## Conteúdo
 - `index.html` — o app completo (layout, estilos e lógica).
+- `proposta.html` — página que o cliente recebe pelo link da proposta: compara os planos, escolhe um, adiciona benefícios e confirma pelo WhatsApp. Os dados vão no próprio link (`#d=...`), então precisa ser publicada na mesma pasta do `index.html`.
 - `assets/` — imagens usadas no app.
 - `nginx.conf.exemplo` — exemplo de configuração para servir no Nginx.
+- `manifest.webmanifest`, `sw.js` e `assets/icones/` — permitem instalar o app na tela inicial do celular e abrir em tela cheia. A instalação só funciona com o site em HTTPS (ou em `localhost`).
 
 ## Como testar localmente
 Na pasta deste arquivo:
@@ -30,3 +32,4 @@ mas por um servidor fica mais próximo do uso real.
 ## Dependências externas (carregadas da internet)
 - React 18.3.1 (cdnjs.cloudflare.com)
 - Fontes Plus Jakarta Sans e Material Symbols (fonts.googleapis.com)
+- Bandeiras do seletor de país do telefone, flag-icons 7.2.3 (cdn.jsdelivr.net)

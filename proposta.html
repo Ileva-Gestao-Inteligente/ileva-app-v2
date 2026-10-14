@@ -1,0 +1,1565 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#4A1259">
+  <title>Sua proposta · ileva</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,300..600,0..1,0&display=block">
+  <style>
+    * {
+      box-sizing: border-box
+    }
+
+    html {
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+      -webkit-text-size-adjust: 100%
+    }
+
+    body {
+      margin: 0;
+      background: #f4f1f7;
+      color: #0b1c30;
+      font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased
+    }
+
+    button {
+      font-family: inherit
+    }
+
+    .mi {
+      font-family: "Material Symbols Outlined";
+      font-weight: normal;
+      font-style: normal;
+      font-size: 20px;
+      line-height: 1;
+      display: inline-block;
+      white-space: nowrap;
+      font-feature-settings: "liga";
+      -webkit-font-smoothing: antialiased
+    }
+
+    .topo {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      background: rgba(255, 255, 255, .88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid #ece6f2
+    }
+
+    .topo .in {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px
+    }
+
+    .marca {
+      font-weight: 800;
+      font-size: 22px;
+      letter-spacing: -.02em;
+      color: #4A1259
+    }
+
+    .marca i {
+      font-style: normal;
+      color: #A192A6
+    }
+
+    .topo .num {
+      flex: 1;
+      min-width: 0;
+      font-size: 11px;
+      color: #7b7487
+    }
+
+    .topo .num b {
+      display: block;
+      color: #0b1c30;
+      font-size: 13px
+    }
+
+    .btn {
+      border: 0;
+      border-radius: 999px;
+      padding: 10px 16px;
+      font-weight: 700;
+      font-size: 13px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform .12s, background .2s, opacity .2s
+    }
+
+    .btn:active {
+      transform: scale(.97)
+    }
+
+    .btn.pri {
+      background: #4A1259;
+      color: #fff
+    }
+
+    .btn.sec {
+      background: #f3eef5;
+      color: #4A1259
+    }
+
+    .btn.wa {
+      background: #16a34a;
+      color: #fff
+    }
+
+    .btn.ok {
+      background: #16a34a;
+      color: #fff;
+      box-shadow: 0 8px 18px -8px rgba(22, 163, 74, .6)
+    }
+
+    main {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 16px 16px 150px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      border-radius: 26px;
+      padding: 24px 22px;
+      color: #fff;
+      background: radial-gradient(circle at 92% 0%, rgba(161, 146, 166, .9) 0%, rgba(161, 146, 166, 0) 46%), radial-gradient(circle at 0% 110%, rgba(98, 39, 115, .9) 0%, rgba(98, 39, 115, 0) 50%), linear-gradient(135deg, #622773 0%, #4A1259 100%);
+      box-shadow: 0 24px 50px -24px rgba(74, 18, 89, .7)
+    }
+
+    .hero .ola {
+      margin: 0;
+      font-size: 14px;
+      opacity: .85
+    }
+
+    .hero h1 {
+      margin: 6px 0 0;
+      font-size: 26px;
+      line-height: 1.2;
+      letter-spacing: -.02em;
+      max-width: 560px
+    }
+
+    .hero .veic {
+      margin-top: 20px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap
+    }
+
+    .hero .logo {
+      height: 32px;
+      max-width: 110px;
+      object-fit: contain;
+      object-position: left;
+      filter: drop-shadow(0 0 1px #fff) drop-shadow(0 0 1px #fff) drop-shadow(0 0 6px rgba(255, 255, 255, .55))
+    }
+
+    .hero .modelo {
+      font-size: 19px;
+      font-weight: 800;
+      margin-top: 8px;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px 12px
+    }
+
+    .hero .sub {
+      font-size: 13px;
+      opacity: .85;
+      margin-top: 2px
+    }
+
+    .hero .foto {
+      width: 300px;
+      max-width: 100%;
+      height: 150px;
+      object-fit: contain;
+      object-position: right bottom;
+      filter: drop-shadow(0 14px 18px rgba(20, 4, 26, .5))
+    }
+
+    .chips {
+      margin-top: 16px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(255, 255, 255, .18);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 28px
+    }
+
+    .chip {
+      font-size: 12px
+    }
+
+    .chip small {
+      display: block;
+      opacity: .8;
+      font-size: 11px
+    }
+
+    .chip b {
+      font-size: 16px
+    }
+
+    .placa {
+      display: inline-flex;
+      flex-direction: column;
+      border: 2px solid #111;
+      border-radius: 6px;
+      overflow: hidden;
+      background: #fff;
+      color: #111;
+      vertical-align: middle
+    }
+
+    .placa i {
+      font-style: normal;
+      background: #003399;
+      color: #fff;
+      font-size: 7px;
+      font-weight: 800;
+      letter-spacing: .25em;
+      text-align: center;
+      padding: 1px 0
+    }
+
+    .placa b {
+      font: 800 15px ui-monospace, Menlo, monospace;
+      letter-spacing: .1em;
+      padding: 3px 10px
+    }
+
+    .bloco {
+      background: #fff;
+      border: 1px solid #ece6f2;
+      border-radius: 22px;
+      padding: 20px;
+      box-shadow: 0 10px 28px -18px rgba(32, 7, 38, .25)
+    }
+
+    .bloco h2 {
+      margin: 0 0 4px;
+      font-size: 17px;
+      display: flex;
+      align-items: center;
+      gap: 8px
+    }
+
+    .bloco h2 .mi {
+      color: #4A1259
+    }
+
+    .bloco .desc {
+      margin: 0 0 14px;
+      font-size: 13px;
+      color: #4a4455
+    }
+
+    .dados {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 10px;
+      margin-top: 12px
+    }
+
+    .dado {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px;
+      border-radius: 14px;
+      background: #f9f6fa;
+      font-size: 14px;
+      font-weight: 600
+    }
+
+    .dado .mi {
+      color: #622773
+    }
+
+    .dado span:not(.mi) {
+      min-width: 0;
+      overflow-wrap: anywhere
+    }
+
+    .dado small {
+      display: block;
+      font-size: 11px;
+      font-weight: 500;
+      color: #7b7487
+    }
+
+    .cab {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 12px
+    }
+
+    .cab h2 {
+      margin: 0;
+      font-size: 20px
+    }
+
+    .cab p {
+      margin: 4px 0 0;
+      font-size: 13px;
+      color: #4a4455
+    }
+
+    .dica {
+      font-size: 12px;
+      color: #7b7487;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      white-space: nowrap
+    }
+
+    .carrossel {
+      display: flex;
+      gap: 14px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding: 4px 4px 16px;
+      margin: 0 -4px;
+      scrollbar-width: thin
+    }
+
+    .plano {
+      flex: 0 0 300px;
+      scroll-snap-align: start;
+      background: #fff;
+      border: 1px solid #ece6f2;
+      border-radius: 24px;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      box-shadow: 0 12px 30px -20px rgba(32, 7, 38, .35);
+      transition: border-color .2s, box-shadow .2s, transform .2s
+    }
+
+    .plano.escolhido {
+      border: 2px solid #16a34a;
+      box-shadow: 0 18px 36px -18px rgba(22, 163, 74, .55);
+      transform: translateY(-2px)
+    }
+
+    .plano header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px
+    }
+
+    .plano h3 {
+      margin: 0;
+      font-size: 20px
+    }
+
+    .selo {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: #fef0c7;
+      color: #b45309;
+      font-size: 11px;
+      font-weight: 800;
+      white-space: nowrap
+    }
+
+    .selo .mi {
+      font-size: 14px
+    }
+
+    .selo.verde {
+      background: #dcfce7;
+      color: #047857
+    }
+
+    .preco {
+      padding: 14px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #f9f6fa, #f3eef5)
+    }
+
+    .preco .rot {
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: #7b7487
+    }
+
+    .preco strong {
+      display: block;
+      font-size: 30px;
+      line-height: 1.1;
+      letter-spacing: -.02em;
+      color: #4A1259;
+      margin-top: 4px
+    }
+
+    .preco small {
+      font-size: 13px;
+      color: #7b7487;
+      font-weight: 600;
+      margin-left: 2px
+    }
+
+    .preco .comp {
+      display: block;
+      margin-top: 4px;
+      font-size: 11px;
+      color: #4a4455
+    }
+
+    .linhas div {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 0;
+      border-bottom: 1px dashed #ece6f2;
+      font-size: 13px
+    }
+
+    .linhas div:last-child {
+      border: 0
+    }
+
+    .linhas span:not(.mi) {
+      flex: 1;
+      color: #4a4455
+    }
+
+    .linhas .mi {
+      color: #7b7487;
+      font-size: 18px
+    }
+
+    .inc {
+      margin: 0;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: #7b7487
+    }
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      flex: 1
+    }
+
+    li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 13px;
+      line-height: 1.4
+    }
+
+    li .mi {
+      font-size: 18px;
+      color: #16a34a;
+      font-variation-settings: "FILL" 1
+    }
+
+    li.cota .mi {
+      color: #622773
+    }
+
+    .escolher {
+      width: 100%;
+      padding: 13px;
+      border-radius: 14px;
+      border: 1.5px solid #4A1259;
+      background: #fff;
+      color: #4A1259;
+      font-weight: 700;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      cursor: pointer;
+      transition: all .2s
+    }
+
+    .plano.escolhido .escolher {
+      border-color: #16a34a;
+      background: #16a34a;
+      color: #fff
+    }
+
+    .opc {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid #f1eef3
+    }
+
+    .opc:last-child {
+      border: 0
+    }
+
+    .opc .ic {
+      flex-shrink: 0;
+      color: #622773;
+      font-size: 22px
+    }
+
+    .opc .t {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1px
+    }
+
+    .opc .t b {
+      font-size: 14px
+    }
+
+    .opc .t small {
+      font-size: 12px;
+      color: #7b7487
+    }
+
+    .opc .t small.neg {
+      color: #b42318
+    }
+
+    .tag-inc {
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: #dcfce7;
+      color: #047857;
+      font-size: 11px;
+      font-weight: 800
+    }
+
+    .tag-inc .mi {
+      font-size: 14px
+    }
+
+    .switch {
+      flex-shrink: 0;
+      position: relative;
+      width: 46px;
+      height: 28px;
+      border-radius: 999px;
+      border: 0;
+      padding: 0;
+      background: #ccc3d8;
+      cursor: pointer;
+      transition: background .2s
+    }
+
+    .switch::after {
+      content: "";
+      position: absolute;
+      top: 4px;
+      left: 4px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, .25);
+      transition: transform .2s
+    }
+
+    .switch[aria-checked="true"] {
+      background: #4A1259
+    }
+
+    .switch[aria-checked="true"]::after {
+      transform: translateX(18px)
+    }
+
+    .faixa {
+      margin: -20px -20px 14px;
+      padding: 16px 20px;
+      border-radius: 22px 22px 0 0;
+      background: radial-gradient(circle at 95% 0%, rgba(161, 146, 166, .85) 0%, rgba(161, 146, 166, 0) 50%), linear-gradient(135deg, #622773 0%, #4A1259 100%);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 12px
+    }
+
+    .faixa h2 {
+      margin: 0;
+      color: #fff
+    }
+
+    .faixa .desc {
+      margin: 2px 0 0;
+      color: rgba(255, 255, 255, .88)
+    }
+
+    .faixa-ic {
+      flex-shrink: 0;
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, .16);
+      border: 1px solid rgba(255, 255, 255, .3);
+      display: flex;
+      align-items: center;
+      justify-content: center
+    }
+
+    .faixa-ic .mi {
+      font-size: 22px;
+      color: #fff
+    }
+
+    .sel-wrap {
+      position: relative;
+      margin-top: 12px
+    }
+
+    .sel {
+      width: 100%;
+      min-height: 52px;
+      padding: 10px 14px;
+      border: 1.5px dashed #A192A6;
+      border-radius: 14px;
+      background: #fbfafc;
+      color: #4A1259;
+      font-size: 14px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      text-align: left;
+      transition: border-color .2s, background .2s
+    }
+
+    .sel[aria-expanded="true"] {
+      border-style: solid;
+      border-color: #4A1259;
+      background: #fff
+    }
+
+    .sel .t {
+      flex: 1
+    }
+
+    .sel .seta {
+      transition: transform .2s;
+      color: #7b7487
+    }
+
+    .sel[aria-expanded="true"] .seta {
+      transform: rotate(180deg)
+    }
+
+    .sel[disabled] {
+      cursor: default;
+      color: #7b7487;
+      border-color: #e5dcea
+    }
+
+    .menu {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: calc(100% + 6px);
+      z-index: 6;
+      max-height: 300px;
+      overflow-y: auto;
+      padding: 6px;
+      border: 1px solid #ece6f2;
+      border-radius: 16px;
+      background: #fff;
+      box-shadow: 0 18px 40px -16px rgba(32, 7, 38, .45);
+      display: none
+    }
+
+    .menu.on {
+      display: block;
+      animation: abrir .18s ease-out
+    }
+
+    @keyframes abrir {
+      from {
+        opacity: 0;
+        transform: translateY(-4px)
+      }
+    }
+
+    .menu .item {
+      width: 100%;
+      padding: 10px;
+      border: 0;
+      border-radius: 12px;
+      background: transparent;
+      color: inherit;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer
+    }
+
+    .menu .item:hover,
+    .menu .item:focus-visible {
+      background: #f6f1f8;
+      outline: none
+    }
+
+    .menu .item .t {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1px
+    }
+
+    .menu .item .t b {
+      font-size: 14px
+    }
+
+    .menu .item .t small {
+      font-size: 12px;
+      color: #7b7487
+    }
+
+    .menu .item .mais {
+      flex-shrink: 0;
+      color: #4A1259;
+      font-size: 22px
+    }
+
+    .opc.add {
+      margin: 6px -10px 0;
+      padding: 12px 10px;
+      border: 0;
+      border-radius: 14px;
+      background: #f0fdf4
+    }
+
+    .opc.add + .opc.add {
+      margin-top: 6px
+    }
+
+    .opc.add.novo {
+      animation: entrou .5s cubic-bezier(.34, 1.56, .64, 1) both
+    }
+
+    @keyframes entrou {
+      from {
+        opacity: 0;
+        transform: scale(.94)
+      }
+    }
+
+    .ok-ic {
+      flex-shrink: 0;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: #16a34a;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 0 4px #dcfce7
+    }
+
+    .ok-ic .mi {
+      font-size: 18px;
+      font-variation-settings: "wght" 700
+    }
+
+    .tag-add {
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: #16a34a;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 800
+    }
+
+    .tag-add .mi {
+      font-size: 14px
+    }
+
+    .remover {
+      flex-shrink: 0;
+      width: 34px;
+      height: 34px;
+      border: 0;
+      border-radius: 50%;
+      background: transparent;
+      color: #b42318;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer
+    }
+
+    .remover:hover {
+      background: #fef2f2
+    }
+
+    .vazio {
+      padding: 10px;
+      font-size: 13px;
+      color: #7b7487
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 20;
+      padding: 16px;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: rgba(32, 7, 38, .38);
+      backdrop-filter: blur(6px) saturate(140%);
+      -webkit-backdrop-filter: blur(6px) saturate(140%)
+    }
+
+    .modal.on {
+      display: flex;
+      animation: fundo .2s ease-out
+    }
+
+    @keyframes fundo {
+      from {
+        opacity: 0
+      }
+    }
+
+    .caixa {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      max-width: 360px;
+      padding: 26px 20px 20px;
+      border-radius: 28px;
+      border: 1px solid #ece6f2;
+      background: #ffffff;
+      box-shadow: 0 24px 50px -16px rgba(32, 7, 38, .45);
+      color: #0b1c30;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      animation: pop .4s cubic-bezier(.34, 1.56, .64, 1) both
+    }
+
+    @keyframes pop {
+      from {
+        opacity: 0;
+        transform: scale(.88)
+      }
+    }
+
+    .caixa .bola {
+      width: 62px;
+      height: 62px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, .5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      background: linear-gradient(145deg, #622773, #4A1259);
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, .35), 0 0 0 6px rgba(161, 146, 166, .3), 0 10px 24px -6px rgba(74, 18, 89, .7)
+    }
+
+    .caixa .bola .mi {
+      font-size: 30px;
+      font-variation-settings: "FILL" 1
+    }
+
+    .caixa.perigo .bola {
+      background: linear-gradient(145deg, #ef4444, #b42318);
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, .35), 0 0 0 6px rgba(239, 68, 68, .22), 0 10px 24px -6px rgba(180, 35, 24, .7)
+    }
+
+    .caixa h3 {
+      margin: 0;
+      font-size: 18px
+    }
+
+    .caixa .cartao {
+      width: 100%;
+      padding: 12px;
+      border-radius: 16px;
+      background: #f9f6fa;
+      border: 1px solid #f0ecf3;
+      color: #0b1c30;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-align: left
+    }
+
+    .caixa .cartao .t {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1px
+    }
+
+    .caixa .cartao b {
+      font-size: 14px
+    }
+
+    .caixa .cartao small {
+      font-size: 12px;
+      color: #7b7487
+    }
+
+    .caixa .novo {
+      margin: 0;
+      font-size: 13px;
+      line-height: 1.45;
+      color: #4a4455
+    }
+
+    .caixa .novo b,
+    .caixa .novo span {
+      font-size: 15px;
+      white-space: nowrap
+    }
+
+    .caixa .novo span {
+      font-size: inherit
+    }
+
+    .caixa .acoes {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 2px
+    }
+
+    .caixa .acoes button {
+      height: 46px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 800;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px
+    }
+
+    .caixa .nao {
+      border: 1px solid #e5dcea;
+      background: #ffffff;
+      color: #4a4455
+    }
+
+    .caixa .sim {
+      border: 0;
+      background: #4A1259;
+      color: #fff;
+      box-shadow: 0 8px 18px -8px rgba(74, 18, 89, .6)
+    }
+
+    .caixa.perigo .sim {
+      background: linear-gradient(145deg, #ef4444, #b42318);
+      color: #fff
+    }
+
+    .passos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+      margin-top: 12px
+    }
+
+    .passo {
+      padding: 16px;
+      border-radius: 18px;
+      background: #f9f6fa;
+      display: flex;
+      flex-direction: column;
+      gap: 8px
+    }
+
+    .passo .n {
+      width: 34px;
+      height: 34px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #622773, #4A1259);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center
+    }
+
+    .passo b {
+      font-size: 15px
+    }
+
+    .passo>span:not(.n) {
+      font-size: 13px;
+      color: #4a4455;
+      line-height: 1.45
+    }
+
+    .consultor {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap
+    }
+
+    .consultor img {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center 30%;
+      border: 3px solid #f3eef5
+    }
+
+    .consultor .q {
+      flex: 1;
+      min-width: 180px
+    }
+
+    .consultor .q b {
+      display: block;
+      font-size: 17px
+    }
+
+    .consultor .q span {
+      font-size: 13px;
+      color: #4a4455
+    }
+
+    footer {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 0 16px 24px;
+      font-size: 11px;
+      color: #7b7487;
+      line-height: 1.6
+    }
+
+    .barra {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 10;
+      padding: 12px 16px calc(12px + env(safe-area-inset-bottom, 0px));
+      background: rgba(255, 255, 255, .94);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-top: 1px solid #ece6f2;
+      box-shadow: 0 -12px 30px -18px rgba(32, 7, 38, .35)
+    }
+
+    .barra .in {
+      max-width: 980px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 14px
+    }
+
+    .barra .res {
+      flex: 1;
+      min-width: 0
+    }
+
+    .barra .res small {
+      display: block;
+      font-size: 11px;
+      color: #7b7487;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis
+    }
+
+    .barra .res strong {
+      display: block;
+      font-size: 22px;
+      line-height: 1.15;
+      color: #4A1259;
+      letter-spacing: -.01em
+    }
+
+    .barra .res strong small {
+      display: inline;
+      font-size: 12px;
+      font-weight: 600
+    }
+
+    .barra .btn {
+      padding: 14px 18px;
+      font-size: 14px
+    }
+
+    .barra .btn[disabled] {
+      background: #e5eeff;
+      color: #7b7487;
+      cursor: not-allowed
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 110px;
+      z-index: 11;
+      transform: translateX(-50%) translateY(20px);
+      opacity: 0;
+      pointer-events: none;
+      padding: 12px 16px;
+      border-radius: 14px;
+      background: #0b1c30;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all .3s cubic-bezier(.22, 1, .36, 1);
+      max-width: calc(100% - 32px)
+    }
+
+    .toast.on {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0)
+    }
+
+    .erro {
+      max-width: 520px;
+      margin: 80px auto;
+      padding: 28px;
+      text-align: center
+    }
+
+    .erro .mi {
+      font-size: 48px;
+      color: #A192A6
+    }
+
+    @media (max-width:600px) {
+      .hero h1 {
+        font-size: 22px
+      }
+
+      .hero .foto {
+        width: 100%;
+        height: 130px
+      }
+
+      .plano {
+        flex-basis: 86%
+      }
+
+      .dica {
+        display: none
+      }
+
+      .topo .btn span:not(.mi) {
+        display: none
+      }
+
+      .barra .btn {
+        padding: 14px 16px
+      }
+    }
+
+    @media print {
+      body {
+        background: #fff
+      }
+
+      .topo,
+      .barra,
+      .toast,
+      .escolher,
+      .switch,
+      .sel-wrap,
+      .modal,
+      .remover,
+      .dica,
+      .btn {
+        display: none !important
+      }
+
+      main {
+        padding: 0;
+        gap: 14px
+      }
+
+      .planos-sec {
+        break-before: page
+      }
+
+      .carrossel {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+        overflow: visible
+      }
+
+      .plano,
+      .bloco,
+      .hero {
+        break-inside: avoid;
+        box-shadow: none;
+        transform: none
+      }
+
+      @page {
+        margin: 12mm
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        transition: none !important
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app"></div>
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-tit"></div>
+  <div class="toast" id="toast" role="status"><span class="mi">check_circle</span><span id="toast-txt"></span></div>
+
+  <script>
+    (function () {
+      // Os dados da proposta vêm no próprio link (#d=...), gerados pelo App do Consultor.
+      var app = document.getElementById('app');
+
+      function ler() {
+        var m = location.hash.match(/[#&]d=([^&]+)/);
+        if (!m) return null;
+        try {
+          var b64 = m[1].replace(/-/g, '+').replace(/_/g, '/');
+          while (b64.length % 4) b64 += '=';
+          var bin = atob(b64);
+          var bytes = new Uint8Array(bin.length);
+          for (var i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+          return JSON.parse(new TextDecoder().decode(bytes));
+        } catch (e) { return null; }
+      }
+
+      function esc(v) {
+        return String(v == null ? '' : v).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; });
+      }
+
+      function brl(v) {
+        return 'R$ ' + Number(v).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      }
+
+      function sinal(v) {
+        return (v < 0 ? '- ' : '+ ') + brl(Math.abs(v));
+      }
+
+      function icon(n, st) {
+        return '<span class="mi"' + (st ? ' style="' + st + '"' : '') + '>' + n + '</span>';
+      }
+
+      var d = ler();
+      if (!d) {
+        app.innerHTML = '<div class="bloco erro">' + icon('link_off') + '<h2 style="justify-content:center">Link inválido ou incompleto</h2>'
+          + '<p class="desc">Peça ao seu consultor ileva para reenviar o link da proposta.</p></div>';
+        return;
+      }
+
+      var estado = { plano: null, extras: {} };
+      var primeiro = d.cli.nome.split(' ')[0];
+      document.title = 'Proposta nº ' + d.n + ' · ' + primeiro + ' · ileva';
+
+      var precos = d.planos.map(function (p) { return p.preco; }).filter(function (v) { return v != null; });
+      var menor = precos.length > 1 ? Math.min.apply(null, precos) : null;
+
+      function planoHtml(p, i) {
+        var destaque = p.preco != null && p.preco === menor;
+        var selo = destaque ? '<span class="selo verde">' + icon('savings') + 'Menor mensalidade</span>' : p.tag ? '<span class="selo">' + icon('star') + esc(p.tag) + '</span>' : '';
+        var itens = p.beneficios.map(function (b) {
+          return '<li class="' + (b.c ? 'cota' : '') + '">' + icon(b.c ? 'add_circle' : 'check_circle') + '<span>' + esc(b.t) + '</span></li>';
+        }).join('');
+        return '<article class="plano" data-i="' + i + '">'
+          + '<header><h3>' + esc(p.nome) + '</h3>' + selo + '</header>'
+          + '<div class="preco"><span class="rot">Mensalidade</span><strong>' + (p.preco == null ? 'Sob medida' : esc(brl(p.preco)) + '<small>/mês</small>') + '</strong>'
+          + (p.preco != null && d.incl.length ? '<span class="comp">Plano ' + esc(brl(p.base)) + ' + ' + esc(brl(p.preco - p.base)) + ' em adicionais</span>' : '') + '</div>'
+          + '<div class="linhas">'
+          + (p.cota ? '<div>' + icon('shield') + '<span>' + esc(p.cota) + '</span><b>' + esc(p.part || '') + '</b></div>' : '<div>' + icon('shield') + '<span>Coberturas sob medida</span><b></b></div>')
+          + '<div>' + icon('receipt_long') + '<span>Adesão (pagamento único)</span><b>' + (p.adesao == null ? 'A definir' : esc(brl(p.adesao))) + '</b></div></div>'
+          + '<p class="inc">O que está incluído</p><ul>' + itens + '</ul>'
+          + '<button class="escolher" type="button" data-plano="' + i + '">' + icon('radio_button_unchecked') + '<span>Escolher este plano</span></button>'
+          + '</article>';
+      }
+
+      var dados = [
+        ['person', 'Nome', d.cli.nome], ['call', 'WhatsApp', d.cli.fone], ['mail', 'E-mail', d.cli.email],
+        ['location_on', 'Cidade', d.cli.cidade], ['badge', 'CPF/CNPJ', d.cli.doc], ['local_shipping', 'Frota', d.cli.frota]
+      ].filter(function (x) { return String(x[2] || '').trim(); }).map(function (x) {
+        return '<div class="dado">' + icon(x[0]) + '<span><small>' + x[1] + '</small>' + esc(x[2]) + '</span></div>';
+      }).join('');
+
+      var incl = d.incl.map(function (x) {
+        return '<div class="opc">' + icon('verified', 'flex-shrink:0;color:#16a34a;font-size:22px') + '<span class="t"><b>' + esc(x.label) + '</b><small class="' + (x.preco < 0 ? 'neg' : '') + '">' + esc(sinal(x.preco)) + '/mês · já na mensalidade</small></span>'
+          + '<span class="tag-inc">' + icon('check') + 'Incluído</span></div>';
+      }).join('');
+      var opc = d.opc.length
+        ? '<div id="escolhidos"></div><div class="sel-wrap"><button class="sel" type="button" id="sel-btn" aria-haspopup="listbox" aria-expanded="false">'
+          + icon('add_circle') + '<span class="t" id="sel-txt">Adicionar benefício</span><span class="mi seta">expand_more</span></button>'
+          + '<div class="menu" id="sel-menu" role="listbox" aria-label="Benefícios disponíveis"></div></div>'
+        : '';
+
+      var placa = (d.vei.placa || '').replace('-', '').toUpperCase();
+
+      app.innerHTML = ''
+        + '<div class="topo"><div class="in"><span class="marca">ileva<i>.</i></span><span class="num"><b>Proposta nº ' + esc(d.n) + '</b>Emitida em ' + esc(d.data) + '</span>'
+        + '<button class="btn sec" type="button" onclick="window.print()">' + icon('picture_as_pdf') + '<span>Salvar PDF</span></button></div></div>'
+        + '<main>'
+        + '<section class="hero"><p class="ola">Olá, ' + esc(primeiro) + '! 👋</p><h1>Preparamos as melhores opções de proteção para o seu ' + esc(d.vei.curto) + '</h1>'
+        + '<div class="veic"><div><img class="logo" src="' + esc(d.vei.logo) + '" alt="' + esc(d.vei.marca) + '" onerror="this.style.display=\'none\'">'
+        + '<div class="modelo"><span>' + esc(d.vei.marca + ' ' + d.vei.modelo) + '</span>' + (placa ? '<span class="placa"><i>BRASIL</i><b>' + esc(placa) + '</b></span>' : '') + '</div>'
+        + '<div class="sub">' + esc(d.vei.tipo + ' · ' + d.vei.ano + ' · ' + d.vei.fuel) + '</div></div>'
+        + '<img class="foto" src="' + esc(d.vei.foto) + '" alt="" onerror="this.style.display=\'none\'"></div>'
+        + '<div class="chips"><div class="chip"><small>Valor FIPE</small><b>' + esc(brl(d.vei.fipe)) + '</b></div><div class="chip"><small>Código FIPE</small><b>' + esc(d.vei.code || '—') + '</b></div>'
+        + '<div class="chip"><small>Planos para comparar</small><b>' + d.planos.length + '</b></div></div></section>'
+        + '<section class="bloco"><h2>' + icon('person') + 'Seus dados</h2><div class="dados">' + dados + '</div></section>'
+        + '<section class="planos-sec"><div class="cab"><div><h2>Escolha o seu plano</h2><p>Compare as opções e toque em “Escolher este plano” no que fizer mais sentido para você.</p></div><span class="dica">' + icon('swipe') + 'Arraste para ver</span></div>'
+        + '<div class="carrossel">' + d.planos.map(planoHtml).join('') + '</div></section>'
+        + ((incl || opc) ? '<section class="bloco"><div class="faixa"><span class="faixa-ic">' + icon('add_box') + '</span><div><h2>Benefícios comerciais</h2><p class="desc">' + (opc ? 'Turbine sua proteção: adicione os benefícios que quiser e veja o valor atualizado na hora.' : 'Benefícios incluídos na sua proposta.') + '</p></div></div>' + incl + opc + '</section>' : '')
+        + '<section class="bloco"><h2>' + icon('route') + 'Como funciona</h2><div class="passos">'
+        + '<div class="passo"><span class="n">' + icon('touch_app') + '</span><b>1. Escolha o plano</b><span>Selecione o plano e os benefícios e toque em “Confirmar escolha”.</span></div>'
+        + '<div class="passo"><span class="n">' + icon('photo_camera') + '</span><b>2. Vistoria do veículo</b><span>Fotos simples do veículo, feitas por você pelo celular ou com o consultor.</span></div>'
+        + '<div class="passo"><span class="n">' + icon('verified_user') + '</span><b>3. Proteção ativa</b><span>Com a adesão confirmada e o termo assinado, seu veículo já está protegido.</span></div>'
+        + '</div></section>'
+        + '<section class="bloco consultor"><img src="' + esc(d.cons.foto) + '" alt="' + esc(d.cons.nome) + '" onerror="this.style.display=\'none\'"><div class="q"><b>' + esc(d.cons.nome) + '</b><span>Seu consultor ileva · ' + esc(d.cons.regiao) + ' · ' + esc(d.cons.fone) + '</span></div>'
+        + '<a class="btn wa" target="_blank" rel="noopener" href="' + esc(wa('Olá, ' + d.cons.nome.split(' ')[0] + '! Vi a proposta nº ' + d.n + ' e tenho uma dúvida.')) + '">' + icon('chat') + 'Falar no WhatsApp</a></section>'
+        + '</main>'
+        + '<footer>Proposta nº ' + esc(d.n) + ' emitida em ' + esc(d.data) + ' para ' + esc(d.cli.nome) + '. Valores mensais calculados sobre a tabela FIPE. '
+        + 'A ativação da proteção depende da aprovação da vistoria e da assinatura do termo de filiação.</footer>'
+        + '<div class="barra"><div class="in"><div class="res"><small id="res-plano">Escolha um plano para continuar</small><strong id="res-total">—</strong><small id="res-adesao"></small></div>'
+        + '<button class="btn ok" type="button" id="confirmar" disabled>' + icon('send') + 'Confirmar escolha</button></div></div>';
+
+      function wa(txt) {
+        return 'https://wa.me/' + d.cons.wa + '?text=' + encodeURIComponent(txt);
+      }
+
+      function extrasEscolhidos() {
+        return d.opc.filter(function (x, i) { return estado.extras[i]; });
+      }
+
+      function iconeExtra(x) {
+        return icon(x.icon || 'add_circle', 'flex-shrink:0;color:#622773;font-size:22px');
+      }
+
+      function renderExtras() {
+        var box = document.getElementById('escolhidos');
+        if (!box) return;
+        box.innerHTML = d.opc.map(function (x, i) {
+          if (!estado.extras[i]) return '';
+          return '<div class="opc add' + (estado.ultimo === i ? ' novo' : '') + '"><span class="ok-ic">' + icon('check') + '</span><span class="t"><b>' + esc(x.label) + '</b><small>' + esc(sinal(x.preco)) + '/mês</small></span>'
+            + '<button class="remover" type="button" data-remover="' + i + '" aria-label="Remover ' + esc(x.label) + '">' + icon('close') + '</button></div>';
+        }).join('');
+        var livres = d.opc.map(function (x, i) {
+          if (estado.extras[i]) return '';
+          return '<button class="item" type="button" role="option" data-add="' + i + '">' + iconeExtra(x)
+            + '<span class="t"><b>' + esc(x.label) + '</b><small>' + esc(sinal(x.preco)) + '/mês</small></span><span class="mi mais">add</span></button>';
+        }).join('');
+        var resta = d.opc.filter(function (x, i) { return !estado.extras[i]; }).length;
+        document.getElementById('sel-menu').innerHTML = livres || '<div class="vazio">Todos os benefícios já foram adicionados.</div>';
+        document.getElementById('sel-btn').disabled = resta === 0;
+        document.getElementById('sel-txt').textContent = resta === 0 ? 'Todos os benefícios adicionados' : 'Adicionar benefício · ' + resta + (resta === 1 ? ' opção' : ' opções');
+      }
+
+      function totalCom(extras) {
+        if (estado.plano == null) return null;
+        var p = d.planos[estado.plano];
+        if (p.preco == null) return null;
+        return d.opc.reduce(function (t, x, i) { return extras[i] ? t + x.preco : t; }, p.preco);
+      }
+
+      function confirmar(k, remover) {
+        var x = d.opc[k];
+        var depois = Object.assign({}, estado.extras);
+        depois[k] = !remover;
+        var antes = totalCom(estado.extras);
+        var novo = totalCom(depois);
+        var m = document.getElementById('modal');
+        m.innerHTML = '<div class="caixa' + (remover ? ' perigo' : '') + '">'
+          + '<span class="bola">' + icon(remover ? 'delete' : 'add_circle') + '</span>'
+          + '<h3 id="modal-tit">' + (remover ? 'Remover benefício?' : 'Adicionar benefício?') + '</h3>'
+          + '<div class="cartao">' + iconeExtra(x) + '<span class="t"><b>' + esc(x.label) + '</b><small>' + esc(sinal(x.preco)) + '/mês</small></span></div>'
+          + '<p class="novo">' + (novo != null
+            ? 'Sua mensalidade vai de <span>' + esc(brl(antes)) + '</span> para <b>' + esc(brl(novo)) + '/mês</b>.'
+            : (remover ? 'O benefício sai da sua escolha.' : 'O valor é somado à mensalidade do plano que você escolher.')) + '</p>'
+          + '<div class="acoes"><button type="button" class="nao" data-modal="nao">' + (remover ? 'Manter' : 'Cancelar') + '</button>'
+          + '<button type="button" class="sim" data-modal="sim">' + icon(remover ? 'delete' : 'add') + (remover ? 'Remover' : 'Adicionar') + '</button></div>'
+          + '</div>';
+        m.classList.add('on');
+        fecharModal.acao = function () {
+          estado.extras[k] = !remover;
+          estado.ultimo = remover ? null : k;
+          atualizar();
+          toast(x.label + (remover ? ' removido' : ' adicionado'));
+        };
+        setTimeout(function () { var b = m.querySelector('.sim'); if (b) b.focus(); }, 50);
+      }
+
+      function fecharModal(ok) {
+        var m = document.getElementById('modal');
+        m.classList.remove('on');
+        m.innerHTML = '';
+        if (ok && fecharModal.acao) fecharModal.acao();
+        fecharModal.acao = null;
+      }
+
+      document.getElementById('modal').addEventListener('click', function (e) {
+        var b = e.target.closest('[data-modal]');
+        if (b) { fecharModal(b.getAttribute('data-modal') === 'sim'); return; }
+        if (e.target === this) fecharModal(false);
+      });
+
+      function abrirMenu(on) {
+        var menu = document.getElementById('sel-menu');
+        if (!menu) return;
+        menu.classList.toggle('on', on);
+        document.getElementById('sel-btn').setAttribute('aria-expanded', on ? 'true' : 'false');
+      }
+
+      function atualizar() {
+        renderExtras();
+        var cards = app.querySelectorAll('.plano');
+        for (var i = 0; i < cards.length; i++) {
+          var on = estado.plano === i;
+          cards[i].classList.toggle('escolhido', on);
+          var b = cards[i].querySelector('.escolher');
+          b.innerHTML = icon(on ? 'check_circle' : 'radio_button_unchecked') + '<span>' + (on ? 'Plano escolhido' : 'Escolher este plano') + '</span>';
+          b.setAttribute('aria-pressed', on ? 'true' : 'false');
+        }
+
+        var ex = extrasEscolhidos();
+        var somaEx = ex.reduce(function (t, x) { return t + x.preco; }, 0);
+        var btn = document.getElementById('confirmar');
+        if (estado.plano == null) {
+          document.getElementById('res-plano').textContent = ex.length ? ex.length + (ex.length === 1 ? ' benefício escolhido · escolha um plano' : ' benefícios escolhidos · escolha um plano') : 'Escolha um plano para continuar';
+          document.getElementById('res-total').innerHTML = '—';
+          document.getElementById('res-adesao').textContent = '';
+          btn.disabled = true;
+          return;
+        }
+        var p = d.planos[estado.plano];
+        document.getElementById('res-plano').textContent = 'Plano ' + p.nome + (ex.length ? ' + ' + ex.length + (ex.length === 1 ? ' benefício' : ' benefícios') : '');
+        document.getElementById('res-total').innerHTML = p.preco == null ? 'Sob medida' : esc(brl(p.preco + somaEx)) + '<small>/mês</small>';
+        document.getElementById('res-adesao').textContent = 'Adesão ' + (p.adesao == null ? 'a definir' : brl(p.adesao));
+        btn.disabled = false;
+      }
+
+      function toast(t) {
+        var el = document.getElementById('toast');
+        document.getElementById('toast-txt').textContent = t;
+        el.classList.add('on');
+        clearTimeout(toast.t);
+        toast.t = setTimeout(function () { el.classList.remove('on'); }, 2600);
+      }
+
+      app.addEventListener('click', function (e) {
+        var b = e.target.closest('[data-plano]');
+        if (b) {
+          var i = Number(b.getAttribute('data-plano'));
+          estado.plano = estado.plano === i ? null : i;
+          atualizar();
+          if (estado.plano != null) toast('Plano ' + d.planos[i].nome + ' escolhido');
+          return;
+        }
+        if (e.target.closest('#sel-btn')) {
+          abrirMenu(!document.getElementById('sel-menu').classList.contains('on'));
+          return;
+        }
+        var add = e.target.closest('[data-add]');
+        if (add) {
+          abrirMenu(false);
+          confirmar(Number(add.getAttribute('data-add')), false);
+          return;
+        }
+        var rm = e.target.closest('[data-remover]');
+        if (rm) {
+          confirmar(Number(rm.getAttribute('data-remover')), true);
+          return;
+        }
+        if (!e.target.closest('.sel-wrap')) abrirMenu(false);
+        if (e.target.closest('#confirmar')) {
+          if (estado.plano == null) return;
+          var p = d.planos[estado.plano];
+          var ex = extrasEscolhidos();
+          var total = p.preco == null ? null : p.preco + ex.reduce(function (t, x) { return t + x.preco; }, 0);
+          var msg = 'Olá, ' + d.cons.nome.split(' ')[0] + '! Escolhi o plano ' + p.nome + (p.cota ? ' (' + p.cota + ')' : '') + ' da proposta nº ' + d.n + '.'
+            + (ex.length ? '\nBenefícios adicionais: ' + ex.map(function (x) { return x.label; }).join(', ') + '.' : '')
+            + '\nMensalidade: ' + (total == null ? 'sob medida' : brl(total)) + '/mês'
+            + '\nAdesão: ' + (p.adesao == null ? 'a definir' : brl(p.adesao))
+            + '\nPodemos seguir com a vistoria?';
+          window.open(wa(msg), '_blank', 'noopener');
+          toast('Escolha enviada ao seu consultor!');
+        }
+      });
+
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { abrirMenu(false); if (document.getElementById('modal').classList.contains('on')) fecharModal(false); } });
+      atualizar();
+    })();
+  </script>
+</body>
+
+</html>
