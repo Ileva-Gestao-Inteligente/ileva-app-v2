@@ -829,17 +829,6 @@
 
 <main class="nosb" style="flex-grow: 1; min-height: 0; overflow-y: auto; scrollbar-width: none; box-sizing: border-box; padding: 16px var(--tela-margem) 24px; display: flex; flex-direction: column; gap: 24px">
 
-<div style="flex-shrink: 0; position: relative; margin: -16px calc(var(--tela-margem) * -1) 0; padding: 6px var(--tela-margem) 0">
-<span aria-hidden="true" style="position: absolute; top: -4px; left: 0; right: 0; height: calc(50% + 7px); border-radius: 0; background: #4A1259"></span>
-<button class="cta-perf" onClick="{{openDesempenho}}" aria-label="Abrir Meu desempenho" style="position: relative; flex-shrink: 0; width: 100%; padding: 9px 10px 9px 9px; border: 1px solid #ece6ee; border-radius: 14px; background: linear-gradient(100deg, #ffffff 0%, #f9f6fa 100%); font-family: inherit; color: #0b1c30; text-align: left; display: flex; align-items: center; gap: 10px; cursor: pointer; box-shadow: 0 8px 20px -8px rgba(32, 7, 38,0.35)">
-<span style="flex-shrink: 0; width: 36px; height: 36px; box-sizing: border-box; border-radius: 10px; border: 1.5px solid #A192A6; color: #4A1259; display: flex; align-items: center; justify-content: center"><span class="ms" style="font-size: 20px">monitoring</span></span>
-<span style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 1px">
-<span style="font-size: 14px; line-height: 18px; font-weight: 700; color: #0b1c30">Meu desempenho</span>
-<span style="font-size: 11px; line-height: 14px; color: #7b7487; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">Saldo, metas, indicadores e ranking</span>
-</span>
-<span style="flex-shrink: 0; width: 28px; height: 28px; border-radius: 9999px; background: #f4f0f5; color: #4A1259; display: flex; align-items: center; justify-content: center"><span class="ms" style="font-size: 18px">chevron_right</span></span>
-</button>
-</div>
 
 <sc-if value="{{instalarMostrar}}" hint-placeholder-val="{{ false }}">
 <div style="flex-shrink: 0; position: relative; overflow: hidden; padding: 14px; border-radius: 18px; background: radial-gradient(circle at 95% 0%, rgba(161, 146, 166,0.85) 0%, rgba(161, 146, 166,0) 50%), linear-gradient(135deg, #622773 0%, #4A1259 100%); color: #ffffff; box-shadow: 0 12px 26px -14px rgba(74, 18, 89,0.7); display: flex; align-items: center; gap: 12px; animation: itemIn .4s cubic-bezier(.22,1,.36,1) both">
@@ -851,10 +840,18 @@
 </sc-if>
 
 <section aria-label="Atalhos" style="flex-shrink: 0; margin-top: -8px">
-<div style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 4px; padding-top: 4px">
-<sc-for list="{{homeShortcuts}}" as="hs" hint-placeholder-count="5">
-<button class="story" onClick="{{hs.go}}" aria-label="{{hs.label}}" style="min-width: 0; padding: 0; border: 0; background: transparent; font-family: inherit; display: flex; flex-direction: column; align-items: center; gap: 5px; cursor: pointer">
-<span style="width: 52px; height: 52px; box-sizing: border-box; border-radius: 9999px; background: #ffffff; box-shadow: 0 2px 8px -2px rgba(32, 7, 38,0.12)">
+<div class="nosb drag-row" ref="{{rowAtalhos.ref}}" onMouseDown="{{rowAtalhos.down}}" onMouseMove="{{rowAtalhos.move}}" onMouseUp="{{rowAtalhos.up}}" onMouseLeave="{{rowAtalhos.up}}" onClickCapture="{{onClickCapture}}" onDragStart="{{preventNative}}" style="display: flex; gap: 4px; padding-top: 4px; overflow-x: auto; scrollbar-width: none; scroll-snap-type: x mandatory; overscroll-behavior-x: contain">
+<button class="story" onClick="{{openDesempenho}}" aria-label="Meu desempenho" style="flex: 0 0 calc((100% - 16px) / 5); scroll-snap-align: start; min-width: 0; padding: 0; border: 0; background: transparent; font-family: inherit; display: flex; flex-direction: column; align-items: center; gap: 5px; cursor: pointer">
+<span style="width: 100%; max-width: 52px; aspect-ratio: 1; box-sizing: border-box; padding: 2px; border-radius: 9999px; background: linear-gradient(135deg, #A192A6 0%, #4A1259 100%); box-shadow: 0 4px 12px -4px rgba(74, 18, 89,0.5)">
+<span style="width: 100%; height: 100%; box-sizing: border-box; border: 2px solid #ffffff; border-radius: 9999px; background: linear-gradient(135deg, #622773 0%, #4A1259 100%); color: #ffffff; display: flex; align-items: center; justify-content: center">
+<span class="ms" style="font-size: 22px">monitoring</span>
+</span>
+</span>
+<span style="max-width: 100%; font-size: 10px; line-height: 12px; font-weight: 700; color: #4A1259; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">Desempenho</span>
+</button>
+<sc-for list="{{homeShortcuts}}" as="hs" hint-placeholder-count="4">
+<button class="story" onClick="{{hs.go}}" aria-label="{{hs.label}}" style="flex: 0 0 calc((100% - 16px) / 5); scroll-snap-align: start; min-width: 0; padding: 0; border: 0; background: transparent; font-family: inherit; display: flex; flex-direction: column; align-items: center; gap: 5px; cursor: pointer">
+<span style="width: 100%; max-width: 52px; aspect-ratio: 1; box-sizing: border-box; border-radius: 9999px; background: #ffffff; box-shadow: 0 2px 8px -2px rgba(32, 7, 38,0.12)">
 <span style="width: 100%; height: 100%; box-sizing: border-box; border-radius: 9999px; background: #ffffff; display: flex; align-items: center; justify-content: center">
 <span class="ms" style="{{hs.iconStyle}}">{{hs.icon}}</span>
 </span>
@@ -862,46 +859,71 @@
 <span style="max-width: 100%; font-size: 10px; line-height: 12px; font-weight: 600; color: #0b1c30; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{hs.short}}</span>
 </button>
 </sc-for>
-<button class="story" onClick="{{openAtalhos}}" aria-label="Personalizar atalhos" aria-haspopup="dialog" style="min-width: 0; padding: 0; border: 0; background: transparent; font-family: inherit; display: flex; flex-direction: column; align-items: center; gap: 5px; cursor: pointer">
-<span style="width: 52px; height: 52px; box-sizing: border-box; border-radius: 9999px; background: #ffffff; box-shadow: 0 2px 8px -2px rgba(32, 7, 38,0.12); color: #4A1259; display: flex; align-items: center; justify-content: center"><span class="ms" style="font-size: 22px; font-variation-settings: 'FILL' 1">add</span></span>
+<button class="story" onClick="{{openAtalhos}}" aria-label="Personalizar atalhos" aria-haspopup="dialog" style="flex: 0 0 calc((100% - 16px) / 5); scroll-snap-align: start; min-width: 0; padding: 0; border: 0; background: transparent; font-family: inherit; display: flex; flex-direction: column; align-items: center; gap: 5px; cursor: pointer">
+<span style="width: 100%; max-width: 52px; aspect-ratio: 1; box-sizing: border-box; border-radius: 9999px; background: #ffffff; box-shadow: 0 2px 8px -2px rgba(32, 7, 38,0.12); color: #4A1259; display: flex; align-items: center; justify-content: center"><span class="ms" style="font-size: 22px; font-variation-settings: 'FILL' 1">add</span></span>
 <span style="font-size: 10px; line-height: 12px; font-weight: 600; color: #0b1c30; white-space: nowrap">Editar</span>
 </button>
 </div>
 </section>
 
-<div style="flex-shrink: 0; padding: 16px 12px; border-radius: 16px; background: #ffffff; border: 1px solid #e5eeff; box-shadow: 0 2px 12px -2px rgba(32, 7, 38,0.06); display: flex; flex-direction: column; gap: 12px">
-<div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 8px">
-<div style="display: flex; align-items: center; gap: 8px">
-<h3 style="margin: 0; font-size: 15px; line-height: 20px; font-weight: 700">Conversão do funil</h3>
-</div>
-<span style="flex-shrink: 0; margin-top: -6px; display: flex; flex-direction: column; align-items: flex-end; gap: 2px"><strong style="font-size: 17px; line-height: 20px; color: #4A1259">{{funilConv}}</strong><span style="font-size: 11px; line-height: 13px; color: #4a4455">conversão geral</span></span>
-</div>
-<div style="display: flex; flex-direction: column; gap: 4px">
-<sc-for list="{{funilSteps}}" as="st" hint-placeholder-count="5">
-<div style="display: flex; flex-direction: column; gap: 4px">
-<sc-if value="{{st.hasDrop}}" hint-placeholder-val="{{ false }}">
-<div style="{{st.dropStyle}}">
-<span class="ms" style="font-size: 13px">south</span>
-<span>{{st.dropText}}</span>
-</div>
+<section aria-label="Agenda de hoje" style="flex-shrink: 0; padding: 16px; border-radius: 18px; background: #ffffff; border: 1px solid #efe9f2; box-shadow: 0 1px 2px rgba(32, 7, 38,0.04), 0 8px 24px -12px rgba(32, 7, 38,0.12); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 14px">
+<button onClick="{{hcAbrirHoje}}" aria-label="Abrir a agenda de hoje" style="min-width: 0; padding: 0; border: 0; background: transparent; font-family: inherit; text-align: left; display: flex; flex-direction: column; cursor: pointer">
+<span style="font-size: 11px; line-height: 14px; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; color: #622773">{{hcDiaSemana}}</span>
+<span style="font-size: 44px; line-height: 48px; font-weight: 400; letter-spacing: -0.02em; color: #0b1c30">{{hcDia}}</span>
+<span style="flex-grow: 1; min-height: 10px"></span>
+<sc-if value="{{hcTemEventos}}" hint-placeholder-val="{{ true }}">
+<span style="display: flex; flex-direction: column; gap: 6px">
+<sc-for list="{{hcEventos}}" as="ev" hint-placeholder-count="2">
+<span style="min-width: 0; padding-left: 8px; border-left: 3px solid #A192A6; display: flex; flex-direction: column">
+<strong style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 12px; line-height: 15px; font-weight: 700; color: #0b1c30">{{ev.titulo}}</strong>
+<span style="font-size: 11px; line-height: 13px; color: #7b7487">{{ev.hora}}</span>
+</span>
+</sc-for>
+<span style="font-size: 11px; font-weight: 600; color: #622773">{{hcMais}}</span>
+</span>
 </sc-if>
-<div style="display: flex; align-items: center; gap: 4px">
-<div style="flex-grow: 1; min-width: 0; height: 26px; border-radius: 8px; background: #eff4ff; overflow: hidden">
-<div style="{{st.barStyle}}">
-<span style="display: block; font-size: 11px; line-height: 1; font-weight: 700; color: #ffffff; white-space: nowrap">{{st.label}}</span>
-<span style="display: block; font-size: 12px; line-height: 1; font-weight: 800; color: #ffffff">{{st.count}}</span>
-</div>
-</div>
-<span style="{{st.timeStyle}}">{{st.time}}</span>
-</div>
-</div>
+<sc-if value="{{hcSemEventos}}" hint-placeholder-val="{{ false }}">
+<span style="font-size: 14px; line-height: 18px; color: #7b7487">Nenhum evento hoje</span>
+</sc-if>
+</button>
+<div style="min-width: 0; display: flex; flex-direction: column; gap: 6px">
+<span style="font-size: 11px; line-height: 14px; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; color: #622773">{{hcMes}}</span>
+<div style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); row-gap: 5px">
+<sc-for list="{{hcSemana}}" as="w" hint-placeholder-count="7"><span style="{{w.style}}">{{w.l}}</span></sc-for>
+<sc-for list="{{hcCells}}" as="c" hint-placeholder-count="30">
+<sc-if value="{{c.empty}}" hint-placeholder-val="{{ false }}"><span style="{{c.style}}"></span></sc-if>
+<sc-if value="{{c.isDay}}" hint-placeholder-val="{{ true }}"><button onClick="{{c.pick}}" aria-label="{{c.label}}" style="{{c.style}}">{{c.day}}<span style="{{c.dotStyle}}"></span></button></sc-if>
 </sc-for>
 </div>
+</div>
+</section>
+
+<div style="flex-shrink: 0; padding: 16px 14px; border-radius: 18px; background: #ffffff; border: 1px solid #efe9f2; box-shadow: 0 1px 2px rgba(32, 7, 38,0.04), 0 8px 24px -12px rgba(32, 7, 38,0.12); display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 8px">
+<div style="display: flex; align-items: center; gap: 10px">
+<div style="display: flex; flex-direction: column; gap: 1px">
+<h3 style="margin: 0; font-size: 15px; line-height: 19px; font-weight: 700">Conversão do funil</h3>
+<span style="font-size: 11px; line-height: 13px; color: #7b7487">{{funilConvSub}}</span>
+</div>
+</div>
+<span style="flex-shrink: 0; padding: 4px 10px; border-radius: 9999px; background: #ecfdf3; display: flex; align-items: baseline; gap: 4px"><strong style="font-size: 16px; line-height: 20px; font-weight: 800; color: #047857">{{funilConv}}</strong><span style="font-size: 10px; line-height: 12px; font-weight: 600; color: #047857">conversão</span></span>
+</div>
+<div style="display: flex; flex-direction: column; gap: 4px">
+<sc-for list="{{funilSteps}}" as="st" hint-placeholder-count="6">
+<button onClick="{{st.pick}}" aria-label="{{st.aria}}" aria-disabled="{{st.disabled}}" style="{{st.rowStyle}}">
+<span style="{{st.pillStyle}}"><strong style="{{st.labelStyle}}">{{st.label}}</strong><span style="{{st.subStyle}}">{{st.sub}}</span></span>
+<span style="{{st.trapStyle}}">{{st.count}}</span>
+<span class="ms" style="{{st.iconStyle}}">{{st.icon}}</span>
+</button>
+</sc-for>
+</div>
+<sc-if value="{{funilTemGargalo}}" hint-placeholder-val="{{ true }}">
 <button class="lamp-btn" onClick="{{openAnalise}}" aria-haspopup="dialog" style="align-self: flex-start; min-height: 32px; padding: 0 2px; border: 0; background: transparent; font-family: inherit; font-size: 12px; font-weight: 700; color: #4A1259; display: flex; align-items: center; gap: 6px; cursor: pointer">
 <span style="position: relative; display: flex"><span class="ms" style="font-size: 18px; color: #d97706; font-variation-settings: 'FILL' 1">lightbulb</span><span class="pulse-dot" style="position: absolute; top: -1px; right: -2px; width: 6px; height: 6px; border-radius: 9999px; background: #f59e0b"></span></span>
 <span>Conferir a análise do funil</span>
 <span class="ms" style="font-size: 16px">arrow_forward</span>
 </button>
+</sc-if>
 </div>
 
 <section style="background: #ffffff; border-radius: 16px; padding: 16px; border: 1px solid #eff4ff; box-shadow: 0 2px 12px -2px rgba(32, 7, 38,0.06); display: flex; flex-direction: column; gap: 14px">
@@ -1079,7 +1101,7 @@ Chat do Consultor
 <div style="flex-shrink: 0; background: #ffffff; border-bottom: 1px solid #e5eeff; box-shadow: 0 1px 8px rgba(0,0,0,0.04); padding: 0 12px">
 <div style="height: 64px; display: flex; align-items: center; gap: 4px">
 <button onClick="{{closeIa}}" aria-label="Voltar" style="width: 44px; height: 44px; border: 0; border-radius: 9999px; background: transparent; color: #0b1c30; display: flex; align-items: center; justify-content: center; cursor: pointer"><span class="ms" style="font-size: 24px">arrow_back</span></button>
-<div style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column"><h2 id="ia-title" style="margin: 0; font-size: 17px; line-height: 22px; font-weight: 700">Consultor</h2><span style="display: flex; align-items: center; gap: 4px; font-size: 11px; line-height: 14px; color: #7b7487"><span class="ms" style="font-size: 13px; color: #622773">auto_awesome</span>Assistente IA · ferramentas para vender mais</span></div>
+<div style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column"><h2 id="ia-title" style="margin: 0; font-size: 17px; line-height: 22px; font-weight: 700">Consultor</h2><span style="font-size: 11px; line-height: 14px; color: #7b7487">Ferramentas para vender mais</span></div>
 </div>
 </div>
 <div class="nosb ia-lista" style="flex-grow: 1; min-height: 0; overflow-y: auto; scrollbar-width: none; padding: 16px var(--tela-margem) 24px; display: flex; flex-direction: column; gap: 10px">
@@ -1288,8 +1310,8 @@ Chat do Consultor
 <span class="ms" style="font-size: 20px; color: #7b7487">chevron_right</span>
 </a>
 <a href="#" onClick="{{menuAgenda}}" style="height: 48px; padding: 0 16px; display: flex; align-items: center; gap: 14px; text-decoration: none; color: #0b1c30; border-bottom: 1px solid #eff4ff;">
-<span class="ms" style="font-size: 22px; color: #4A1259; font-variation-settings: 'FILL' 1">sticky_note_2</span>
-<span style="flex-grow: 1; font-size: 14px; font-weight: 500">Anotações</span>
+<span class="ms" style="font-size: 22px; color: #4A1259; font-variation-settings: 'FILL' 1">event</span>
+<span style="flex-grow: 1; font-size: 14px; font-weight: 500">Agendamentos</span>
 <span class="ms" style="font-size: 20px; color: #7b7487">chevron_right</span>
 </a>
 <a href="#" style="height: 48px; padding: 0 16px; display: flex; align-items: center; gap: 14px; text-decoration: none; color: #0b1c30; border-bottom: 1px solid #eff4ff;">
@@ -1392,7 +1414,7 @@ Nova cotação
 <span style="flex-shrink: 0; font-size: 11px; font-weight: 700; color: #b42318; background: #fee4e2; padding: 2px 8px; border-radius: 9999px">Prioridade alta</span>
 </div>
 <span style="align-self: flex-start; font-size: 11px; font-weight: 700; color: #4A1259; background: #ece6ee; padding: 2px 8px; border-radius: 6px">84% da meta · faltam 8 placas</span>
-<p style="margin: 0; font-size: 12px; line-height: 17px; color: #4a4455">São cerca de 2 placas por semana. Foque nas 6 propostas em "Aguardando": elas estão a um passo do fechamento e sozinhas quase completam a meta.</p>
+<p style="margin: 0; font-size: 12px; line-height: 17px; color: #4a4455">São cerca de 2 placas por semana. Foque nas propostas em "Ativação": elas estão a um passo do fechamento e sozinhas quase completam a meta.</p>
 </div>
 </article>
 <article style="padding: 14px; border-radius: 14px; background: #ffffff; border: 1px solid #e5eeff; display: flex; gap: 12px">
@@ -1404,7 +1426,7 @@ Nova cotação
 <h4 style="margin: 0; font-size: 14px; line-height: 18px; font-weight: 700">Destrave o primeiro contato</h4>
 <span style="flex-shrink: 0; font-size: 11px; font-weight: 700; color: #b42318; background: #fee4e2; padding: 2px 8px; border-radius: 9999px">Prioridade alta</span>
 </div>
-<span style="align-self: flex-start; font-size: 11px; font-weight: 700; color: #622773; background: #ece6ee; padding: 2px 8px; border-radius: 6px">14 propostas em Contato (42%)</span>
+<span style="align-self: flex-start; font-size: 11px; font-weight: 700; color: #622773; background: #ece6ee; padding: 2px 8px; border-radius: 6px">Propostas paradas em Plano</span>
 <p style="margin: 0; font-size: 12px; line-height: 17px; color: #4a4455">Quase metade do funil está parada no início. Retorne cada lead em até 24h: a chance de conversão cai muito depois do primeiro dia.</p>
 </div>
 </article>
@@ -1862,6 +1884,7 @@ Marcar todas como lidas
 <span class="ms" style="font-size: 24px">arrow_back</span>
 </button>
 <h2 id="agenda-title" style="flex-grow: 1; margin: 0; font-size: 17px; line-height: 22px; font-weight: 700">Agenda</h2>
+<button onClick="{{openNota}}" aria-label="Novo agendamento" aria-haspopup="dialog" style="flex-shrink: 0; height: 38px; margin-right: 4px; padding: 0 14px 0 10px; border: 0; border-radius: 9999px; background: linear-gradient(135deg, #622773 0%, #4A1259 100%); color: #ffffff; font-family: inherit; font-size: 13px; font-weight: 700; display: flex; align-items: center; gap: 4px; cursor: pointer; box-shadow: 0 6px 14px -6px rgba(74, 18, 89,0.6)"><span class="ms" style="font-size: 20px">add</span>Novo</button>
 
 </div>
 <div style="margin: 0 8px 10px; display: flex; align-items: center; justify-content: space-between; gap: 8px">
@@ -1939,7 +1962,7 @@ Marcar todas como lidas
 <span class="ms" style="font-size: 30px">event_available</span>
 </span>
 <span style="font-size: 15px; font-weight: 700">Nada por aqui</span>
-<span style="font-size: 12px; color: #4a4455">Toque no + para criar uma nova anotação.</span>
+<span style="font-size: 12px; color: #4a4455">Toque em + Novo para criar um agendamento.</span>
 </div>
 </sc-if>
 </div>
@@ -2020,19 +2043,16 @@ Marcar todas como lidas
 
 <sc-if value="{{dayEmpty}}" hint-placeholder-val="{{ false }}">
 <div style="flex-shrink: 0; padding: 20px; border-radius: 14px; border: 1.5px dashed #ccc3d8; display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center">
-<span style="font-size: 12px; color: #4a4455">Nenhum lembrete neste dia.</span>
+<span style="font-size: 12px; color: #4a4455">Nenhum agendamento neste dia.</span>
 <button onClick="{{createOnDay}}" style="height: 40px; padding: 0 14px; border: 0; border-radius: 9999px; background: #ece6ee; color: #4A1259; font-family: inherit; font-size: 13px; font-weight: 700; display: flex; align-items: center; gap: 6px; cursor: pointer">
 <span class="ms" style="font-size: 18px">add_alarm</span>
-Criar lembrete neste dia
+Agendar neste dia
 </button>
 </div>
 </sc-if>
 </div>
 </sc-if>
 
-<button class="fab-glass" onClick="{{openNota}}" aria-label="Criar anotação" aria-haspopup="dialog" style="position: absolute; right: 16px; bottom: 16px; width: 56px; height: 56px; padding: 0; border: 1px solid rgba(255,255,255,0.55); border-radius: 9999px; background: linear-gradient(160deg, rgba(255,255,255,0.45) 0%, rgba(255,255,255,0.08) 42%, rgba(255,255,255,0) 60%), linear-gradient(135deg, rgba(98, 39, 115,0.9) 0%, rgba(74, 18, 89,0.94) 100%); backdrop-filter: blur(14px) saturate(160%); -webkit-backdrop-filter: blur(14px) saturate(160%); color: #ffffff; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: inset 0 1px 1px rgba(255,255,255,0.7), inset 0 -3px 6px rgba(32, 7, 38,0.25), 0 10px 22px -4px rgba(74, 18, 89,0.5)">
-<span class="ms" style="font-size: 30px">add</span>
-</button>
 
 <sc-if value="{{toastVisible}}" hint-placeholder-val="{{ false }}">
 <div role="status" style="position: absolute; left: 20px; right: 88px; bottom: 24px; padding: 12px 14px; border-radius: 12px; background: #213145; color: #ffffff; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 8px; box-shadow: 0 10px 24px -8px rgba(0,0,0,0.4); animation: sheetUp .3s cubic-bezier(.22,1,.36,1)">
@@ -2074,18 +2094,18 @@ Criar lembrete neste dia
 </div>
 </div>
 
-<span style="flex-shrink: 0; padding: 0 2px; font-size: 11px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: #7b7487">Sobre a anotação</span>
+<span style="flex-shrink: 0; padding: 0 2px; font-size: 11px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: #7b7487">Sobre o agendamento</span>
 <label style="flex-shrink: 0; display: flex; flex-direction: column; gap: 6px">
 <span style="font-size: 12px; font-weight: 700; color: #4a4455">Título *</span>
 <input type="text" value="{{fTitle}}" onChange="{{onFTitle}}" placeholder="Ex.: Retornar para o Leo" style="height: 48px; box-sizing: border-box; padding: 0 14px; border: 1px solid #ccc3d8; border-radius: 12px; background: #ffffff; font-family: inherit; font-size: 14px; color: #0b1c30; outline-color: #4A1259; width: 100%">
 </label>
 <label style="flex-shrink: 0; display: flex; flex-direction: column; gap: 6px">
-<span style="font-size: 12px; font-weight: 700; color: #4a4455">Anotação</span>
+<span style="font-size: 12px; font-weight: 700; color: #4a4455">Detalhes do agendamento</span>
 <textarea value="{{fText}}" onChange="{{onFText}}" rows="3" placeholder="Detalhes da conversa, objeções, próximos passos…" style="box-sizing: border-box; width: 100%; padding: 12px 14px; border: 1px solid #ccc3d8; border-radius: 12px; font-family: inherit; font-size: 14px; line-height: 20px; color: #0b1c30; resize: none; outline-color: #4A1259"></textarea>
 </label>
 <div style="flex-shrink: 0; display: flex; flex-direction: column; gap: 16px">
 <label style="display: flex; flex-direction: column; gap: 6px">
-<span style="font-size: 12px; font-weight: 700; color: #4a4455">Data da anotação</span>
+<span style="font-size: 12px; font-weight: 700; color: #4a4455">Criado em</span>
 <input type="date" value="{{fNoteDate}}" onChange="{{onFNoteDate}}" style="height: 48px; box-sizing: border-box; padding: 0 14px; border: 1px solid #ccc3d8; border-radius: 12px; background: #ffffff; font-family: inherit; font-size: 14px; color: #0b1c30; outline-color: #4A1259; width: 100%">
 </label>
 <label style="display: flex; flex-direction: column; gap: 6px">
@@ -2115,11 +2135,11 @@ Criar lembrete neste dia
 </div>
 </div>
 
-<span style="flex-shrink: 0; padding-top: 4px; padding: 0 2px; font-size: 11px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: #7b7487">Lembrete</span>
+<span style="flex-shrink: 0; padding-top: 4px; padding: 0 2px; font-size: 11px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: #7b7487">Agendamento</span>
 <button onClick="{{toggleFAlert}}" role="switch" aria-checked="{{fAlertChecked}}" style="flex-shrink: 0; padding: 14px; border: 1px solid #e5eeff; border-radius: 14px; background: #f9f6fa; font-family: inherit; color: inherit; text-align: left; display: flex; align-items: center; gap: 12px; cursor: pointer">
 <span class="ms" style="font-size: 22px; color: #4A1259; font-variation-settings: 'FILL' 1">alarm</span>
 <span style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px">
-<span style="font-size: 14px; font-weight: 700">Lembrete de alerta</span>
+<span style="font-size: 14px; font-weight: 700">Agendar com alerta</span>
 <span style="font-size: 11px; color: #4a4455">Receba uma notificação na data escolhida</span>
 </span>
 <span style="{{switchTrack}}"><span style="{{switchThumb}}"></span></span>
@@ -2128,7 +2148,7 @@ Criar lembrete neste dia
 <div style="flex-shrink: 0; display: flex; flex-direction: column; gap: 14px; animation: itemIn .3s cubic-bezier(.22,1,.36,1) both">
 <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
 <label style="display: flex; flex-direction: column; gap: 6px">
-<span style="font-size: 12px; font-weight: 700; color: #4a4455">Data do lembrete</span>
+<span style="font-size: 12px; font-weight: 700; color: #4a4455">Data do agendamento</span>
 <input type="date" value="{{fDate}}" onChange="{{onFDate}}" style="height: 48px; box-sizing: border-box; padding: 0 14px; border: 1px solid #ccc3d8; border-radius: 12px; background: #ffffff; font-family: inherit; font-size: 14px; color: #0b1c30; outline-color: #4A1259; width: 100%">
 </label>
 <label style="display: flex; flex-direction: column; gap: 6px">
@@ -2961,7 +2981,7 @@ Faltam 8 placas para atingir a meta.
 <div onClick="{{pr.stop}}" style="border-top: 1px solid #f1eef3; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); cursor: default">
 <a href="{{pr.whatsUrl}}" target="_blank" rel="noopener" aria-label="{{pr.whatsLabel}}" class="prop-act" style="height: 42px; padding: 0 6px; border: 0; border-radius: 0; background: transparent; font-family: inherit; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; text-decoration: none; color: #15803d"><img src="assets/whatsapp-verde.svg" alt="" aria-hidden="true" style="width: 16px; height: 16px">WhatsApp</a>
 <a href="{{pr.tel}}" class="prop-act" style="height: 42px; padding: 0 6px; border: 0; border-radius: 0; background: transparent; font-family: inherit; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; text-decoration: none; border-left: 1px solid #f1eef3; color: #4A1259"><span class="ms" style="font-size: 17px">call</span>Ligar</a>
-<button onClick="{{pr.remind}}" class="prop-act" style="height: 42px; padding: 0 6px; border: 0; border-radius: 0; background: transparent; font-family: inherit; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; text-decoration: none; border-left: 1px solid #f1eef3; color: #4A1259"><span class="ms" style="font-size: 17px">add_alarm</span>Lembrete</button>
+<button onClick="{{pr.remind}}" class="prop-act" style="height: 42px; padding: 0 6px; border: 0; border-radius: 0; background: transparent; font-family: inherit; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; text-decoration: none; border-left: 1px solid #f1eef3; color: #4A1259"><span class="ms" style="font-size: 17px">add_alarm</span>Agendar</button>
 </div>
 </article>
 </sc-for>
@@ -3139,7 +3159,8 @@ Faltam 8 placas para atingir a meta.
 <div style="margin: 6px 0 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px">
 <sc-for list="{{wizSteps}}" as="ws" hint-placeholder-count="4">
 <button onClick="{{ws.go}}" aria-current="{{ws.current}}" aria-label="{{ws.aria}}" style="{{ws.btnStyle}}">
-<span style="{{ws.segStyle}}"></span>
+<span aria-hidden="true" style="{{ws.lineL}}"></span>
+<span aria-hidden="true" style="{{ws.lineR}}"></span>
 <span style="{{ws.nodeStyle}}"><span class="ms" style="font-size: 14px">{{ws.icon}}</span></span>
 <span style="{{ws.labelStyle}}">{{ws.label}}</span>
 </button>
@@ -3312,7 +3333,7 @@ Faltam 8 placas para atingir a meta.
 <div style="flex-grow: 1; display: flex; flex-direction: column; gap: 7px">
 <span style="font-size: 10px; line-height: 14px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: #7b7487">O que inclui</span>
 <sc-for list="{{pl.benefits}}" as="bn" hint-placeholder-count="3">
-<span key="{{bn.key}}" style="display: flex; align-items: flex-start; gap: 6px; font-size: 12px; line-height: 16px; color: #0b1c30; animation: itemIn .3s cubic-bezier(.22,1,.36,1) both"><span class="ms" style="{{bn.iconStyle}}">{{bn.icon}}</span>{{bn.t}}</span>
+<span key="{{bn.key}}" style="display: flex; align-items: flex-start; gap: 6px; font-size: 12px; line-height: 16px; color: #0b1c30; animation: itemIn .3s cubic-bezier(.22,1,.36,1) both"><span class="ms" style="{{bn.iconStyle}}">{{bn.icon}}</span><span style="{{bn.textStyle}}">{{bn.t}}</span></span>
 </sc-for>
 </div>
 
@@ -3534,7 +3555,7 @@ Faltam 8 placas para atingir a meta.
 <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px">
 <a href="{{det.tel}}" style="height: 44px; border: 1.5px solid #4A1259; border-radius: 12px; background: #ffffff; color: #4A1259; font-family: inherit; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; text-decoration: none; height: 36px; border-width: 1px; border-color: #e5eeff"><span class="ms" style="font-size: 15px">call</span>Ligar</a>
 <a href="{{det.whatsUrl}}" target="_blank" rel="noopener" style="height: 36px; border-radius: 12px; background: #1fa855; color: #ffffff; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 6px; text-decoration: none"><img src="assets/whatsapp-branco.svg" alt="" aria-hidden="true" style="width: 14px; height: 14px">Conversar</a>
-<button onClick="{{detNota}}" style="height: 44px; border: 1.5px solid #4A1259; border-radius: 12px; background: #ffffff; color: #4A1259; font-family: inherit; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; text-decoration: none; height: 36px; border-width: 1px; border-color: #e5eeff"><span class="ms" style="font-size: 15px">edit_note</span>Anotar</button>
+<button onClick="{{detNota}}" style="height: 44px; border: 1.5px solid #4A1259; border-radius: 12px; background: #ffffff; color: #4A1259; font-family: inherit; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; text-decoration: none; height: 36px; border-width: 1px; border-color: #e5eeff"><span class="ms" style="font-size: 15px">edit_note</span>Agendar</button>
 </div>
 </div>
 
@@ -3668,8 +3689,8 @@ Faltam 8 placas para atingir a meta.
 </div>
 
 <div style="flex-shrink: 0; padding: 14px 8px 12px; border-radius: 16px; background: #ffffff; border: 1px solid #e5eeff; box-shadow: 0 2px 12px -2px rgba(32, 7, 38,0.06)">
-<div style="display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 3px">
-<sc-for list="{{detSteps}}" as="hz" hint-placeholder-count="7">
+<div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 3px">
+<sc-for list="{{detSteps}}" as="hz" hint-placeholder-count="5">
 <button onClick="{{hz.pick}}" aria-label="{{hz.aria}}" aria-current="{{hz.ariaCurrent}}" style="{{hz.btnStyle}}">
 <span style="{{hz.segStyle}}"></span>
 <span style="{{hz.nodeStyle}}"><span class="ms" style="font-size: 17px">{{hz.nodeIcon}}</span></span>
@@ -4025,14 +4046,14 @@ Faltam 8 placas para atingir a meta.
 
 <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px">
 <div style="padding: 12px; border-radius: 12px; background: #f9f6fa; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 22px; font-weight: 800; color: #4A1259">{{analise.parados}}</span><span style="font-size: 11px; color: #4a4455">propostas paradas</span></div>
-<div style="padding: 12px; border-radius: 12px; background: #f9f6fa; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 22px; font-weight: 800; color: #b45309">{{analise.tempo}}</span><span style="font-size: 11px; color: #4a4455">tempo médio na etapa</span></div>
+<div style="padding: 12px; border-radius: 12px; background: #f9f6fa; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 22px; font-weight: 800; color: #b45309">{{analise.tempo}}</span><span style="font-size: 11px; color: #4a4455">em aberto, em média</span></div>
 </div>
 
 <div style="display: flex; flex-direction: column; gap: 8px">
 <span style="font-size: 12px; font-weight: 700; color: #4a4455">O que fazer agora</span>
 <div style="display: flex; gap: 10px; font-size: 12px; line-height: 17px; color: #4a4455"><span class="ms" style="flex-shrink: 0; font-size: 18px; color: #047857">call</span><span>Retorne os leads em até 24h. Depois disso, a chance de fechar cai bastante.</span></div>
 <div style="display: flex; gap: 10px; font-size: 12px; line-height: 17px; color: #4a4455"><span class="ms" style="flex-shrink: 0; font-size: 18px; color: #047857">chat</span><span>Comece pelo WhatsApp com a proposta já montada, e ligue para quem não responder.</span></div>
-<div style="display: flex; gap: 10px; font-size: 12px; line-height: 17px; color: #4a4455"><span class="ms" style="flex-shrink: 0; font-size: 18px; color: #047857">add_alarm</span><span>Crie um lembrete na Agenda para cada contato que pedir retorno.</span></div>
+<div style="display: flex; gap: 10px; font-size: 12px; line-height: 17px; color: #4a4455"><span class="ms" style="flex-shrink: 0; font-size: 18px; color: #047857">add_alarm</span><span>Crie um agendamento na Agenda para cada contato que pedir retorno.</span></div>
 </div>
 
 <button onClick="{{analiseGo}}" style="height: 46px; border: 0; border-radius: 12px; background: linear-gradient(135deg, #622773 0%, #4A1259 100%); color: #ffffff; font-family: inherit; font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; box-shadow: 0 8px 18px -8px rgba(74, 18, 89,0.6)">Ver as {{analise.parados}} propostas<span class="ms" style="font-size: 18px">arrow_forward</span></button>
@@ -4045,15 +4066,15 @@ Faltam 8 placas para atingir a meta.
 <div style="flex-shrink: 0; padding: 0 20px 12px; border-bottom: 1px solid #eff4ff">
 <div style="display: flex; justify-content: center; padding: 12px 0 8px"><span style="width: 48px; height: 4px; border-radius: 9999px; background: #ccc3d8"></span></div>
 <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px">
-<div style="display: flex; flex-direction: column"><h3 id="atalhos-title" style="margin: 0; font-size: 17px; line-height: 22px; font-weight: 700">Personalizar atalhos</h3><span style="font-size: 12px; color: #4a4455">Escolha até 5 e use as setas para ordenar</span></div>
+<div style="display: flex; flex-direction: column"><h3 id="atalhos-title" style="margin: 0; font-size: 17px; line-height: 22px; font-weight: 700">Personalizar atalhos</h3><span style="font-size: 12px; color: #4a4455">Escolha até 4 e use as setas para ordenar</span></div>
 <button onClick="{{closeAtalhos}}" aria-label="Fechar" style="flex-shrink: 0; width: 40px; height: 40px; border: 0; border-radius: 9999px; background: #eff4ff; color: #4a4455; display: flex; align-items: center; justify-content: center; cursor: pointer"><span class="ms" style="font-size: 20px">close</span></button>
 </div>
 </div>
 <div class="nosb" style="flex-grow: 1; min-height: 0; overflow-y: auto; scrollbar-width: none; padding: 14px var(--tela-margem) 16px; display: flex; flex-direction: column; gap: 16px">
 <div style="display: flex; flex-direction: column; gap: 10px">
 <div style="display: flex; align-items: center; justify-content: space-between"><span style="font-size: 11px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: #7b7487">Seus atalhos</span><span style="{{atDraftCountStyle}}">{{atDraftCount}}</span></div>
-<div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px">
-<sc-for list="{{atDraftSlots}}" as="sl" hint-placeholder-count="5">
+<div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px">
+<sc-for list="{{atDraftSlots}}" as="sl" hint-placeholder-count="4">
 <div style="display: flex; flex-direction: column; align-items: center; gap: 4px; min-width: 0">
 <span style="{{sl.circleStyle}}">
 <span class="ms" style="{{sl.iconStyle}}">{{sl.icon}}</span>
@@ -4075,7 +4096,7 @@ Faltam 8 placas para atingir a meta.
 <div style="display: flex; flex-direction: column; gap: 10px">
 <span style="font-size: 11px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: #7b7487">Todos os atalhos</span>
 <sc-if value="{{atFull}}" hint-placeholder-val="{{ false }}">
-<span style="display: flex; align-items: center; gap: 6px; padding: 8px 10px; border-radius: 10px; background: #fff7ed; font-size: 12px; color: #b45309"><span class="ms" style="font-size: 16px">info</span>Você já escolheu 5. Remova um acima para trocar.</span>
+<span style="display: flex; align-items: center; gap: 6px; padding: 8px 10px; border-radius: 10px; background: #fff7ed; font-size: 12px; color: #b45309"><span class="ms" style="font-size: 16px">info</span>Você já escolheu 4. Remova um acima para trocar.</span>
 </sc-if>
 <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px">
 <sc-for list="{{atAll}}" as="aa" hint-placeholder-count="9">
@@ -4662,7 +4683,7 @@ Compartilhar QR Code
       }
 
       static defaultAtalhos() {
-        return ['nova', 'agenda', 'link', 'indicadores', 'relatorios'];
+        return ['agenda', 'link', 'indicadores', 'relatorios'];
       }
 
       static loadAtalhos() {
@@ -4670,7 +4691,7 @@ Compartilhar QR Code
           const raw = window.localStorage.getItem('atalhos-inicio');
           const ids = raw ? JSON.parse(raw) : null;
           const valid = Component.atalhosCatalog().map((a) => a.id);
-          if (Array.isArray(ids) && ids.length && ids.every((x) => valid.includes(x))) return ids.slice(0, 5);
+          if (Array.isArray(ids) && ids.length && ids.every((x) => valid.includes(x))) return ids.slice(0, 4);
         } catch (err) { /* armazenamento indisponível */ }
         return Component.defaultAtalhos();
       }
@@ -4700,7 +4721,7 @@ Compartilhar QR Code
         const cat = Component.atalhosCatalog();
         const byId = (id) => cat.find((a) => a.id === id);
         const draft = st.atalhosDraft;
-        const full = draft.length >= 5;
+        const full = draft.length >= 4;
         const arrow = (on) => 'width:24px;height:24px;padding:0;border:0;border-radius:8px;display:flex;align-items:center;justify-content:center;' + (on ? 'background:#f4f0f5;color:#4A1259;cursor:pointer;' : 'background:#f8f9fc;color:#ccc3d8;cursor:not-allowed;');
         return {
           homeShortcuts: st.atalhosSel.map(byId).filter(Boolean).map((a) => ({
@@ -4713,10 +4734,10 @@ Compartilhar QR Code
           openAtalhos: () => this.setState({ atalhosOpen: true, atalhosDraft: [...st.atalhosSel] }),
           closeAtalhos: () => this.setState({ atalhosOpen: false }),
           resetAtalhos: () => this.setState({ atalhosDraft: Component.defaultAtalhos() }),
-          atDraftCount: draft.length + ' de 5',
+          atDraftCount: draft.length + ' de 4',
           atDraftCountStyle: 'font-size:12px;font-weight:700;color:' + (full ? '#047857' : '#4A1259'),
           atFull: full,
-          atDraftSlots: Array.from({ length: 5 }, (_, i) => {
+          atDraftSlots: Array.from({ length: 4 }, (_, i) => {
             const a = byId(draft[i]);
             return {
               filled: !!a,
@@ -4783,9 +4804,9 @@ Compartilhar QR Code
           },
           cpfs: { '12345678900': { nome: 'João Pereira da Silva', fone: '(62) 99812-3344', email: 'joao.pereira@email.com', uf: 'GO', cidade: 'Goiânia' } },
           planos: [
-            { id: 'prata', name: 'Prata', base: 59.9, adesao: 120, benefits: ['Roubo e furto', 'Assistência 24h (200 km)'] },
-            { id: 'rubi', name: 'Rubi', base: 79.9, adesao: 150, benefits: ['Roubo, furto e colisão', 'Assistência 24h (400 km)', 'Vidros'] },
-            { id: 'esmeralda', name: 'Esmeralda', base: 89.9, adesao: 180, tag: 'Mais escolhido', benefits: ['Roubo, furto e colisão', 'Assistência 24h (1.000 km)', 'Vidros', 'Carro reserva 7 dias'] },
+            { id: 'prata', name: 'Prata', base: 59.9, adesao: 120, benefits: ['Roubo e furto', 'Assistência 24h (200 km)'], naoInclui: ['Colisão', 'Vidros', 'Carro reserva', 'Danos a terceiros'] },
+            { id: 'rubi', name: 'Rubi', base: 79.9, adesao: 150, benefits: ['Roubo, furto e colisão', 'Assistência 24h (400 km)', 'Vidros'], naoInclui: ['Carro reserva', 'Danos a terceiros'] },
+            { id: 'esmeralda', name: 'Esmeralda', base: 89.9, adesao: 180, tag: 'Mais escolhido', benefits: ['Roubo, furto e colisão', 'Assistência 24h (1.000 km)', 'Vidros', 'Carro reserva 7 dias'], naoInclui: ['Danos a terceiros'] },
             { id: 'diamante', name: 'Diamante', base: 119.9, adesao: 250, benefits: ['Roubo, furto e colisão', 'Assistência 24h ilimitada', 'Vidros e faróis', 'Carro reserva 15 dias', 'Danos a terceiros R$ 100 mil'] },
             { id: 'personalizado', name: 'Personalizado', base: null, adesao: null, benefits: ['Coberturas montadas com o cliente', 'Valor definido pela diretoria'] }
           ],
@@ -4854,6 +4875,13 @@ Compartilhar QR Code
         const base = plano.benefits.map((t) => ({ t, icon: 'check_circle', iconStyle: "flex-shrink:0;font-size:16px;color:#047857;font-variation-settings:'FILL' 1" }));
         if (plano.base == null || !cota || !cota.beneficios) return base;
         return [...base, ...cota.beneficios.map((t) => ({ t, icon: 'add_circle', iconStyle: "flex-shrink:0;font-size:16px;color:#622773;font-variation-settings:'FILL' 1", key: 'cb-' + cota.id + '-' + t }))];
+      }
+
+      // Benefícios do plano + os que ele não cobre (marcados com X), usado na Nova proposta.
+      planBenefitsComparados(plano) {
+        const inclui = plano.benefits.map((t) => ({ t, icon: 'check_circle', iconStyle: "flex-shrink:0;font-size:16px;color:#047857;font-variation-settings:'FILL' 1", key: 'in-' + plano.id + '-' + t, textStyle: '' }));
+        const nao = (plano.naoInclui || []).map((t) => ({ t, icon: 'cancel', iconStyle: "flex-shrink:0;font-size:16px;color:#d4cbd9;font-variation-settings:'FILL' 1", key: 'ni-' + plano.id + '-' + t, textStyle: 'color:#a7a0b2' }));
+        return [...inclui, ...nao];
       }
 
       stepSeg(done, cur) {
@@ -4951,6 +4979,7 @@ Compartilhar QR Code
           wizBodyRef: this.wizBodyRef || (this.wizBodyRef = (el) => { this.wizBody = el; }),
           wizStepText: 'Passo ' + step + ' de 4 · ' + labels[step - 1],
           wizSteps: labels.map((l, i) => {
+            const linha = (pos, on) => 'position:absolute;top:11px;height:2px;' + pos + ';transition:background .35s;background:' + (on ? '#22a06b' : '#e5dcea');
             const n = i + 1;
             const done = n < step;
             const cur = n === step;
@@ -4961,9 +4990,10 @@ Compartilhar QR Code
               current: cur ? 'step' : 'false',
               aria: 'Etapa ' + n + ': ' + l + (done ? ' (concluída)' : ''),
               go: () => { if (reachable) set({ wizStep: n }); },
-              btnStyle: 'min-width:0;padding:0;border:0;background:transparent;font-family:inherit;display:flex;flex-direction:column;align-items:center;gap:5px;cursor:' + (reachable ? 'pointer' : 'not-allowed'),
-              segStyle: this.stepSeg(done, cur),
-              nodeStyle: this.stepChip(done, cur, false, 24),
+              btnStyle: 'position:relative;min-width:0;padding:0;border:0;background:transparent;font-family:inherit;display:flex;flex-direction:column;align-items:center;gap:5px;cursor:' + (reachable ? 'pointer' : 'not-allowed'),
+              lineL: i === 0 ? 'display:none' : linha('left:-3px;right:50%', done || cur),
+              lineR: i === labels.length - 1 ? 'display:none' : linha('left:50%;right:-3px', done),
+              nodeStyle: 'position:relative;z-index:1;' + this.stepChip(done, cur, false, 24),
               labelStyle: 'max-width:100%;font-size:11px;line-height:14px;letter-spacing:0.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;transition:color .3s;font-weight:' + (cur ? '800' : '600') + ';color:' + (cur ? '#4A1259' : done ? '#047857' : reachable ? '#7b7487' : '#a8a1b3')
             };
           }),
@@ -5104,7 +5134,7 @@ Compartilhar QR Code
               btnIcon: on ? 'check_circle' : 'add_circle',
               btnStyle: 'height:44px;border-radius:12px;font-family:inherit;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:6px;cursor:pointer;transition:all .2s;' + (on ? 'border:0;background:#16a34a;color:#ffffff;box-shadow:0 8px 16px -8px rgba(22, 163, 74,0.6);' : 'border:1.5px solid #4A1259;background:#ffffff;color:#4A1259;'),
               toggle: () => set({ wPlans: on ? st.wPlans.filter((x) => x !== p.id) : [...st.wPlans, p.id] }),
-              benefits: this.planBenefits(p, cat.cotas.find((c) => c.id === (st.wCotas[p.id] || '0'))),
+              benefits: this.planBenefitsComparados(p),
               adesaoText: this.wizAdesao(p) == null ? 'A definir' : this.brl(this.wizAdesao(p)),
               adesaoKey: 'ad-' + p.id + '-' + this.wizAdesao(p),
               adesaoTodos: !!st.wAdesaoTodos,
@@ -5298,7 +5328,7 @@ Compartilhar QR Code
           const ad = this.wizAdesao(pl);
           const destaque = total != null && total === menor;
           const selo = destaque ? '<span class="selo verde">' + icon('savings') + 'Menor mensalidade</span>' : pl.tag ? '<span class="selo">' + icon('star') + esc(pl.tag) + '</span>' : '';
-          const itens = this.planBenefits(pl, cota).map((bn) => '<li class="' + (bn.icon === 'add_circle' ? 'cota' : '') + '">' + icon(bn.icon === 'add_circle' ? 'add_circle' : 'check_circle') + '<span>' + esc(bn.t) + '</span></li>').join('');
+          const itens = this.planBenefitsComparados(pl).map((bn) => '<li class="' + (bn.icon === 'cancel' ? 'nao' : '') + '">' + icon(bn.icon) + '<span>' + esc(bn.t) + '</span></li>').join('');
           const part = pl.base == null ? 'Coberturas sob medida' : (cota.label.split('participação ')[1] ? 'Participação de ' + cota.label.split('participação ')[1] + ' em sinistro' : esc(cota.label));
           return '<article class="plano' + (destaque ? ' destaque' : '') + '">'
             + '<header><h3>' + esc(pl.name) + '</h3>' + selo + '</header>'
@@ -5358,7 +5388,7 @@ Compartilhar QR Code
           + '.preco strong{display:block;font-size:30px;line-height:1.1;letter-spacing:-.02em;color:#4A1259;margin-top:4px}.preco small{font-size:13px;color:#7b7487;font-weight:600;margin-left:2px}.preco .comp{display:block;margin-top:4px;font-size:11px;color:#4a4455}'
           + '.linhas div{display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px dashed #ece6f2;font-size:13px}.linhas div:last-child{border:0}.linhas span:not(.mi){flex:1;color:#4a4455}.linhas .mi{color:#7b7487;font-size:18px}'
           + '.inc{margin:0;font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#7b7487}'
-          + 'ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;flex:1}li{display:flex;align-items:flex-start;gap:8px;font-size:13px;line-height:1.4}li .mi{font-size:18px;color:#16a34a;font-variation-settings:"FILL" 1}li.cota .mi{color:#622773}'
+          + 'ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;flex:1}li{display:flex;align-items:flex-start;gap:8px;font-size:13px;line-height:1.4}li .mi{font-size:18px;color:#16a34a;font-variation-settings:"FILL" 1}li.nao{color:#a7a0b2}li.nao .mi{color:#d4cbd9}'
           + '.cta{margin-top:4px;display:flex;align-items:center;justify-content:center;gap:6px;padding:12px;border-radius:14px;background:#4A1259;color:#fff;text-decoration:none;font-weight:700;font-size:14px}.plano.destaque .cta{background:#16a34a}'
           + '.extras{display:flex;flex-direction:column}.extra{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #f1eef3;font-size:14px}.extra:last-child{border:0}.extra span:not(.mi){flex:1}.extra .mi{color:#622773}.extra b.neg{color:#b42318}'
           + '.nota{margin:10px 0 0;font-size:12px;color:#7b7487}'
@@ -5430,7 +5460,7 @@ Compartilhar QR Code
               cota: pl.base == null ? '' : cota.label.split(' · ')[0],
               part: pl.base == null ? '' : (cota.label.split('participação ')[1] || ''),
               adesao: this.wizAdesao(pl),
-              beneficios: this.planBenefits(pl, cota).map((b) => ({ t: b.t, c: b.icon === 'add_circle' ? 1 : 0 }))
+              beneficios: this.planBenefitsComparados(pl).map((b) => ({ t: b.t, n: b.icon === 'cancel' ? 1 : 0 }))
             };
           }),
           incl: extrasSel.map((x) => ({ label: x.label, preco: x.price })),
@@ -5563,12 +5593,12 @@ Compartilhar QR Code
             num: 1000 + Number(p.id.replace(/\D/g, '')), email: '', marca: '', ano: (p.model.match(/\d{4}/) || ['2021'])[0], fuel: 'Flex',
             fipe: p.type === 'caminhao' ? 245000 : p.type === 'moto' ? 18500 : 64000, code: '00' + p.id.replace(/\D/g, '').padStart(4, '0') + '-3',
             plans: ['esmeralda', 'diamante'], cotas: {}, extras: [], tasks: {},
-            stage: p.status === 'funil' ? etapas.indexOf(p.etapa) + 1 : p.status === 'ativada' ? 8 : 0,
+            stage: p.status === 'funil' ? etapas.indexOf(p.etapa) + 1 : p.status === 'ativada' ? etapas.length + 1 : 0,
             history: [{ t: 'Proposta criada', d: p.created.split('-').reverse().join('/') + ' · ' + (p.origem || 'Aplicativo') }]
           });
           p.protegido = p.fipe;
-          const doneUpTo = p.status === 'ativada' ? 7 : p.stage - 1;
-          p.tasks = { perguntas: doneUpTo >= 1, dados: doneUpTo >= 2, veiculo: doneUpTo >= 3, vistoria: doneUpTo >= 4, vistoriaInfo: doneUpTo >= 4 ? 'Vistoria padrão · Próprio consultor' : '', termoEnviado: doneUpTo >= 5, termo: doneUpTo >= 5 };
+          const doneUpTo = p.status === 'ativada' ? etapas.length : p.stage - 1;
+          p.tasks = { perguntas: doneUpTo >= 1, dados: doneUpTo >= 2, veiculo: doneUpTo >= 2, vistoria: doneUpTo >= 3, vistoriaInfo: doneUpTo >= 3 ? 'Vistoria padrão · Próprio consultor' : '', termoEnviado: doneUpTo >= 4, termo: doneUpTo >= 4 };
           if (p.etapa === 'Vistoria') p.tasks = { ...p.tasks, vistoria: true, vistoriaInfo: 'Vistoria padrão · Autovistoria' };
           if (doneUpTo >= 1) { p.chosen = 'esmeralda'; p.chosenCota = '0'; }
           if (p.status === 'ativada') p.history.push({ t: 'Proposta ativada', d: p.activated.split('-').reverse().join('/') });
@@ -5578,7 +5608,7 @@ Compartilhar QR Code
         const save = (patch, histText, toastText) => {
           Object.assign(p, patch);
           if (histText) p.history = [...p.history, { t: histText, d: '30/09/2026 · Carlos Eduardo' }];
-          if (p.stage >= 1 && p.stage <= 7) { p.status = 'funil'; p.etapa = etapas[p.stage - 1]; }
+          if (p.stage >= 1 && p.stage <= etapas.length) { p.status = 'funil'; p.etapa = etapas[p.stage - 1]; }
           this.setState({ detRev: (st.detRev || 0) + 1, ds: null, cf: null, detStepView: null });
           if (toastText) toast(toastText);
         };
@@ -5590,7 +5620,7 @@ Compartilhar QR Code
         const isClosed = p.status === 'arquivada' || p.status === 'transferida';
         const banner = p.status === 'ativada' ? { t: 'Proposta ativada', i: 'verified', pos: '', bg: 'linear-gradient(135deg,#2bb673 0%,#047857 100%)' }
           : isClosed ? { t: p.status === 'arquivada' ? 'Proposta arquivada' : 'Proposta transferida', i: p.status === 'arquivada' ? 'archive' : 'swap_horiz', pos: '', bg: 'linear-gradient(135deg,#7b7487 0%,#4a4455 100%)' }
-            : { t: stageNames[p.stage - 1], i: 'flag', pos: p.stage + ' de 7', bg: 'linear-gradient(135deg,#622773 0%,#4A1259 100%)' };
+            : { t: stageNames[p.stage - 1], i: 'flag', pos: p.stage + ' de ' + etapas.length, bg: 'linear-gradient(135deg,#622773 0%,#4A1259 100%)' };
         const t = p.tasks;
         const tasks = [
           { id: 'perguntas', title: 'Perguntas da etapa', done: t.perguntas, pending: 'Perguntas pendentes', ok: 'Perguntas respondidas', icon: 'quiz', enabled: true },
@@ -5967,19 +5997,17 @@ Compartilhar QR Code
             const done = p.status === 'ativada' || n < p.stage;
             const cur = !isClosed && p.status !== 'ativada' && n === p.stage;
             const locked = !done && !cur;
-            const viewN = st.detStepView || (p.status === 'ativada' ? 7 : Math.min(7, Math.max(1, p.stage)));
+            const viewN = st.detStepView || (p.status === 'ativada' ? etapas.length : Math.min(etapas.length, Math.max(1, p.stage)));
             const viewed = n === viewN;
-            const shorts = ['Plano', 'Associado', 'Veículo', 'Vistoria', 'Termo', 'Validação', 'Ativação'];
+            const shorts = ['Plano', 'Dados', 'Vistoria', 'Termo', 'Ativação'];
             const lineColor = (on) => 'flex:1;height:2px;background:' + (on ? '#047857' : '#e5eeff');
             const v = p.veic || {};
             let summary = '';
             if (done) summary = [
               chosenPlan ? 'Plano ' + chosenPlan.name + (chosenPrice ? ' · ' + this.brl(chosenPrice) + '/mês' : '') + (extrasSel.length ? ' + ' + extrasSel.length + ' adicionais' : '') : 'Plano escolhido.',
-              'Dados do associado completos.',
-              'Dados do veículo conferidos' + (v.cor ? ' · ' + v.cor : '') + '.',
+              'Dados do associado e do veículo completos' + (v.cor ? ' · ' + v.cor : '') + '.',
               'Vistoria aprovada' + (t.vistoriaInfo ? ' · ' + t.vistoriaInfo : '') + '.',
               'Termo de filiação assinado.',
-              'Documentação validada.',
               'Proteção ativa.'
             ][i];
             if (done && i === 0 && p.chosen) summary = '';
@@ -5996,21 +6024,18 @@ Compartilhar QR Code
             });
             const tasksByStep = [
               [task({ title: 'Perguntas da etapa', done: !!t.perguntas, status: t.perguntas ? 'Perguntas respondidas' : 'Perguntas pendentes', btn: t.perguntas ? 'Editar' : 'Responder', go: () => this.setState({ ds: 'perguntas' }) })],
-              [task({ title: 'Dados do associado', done: !!t.dados, status: t.dados ? 'Dados completos' : 'CPF, nascimento e endereço', btn: t.dados ? 'Editar' : 'Preencher', go: () => this.setState({ ds: 'dados' }) })],
-              [task({ title: 'Dados do veículo', done: !!t.veiculo, status: t.veiculo ? 'Dados conferidos' : 'Confira placa, cor, chassi e Renavam', btn: 'Alterar', go: () => this.setState({ ds: 'veiculo', vcPlaca: p.placa, vcCor: v.cor || '', vcChassi: v.chassi || '', vcRenavam: v.renavam || '' }) })],
+              [task({ title: 'Dados do associado', done: !!t.dados, status: t.dados ? 'Dados completos' : 'CPF, nascimento e endereço', btn: t.dados ? 'Editar' : 'Preencher', go: () => this.setState({ ds: 'dados' }) }),
+                task({ title: 'Dados do veículo', done: !!t.veiculo, status: t.veiculo ? 'Dados conferidos' : 'Confira placa, cor, chassi e Renavam', btn: 'Alterar', go: () => this.setState({ ds: 'veiculo', vcPlaca: p.placa, vcCor: v.cor || '', vcChassi: v.chassi || '', vcRenavam: v.renavam || '' }) })],
               [task({ title: 'Vistoria do veículo', done: !!t.vistoria, status: t.vistoria ? (t.vistoriaInfo || 'Vistoria criada') + ' · fotos recebidas' : 'Aguardando criar vistoria', btn: t.vistoria ? 'Editar' : 'Criar', go: () => this.setState({ ds: 'vistoria' }) })],
               [task({ title: 'Assinatura do termo de filiação', done: !!t.termoEnviado, status: t.termoEnviado ? 'Enviado por WhatsApp · aguardando assinatura' : 'Pronto para enviar ao associado', btn: t.termoEnviado ? 'Reenviar' : 'Enviar', go: () => save({ tasks: { ...p.tasks, termoEnviado: true } }, 'Termo de filiação enviado por WhatsApp', 'Termo enviado para ' + p.name.split(' ')[0]) })],
-              [],
               []
             ];
             const acts = [
               { label: 'Confirmar plano', ok: !!s1Plan && !!t.perguntas, hint: !s1Plan ? 'Escolha o plano' : !t.perguntas ? 'Responda as perguntas da etapa' : '', go: () => ask('Confirmar o plano ' + (s1PlanObj ? s1PlanObj.name : '') + '?', 'Essa ação só pode ser feita uma vez. Depois, a troca de plano passa pela diretoria.', () => { this.setState({ s1Plan: null }); save({ chosen: s1Plan, chosenCota: st.s1Cota || p.cotas[s1Plan] || '0', stage: 2 }, 'Plano ' + (s1PlanObj ? s1PlanObj.name : '') + ' confirmado', 'Plano confirmado'); }) },
-              { label: 'Avançar para dados do veículo', ok: !!t.dados, hint: t.dados ? '' : 'Preencha os dados do associado', go: () => save({ stage: 3 }, 'Dados do associado concluídos', 'Etapa concluída') },
-              { label: 'Confirmar dados do veículo', ok: true, hint: '', go: () => save({ stage: 4, tasks: { ...p.tasks, veiculo: true } }, 'Dados do veículo confirmados', 'Dados do veículo confirmados') },
-              { label: 'Aprovar vistoria', ok: !!t.vistoria, hint: t.vistoria ? '' : 'Crie a vistoria primeiro', go: () => ask('Aprovar a vistoria?', 'Essa ação só pode ser feita uma vez.', () => save({ stage: 5 }, 'Vistoria aprovada', 'Vistoria aprovada')) },
-              { label: 'Confirmar assinatura', ok: !!t.termoEnviado, hint: t.termoEnviado ? '' : 'Envie o termo primeiro', go: () => ask('O associado assinou o termo?', 'Confirme somente após a assinatura digital do termo de filiação.', () => save({ stage: 6, tasks: { ...p.tasks, termo: true } }, 'Termo de filiação assinado', 'Termo assinado')) },
-              { label: 'Validar proposta', ok: true, hint: 'Confira documentos, vistoria e termo antes de validar.', go: () => ask('Validar a proposta?', 'Essa ação só pode ser feita uma vez.', () => save({ stage: 7 }, 'Proposta validada', 'Proposta validada')) },
-              { label: 'Ativar proposta', ok: true, green: true, hint: 'Aguardando o pagamento da adesão. Quando confirmado, ative a proteção.', go: () => ask('Ativar a proteção?', 'O associado passa a ter cobertura a partir de agora.', () => { save({ stage: 8 }, 'Proposta ativada', 'Proposta ativada'); Object.assign(p, { status: 'ativada', activated: '2026-09-30', etapa: null }); this.setState({ detRev: (st.detRev || 0) + 2 }); }) }
+              { label: 'Avançar para vistoria', ok: !!t.dados, hint: t.dados ? '' : 'Preencha os dados do associado', go: () => save({ stage: 3, tasks: { ...p.tasks, veiculo: true } }, 'Dados complementares concluídos', 'Etapa concluída') },
+              { label: 'Aprovar vistoria', ok: !!t.vistoria, hint: t.vistoria ? '' : 'Crie a vistoria primeiro', go: () => ask('Aprovar a vistoria?', 'Essa ação só pode ser feita uma vez.', () => save({ stage: 4 }, 'Vistoria aprovada', 'Vistoria aprovada')) },
+              { label: 'Confirmar assinatura', ok: !!t.termoEnviado, hint: t.termoEnviado ? '' : 'Envie o termo primeiro', go: () => ask('O associado assinou o termo?', 'Confirme somente após a assinatura digital do termo de filiação.', () => save({ stage: 5, tasks: { ...p.tasks, termo: true } }, 'Termo de filiação assinado', 'Termo assinado')) },
+              { label: 'Ativar proposta', ok: true, green: true, hint: 'Aguardando o pagamento da adesão. Quando confirmado, ative a proteção.', go: () => ask('Ativar a proteção?', 'O associado passa a ter cobertura a partir de agora.', () => { save({ stage: etapas.length + 1 }, 'Proposta ativada', 'Proposta ativada'); Object.assign(p, { status: 'ativada', activated: '2026-09-30', etapa: null }); this.setState({ detRev: (st.detRev || 0) + 2 }); }) }
             ];
             const act = acts[i];
             return {
@@ -6020,9 +6045,9 @@ Compartilhar QR Code
               ariaCurrent: viewed ? 'step' : 'false',
               pick: () => this.setState({ detStepView: n }),
               lineLeft: n === 1 ? 'flex:1;height:2px;background:transparent' : lineColor(done || cur),
-              lineRight: n === 7 ? 'flex:1;height:2px;background:transparent' : lineColor(done),
+              lineRight: n === etapas.length ? 'flex:1;height:2px;background:transparent' : lineColor(done),
               shortStyle: 'max-width:100%;font-size:9px;line-height:12px;letter-spacing:-0.01em;text-align:center;white-space:nowrap;transition:color .3s;font-weight:' + (viewed || cur ? '800' : '600') + ';color:' + (cur ? '#4A1259' : done ? '#047857' : viewed ? '#4A1259' : '#a8a1b3'),
-              nodeIcon: done ? 'check' : ['workspace_premium', 'badge', 'directions_car', 'photo_camera', 'draw', 'fact_check', 'verified'][i],
+              nodeIcon: done ? 'check' : ['workspace_premium', 'badge', 'photo_camera', 'draw', 'verified'][i],
               btnStyle: 'min-width:0;padding:0;border:0;background:transparent;font-family:inherit;display:flex;flex-direction:column;align-items:center;gap:7px;cursor:pointer',
               segStyle: this.stepSeg(done, cur),
               nodeStyle: this.stepChip(done, cur, viewed),
@@ -6037,7 +6062,7 @@ Compartilhar QR Code
               titleStyle: (n === 1 && !!p.chosen ? 'display:none;' : '') + 'font-size:14px;color:' + (locked ? '#7b7487' : '#0b1c30'),
               showPlano: cur && n === 1,
               showResumo: n === 1 && !!p.chosen,
-              showVeiculo: cur && n === 3,
+              showVeiculo: cur && n === 2,
               tasks: cur ? tasksByStep[i] : [],
               hasAct: cur,
               actLabel: act.label,
@@ -6110,7 +6135,6 @@ Compartilhar QR Code
           s3Title: t.vistoriaInfo || 'Vistoria criada',
           s3Sub: 'Fotos recebidas · aguardando sua aprovação',
           confirmS3: () => ask('Aprovar a vistoria?', 'Essa ação só pode ser feita uma vez.', () => save({ stage: 4 }, 'Vistoria aprovada', 'Vistoria aprovada')),
-          confirmS4: () => ask('Validar a proposta?', 'Essa ação só pode ser feita uma vez.', () => save({ stage: 5 }, 'Proposta validada', 'Proposta validada')),
           confirmS5: () => ask('Ativar a proteção?', 'O associado passa a ter cobertura a partir de agora.', () => { save({ stage: 6 }, 'Proposta ativada', 'Proposta ativada'); Object.assign(p, { status: 'ativada', activated: '2026-09-30', etapa: null }); this.setState({ detRev: (st.detRev || 0) + 2 }); }),
           detCanArchive: !isClosed && p.status !== 'ativada',
           openArchive: () => this.setState({ ds: 'arquivar', arqMotivo: '' }),
@@ -6178,7 +6202,7 @@ Compartilhar QR Code
 
       static propCatalog() {
         return {
-          etapas: ['Plano', 'Dados do associado', 'Dados do veículo', 'Vistoria', 'Termo', 'Validação', 'Ativação'],
+          etapas: ['Plano', 'Dados complementares', 'Vistoria', 'Termo', 'Ativação'],
           origens: ['Aplicativo', 'Tráfego pago', 'Site', 'Canais diretos (WhatsApp, ligações, atendimento)', 'Indicação', 'Parcerias físicas', 'Ações locais', 'Campanha posto', 'Instagram', 'Anúncio'],
           indicadores: ['Antônio Rezende', 'Daniel Azevedo', 'Gabriel Martins', 'Helena Brito', 'Isabela Rocha'],
           beneficios: ['Assistência 24 horas', 'Para-brisa e vidros', 'Carro reserva 7 dias', 'Carro reserva 15 dias', 'Cobertura para danos parciais', 'Pane seca', 'Troca de pneu', 'Rastreador', 'Guincho 100 km', 'Guincho 3.000 km (ida e volta)'],
@@ -6194,7 +6218,7 @@ Compartilhar QR Code
           P('p2', 'Marcos Vinicius', '(62) 98100-1002', 'carro', 'Jeep Compass 2022', 'QWE-8C77', '2026-09-26', 'funil', { etapa: 'Vistoria', origem: 'Site', beneficios: ['Assistência 24 horas', 'Para-brisa e vidros', 'Rastreador'], condutor: true, unread: 1, event: 'Vistoria iniciada em 28/09 às 10:15. Faltam as fotos do odômetro para aprovação.' }),
           P('p3', 'Lucas Mendes', '(62) 98100-1003', 'carro', 'Strada 2023', 'HJK-2D45', '2026-09-24', 'funil', { etapa: 'Ativação', origem: 'Parcerias físicas', frota: 'Transportes Serra Dourada', beneficios: ['Assistência 24 horas', 'Cobertura para danos parciais'], event: 'Termos assinados em 29/09 às 16:20. Aguardando pagamento da adesão para ativar.' }),
           P('p4', 'Patrícia Gomes', '(62) 98100-1004', 'moto', 'CG 160 2024', 'JQB-6E83', '2026-09-21', 'funil', { etapa: 'Plano', origem: 'Instagram', indicador: 'Antônio Rezende', frota: 'Juan Entregas', unread: 1, event: 'Lead recebido pelo Instagram em 21/09. Ainda sem primeiro contato.' }),
-          P('p5', 'Roberto Nunes', '(62) 98100-1005', 'carro', 'Gol 2019', 'KER-5F73', '2026-09-30', 'funil', { etapa: 'Dados do associado', origem: 'Aplicativo', beneficios: ['Assistência 24 horas', 'Pane seca'], event: 'Associado adicionou o plano Esmeralda (Carro) via formulário. Ajuda participativa alterada de 3% para 5% em 30/09 às 13:32. Aguardando dados complementares para validação.' }),
+          P('p5', 'Roberto Nunes', '(62) 98100-1005', 'carro', 'Gol 2019', 'KER-5F73', '2026-09-30', 'funil', { etapa: 'Dados complementares', origem: 'Aplicativo', beneficios: ['Assistência 24 horas', 'Pane seca'], event: 'Associado adicionou o plano Esmeralda (Carro) via formulário. Ajuda participativa alterada de 3% para 5% em 30/09 às 13:32. Aguardando dados complementares para validação.' }),
           P('p6', 'Simone Prado', '(62) 98100-1006', 'carro', 'HB20 2022', 'NGD-7G24', '2026-09-18', 'ativada', { activated: '2026-09-25', origem: 'Indicação', indicador: 'Isabela Rocha', beneficios: ['Assistência 24 horas', 'Carro reserva 15 dias', 'Para-brisa e vidros'], event: 'Proposta ativada em 25/09. Primeira mensalidade paga.' }),
           P('p7', 'Tiago Moura', '(62) 98100-1007', 'caminhao', 'VW 9.150 Diesel', 'TTJ-7H39', '2026-09-10', 'ativada', { activated: '2026-09-20', origem: 'Parcerias físicas', frota: 'Transportes Serra Dourada', beneficios: ['Guincho 3.000 km (ida e volta)', 'Rastreador'], condutor: true, rede: ['Guincho Rápido GO'], event: 'Ativada em 20/09 como parte da frota Transportes Serra Dourada.' }),
           P('p8', 'Vanessa Lima', '(62) 98100-1008', 'carro', 'T-Cross 2023', 'PLM-3I10', '2026-08-28', 'ativada', { activated: '2026-09-04', origem: 'Site', beneficios: ['Assistência 24 horas', 'Troca de pneu'], rede: ['Oficina Centro Goiânia'], event: 'Ativada em 04/09. Associado acionou a rede de serviço em 18/09.' }),
@@ -6438,9 +6462,9 @@ Compartilhar QR Code
               vehicleIcon: { carro: 'directions_car', moto: 'two_wheeler', caminhao: 'local_shipping' }[p.type],
               placaMercosul: (p.placa || '').replace('-', ''),
               iconStyle: 'flex-shrink:0;width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;color:' + sm.color + ';background:' + sm.bg,
-              statusLabel: p.status === 'funil' && p.etapa === 'Dados do associado' ? 'Aguardando dados' : sm.label,
+              statusLabel: p.status === 'funil' && p.etapa === 'Dados complementares' ? 'Aguardando dados' : sm.label,
               statusStyle: 'display:flex;align-items:center;gap:6px;height:22px;padding:0 10px 0 8px;border-radius:9999px;border:1px solid #e5dcea;background:#ffffff;color:#0b1c30;font-size:11px;font-weight:700;letter-spacing:.01em;white-space:nowrap',
-              statusDotStyle: 'width:7px;height:7px;border-radius:9999px;background:' + (p.status === 'funil' && p.etapa === 'Dados do associado' ? '#f59e0b' : sm.dot),
+              statusDotStyle: 'width:7px;height:7px;border-radius:9999px;background:' + (p.status === 'funil' && p.etapa === 'Dados complementares' ? '#f59e0b' : sm.dot),
               dateLabel: 'Criada em ' + fmt(p.created) + (p.activated ? ' · ativada em ' + fmt(p.activated) : ''),
               createdShort: (p.activated ? 'Ativada ' + fmt(p.activated) : 'Criada ' + fmt(p.created)).replace(/\/(\d{4})$/, (m0, y) => (y === '2026' ? '' : '/' + y.slice(2))),
               inFunil: p.status === 'funil',
@@ -6864,7 +6888,11 @@ Compartilhar QR Code
       }
 
       static seedNotas() {
+        const d = new Date();
+        const hoje = d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
         return [
+          { id: 'hj1', title: 'Teste: ligar para Mariana Rios', text: 'Agendamento de teste. Confirmar o plano escolhido.', vehicle: 'Corolla 2023', vehicleIcon: 'directions_car', created: hoje, alertDate: hoje, alertTime: '10:00', tipo: 'ligacao', prio: 'media', avisos: ['15m'], tags: ['cotacao'] },
+          { id: 'hj2', title: 'Teste: vistoria do Marcos Vinicius', text: 'Agendamento de teste. Cobrar as fotos do odômetro.', vehicle: 'Jeep Compass 2022', vehicleIcon: 'directions_car', created: hoje, alertDate: hoje, alertTime: '15:30', tipo: 'visita', prio: 'alta', avisos: ['1h'], tags: ['vistoria'] },
           { id: 'a1', title: 'Retornar para o Leo', text: 'Estava viajando, pediu retorno quando voltar.', vehicle: 'Corolla XEi 2.0 Flex', vehicleIcon: 'directions_car', created: '2026-09-25', alertDate: '2026-09-30', alertTime: '19:00', tipo: 'ligacao', prio: 'alta', avisos: ['1h'], tags: ['cotacao'] },
           { id: 'a2', title: 'Cotação de frota com Kleber Santos', text: 'Quer proteção para 3 caminhões. Levar condições de frota.', vehicle: 'VW 9.150 Diesel', vehicleIcon: 'local_shipping', created: '2026-09-20', alertDate: '2026-09-29', alertTime: '09:00', tipo: 'visita', prio: 'alta', avisos: ['1d'], tags: ['cotacao'] },
           { id: 'a3', title: 'Ligar para o Cézar Almeida', text: 'Estava na estrada. Prefere falar no fim da tarde.', vehicle: 'Corolla XEi 2.0 Flex', vehicleIcon: 'directions_car', created: '2026-09-27', alertDate: '2026-10-01', alertTime: '18:00', tipo: 'ligacao', prio: 'media', avisos: ['15m'] },
@@ -6877,6 +6905,50 @@ Compartilhar QR Code
       fmtDate(iso) {
         const [y, m, d] = iso.split('-');
         return d + '/' + m + '/' + y;
+      }
+
+      homeCalVals() {
+        const pad = (n) => String(n).padStart(2, '0');
+        const agora = new Date();
+        const today = agora.getFullYear() + '-' + pad(agora.getMonth() + 1) + '-' + pad(agora.getDate());
+        const [y, m, d] = today.split('-').map(Number);
+        const lead = new Date(Date.UTC(y, m - 1, 1)).getUTCDay();
+        const daysInMonth = new Date(Date.UTC(y, m, 0)).getUTCDate();
+        const meses = ['janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro'];
+        const dias = ['domingo', 'segunda-feira', 'terça-feira', 'quarta-feira', 'quinta-feira', 'sexta-feira', 'sábado'];
+        const lembretes = this.state.notas.filter((n) => n.alertDate);
+        const abrirDia = (iso) => this.setState({ agendaOpen: true, agendaTab: 'lembretes', agendaFilter: 'todos', agendaView: 'calendario', calDay: iso, calMonth: iso.slice(0, 7) });
+        const cells = Array.from({ length: lead + daysInMonth }, (_, i) => {
+          const day = i - lead + 1;
+          if (day < 1) return { empty: true, isDay: false, day: '', label: '', pick: () => {}, style: 'height:22px', dotStyle: 'display:none' };
+          const iso = y + '-' + pad(m) + '-' + pad(day);
+          const wd = i % 7;
+          const isToday = iso === today;
+          const qtd = lembretes.filter((n) => n.alertDate === iso).length;
+          return {
+            empty: false,
+            isDay: true,
+            day,
+            label: day + ' de ' + meses[m - 1] + (qtd ? ', ' + qtd + (qtd > 1 ? ' agendamentos' : ' agendamento') : ''),
+            pick: () => abrirDia(iso),
+            style: 'position:relative;width:22px;height:22px;margin:0 auto;padding:0;border:0;border-radius:9999px;font-family:inherit;font-size:11px;line-height:1;font-variant-numeric:tabular-nums;display:flex;align-items:center;justify-content:center;cursor:pointer;'
+              + (isToday ? 'background:#4A1259;color:#ffffff;font-weight:800' : 'background:transparent;font-weight:600;color:' + (wd === 0 || wd === 6 ? '#a7a0b2' : '#0b1c30')),
+            dotStyle: qtd ? 'position:absolute;bottom:-2px;left:50%;width:4px;height:4px;margin-left:-2px;border-radius:9999px;background:' + (isToday ? '#f59e0b' : iso < today ? '#d92d20' : '#A192A6') : 'display:none'
+          };
+        });
+        const hoje = lembretes.filter((n) => n.alertDate === today).sort((a, b) => a.alertTime.localeCompare(b.alertTime));
+        return {
+          hcDiaSemana: dias[new Date(Date.UTC(y, m - 1, d)).getUTCDay()],
+          hcDia: d,
+          hcMes: meses[m - 1],
+          hcSemana: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'].map((l, i) => ({ l, style: 'text-align:center;font-size:10px;line-height:12px;font-weight:700;color:' + (i === 0 || i === 6 ? '#a7a0b2' : '#4a4455') })),
+          hcCells: cells,
+          hcTemEventos: hoje.length > 0,
+          hcSemEventos: hoje.length === 0,
+          hcEventos: hoje.slice(0, 2).map((n) => ({ hora: n.alertTime, titulo: n.title, abrir: () => abrirDia(today) })),
+          hcMais: hoje.length > 2 ? '+' + (hoje.length - 2) + ' hoje' : '',
+          hcAbrirHoje: () => abrirDia(today)
+        };
       }
 
       agendaVals() {
@@ -6904,13 +6976,13 @@ Compartilhar QR Code
           list = [...list].sort((a, b) => b.created.localeCompare(a.created));
         }
         const tabs = [
-          { id: 'lembretes', label: 'Lembretes', icon: 'alarm', count: lembretes.length },
-          { id: 'anotacoes', label: 'Anotações', icon: 'sticky_note_2', count: anotacoes.length }
+          { id: 'lembretes', label: 'Agendamentos', icon: 'event', count: lembretes.length },
+          { id: 'anotacoes', label: 'Sem data', icon: 'event_busy', count: anotacoes.length }
         ];
         const hojeCount = lembretes.filter((n) => statusOf(n) === 'hoje').length;
         const atrasados = lembretes.filter((n) => statusOf(n) === 'atrasado').length;
         return {
-          agendaMenuSub: hojeCount + ' lembrete' + (hojeCount === 1 ? '' : 's') + ' hoje' + (atrasados ? ' · ' + atrasados + ' atrasado' + (atrasados === 1 ? '' : 's') : ''),
+          agendaMenuSub: hojeCount + ' agendamento' + (hojeCount === 1 ? '' : 's') + ' hoje' + (atrasados ? ' · ' + atrasados + ' atrasado' + (atrasados === 1 ? '' : 's') : ''),
           agendaIsLembretes: agendaTab === 'lembretes',
           agendaEmpty: list.length === 0,
           agendaTabs: tabs.map((t) => {
@@ -6975,50 +7047,63 @@ Compartilhar QR Code
           ? { label: 'Set · realizado', total: brl(sm.ade + sm.rec), rec: brl(sm.rec), ade: brl(sm.ade) }
           : { label: sm.full, total: brl(sm.ade + sm.rec), rec: brl(sm.rec), ade: brl(sm.ade) };
 
-        // Base: Funil de Propostas (Contato 14, Vistoria 8, Termos 5, Aguardando 6) + 12 ativadas no mês
-        const funilAgora = { contato: 14, vistoria: 8, termos: 5, aguardando: 6, ativadas: 12 };
-        const fa = funilAgora;
-        const steps = [
-          { label: 'Propostas no mês', count: fa.contato + fa.vistoria + fa.termos + fa.aguardando + fa.ativadas, hours: 0, parados: 0 },
-          { label: 'Passaram do contato', count: fa.vistoria + fa.termos + fa.aguardando + fa.ativadas, hours: 50, parados: fa.contato },
-          { label: 'Vistoria', count: fa.termos + fa.aguardando + fa.ativadas, hours: 43, parados: fa.vistoria },
-          { label: 'Termos', count: fa.aguardando + fa.ativadas, hours: 26, parados: fa.termos },
-          { label: 'Ativadas', count: fa.ativadas, hours: 19, parados: fa.aguardando }
-        ];
-        const totalFunil = steps[0].count;
-        const rates = steps.map((st, i) => (i ? st.count / steps[i - 1].count : 1));
-        const parados = steps.map((st) => st.parados);
-        const worstIdx = parados.indexOf(Math.max(...parados));
-        const shortTime = (h) => { const d = Math.floor(h / 24), r = h % 24; return h ? (d ? d + 'd' + (r ? ' ' + r + 'h' : '') : r + 'h') : ''; };
-        const longTime = (h) => { const d = Math.floor(h / 24), r = h % 24; const dd = d ? d + (d === 1 ? ' dia' : ' dias') : ''; const hh = r ? r + (r === 1 ? ' hora' : ' horas') : ''; return [dd, hh].filter(Boolean).join(' e '); };
-        steps.forEach((st) => { st.time = shortTime(st.hours); st.timeLong = longTime(st.hours); });
-        const times = steps.map((st) => st.hours);
-        const slowIdx = times.indexOf(Math.max(...times));
-        const funilSteps = steps.map((st, i) => {
-          const prev = i ? steps[i - 1].count : st.count;
-          const rate = Math.round((st.count / prev) * 100);
-          const worst = i === worstIdx;
+        const etapas = Component.propCatalog().etapas;
+        const props = this.propostas || (this.propostas = Component.seedPropostas());
+        const hojeIso = '2026-09-30';
+        const diasDesde = (iso) => Math.max(0, Math.round((new Date(hojeIso) - new Date(iso)) / 86400000));
+        const emFunil = props.filter((p) => p.status === 'funil');
+        const ativadas = props.filter((p) => p.status === 'ativada').length;
+        const base = emFunil.length + ativadas;
+        const etapaStats = etapas.map((nome) => {
+          const lista = emFunil.filter((p) => p.etapa === nome);
+          const dias = lista.length ? Math.round(lista.reduce((t, p) => t + diasDesde(p.created), 0) / lista.length) : 0;
+          return { nome, count: lista.length, dias };
+        });
+        const gargalo = etapaStats.reduce((g, e) => (e.count > g.count || (e.count === g.count && e.dias > g.dias) ? e : g), { count: 0, dias: -1 });
+        const temGargalo = gargalo.count > 0;
+        const diasLabel = (d) => d + (d === 1 ? ' dia' : ' dias');
+        const verEtapa = (nome) => this.setState({ analiseOpen: false, propOpen: true, propTab: 'funil', propFilters: { ...Component.emptyPropFilters(), etapa: [nome] } });
+        const maxCount = Math.max(1, ativadas, ...etapaStats.map((e) => e.count));
+        const linhas = [...etapaStats.map((e) => ({ ...e, tipo: 'etapa' })), { nome: 'Ativadas', count: ativadas, dias: 0, tipo: 'ativada' }];
+        const funilCores = ['#4A1259', '#622773', '#7d4290', '#9a68a8', '#b996c1'];
+        const funilIcones = ['workspace_premium', 'badge', 'photo_camera', 'draw', 'verified'];
+        const funilLarg = 116;
+        const funilPasso = (funilLarg - 28) / 2 / linhas.length;
+        const funilSteps = linhas.map((e, i) => {
+          const isGargalo = temGargalo && e.tipo === 'etapa' && e.nome === gargalo.nome;
+          const on = e.count > 0;
+          const cor = e.tipo === 'ativada' ? '#059669' : isGargalo ? '#d92d20' : funilCores[i];
+          const sub = e.tipo === 'ativada' ? 'Proteção ativa'
+            : !on ? 'Nenhuma proposta'
+              : (isGargalo ? 'Gargalo · ' : '') + (e.dias ? 'há ' + diasLabel(e.dias) + ' em média' : 'entrou hoje');
+          const a = i * funilPasso, b = (i + 1) * funilPasso;
           return {
-            ...st,
-            hasDrop: i > 0,
-            dropText: rate + '% seguiram · ' + st.parados + ' parados na etapa anterior',
-            dropStyle: 'display:flex;align-items:center;gap:5px;padding-left:8px;font-size:10px;line-height:13px;font-weight:' + (worst ? '700' : '500') + ';color:' + (worst ? '#b42318' : '#7b7487'),
-            barStyle: 'height:100%;width:' + Math.max(42, (st.count / totalFunil) * 100) + '%;box-sizing:border-box;padding:0 8px;border-radius:8px;display:flex;align-items:center;justify-content:space-between;gap:8px;line-height:1;background:'
-              + (i === steps.length - 1 ? '#059669' : '#4A1259'),
-            timeStyle: 'flex-shrink:0;width:34px;line-height:1;font-size:10px;letter-spacing:-0.01em;white-space:nowrap;font-weight:' + (i === slowIdx ? '800' : '600') + ';color:' + (i === slowIdx ? '#4a4455' : '#7b7487') + (st.time ? '' : ';visibility:hidden')
+            label: e.nome,
+            count: e.count,
+            sub,
+            icon: e.tipo === 'ativada' ? 'check_circle' : isGargalo ? 'warning' : funilIcones[i],
+            aria: e.nome + ': ' + e.count + (e.count === 1 ? ' proposta' : ' propostas') + (on && e.dias ? ', ' + diasLabel(e.dias) + ' em média' : '') + (isGargalo ? ', gargalo' : ''),
+            disabled: on ? 'false' : 'true',
+            pick: () => {
+              if (!on) return;
+              if (e.tipo === 'ativada') this.setState({ propOpen: true, propTab: 'ativada', propFilters: Component.emptyPropFilters() });
+              else verEtapa(e.nome);
+            },
+            rowStyle: 'width:100%;height:38px;padding:0;border:0;background:transparent;font-family:inherit;text-align:left;display:grid;grid-template-columns:minmax(0,1fr) ' + funilLarg + 'px 30px;align-items:center;gap:8px;cursor:' + (on ? 'pointer' : 'default'),
+            pillStyle: 'min-width:0;height:100%;box-sizing:border-box;margin-right:-' + (Math.round(b) + 14) + 'px;padding:0 ' + (Math.round(b) + 20) + 'px 0 10px;border-radius:8px;display:flex;flex-direction:column;justify-content:center;gap:1px;background:' + (isGargalo ? '#fef3f2' : '#f6f3f8'),
+            labelStyle: 'overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px;line-height:15px;font-weight:700;color:' + (isGargalo ? '#b42318' : on ? '#0b1c30' : '#a7a0b2'),
+            subStyle: 'overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:10px;line-height:12px;color:' + (isGargalo ? '#b42318' : '#7b7487'),
+            trapStyle: 'position:relative;z-index:1;height:100%;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;color:#ffffff;font-variant-numeric:tabular-nums;'
+              + 'clip-path:polygon(' + a + 'px 0,' + (funilLarg - a) + 'px 0,' + (funilLarg - b) + 'px 100%,' + b + 'px 100%);background:' + cor + (on ? '' : ';opacity:0.45'),
+            iconStyle: 'width:30px;height:30px;border-radius:9999px;display:flex;align-items:center;justify-content:center;font-size:17px;color:' + (on ? cor : '#a7a0b2') + ';background:' + (isGargalo ? '#fee4e2' : e.tipo === 'ativada' ? '#d1fae5' : '#f4f0f6')
           };
         });
-        const etapaNome = ['', 'primeiro contato', 'vistoria', 'assinatura dos termos', 'ativação'][worstIdx];
-        const funilConv = Math.round((fa.ativadas / totalFunil) * 100) + '%';
-        const etapaFiltro = ['', 'Plano', 'Vistoria', 'Termo', 'Ativação'][worstIdx];
-        const analise = {
-          etapa: etapaNome.charAt(0).toUpperCase() + etapaNome.slice(1) + (worstIdx === slowIdx ? ', a etapa mais lenta do seu funil' : ''),
-          parados: steps[worstIdx].parados,
-          tempo: steps[worstIdx].time
-        };
-        const analiseGo = () => this.setState({ analiseOpen: false, propOpen: true, propTab: 'funil', propFilters: { ...Component.emptyPropFilters(), etapa: [etapaFiltro] } });
-        const funilSub = totalFunil + ' propostas no mês · ' + (totalFunil - fa.ativadas) + ' em andamento';
-        const funilDica = 'Gargalo no ' + etapaNome + ': ' + steps[worstIdx].parados + ' propostas estão paradas nessa etapa' + (worstIdx === slowIdx ? ', que também é a mais lenta (' + steps[worstIdx].timeLong + ' em média)' : '') + '. Retornar esses leads em até 24h pode destravar boa parte delas.';
+        const funilConv = (base ? Math.round((ativadas / base) * 100) : 0) + '%';
+        const funilConvSub = ativadas + ' de ' + base + ' ativadas';
+        const analise = temGargalo
+          ? { etapa: gargalo.nome, parados: gargalo.count, tempo: diasLabel(gargalo.dias) }
+          : { etapa: '', parados: 0, tempo: '' };
+        const analiseGo = () => verEtapa(gargalo.nome);
 
         const risco = [
           { name: 'José Almeida', vehicle: 'Onix 2020', mensalidade: 189, level: 'alto', icon: 'receipt_long', reason: 'Boleto vence em 2 dias · pagou atrasado no mês passado' },
@@ -7039,8 +7124,8 @@ Compartilhar QR Code
           openAnalise: () => this.setState({ analiseOpen: true }),
           closeAnalise: () => this.setState({ analiseOpen: false }),
           funilConv,
-          funilSub,
-          funilDica,
+          funilConvSub,
+          funilTemGargalo: temGargalo,
           riscoValor: brl(risco.reduce((t, r) => t + r.mensalidade, 0)),
           riscoFilters: [
             { id: 'todos', label: 'Todos (' + risco.length + ')' },
@@ -7071,7 +7156,7 @@ Compartilhar QR Code
           proximo: { label: 'Agendado', color: '#4A1259', bg: '#ece6ee' }
         };
         const isLembrete = !!n.alertDate;
-        const st = isLembrete ? statusMeta[statusOf(n)] : { label: 'Anotação', color: '#4a4455', bg: '#eff4ff' };
+        const st = isLembrete ? statusMeta[statusOf(n)] : { label: 'Sem data', color: '#4a4455', bg: '#eff4ff' };
         const cat = Component.catalog();
         const tipo = cat.tipos.find((t) => t.id === n.tipo);
         const prio = cat.prios.find((p) => p.id === (n.prio || 'media'));
@@ -7085,7 +7170,7 @@ Compartilhar QR Code
         const done = checklist.filter((c) => c.done).length;
         const avisoLabel = (n.avisos || []).map((id) => cat.avisos.find((a) => a.id === id).label.replace(' antes', '')).join(', ');
         const footer = [
-          { icon: 'edit_calendar', label: 'Anotação de', value: this.fmtDate(n.created) },
+          { icon: 'edit_calendar', label: 'Criado em', value: this.fmtDate(n.created) },
           ...(isLembrete ? [{ icon: 'alarm', label: 'Alerta em', value: this.fmtDate(n.alertDate) + ' às ' + n.alertTime }] : []),
           ...(isLembrete && avisoLabel ? [{ icon: 'notifications_active', label: 'Avisar', value: avisoLabel + ' antes' }] : []),
           ...(n.repeat ? [{ icon: 'repeat', label: 'Repete', value: cat.repeats[n.repeat].toLowerCase() }] : [])
@@ -7136,7 +7221,7 @@ Compartilhar QR Code
           const dayItems = lembretes.filter((n) => n.alertDate === iso);
           return {
             day: date.getUTCDate(),
-            label: date.getUTCDate() + ' de ' + meses[date.getUTCMonth()] + (dayItems.length ? ', ' + dayItems.length + ' lembrete' + (dayItems.length > 1 ? 's' : '') : ''),
+            label: date.getUTCDate() + ' de ' + meses[date.getUTCMonth()] + (dayItems.length ? ', ' + dayItems.length + ' agendamento' + (dayItems.length > 1 ? 's' : '') : ''),
             selected: selected ? 'true' : 'false',
             pick: () => this.setState({ calDay: iso, calMonth: iso.slice(0, 7) }),
             style: 'height:44px;padding:0;border:0;border-radius:12px;font-family:inherit;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;cursor:pointer;transition:background .15s;'
@@ -7191,7 +7276,7 @@ Compartilhar QR Code
           nextMonth: () => this.setState({ calMonth: shiftMonth(1) }),
           calCells: cells,
           dayTitle: (calDay === today ? 'Hoje, ' : '') + Number(sd) + ' de ' + meses[Number(sm) - 1],
-          dayCount: items.length ? items.length + ' lembrete' + (items.length > 1 ? 's' : '') : '',
+          dayCount: items.length ? items.length + ' agendamento' + (items.length > 1 ? 's' : '') : '',
           dayEmpty: items.length === 0,
           dayItems: items.map((n) => this.agendaCard(n)),
           createOnDay: () => this.setState({ notaOpen: true, ...Component.emptyForm(), fAlert: true, fDate: calDay, fTime: '09:00', fAvisos: ['1h'] })
@@ -7280,8 +7365,8 @@ Compartilhar QR Code
           switchTrack: 'flex-shrink:0;position:relative;width:44px;height:26px;border-radius:9999px;transition:background .2s;background:' + (fAlert ? '#4A1259' : '#ccc3d8'),
           switchThumb: 'position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:9999px;background:#ffffff;box-shadow:0 1px 3px rgba(0,0,0,0.2);transition:transform .25s cubic-bezier(.22,1,.36,1);transform:translateX(' + (fAlert ? '18px' : '0') + ')',
           saveDisabled: valid ? 'false' : 'true',
-          saveLabel: this.state.fEditId ? 'Salvar alterações' : fAlert ? 'Criar lembrete' : 'Criar anotação',
-          notaTitle: this.state.fEditId ? (fAlert ? 'Editar lembrete' : 'Editar anotação') : 'Nova anotação',
+          saveLabel: this.state.fEditId ? 'Salvar alterações' : 'Criar agendamento',
+          notaTitle: this.state.fEditId ? 'Editar agendamento' : 'Novo agendamento',
           isEditing: !!this.state.fEditId,
           deleteNota: () => {
             const id = this.state.fEditId;
@@ -7322,7 +7407,7 @@ Compartilhar QR Code
               ...(fAlert ? { calDay: fDate, calMonth: fDate.slice(0, 7) } : {}),
               agendaFilter: 'todos',
               notaOpen: false,
-              toast: editing ? 'Alterações salvas' : fAlert ? 'Lembrete criado' : 'Anotação criada'
+              toast: editing ? 'Alterações salvas' : 'Agendamento criado'
             });
             clearTimeout(this.toastTimer);
             this.toastTimer = setTimeout(() => this.setState({ toast: '' }), 2500);
@@ -7471,6 +7556,7 @@ Compartilhar QR Code
           ...this.wizVals(),
           ...this.detVals(),
           rowTabs: this.dragRow('propTabs'),
+          rowAtalhos: this.dragRow('homeAtalhos'),
           rowPlans: this.dragRow('wizPlans', { snap: 262 }),
           novOpen: this.state.novOpen,
           menuNovidades: (e) => {
@@ -7492,7 +7578,7 @@ Compartilhar QR Code
             const items = [
               { type: 'novo', icon: 'home_repair_service', title: 'Caixa de ferramentas', text: 'Um botão no canto da tela reúne Multiplicador de Leads, Agenda, Indicadores, Resumo da rede e Meu desempenho.', action: 'Abrir ferramentas', patch: { iaOpen: true } },
               { type: 'novo', icon: 'qr_code_2', title: 'Link de captação com QR Code', text: 'Compartilhe seu link pelo WhatsApp, copie com um toque ou gere um QR Code para o cliente escanear.', action: 'Gerar meu link', patch: { multiOpen: true, multiTab: 'link', qrVisible: false } },
-              { type: 'novo', icon: 'event_note', title: 'Agenda com calendário', text: 'Lembretes com aviso antecipado, prioridade, etiquetas e repetição. Escolha lista ou calendário como padrão.', action: 'Abrir agenda', patch: { agendaOpen: true, agendaTab: 'lembretes', agendaView: this.state.agendaDefault } },
+              { type: 'novo', icon: 'event_note', title: 'Agenda com calendário', text: 'Agendamentos com aviso antecipado, prioridade, etiquetas e repetição. Escolha lista ou calendário como padrão.', action: 'Abrir agenda', patch: { agendaOpen: true, agendaTab: 'lembretes', agendaView: this.state.agendaDefault } },
               { type: 'novo', icon: 'hub', title: 'Resumo da sua rede', text: 'Veja o desempenho dos consultores abaixo de você e de cada ramificação da equipe.', action: 'Ver minha rede', patch: { redeOpen: true, redeExpanded: {} } },
               { type: 'novo', icon: 'diversity_1', title: 'Indicadores', text: 'Cadastre quem indica clientes, acompanhe as indicações e o saldo de bonificação de cada um.', action: 'Ver indicadores', patch: { indicOpen: true, indicView: 'lista' } },
               { type: 'melhoria', icon: 'bar_chart', title: 'Relatórios renovados', text: 'Evolução e projeção da comissão, conversão do funil por etapa e carteira em risco com contato rápido.', action: 'Ver relatórios', patch: { relOpen: true } },
@@ -7638,6 +7724,7 @@ Compartilhar QR Code
             };
           })(),
           ...this.agendaVals(),
+          ...this.homeCalVals(),
           ...this.formVals(),
           ...this.calendarVals(),
           agendaOpen: this.state.agendaOpen,
@@ -7653,7 +7740,7 @@ Compartilhar QR Code
           iaAgenda: () => this.setState({ iaOpen: false, agendaOpen: true, agendaTab: 'lembretes', agendaFilter: 'todos', agendaView: this.state.agendaDefault }),
           menuAgenda: (e) => {
             e.preventDefault();
-            this.setState({ menuOpen: false, menuClosing: false, agendaOpen: true, agendaTab: 'anotacoes', agendaView: this.state.agendaDefault });
+            this.setState({ menuOpen: false, menuClosing: false, agendaOpen: true, agendaTab: 'lembretes', agendaView: this.state.agendaDefault });
           },
           closeAgenda: () => this.setState({ agendaOpen: false }),
           openNota: () => this.setState({ notaOpen: true, ...Component.emptyForm() }),

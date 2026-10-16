@@ -504,6 +504,14 @@
       color: #622773
     }
 
+    li.nao {
+      color: #a7a0b2
+    }
+
+    li.nao .mi {
+      color: #d4cbd9
+    }
+
     .escolher {
       width: 100%;
       padding: 13px;
@@ -1333,7 +1341,7 @@
         var destaque = p.preco != null && p.preco === menor;
         var selo = destaque ? '<span class="selo verde">' + icon('savings') + 'Menor mensalidade</span>' : p.tag ? '<span class="selo">' + icon('star') + esc(p.tag) + '</span>' : '';
         var itens = p.beneficios.map(function (b) {
-          return '<li class="' + (b.c ? 'cota' : '') + '">' + icon(b.c ? 'add_circle' : 'check_circle') + '<span>' + esc(b.t) + '</span></li>';
+          return '<li class="' + (b.n ? 'nao' : b.c ? 'cota' : '') + '">' + icon(b.n ? 'cancel' : b.c ? 'add_circle' : 'check_circle') + '<span>' + esc(b.t) + '</span></li>';
         }).join('');
         return '<article class="plano" data-i="' + i + '">'
           + '<header><h3>' + esc(p.nome) + '</h3>' + selo + '</header>'
