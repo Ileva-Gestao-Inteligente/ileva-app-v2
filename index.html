@@ -906,14 +906,13 @@
 <span style="font-size: 11px; line-height: 13px; color: #7b7487">{{funilConvSub}}</span>
 </div>
 </div>
-<span style="flex-shrink: 0; padding: 4px 10px; border-radius: 9999px; background: #ecfdf3; display: flex; align-items: baseline; gap: 4px"><strong style="font-size: 16px; line-height: 20px; font-weight: 800; color: #047857">{{funilConv}}</strong><span style="font-size: 10px; line-height: 12px; font-weight: 600; color: #047857">conversão</span></span>
+<span style="flex-shrink: 0; display: flex; flex-direction: column; align-items: flex-end; gap: 4px"><span style="flex-shrink: 0; padding: 4px 10px; border-radius: 9999px; background: #ecfdf3; display: flex; align-items: baseline; gap: 4px"><strong style="font-size: 16px; line-height: 20px; font-weight: 800; color: #047857">{{funilConv}}</strong><span style="font-size: 10px; line-height: 12px; font-weight: 600; color: #047857">conversão</span></span><span style="display: flex; align-items: center; gap: 3px; font-size: 10px; line-height: 12px; color: #7b7487; white-space: nowrap"><span class="ms" style="font-size: 12px">calendar_month</span>{{funilMes}}</span></span>
 </div>
 <div style="display: flex; flex-direction: column; gap: 4px">
 <sc-for list="{{funilSteps}}" as="st" hint-placeholder-count="6">
 <button onClick="{{st.pick}}" aria-label="{{st.aria}}" aria-disabled="{{st.disabled}}" style="{{st.rowStyle}}">
 <span style="{{st.pillStyle}}"><strong style="{{st.labelStyle}}">{{st.label}}</strong><span style="{{st.subStyle}}">{{st.sub}}</span></span>
 <span style="{{st.trapStyle}}">{{st.count}}</span>
-<span class="ms" style="{{st.iconStyle}}">{{st.icon}}</span>
 </button>
 </sc-for>
 </div>
@@ -942,9 +941,9 @@
 <span style="display: flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 500; color: #4a4455"><span style="width: 6px; height: 6px; border-radius: 9999px; background: #10b981"></span>Ativos</span>
 <span style="font-size: 13px; font-weight: 700">36</span>
 </div>
-<div style="background: #fff7ed; border: 1px solid #fcd9a8; border-radius: 12px; padding: 7px 1px; display: flex; flex-direction: column; align-items: center; gap: 2px">
-<span style="display: flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 600; color: #b45309"><span class="pulse-dot" style="width: 6px; height: 6px; border-radius: 9999px; background: #f59e0b"></span>Inadimpl.</span>
-<span style="font-size: 13px; font-weight: 700; color: #b45309">5</span>
+<div style="background: #fef3f2; border: 1px solid #fecdca; border-radius: 12px; padding: 7px 1px; display: flex; flex-direction: column; align-items: center; gap: 2px">
+<span style="display: flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 600; color: #b42318"><span style="width: 6px; height: 6px; border-radius: 9999px; background: #d92d20"></span>Inadimpl.</span>
+<span style="font-size: 13px; font-weight: 700; color: #b42318">5</span>
 </div>
 <div style="background: rgba(239,244,255,0.7); border-radius: 12px; padding: 8px 2px; display: flex; flex-direction: column; align-items: center; gap: 2px">
 <span style="display: flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 500; color: #4a4455"><span style="width: 6px; height: 6px; border-radius: 9999px; background: #7b7487"></span>Inativos</span>
@@ -955,21 +954,12 @@
 <span style="font-size: 13px; font-weight: 700; color: #4A1259">45</span>
 </div>
 </div>
-<div role="alert" style="margin-top: 4px; padding: 12px; border-radius: 12px; background: #fff7ed; border: 1px solid #fcd9a8; display: flex; flex-direction: column; gap: 10px">
-<div style="display: flex; gap: 10px">
-<span style="flex-shrink: 0; width: 36px; height: 36px; border-radius: 10px; background: #fef0c7; color: #b45309; display: flex; align-items: center; justify-content: center">
-<span class="ms" style="font-size: 20px; font-variation-settings: 'FILL' 1">warning</span>
-</span>
-<div style="display: flex; flex-direction: column; gap: 2px">
-<span style="font-size: 13px; line-height: 17px; font-weight: 700; color: #0b1c30">Ponto de atenção: 5 inadimplentes</span>
-<span style="font-size: 12px; line-height: 17px; color: #4a4455"><strong style="color: #b45309">11% da base</strong> está com mensalidade em atraso, cerca de <strong style="color: #0b1c30">R$ 850,00/mês</strong> da sua recorrência. O ideal é ficar abaixo de 5%.</span>
+<div role="alert" style="margin-top: 4px; padding: 12px; border-radius: 12px; background: #f8f7fa; display: flex; gap: 10px">
+<span class="ms" style="flex-shrink: 0; font-size: 20px; line-height: 20px; color: #d92d20">error</span>
+<div style="display: flex; flex-direction: column; gap: 3px">
+<span style="font-size: 13px; line-height: 17px; font-weight: 700; color: #0b1c30">5 veículos inadimplentes</span>
+<span style="font-size: 12px; line-height: 17px; color: #4a4455"><strong style="color: #b42318">11% da base</strong> está com mensalidade em atraso, cerca de <strong style="color: #0b1c30">R$ 850,00/mês</strong> da sua recorrência. O ideal é ficar abaixo de 5%.</span>
 </div>
-</div>
-<div style="height: 6px; border-radius: 9999px; background: #fde4c4; position: relative">
-<span style="position: absolute; top: 0; left: 0; bottom: 0; width: 55%; border-radius: 9999px; background: #f59e0b"></span>
-<span style="position: absolute; top: -3px; left: 25%; width: 2px; height: 12px; border-radius: 2px; background: #047857"></span>
-</div>
-<div style="display: flex; justify-content: space-between; font-size: 11px; font-weight: 600; color: #7b7487"><span style="color: #b45309">Você: 11%</span><span style="display: flex; align-items: center; gap: 4px; color: #047857"><span style="width: 2px; height: 10px; border-radius: 2px; background: #047857"></span>Meta: até 5%</span></div>
 </div>
 <a href="#" style="align-self: center; margin-top: 4px; min-height: 36px; display: flex; align-items: center; gap: 4px; font-size: 12px; font-weight: 700; color: #4A1259; text-decoration: none">Ver todos os veículos da base<span class="ms" style="font-size: 16px">arrow_forward</span></a>
 </div>
@@ -1028,34 +1018,17 @@ Lead quente
 </div>
 </section>
 
-<section style="position: relative; min-height: 230px; border-radius: 12px; overflow: hidden; background: linear-gradient(150deg, #350C40 0%, #4A1259 45%, #213145 100%); box-shadow: 0 4px 16px -4px rgba(32, 7, 38,0.12); display: flex; flex-direction: column; justify-content: flex-end">
-<span style="position: absolute; top: 12px; right: 12px; display: flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.75); border: 1px dashed rgba(255,255,255,0.4); padding: 3px 8px; border-radius: 9999px">
-<span class="ms" style="font-size: 14px">image</span>
-Foto da campanha
-</span>
-<div style="padding: 16px; display: flex; flex-direction: column; gap: 6px; color: #ffffff; background: linear-gradient(0deg, rgba(11,28,48,0.9) 0%, rgba(11,28,48,0.4) 70%, rgba(11,28,48,0) 100%)">
-<div style="display: flex; align-items: center; gap: 8px">
-<span style="font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; background: #4A1259; padding: 3px 8px; border-radius: 9999px">Campanha do mês</span>
-<span style="font-size: 11px; font-weight: 600; color: #d3e4fe">Assistência 24h</span>
-</div>
-<h4 style="margin: 0; font-size: 18px; line-height: 24px; font-weight: 700; letter-spacing: -0.01em">Proteção Total: Roubo, Furto, Colisão &amp; Vidros Sem Franquia</h4>
-<p style="margin: 0; font-size: 12px; line-height: 17px; color: #dce9ff">Lâmina comercial pronta para fechar vendas com condições especiais para novos associados.</p>
-<div style="display: flex; gap: 8px; padding-top: 4px">
-<button style="flex-grow: 1; height: 44px; border: 0; border-radius: 12px; background: #622773; color: #ffffff; font-family: inherit; font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 6px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); cursor: pointer">
-<span class="ms" style="font-size: 18px">share</span>
-Compartilhar lâmina
-</button>
-<button aria-label="Baixar lâmina" style="width: 44px; height: 44px; border: 0; border-radius: 12px; background: rgba(255,255,255,0.18); color: #ffffff; display: flex; align-items: center; justify-content: center; cursor: pointer">
-<span class="ms" style="font-size: 20px">download</span>
-</button>
-</div>
+<section aria-label="Campanha do mês: Proteção Total" style="position: relative; overflow: hidden; min-height: 196px; padding: 18px 16px; box-sizing: border-box; border-radius: 18px; background: radial-gradient(circle at 85% 30%, rgba(161, 146, 166,0.55) 0%, rgba(161, 146, 166,0) 55%), linear-gradient(135deg, #622773 0%, #4A1259 55%, #350C40 100%); color: #ffffff; box-shadow: 0 14px 30px -16px rgba(74, 18, 89,0.7); display: flex; flex-direction: column; justify-content: center">
+<span class="ms" aria-hidden="true" style="position: absolute; right: -24px; top: -26px; font-size: 190px; line-height: 1; color: rgba(255,255,255,0.07); font-variation-settings: 'FILL' 1">shield</span>
+<img src="assets/veiculos/carro-card.webp" alt="" aria-hidden="true" style="position: absolute; right: -16px; bottom: 16px; width: 172px; height: auto; pointer-events: none; filter: drop-shadow(0 12px 14px rgba(20, 4, 26,0.5))">
+<span aria-hidden="true" style="position: absolute; right: 14px; top: 16px; width: 38px; height: 38px; border-radius: 9999px; background: #16a34a; color: #ffffff; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0 5px rgba(255,255,255,0.18), 0 8px 16px -6px rgba(0,0,0,0.45)"><span class="ms" style="font-size: 22px; font-variation-settings: 'FILL' 1">verified_user</span></span>
+<div style="position: relative; max-width: 52%; display: flex; flex-direction: column; gap: 6px">
+<span style="align-self: flex-start; font-size: 10px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; padding: 3px 8px; border-radius: 9999px; background: rgba(255,255,255,0.16); border: 1px solid rgba(255,255,255,0.28)">Campanha do mês</span>
+<h4 style="margin: 2px 0 0; font-size: 22px; line-height: 26px; font-weight: 800; letter-spacing: -0.02em">Proteção Total</h4>
+<span style="font-size: 12px; line-height: 17px; color: rgba(255,255,255,0.9)">Roubo, furto, colisão e vidros <strong style="color: #ffffff">sem franquia</strong></span>
+<span style="margin-top: 4px; display: flex; align-items: center; gap: 4px; font-size: 11px; line-height: 15px; font-weight: 600; color: #d9cfdc"><span class="ms" style="font-size: 14px">sell</span>Condições especiais para novos associados</span>
 </div>
 </section>
-
-<button style="width: 100%; height: 48px; border: 0; border-radius: 12px; background: #4A1259; color: #ffffff; font-family: inherit; font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 4px 14px -2px rgba(74, 18, 89,0.3); cursor: pointer">
-<span class="ms" style="font-size: 20px">chat</span>
-Chat do Consultor
-</button>
 
 </main>
 
@@ -1099,9 +1072,9 @@ Chat do Consultor
 <sc-if value="{{iaOpen}}" hint-placeholder-val="{{ false }}">
 <section role="dialog" aria-labelledby="ia-title" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: 20; background: #eef1f9; display: flex; flex-direction: column; animation: menuIn .38s cubic-bezier(.22,1,.36,1) both">
 <div style="flex-shrink: 0; background: #ffffff; border-bottom: 1px solid #e5eeff; box-shadow: 0 1px 8px rgba(0,0,0,0.04); padding: 0 12px">
-<div style="height: 64px; display: flex; align-items: center; gap: 4px">
-<button onClick="{{closeIa}}" aria-label="Voltar" style="width: 44px; height: 44px; border: 0; border-radius: 9999px; background: transparent; color: #0b1c30; display: flex; align-items: center; justify-content: center; cursor: pointer"><span class="ms" style="font-size: 24px">arrow_back</span></button>
-<div style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column"><h2 id="ia-title" style="margin: 0; font-size: 17px; line-height: 22px; font-weight: 700">Consultor</h2><span style="font-size: 11px; line-height: 14px; color: #7b7487">Ferramentas para vender mais</span></div>
+<div style="height: 64px; margin: 0 -12px; padding: 0 12px; background: radial-gradient(circle at 92% 0%, rgba(161, 146, 166,0.55) 0%, rgba(161, 146, 166,0) 45%), #4A1259; color: #ffffff; display: flex; align-items: center; gap: 4px">
+<button onClick="{{closeIa}}" aria-label="Voltar" style="width: 44px; height: 44px; border: 0; border-radius: 9999px; background: transparent; color: #ffffff; display: flex; align-items: center; justify-content: center; cursor: pointer"><span class="ms" style="font-size: 24px">arrow_back</span></button>
+<div style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column"><h2 id="ia-title" style="color: #ffffff; margin: 0; font-size: 17px; line-height: 22px; font-weight: 700">Consultor</h2><span style="font-size: 11px; line-height: 14px; color: rgba(255,255,255,0.78)">Ferramentas para vender mais</span></div>
 </div>
 </div>
 <div class="nosb ia-lista" style="flex-grow: 1; min-height: 0; overflow-y: auto; scrollbar-width: none; padding: 16px var(--tela-margem) 24px; display: flex; flex-direction: column; gap: 10px">
@@ -1570,11 +1543,11 @@ Nova cotação
 
 <sc-if value="{{multiOpen}}" hint-placeholder-val="{{ false }}">
 <section role="dialog" aria-labelledby="multi-title" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: 18; background: #eef1f9; display: flex; flex-direction: column; animation: menuIn .38s cubic-bezier(.22,1,.36,1) both">
-<div style="flex-shrink: 0; height: 64px; box-sizing: border-box; padding: 0 12px; background: #ffffff; border-bottom: 1px solid #e5eeff; box-shadow: 0 1px 8px rgba(0,0,0,0.04); display: flex; align-items: center; gap: 4px">
-<button onClick="{{closeMulti}}" aria-label="Voltar" style="width: 44px; height: 44px; border: 0; border-radius: 9999px; background: transparent; color: #0b1c30; display: flex; align-items: center; justify-content: center; cursor: pointer">
+<div style="flex-shrink: 0; height: 64px; box-sizing: border-box; padding: 0 12px; background: radial-gradient(circle at 92% 0%, rgba(161, 146, 166,0.55) 0%, rgba(161, 146, 166,0) 45%), #4A1259; color: #ffffff; display: flex; align-items: center; gap: 4px">
+<button onClick="{{closeMulti}}" aria-label="Voltar" style="width: 44px; height: 44px; border: 0; border-radius: 9999px; background: transparent; color: #ffffff; display: flex; align-items: center; justify-content: center; cursor: pointer">
 <span class="ms" style="font-size: 24px">arrow_back</span>
 </button>
-<h2 id="multi-title" style="margin: 0; font-size: 17px; line-height: 22px; font-weight: 700">Multiplicador de Leads</h2>
+<h2 id="multi-title" style="color: #ffffff; margin: 0; font-size: 17px; line-height: 22px; font-weight: 700">Multiplicador de Leads</h2>
 </div>
 
 <div class="nosb multi-list" style="flex-grow: 1; min-height: 0; overflow-y: auto; scrollbar-width: none; padding: 20px var(--tela-margem) 24px; display: flex; flex-direction: column; gap: 12px">
@@ -1707,11 +1680,11 @@ Compartilhar QR Code
 
 <sc-if value="{{matOpen}}" hint-placeholder-val="{{ false }}">
 <section role="dialog" aria-labelledby="mat-title" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: 19; background: #eef1f9; display: flex; flex-direction: column; animation: menuIn .38s cubic-bezier(.22,1,.36,1) both">
-<div style="flex-shrink: 0; height: 64px; box-sizing: border-box; padding: 0 12px; background: #ffffff; border-bottom: 1px solid #e5eeff; box-shadow: 0 1px 8px rgba(0,0,0,0.04); display: flex; align-items: center; gap: 4px">
-<button onClick="{{matBack}}" aria-label="Voltar" style="width: 44px; height: 44px; border: 0; border-radius: 9999px; background: transparent; color: #0b1c30; display: flex; align-items: center; justify-content: center; cursor: pointer">
+<div style="flex-shrink: 0; height: 64px; box-sizing: border-box; padding: 0 12px; background: radial-gradient(circle at 92% 0%, rgba(161, 146, 166,0.55) 0%, rgba(161, 146, 166,0) 45%), #4A1259; color: #ffffff; display: flex; align-items: center; gap: 4px">
+<button onClick="{{matBack}}" aria-label="Voltar" style="width: 44px; height: 44px; border: 0; border-radius: 9999px; background: transparent; color: #ffffff; display: flex; align-items: center; justify-content: center; cursor: pointer">
 <span class="ms" style="font-size: 24px">arrow_back</span>
 </button>
-<h2 id="mat-title" style="margin: 0; font-size: 17px; line-height: 22px; font-weight: 700">{{matTitle}}</h2>
+<h2 id="mat-title" style="color: #ffffff; margin: 0; font-size: 17px; line-height: 22px; font-weight: 700">{{matTitle}}</h2>
 </div>
 
 <div class="nosb" style="flex-grow: 1; min-height: 0; overflow-y: auto; scrollbar-width: none; padding: 20px var(--tela-margem) 24px; display: flex; flex-direction: column; gap: 14px">
@@ -1879,12 +1852,12 @@ Marcar todas como lidas
 <sc-if value="{{agendaOpen}}" hint-placeholder-val="{{ false }}">
 <section role="dialog" aria-labelledby="agenda-title" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: 19; background: #eef1f9; display: flex; flex-direction: column; animation: menuIn .38s cubic-bezier(.22,1,.36,1) both">
 <div style="flex-shrink: 0; background: #ffffff; border-bottom: 1px solid #e5eeff; box-shadow: 0 1px 8px rgba(0,0,0,0.04); padding: 0 12px 12px">
-<div style="height: 64px; display: flex; align-items: center; gap: 4px">
-<button onClick="{{closeAgenda}}" aria-label="Voltar" style="width: 44px; height: 44px; border: 0; border-radius: 9999px; background: transparent; color: #0b1c30; display: flex; align-items: center; justify-content: center; cursor: pointer">
+<div style="height: 64px; margin: 0 -12px; padding: 0 12px; background: radial-gradient(circle at 92% 0%, rgba(161, 146, 166,0.55) 0%, rgba(161, 146, 166,0) 45%), #4A1259; color: #ffffff; display: flex; align-items: center; gap: 4px">
+<button onClick="{{closeAgenda}}" aria-label="Voltar" style="width: 44px; height: 44px; border: 0; border-radius: 9999px; background: transparent; color: #ffffff; display: flex; align-items: center; justify-content: center; cursor: pointer">
 <span class="ms" style="font-size: 24px">arrow_back</span>
 </button>
-<h2 id="agenda-title" style="flex-grow: 1; margin: 0; font-size: 17px; line-height: 22px; font-weight: 700">Agenda</h2>
-<button onClick="{{openNota}}" aria-label="Novo agendamento" aria-haspopup="dialog" style="flex-shrink: 0; height: 38px; margin-right: 4px; padding: 0 14px 0 10px; border: 0; border-radius: 9999px; background: linear-gradient(135deg, #622773 0%, #4A1259 100%); color: #ffffff; font-family: inherit; font-size: 13px; font-weight: 700; display: flex; align-items: center; gap: 4px; cursor: pointer; box-shadow: 0 6px 14px -6px rgba(74, 18, 89,0.6)"><span class="ms" style="font-size: 20px">add</span>Novo</button>
+<h2 id="agenda-title" style="color: #ffffff; flex-grow: 1; margin: 0; font-size: 17px; line-height: 22px; font-weight: 700">Agenda</h2>
+<button onClick="{{openNota}}" aria-label="Novo agendamento" aria-haspopup="dialog" style="flex-shrink: 0; height: 38px; margin-right: 4px; padding: 0 14px 0 10px; border: 0; border-radius: 9999px; background: #ffffff; color: #4A1259; font-family: inherit; font-size: 13px; font-weight: 700; display: flex; align-items: center; gap: 4px; cursor: pointer; box-shadow: 0 6px 14px -8px rgba(20, 4, 26,0.6);"><span class="ms" style="font-size: 20px">add</span>Novo</button>
 
 </div>
 <div style="margin: 0 8px 10px; display: flex; align-items: center; justify-content: space-between; gap: 8px">
@@ -2205,12 +2178,12 @@ Agendar neste dia
 <sc-if value="{{relOpen}}" hint-placeholder-val="{{ false }}">
 <section role="dialog" aria-labelledby="rel-title" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: 19; background: #eef1f9; display: flex; flex-direction: column; animation: menuIn .38s cubic-bezier(.22,1,.36,1) both">
 <div style="flex-shrink: 0; background: #ffffff; border-bottom: 1px solid #e5eeff; box-shadow: 0 1px 8px rgba(0,0,0,0.04); padding: 0 12px 12px">
-<div style="height: 64px; display: flex; align-items: center; gap: 4px">
-<button onClick="{{closeRelatorios}}" aria-label="Voltar" style="width: 44px; height: 44px; border: 0; border-radius: 9999px; background: transparent; color: #0b1c30; display: flex; align-items: center; justify-content: center; cursor: pointer">
+<div style="height: 64px; margin: 0 -12px; padding: 0 12px; background: radial-gradient(circle at 92% 0%, rgba(161, 146, 166,0.55) 0%, rgba(161, 146, 166,0) 45%), #4A1259; color: #ffffff; display: flex; align-items: center; gap: 4px">
+<button onClick="{{closeRelatorios}}" aria-label="Voltar" style="width: 44px; height: 44px; border: 0; border-radius: 9999px; background: transparent; color: #ffffff; display: flex; align-items: center; justify-content: center; cursor: pointer">
 <span class="ms" style="font-size: 24px">arrow_back</span>
 </button>
-<h2 id="rel-title" style="flex-grow: 1; margin: 0; font-size: 17px; line-height: 22px; font-weight: 700">Relatórios</h2>
-<button onClick="{{exportRel}}" style="height: 40px; padding: 0 12px; border: 1px solid #e5eeff; border-radius: 9999px; background: #f9f6fa; color: #4A1259; font-family: inherit; font-size: 12px; font-weight: 700; display: flex; align-items: center; gap: 6px; cursor: pointer">
+<h2 id="rel-title" style="color: #ffffff; flex-grow: 1; margin: 0; font-size: 17px; line-height: 22px; font-weight: 700">Relatórios</h2>
+<button onClick="{{exportRel}}" style="height: 40px; padding: 0 12px; border: 1px solid rgba(255,255,255,0.28); border-radius: 9999px; background: rgba(255,255,255,0.14); color: #ffffff; font-family: inherit; font-size: 12px; font-weight: 700; display: flex; align-items: center; gap: 6px; cursor: pointer">
 <span class="ms" style="font-size: 18px">download</span>
 Exportar
 </button>
@@ -2448,11 +2421,11 @@ Relatório em PDF gerado para conferência
 <sc-if value="{{indOpen}}" hint-placeholder-val="{{ false }}">
 <section role="dialog" aria-labelledby="ind-title" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: 19; background: #eef1f9; display: flex; flex-direction: column; animation: menuIn .38s cubic-bezier(.22,1,.36,1) both">
 <div style="flex-shrink: 0; background: #ffffff; border-bottom: 1px solid #e5eeff; box-shadow: 0 1px 8px rgba(0,0,0,0.04); padding: 0 12px 12px">
-<div style="height: 64px; display: flex; align-items: center; gap: 4px">
-<button onClick="{{closeIndicadores}}" aria-label="Voltar" style="width: 44px; height: 44px; border: 0; border-radius: 9999px; background: transparent; color: #0b1c30; display: flex; align-items: center; justify-content: center; cursor: pointer">
+<div style="height: 64px; margin: 0 -12px; padding: 0 12px; background: radial-gradient(circle at 92% 0%, rgba(161, 146, 166,0.55) 0%, rgba(161, 146, 166,0) 45%), #4A1259; color: #ffffff; display: flex; align-items: center; gap: 4px">
+<button onClick="{{closeIndicadores}}" aria-label="Voltar" style="width: 44px; height: 44px; border: 0; border-radius: 9999px; background: transparent; color: #ffffff; display: flex; align-items: center; justify-content: center; cursor: pointer">
 <span class="ms" style="font-size: 24px">arrow_back</span>
 </button>
-<h2 id="ind-title" style="margin: 0; font-size: 17px; line-height: 22px; font-weight: 700">Meu desempenho</h2>
+<h2 id="ind-title" style="color: #ffffff; margin: 0; font-size: 17px; line-height: 22px; font-weight: 700">Meu desempenho</h2>
 </div>
 <div class="nosb" style="margin: 0 8px; display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none">
 <sc-for list="{{indPeriods}}" as="ip" hint-placeholder-count="3">
@@ -2608,9 +2581,9 @@ Faltam 8 placas para atingir a meta.
 
 <sc-if value="{{indicIsLista}}" hint-placeholder-val="{{ true }}">
 <div style="flex-shrink: 0; background: #ffffff; border-bottom: 1px solid #e5eeff; box-shadow: 0 1px 8px rgba(0,0,0,0.04); padding: 0 12px 12px">
-<div style="height: 64px; display: flex; align-items: center; gap: 4px">
-<button onClick="{{closeIndic}}" aria-label="Voltar" style="width: 44px; height: 44px; border: 0; border-radius: 9999px; background: transparent; color: #0b1c30; display: flex; align-items: center; justify-content: center; cursor: pointer"><span class="ms" style="font-size: 24px">arrow_back</span></button>
-<h2 id="indic-title" style="margin: 0; font-size: 17px; line-height: 22px; font-weight: 700">Indicadores</h2>
+<div style="height: 64px; margin: 0 -12px; padding: 0 12px; background: radial-gradient(circle at 92% 0%, rgba(161, 146, 166,0.55) 0%, rgba(161, 146, 166,0) 45%), #4A1259; color: #ffffff; display: flex; align-items: center; gap: 4px">
+<button onClick="{{closeIndic}}" aria-label="Voltar" style="width: 44px; height: 44px; border: 0; border-radius: 9999px; background: transparent; color: #ffffff; display: flex; align-items: center; justify-content: center; cursor: pointer"><span class="ms" style="font-size: 24px">arrow_back</span></button>
+<h2 id="indic-title" style="color: #ffffff; margin: 0; font-size: 17px; line-height: 22px; font-weight: 700">Indicadores</h2>
 </div>
 <div style="margin: 0 8px; height: 44px; padding: 0 12px; border: 1px solid #e5eeff; border-radius: 12px; background: #f9f6fa; display: flex; align-items: center; gap: 8px">
 <span class="ms" style="font-size: 20px; color: #7b7487">search</span>
@@ -2655,10 +2628,10 @@ Faltam 8 placas para atingir a meta.
 </sc-if>
 
 <sc-if value="{{indicIsDetalhe}}" hint-placeholder-val="{{ false }}">
-<div style="flex-shrink: 0; height: 64px; box-sizing: border-box; padding: 0 12px; background: #ffffff; border-bottom: 1px solid #e5eeff; box-shadow: 0 1px 8px rgba(0,0,0,0.04); display: flex; align-items: center; gap: 4px">
-<button onClick="{{indicBack}}" aria-label="Voltar para a lista" style="width: 44px; height: 44px; border: 0; border-radius: 9999px; background: transparent; color: #0b1c30; display: flex; align-items: center; justify-content: center; cursor: pointer"><span class="ms" style="font-size: 24px">arrow_back</span></button>
-<h2 style="flex-grow: 1; margin: 0; font-size: 17px; line-height: 22px; font-weight: 700">Indicador</h2>
-<button onClick="{{indicSel.edit}}" aria-label="Editar dados" style="width: 44px; height: 44px; border: 0; border-radius: 9999px; background: transparent; color: #0b1c30; display: flex; align-items: center; justify-content: center; cursor: pointer; color: #4A1259"><span class="ms" style="font-size: 22px">edit</span></button>
+<div style="flex-shrink: 0; height: 64px; box-sizing: border-box; padding: 0 12px; background: radial-gradient(circle at 92% 0%, rgba(161, 146, 166,0.55) 0%, rgba(161, 146, 166,0) 45%), #4A1259; color: #ffffff; display: flex; align-items: center; gap: 4px">
+<button onClick="{{indicBack}}" aria-label="Voltar para a lista" style="width: 44px; height: 44px; border: 0; border-radius: 9999px; background: transparent; color: #ffffff; display: flex; align-items: center; justify-content: center; cursor: pointer"><span class="ms" style="font-size: 24px">arrow_back</span></button>
+<h2 style="color: #ffffff; flex-grow: 1; margin: 0; font-size: 17px; line-height: 22px; font-weight: 700">Indicador</h2>
+<button onClick="{{indicSel.edit}}" aria-label="Editar dados" style="width: 44px; height: 44px; border: 0; border-radius: 9999px; background: transparent; color: #ffffff; display: flex; align-items: center; justify-content: center; cursor: pointer; color: #ffffff"><span class="ms" style="font-size: 22px">edit</span></button>
 </div>
 <div class="nosb multi-list" style="flex-grow: 1; min-height: 0; overflow-y: auto; scrollbar-width: none; padding: 16px var(--tela-margem) 24px; display: flex; flex-direction: column; gap: 14px">
 
@@ -2836,9 +2809,9 @@ Faltam 8 placas para atingir a meta.
 
 <sc-if value="{{novOpen}}" hint-placeholder-val="{{ false }}">
 <section role="dialog" aria-labelledby="nov-title" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: 19; background: #eef1f9; display: flex; flex-direction: column; animation: menuIn .38s cubic-bezier(.22,1,.36,1) both">
-<div style="flex-shrink: 0; height: 64px; box-sizing: border-box; padding: 0 12px; background: #ffffff; border-bottom: 1px solid #e5eeff; box-shadow: 0 1px 8px rgba(0,0,0,0.04); display: flex; align-items: center; gap: 4px">
-<button onClick="{{closeNovidades}}" aria-label="Voltar" style="width: 44px; height: 44px; border: 0; border-radius: 9999px; background: transparent; color: #0b1c30; display: flex; align-items: center; justify-content: center; cursor: pointer"><span class="ms" style="font-size: 24px">arrow_back</span></button>
-<h2 id="nov-title" style="margin: 0; font-size: 17px; line-height: 22px; font-weight: 700">Novidades desta versão</h2>
+<div style="flex-shrink: 0; height: 64px; box-sizing: border-box; padding: 0 12px; background: radial-gradient(circle at 92% 0%, rgba(161, 146, 166,0.55) 0%, rgba(161, 146, 166,0) 45%), #4A1259; color: #ffffff; display: flex; align-items: center; gap: 4px">
+<button onClick="{{closeNovidades}}" aria-label="Voltar" style="width: 44px; height: 44px; border: 0; border-radius: 9999px; background: transparent; color: #ffffff; display: flex; align-items: center; justify-content: center; cursor: pointer"><span class="ms" style="font-size: 24px">arrow_back</span></button>
+<h2 id="nov-title" style="color: #ffffff; margin: 0; font-size: 17px; line-height: 22px; font-weight: 700">Novidades desta versão</h2>
 </div>
 
 <div class="nosb multi-list" style="flex-grow: 1; min-height: 0; overflow-y: auto; scrollbar-width: none; padding: 16px var(--tela-margem) 24px; display: flex; flex-direction: column; gap: 14px">
@@ -2903,11 +2876,11 @@ Faltam 8 placas para atingir a meta.
 <sc-if value="{{propOpen}}" hint-placeholder-val="{{ false }}">
 <section role="dialog" aria-labelledby="prop-title" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: 19; background: #eef1f9; display: flex; flex-direction: column; animation: menuIn .38s cubic-bezier(.22,1,.36,1) both">
 <div style="flex-shrink: 0; background: #ffffff; border-bottom: 1px solid #e5eeff; box-shadow: 0 1px 8px rgba(0,0,0,0.04); padding: 0 12px 10px">
-<div style="height: 64px; display: flex; align-items: center; gap: 4px">
-<button onClick="{{closePropostas}}" aria-label="Voltar" style="width: 44px; height: 44px; border: 0; border-radius: 9999px; background: transparent; color: #0b1c30; display: flex; align-items: center; justify-content: center; cursor: pointer"><span class="ms" style="font-size: 24px">arrow_back</span></button>
-<h2 id="prop-title" style="flex-grow: 1; margin: 0; font-size: 17px; line-height: 22px; font-weight: 700">Propostas</h2>
+<div style="height: 64px; margin: 0 -12px; padding: 0 12px; background: radial-gradient(circle at 92% 0%, rgba(161, 146, 166,0.55) 0%, rgba(161, 146, 166,0) 45%), #4A1259; color: #ffffff; display: flex; align-items: center; gap: 4px">
+<button onClick="{{closePropostas}}" aria-label="Voltar" style="width: 44px; height: 44px; border: 0; border-radius: 9999px; background: transparent; color: #ffffff; display: flex; align-items: center; justify-content: center; cursor: pointer"><span class="ms" style="font-size: 24px">arrow_back</span></button>
+<h2 id="prop-title" style="color: #ffffff; flex-grow: 1; margin: 0; font-size: 17px; line-height: 22px; font-weight: 700">Propostas</h2>
 </div>
-<div style="margin: 0 8px; display: flex; align-items: center; gap: 8px">
+<div style="margin: 12px 8px 0; display: flex; align-items: center; gap: 8px">
 <div style="flex-grow: 1; min-width: 0; height: 36px; padding: 0 10px; border: 1px solid #e5eeff; border-radius: 10px; background: #f9f6fa; display: flex; align-items: center; gap: 6px">
 <span class="ms" style="font-size: 18px; color: #7b7487">search</span>
 <input type="search" value="{{propQuery}}" onChange="{{onPropQuery}}" placeholder="Buscar por nome ou placa" aria-label="Buscar proposta" style="flex-grow: 1; min-width: 0; height: 100%; border: 0; background: transparent; font-family: inherit; font-size: 12px; color: #0b1c30; outline: none">
@@ -2921,7 +2894,7 @@ Faltam 8 placas para atingir a meta.
 </div>
 </div>
 
-<div class="nosb" style="flex-grow: 1; min-height: 0; overflow-y: auto; scrollbar-width: none; padding: 12px var(--tela-margem) 24px; display: flex; flex-direction: column; gap: 10px">
+<div class="nosb" style="flex-grow: 1; min-height: 0; overflow-y: auto; scrollbar-width: none; padding: 12px var(--tela-margem) 24px; display: flex; flex-direction: column; gap: 14px">
 <div style="flex-shrink: 0; display: flex; align-items: center; justify-content: space-between; padding: 0 2px">
 <span style="font-size: 12px; color: #4a4455"><strong style="font-size: 14px; color: #4A1259">{{propCount}}</strong> {{propCountLabel}}</span>
 <sc-if value="{{hasFilters}}" hint-placeholder-val="{{ false }}">
@@ -2930,58 +2903,56 @@ Faltam 8 placas para atingir a meta.
 </div>
 
 <sc-for list="{{propItems}}" as="pr" hint-placeholder-count="4">
-<article class="prop-card" onClick="{{pr.open}}" style="cursor: pointer; flex-shrink: 0; border-radius: 14px; background: #ffffff; border: 1px solid #e9e5ec; box-shadow: 0 1px 3px rgba(32, 7, 38,0.05); display: flex; flex-direction: column; overflow: hidden; animation: itemIn .3s cubic-bezier(.22,1,.36,1) both">
-<div role="button" tabindex="0" aria-label="{{pr.openLabel}}" style="padding: 14px 14px 12px; display: flex; flex-direction: column; gap: 10px">
-<div style="margin: -14px -14px 0; padding: 14px 14px 12px; background: #f3f2f6; border-bottom: 1px solid #e9e5ec; display: flex; align-items: flex-start; gap: 10px">
-<div style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px">
+<article class="prop-card" onClick="{{pr.open}}" style="cursor: pointer; flex-shrink: 0; border-radius: 10px; background: #ffffff; border: 1px solid #ece7f0; box-shadow: 0 1px 2px rgba(32, 7, 38,0.04), 0 8px 22px -14px rgba(32, 7, 38,0.28); display: flex; flex-direction: column; overflow: hidden; animation: itemIn .3s cubic-bezier(.22,1,.36,1) both">
+<div role="button" tabindex="0" aria-label="{{pr.openLabel}}" style="padding: 16px 16px 12px; display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; align-items: flex-start; gap: 10px">
+<div style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px">
 <div style="display: flex; align-items: center; gap: 6px; min-width: 0">
-<span style="min-width: 0; font-size: 15px; line-height: 20px; font-weight: 700; color: #0b1c30; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{pr.name}}</span>
+<span style="min-width: 0; font-size: 16px; line-height: 21px; font-weight: 800; letter-spacing: -0.01em; color: #0b1c30; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{pr.name}}</span>
 <sc-if value="{{pr.hasUnread}}" hint-placeholder-val="{{ false }}"><span aria-label="{{pr.unreadAria}}" style="flex-shrink: 0; min-width: 18px; height: 18px; box-sizing: border-box; padding: 0 5px; border-radius: 9999px; background: #e11d48; color: #ffffff; font-size: 10px; font-weight: 800; display: flex; align-items: center; justify-content: center">{{pr.unread}}</span></sc-if>
 </div>
 <span style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #4a4455; min-width: 0">
-<span class="ms" style="flex-shrink: 0; font-size: 16px; color: #7b7487">{{pr.vehicleIcon}}</span>
+<span class="ms" style="flex-shrink: 0; font-size: 17px; color: #7b7487">{{pr.vehicleIcon}}</span>
 <span style="min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{pr.model}}</span>
 <span style="flex-shrink: 0; display: flex; flex-direction: column; border: 1.5px solid #111111; border-radius: 4px; background: #ffffff; overflow: hidden; line-height: 1"><span aria-hidden="true" style="padding: 1px 0; background: #003399; color: #ffffff; font-size: 5px; font-weight: 800; letter-spacing: 0.2em; text-align: center">BRASIL</span><span style="padding: 2px 6px 2px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11px; font-weight: 800; letter-spacing: 0.06em; color: #111111">{{pr.placaMercosul}}</span></span>
 </span>
 </div>
-<div style="flex-shrink: 0; display: flex; flex-direction: column; align-items: flex-end; gap: 4px">
-<span style="{{pr.statusStyle}}"><span style="{{pr.statusDotStyle}}"></span>{{pr.statusLabel}}</span>
+<span style="flex-shrink: 0; {{pr.statusStyle}}"><span style="{{pr.statusDotStyle}}"></span>{{pr.statusLabel}}</span>
 </div>
-</div>
-
 <sc-if value="{{pr.inFunil}}" hint-placeholder-val="{{ false }}">
-<div style="width: 100%; display: flex; align-items: center; gap: 6px; font-size: 12px; line-height: 16px; color: #4a4455">
-<span class="ms" style="flex-shrink: 0; font-size: 16px; color: #4A1259; font-variation-settings: 'FILL' 1">flag</span>
-<span style="min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">Etapa: <strong style="color: #4A1259">{{pr.etapa}}</strong></span>
-<span style="flex-shrink: 0; margin-left: auto; font-size: 11px; color: #7b7487">{{pr.etapaPos}}</span>
+<div style="padding: 9px 10px; border-radius: 12px; background: #f6f3f8; display: flex; align-items: center; gap: 8px; font-size: 12px; line-height: 16px; color: #4a4455">
+<span class="ms" style="flex-shrink: 0; font-size: 17px; color: #4A1259; font-variation-settings: 'FILL' 1">flag</span>
+<span style="flex-grow: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis"><strong style="color: #4A1259">{{pr.etapa}}</strong></span>
+<span style="flex-shrink: 0; padding: 2px 8px; border-radius: 9999px; background: #ffffff; font-size: 11px; font-weight: 700; color: #622773">Etapa {{pr.etapaPos}}</span>
 </div>
 </sc-if>
-
-<div style="width: 100%; display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; font-size: 11px; color: #4a4455">
-<sc-for list="{{pr.tags}}" as="tg" hint-placeholder-count="2"><span style="display: flex; align-items: center; gap: 4px; white-space: nowrap"><span class="ms" style="font-size: 14px; color: #A192A6">{{tg.icon}}</span>{{tg.label}}</span></sc-for>
-</div>
 </div>
 
 <sc-if value="{{pr.isFrota}}" hint-placeholder-val="{{ false }}">
-<div onClick="{{pr.stop}}" style="display: flex; flex-direction: column"><button onClick="{{pr.filterFrota}}" aria-label="{{pr.frotaAria}}" style="margin: 0 14px 10px; padding: 7px 10px; border: 1px solid #e9e5ec; border-radius: 10px; background: #f9f6fa; font-family: inherit; color: inherit; text-align: left; display: flex; align-items: center; gap: 8px; cursor: pointer">
+<div onClick="{{pr.stop}}" style="display: flex; flex-direction: column"><button onClick="{{pr.filterFrota}}" aria-label="{{pr.frotaAria}}" style="margin: 0 16px 10px; padding: 8px 10px; border: 1px solid #e9e5ec; border-radius: 10px; background: #f9f6fa; font-family: inherit; color: inherit; text-align: left; display: flex; align-items: center; gap: 8px; cursor: pointer">
 <span class="ms" style="flex-shrink: 0; font-size: 16px; color: #622773">local_shipping</span>
 <span style="flex-grow: 1; min-width: 0; font-size: 11px; color: #4a4455; white-space: nowrap; overflow: hidden; text-overflow: ellipsis"><strong style="color: #0b1c30">{{pr.frotaName}}</strong> · {{pr.frotaSub}}</span>
 <span style="flex-shrink: 0; font-size: 9px; line-height: 14px; font-weight: 800; padding: 1px 6px; border-radius: 9999px; color: #ffffff; background: #622773; letter-spacing: 0.06em">FROTA</span>
 </button></div>
 </sc-if>
 
-<div onClick="{{pr.stop}}" style="display: flex; flex-direction: column"><button onClick="{{pr.toggle}}" aria-expanded="{{pr.expandedAttr}}" style="margin: 0 14px 12px; padding: 0; border: 0; background: transparent; font-family: inherit; color: inherit; text-align: left; display: flex; align-items: flex-start; gap: 6px; cursor: pointer">
-<span class="ms" style="flex-shrink: 0; font-size: 15px; line-height: 17px; color: #A192A6">schedule</span>
+<div onClick="{{pr.stop}}" style="display: flex; flex-direction: column"><button onClick="{{pr.toggle}}" aria-expanded="{{pr.expandedAttr}}" style="margin: 0 16px 12px; padding: 10px 12px; border: 0; border-radius: 12px; background: #fafafb; font-family: inherit; color: inherit; text-align: left; display: flex; align-items: flex-start; gap: 8px; cursor: pointer">
+<span class="ms" style="flex-shrink: 0; font-size: 16px; line-height: 17px; color: #A192A6">history</span>
 <span style="{{pr.eventStyle}}">{{pr.lastEvent}}</span>
 <span class="ms" style="{{pr.chevron}}">expand_more</span>
 </button></div>
 
-<span style="margin: -4px 14px 10px; font-size: 10px; color: #7b7487; text-align: right; white-space: nowrap">{{pr.createdShort}}</span>
+<div style="margin: -2px 16px 14px; display: flex; align-items: center; gap: 10px; font-size: 11px; color: #7b7487">
+<div style="flex-grow: 1; min-width: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; color: #4a4455">
+<sc-for list="{{pr.tags}}" as="tg" hint-placeholder-count="2"><span style="display: flex; align-items: center; gap: 4px; white-space: nowrap"><span class="ms" style="font-size: 14px; color: #A192A6">{{tg.icon}}</span>{{tg.label}}</span></sc-for>
+</div>
+<span style="flex-shrink: 0; display: flex; align-items: center; gap: 3px; white-space: nowrap"><span class="ms" style="font-size: 13px">calendar_today</span>{{pr.createdShort}}</span>
+</div>
 
-<div onClick="{{pr.stop}}" style="border-top: 1px solid #f1eef3; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); cursor: default">
-<a href="{{pr.whatsUrl}}" target="_blank" rel="noopener" aria-label="{{pr.whatsLabel}}" class="prop-act" style="height: 42px; padding: 0 6px; border: 0; border-radius: 0; background: transparent; font-family: inherit; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; text-decoration: none; color: #15803d"><img src="assets/whatsapp-verde.svg" alt="" aria-hidden="true" style="width: 16px; height: 16px">WhatsApp</a>
-<a href="{{pr.tel}}" class="prop-act" style="height: 42px; padding: 0 6px; border: 0; border-radius: 0; background: transparent; font-family: inherit; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; text-decoration: none; border-left: 1px solid #f1eef3; color: #4A1259"><span class="ms" style="font-size: 17px">call</span>Ligar</a>
-<button onClick="{{pr.remind}}" class="prop-act" style="height: 42px; padding: 0 6px; border: 0; border-radius: 0; background: transparent; font-family: inherit; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; text-decoration: none; border-left: 1px solid #f1eef3; color: #4A1259"><span class="ms" style="font-size: 17px">add_alarm</span>Agendar</button>
+<div onClick="{{pr.stop}}" style="border-top: 1px solid #f1eef3; background: #fbfafc; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); cursor: default">
+<a href="{{pr.whatsUrl}}" target="_blank" rel="noopener" aria-label="{{pr.whatsLabel}}" class="prop-act" style="height: 44px; padding: 0 6px; border: 0; border-radius: 0; background: transparent; font-family: inherit; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; text-decoration: none; color: #15803d"><img src="assets/whatsapp-verde.svg" alt="" aria-hidden="true" style="width: 16px; height: 16px">WhatsApp</a>
+<a href="{{pr.tel}}" class="prop-act" style="height: 44px; padding: 0 6px; border: 0; border-radius: 0; background: transparent; font-family: inherit; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; text-decoration: none; border-left: 1px solid #f1eef3; color: #4A1259"><span class="ms" style="font-size: 17px">call</span>Ligar</a>
+<button onClick="{{pr.remind}}" class="prop-act" style="height: 44px; padding: 0 6px; border: 0; border-radius: 0; background: transparent; font-family: inherit; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; text-decoration: none; border-left: 1px solid #f1eef3; color: #4A1259"><span class="ms" style="font-size: 17px">add_alarm</span>Agendar</button>
 </div>
 </article>
 </sc-for>
@@ -3148,13 +3119,13 @@ Faltam 8 placas para atingir a meta.
 <sc-if value="{{wizOpen}}" hint-placeholder-val="{{ false }}">
 <section role="dialog" aria-modal="true" aria-labelledby="wiz-title" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 24; background: #eef1f9; display: flex; flex-direction: column; animation: sheetUp .36s cubic-bezier(.22,1,.36,1)">
 <div style="flex-shrink: 0; background: #ffffff; border-bottom: 1px solid #e5eeff; box-shadow: 0 1px 8px rgba(0,0,0,0.04); padding: 0 12px 12px">
-<div style="height: 64px; display: flex; align-items: center; gap: 4px">
-<button onClick="{{closeWiz}}" aria-label="Fechar" style="width: 44px; height: 44px; border: 0; border-radius: 9999px; background: transparent; color: #0b1c30; display: flex; align-items: center; justify-content: center; cursor: pointer"><span class="ms" style="font-size: 24px">close</span></button>
+<div style="height: 64px; margin: 0 -12px; padding: 0 12px; background: radial-gradient(circle at 92% 0%, rgba(161, 146, 166,0.55) 0%, rgba(161, 146, 166,0) 45%), #4A1259; color: #ffffff; display: flex; align-items: center; gap: 4px">
+<button onClick="{{closeWiz}}" aria-label="Fechar" style="width: 44px; height: 44px; border: 0; border-radius: 9999px; background: transparent; color: #ffffff; display: flex; align-items: center; justify-content: center; cursor: pointer"><span class="ms" style="font-size: 24px">close</span></button>
 <div style="flex-grow: 1; display: flex; flex-direction: column">
-<h2 id="wiz-title" style="margin: 0; font-size: 17px; line-height: 22px; font-weight: 700">Nova proposta</h2>
-<span style="font-size: 11px; color: #7b7487">{{wizStepText}}</span>
+<h2 id="wiz-title" style="color: #ffffff; margin: 0; font-size: 17px; line-height: 22px; font-weight: 700">Nova proposta</h2>
+<span style="font-size: 11px; color: rgba(255,255,255,0.78)">{{wizStepText}}</span>
 </div>
-<button onClick="{{resetWiz}}" style="height: 36px; padding: 0 10px; border: 0; background: transparent; font-family: inherit; font-size: 13px; font-weight: 700; color: #b42318; cursor: pointer">Limpar</button>
+<button onClick="{{resetWiz}}" style="height: 36px; padding: 0 10px; border: 0; background: transparent; font-family: inherit; font-size: 13px; font-weight: 700; color: #fecdca; cursor: pointer">Limpar</button>
 </div>
 <div style="margin: 6px 0 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px">
 <sc-for list="{{wizSteps}}" as="ws" hint-placeholder-count="4">
@@ -3291,12 +3262,12 @@ Faltam 8 placas para atingir a meta.
 </sc-if>
 <div style="display: flex; flex-direction: column; gap: 2px; padding: 0 2px">
 <h3 style="margin: 0; font-size: 16px; line-height: 22px; font-weight: 700">Escolha os planos para o {{wVehShort}}</h3>
-<span style="font-size: 12px; line-height: 17px; color: #4a4455">Selecione os planos para gerar o comparativo</span>
+<span style="font-size: 11px; line-height: 15px; color: #4a4455">Selecione os planos para gerar o comparativo</span>
 </div>
 <div style="flex-shrink: 0; padding: 10px 12px; border-radius: 14px; background: #ffffff; border: 1px solid #e5eeff; display: flex; flex-direction: column; gap: 10px">
 <button role="switch" aria-checked="{{wAdesaoTodosAttr}}" onClick="{{toggleWAdesaoTodos}}" style="padding: 0; border: 0; background: transparent; font-family: inherit; color: inherit; text-align: left; display: flex; align-items: center; gap: 12px; cursor: pointer">
 <span class="ms" style="flex-shrink: 0; font-size: 20px; color: #4A1259">receipt_long</span>
-<span style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 1px"><span style="font-size: 13px; line-height: 17px; font-weight: 700; color: #0b1c30">Mesma adesão para todos os planos</span><span style="font-size: 11px; line-height: 15px; color: #7b7487">{{wAdesaoHint}}</span></span>
+<span style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 1px"><span style="font-size: 13px; line-height: 17px; font-weight: 700; color: #0b1c30">Mesma adesão para todos os planos</span><sc-if value="{{wAdesaoTodos}}" hint-placeholder-val="{{ false }}"><span style="font-size: 11px; line-height: 15px; color: #7b7487">{{wAdesaoHint}}</span></sc-if></span>
 <span style="{{wAdesaoTrack}}"><span style="{{wAdesaoThumb}}"></span></span>
 </button>
 <sc-if value="{{wAdesaoTodos}}" hint-placeholder-val="{{ false }}">
@@ -3538,28 +3509,28 @@ Faltam 8 placas para atingir a meta.
 
 <sc-if value="{{detOpen}}" hint-placeholder-val="{{ false }}">
 <section role="dialog" aria-labelledby="det-title" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: 19; background: #eef1f9; display: flex; flex-direction: column; animation: menuIn .38s cubic-bezier(.22,1,.36,1) both">
-<div style="flex-shrink: 0; height: 64px; box-sizing: border-box; padding: 0 12px; background: #ffffff; border-bottom: 1px solid #e5eeff; box-shadow: 0 1px 8px rgba(0,0,0,0.04); display: flex; align-items: center; gap: 4px">
-<button onClick="{{closeDet}}" aria-label="Voltar" style="width: 44px; height: 44px; border: 0; border-radius: 9999px; background: transparent; color: #0b1c30; display: flex; align-items: center; justify-content: center; cursor: pointer"><span class="ms" style="font-size: 24px">arrow_back</span></button>
-<div style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column"><h2 id="det-title" style="margin: 0; font-size: 17px; line-height: 21px; font-weight: 700">Proposta nº {{det.num}}</h2><span style="font-size: 11px; line-height: 14px; color: #7b7487">Criada em {{det.created}}</span></div>
-<button onClick="{{dupDet}}" aria-label="Duplicar proposta" style="flex-shrink: 0; width: 36px; height: 36px; margin-right: 6px; padding: 0; border: 1px solid #e5eeff; border-radius: 9999px; background: #f9f6fa; color: #4A1259; display: flex; align-items: center; justify-content: center; cursor: pointer"><span class="ms" style="font-size: 18px">content_copy</span></button>
-<button onClick="{{openHist}}" style="height: 36px; padding: 0 10px; border: 1px solid #e5eeff; border-radius: 9999px; background: #f9f6fa; color: #4A1259; font-family: inherit; font-size: 12px; font-weight: 700; display: flex; align-items: center; gap: 4px; cursor: pointer"><span class="ms" style="font-size: 17px">history</span>Histórico</button>
+<div style="flex-shrink: 0; height: 64px; box-sizing: border-box; padding: 0 12px; background: radial-gradient(circle at 92% 0%, rgba(161, 146, 166,0.55) 0%, rgba(161, 146, 166,0) 45%), #4A1259; color: #ffffff; display: flex; align-items: center; gap: 4px">
+<button onClick="{{closeDet}}" aria-label="Voltar" style="width: 44px; height: 44px; border: 0; border-radius: 9999px; background: transparent; color: #ffffff; display: flex; align-items: center; justify-content: center; cursor: pointer"><span class="ms" style="font-size: 24px">arrow_back</span></button>
+<div style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column"><h2 id="det-title" style="color: #ffffff; margin: 0; font-size: 15px; line-height: 19px; font-weight: 700">Proposta nº {{det.num}}</h2><span style="font-size: 10px; line-height: 13px; color: rgba(255,255,255,0.78)">Criada em {{det.created}}</span></div>
+<button onClick="{{dupDet}}" aria-label="Duplicar proposta" style="flex-shrink: 0; width: 36px; height: 36px; margin-right: 6px; padding: 0; border: 1px solid rgba(255,255,255,0.28); border-radius: 9999px; background: rgba(255,255,255,0.14); color: #ffffff; display: flex; align-items: center; justify-content: center; cursor: pointer"><span class="ms" style="font-size: 18px">content_copy</span></button>
+<button onClick="{{openHist}}" style="height: 36px; padding: 0 10px; border: 1px solid rgba(255,255,255,0.28); border-radius: 9999px; background: rgba(255,255,255,0.14); color: #ffffff; font-family: inherit; font-size: 12px; font-weight: 700; display: flex; align-items: center; gap: 4px; cursor: pointer"><span class="ms" style="font-size: 17px">history</span>Histórico</button>
 </div>
 
 <div class="nosb" style="flex-grow: 1; min-height: 0; overflow-y: auto; scrollbar-width: none; padding: 16px var(--tela-margem) 24px; display: flex; flex-direction: column; gap: 14px">
 
-<div style="flex-shrink: 0; padding: 12px 16px 16px; border-radius: 16px; background: #ffffff; border: 1px solid #e5eeff; box-shadow: 0 2px 12px -2px rgba(32, 7, 38,0.06); display: flex; flex-direction: column; gap: 8px">
-<div style="margin-bottom: 4px; display: flex; align-items: center; gap: 6px">
-<span class="ms" aria-hidden="true" style="flex-shrink: 0; font-size: 24px; color: #4A1259; font-variation-settings: 'FILL' 0, 'wght' 300">person</span>
+<div style="flex-shrink: 0; padding: 12px 16px 16px; border-radius: 10px; background: #ffffff; border: 1px solid #e5eeff; box-shadow: 0 2px 12px -2px rgba(32, 7, 38,0.06); display: flex; flex-direction: column; gap: 8px">
+<div style="margin-bottom: 4px; display: flex; align-items: flex-start; gap: 6px">
+<span class="ms" aria-hidden="true" style="flex-shrink: 0; margin-top: 2px; font-size: 24px; line-height: 24px; color: #4A1259; font-variation-settings: 'FILL' 0, 'wght' 300">person</span>
 <div style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 1px"><h3 style="margin: 0; font-size: 14px; line-height: 18px; font-weight: 800">{{det.name}}</h3><span style="font-size: 12px; line-height: 16px; color: #4a4455">{{det.phone}}</span><sc-if value="{{det.hasEmail}}" hint-placeholder-val="{{ true }}"><span style="font-size: 12px; line-height: 16px; color: #4a4455">{{det.email}}</span></sc-if></div>
 </div>
 <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px">
-<a href="{{det.tel}}" style="height: 44px; border: 1.5px solid #4A1259; border-radius: 12px; background: #ffffff; color: #4A1259; font-family: inherit; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; text-decoration: none; height: 36px; border-width: 1px; border-color: #e5eeff"><span class="ms" style="font-size: 15px">call</span>Ligar</a>
-<a href="{{det.whatsUrl}}" target="_blank" rel="noopener" style="height: 36px; border-radius: 12px; background: #1fa855; color: #ffffff; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 6px; text-decoration: none"><img src="assets/whatsapp-branco.svg" alt="" aria-hidden="true" style="width: 14px; height: 14px">Conversar</a>
-<button onClick="{{detNota}}" style="height: 44px; border: 1.5px solid #4A1259; border-radius: 12px; background: #ffffff; color: #4A1259; font-family: inherit; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; text-decoration: none; height: 36px; border-width: 1px; border-color: #e5eeff"><span class="ms" style="font-size: 15px">edit_note</span>Agendar</button>
+<a href="{{det.tel}}" style="height: 44px; border: 1.5px solid #4A1259; border-radius: 6px; background: #ffffff; color: #4A1259; font-family: inherit; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; text-decoration: none; height: 36px; border-width: 1px; border-color: #e5eeff"><span class="ms" style="font-size: 15px">call</span>Ligar</a>
+<a href="{{det.whatsUrl}}" target="_blank" rel="noopener" style="height: 36px; border-radius: 6px; background: #1fa855; color: #ffffff; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 6px; text-decoration: none"><img src="assets/whatsapp-branco.svg" alt="" aria-hidden="true" style="width: 14px; height: 14px">Conversar</a>
+<button onClick="{{detNota}}" style="height: 44px; border: 1.5px solid #4A1259; border-radius: 6px; background: #ffffff; color: #4A1259; font-family: inherit; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; text-decoration: none; height: 36px; border-width: 1px; border-color: #e5eeff"><span class="ms" style="font-size: 15px">edit_note</span>Agendar</button>
 </div>
 </div>
 
-<div style="flex-shrink: 0; padding: 16px; border-radius: 16px; background: #ffffff; border: 1px solid #e5eeff; box-shadow: 0 2px 12px -2px rgba(32, 7, 38,0.06); display: flex; flex-direction: column; gap: 12px">
+<div style="flex-shrink: 0; padding: 16px; border-radius: 10px; background: #ffffff; border: 1px solid #e5eeff; box-shadow: 0 2px 12px -2px rgba(32, 7, 38,0.06); display: flex; flex-direction: column; gap: 12px">
 <div style="display: flex; align-items: center; gap: 8px">
 <span style="flex-shrink: 0; width: 32px; height: 40px; color: #4A1259; display: flex; align-items: center; justify-content: center"><span class="ms" style="font-size: 28px; font-variation-settings: 'FILL' 1">{{det.vehIcon}}</span></span>
 <div style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column"><strong style="font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{det.vehTitle}}</strong><span style="font-size: 12px; color: #4a4455">{{det.vehSub}}</span></div>
@@ -3604,7 +3575,7 @@ Faltam 8 placas para atingir a meta.
 </div>
 
 <sc-if value="{{detShowPlans}}" hint-placeholder-val="{{ true }}">
-<div style="flex-shrink: 0; padding: 14px 16px; border-radius: 16px; background: #ffffff; border: 1px solid #e5eeff; box-shadow: 0 2px 12px -2px rgba(32, 7, 38,0.06); display: flex; flex-direction: column; gap: 12px; overflow: hidden">
+<div style="flex-shrink: 0; padding: 14px 16px; border-radius: 10px; background: #ffffff; border: 1px solid #e5eeff; box-shadow: 0 2px 12px -2px rgba(32, 7, 38,0.06); display: flex; flex-direction: column; gap: 12px; overflow: hidden">
 <button onClick="{{toggleDetPlans}}" aria-expanded="{{detPlansOpenAttr}}" aria-controls="det-planos" style="padding: 0; border: 0; background: transparent; font-family: inherit; color: inherit; text-align: left; display: flex; align-items: center; gap: 10px; cursor: pointer">
 <span style="flex-shrink: 0; width: 34px; height: 34px; border-radius: 10px; background: #f3edf6; color: #4A1259; display: flex; align-items: center; justify-content: center"><span class="ms" style="font-size: 19px">workspace_premium</span></span>
 <span style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 1px"><span style="font-size: 15px; line-height: 20px; font-weight: 700; color: #0b1c30">Planos da proposta</span><span style="font-size: 12px; line-height: 16px; color: #4a4455">{{detPlansResumo}}</span></span>
@@ -3688,11 +3659,12 @@ Faltam 8 placas para atingir a meta.
 <span style="font-size: 12px; line-height: 17px; color: #4a4455">Toque numa etapa para ver os detalhes. Cada etapa libera a próxima.</span>
 </div>
 
-<div style="flex-shrink: 0; padding: 14px 8px 12px; border-radius: 16px; background: #ffffff; border: 1px solid #e5eeff; box-shadow: 0 2px 12px -2px rgba(32, 7, 38,0.06)">
+<div style="flex-shrink: 0; padding: 14px 8px 12px; border-radius: 10px 10px 0 0; background: #ffffff; border: 1px solid #e5eeff; border-bottom: 1px solid #f1eef3">
 <div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 3px">
 <sc-for list="{{detSteps}}" as="hz" hint-placeholder-count="5">
 <button onClick="{{hz.pick}}" aria-label="{{hz.aria}}" aria-current="{{hz.ariaCurrent}}" style="{{hz.btnStyle}}">
-<span style="{{hz.segStyle}}"></span>
+<span aria-hidden="true" style="{{hz.lineL}}"></span>
+<span aria-hidden="true" style="{{hz.lineR}}"></span>
 <span style="{{hz.nodeStyle}}"><span class="ms" style="font-size: 17px">{{hz.nodeIcon}}</span></span>
 <span style="{{hz.shortStyle}}">{{hz.short}}</span>
 </button>
@@ -3734,7 +3706,7 @@ Faltam 8 placas para atingir a meta.
 <sc-if value="{{fin.notEditAdesao}}" hint-placeholder-val="{{ true }}"><span style="font-size: 14px; font-weight: 600; color: #0b1c30">{{fin.adesao}}</span></sc-if>
 </span>
 <sc-if value="{{fin.notEditAdesao}}" hint-placeholder-val="{{ true }}">
-<button onClick="{{fin.editAdesaoGo}}" style="flex-shrink: 0; height: 34px; padding: 0 12px; border: 1.5px solid #4A1259; border-radius: 10px; background: #ffffff; color: #4A1259; font-family: inherit; font-size: 12px; font-weight: 700; cursor: pointer">Alterar valor</button>
+<button onClick="{{fin.editAdesaoGo}}" style="flex-shrink: 0; height: 34px; padding: 0 12px; border: 1.5px solid #4A1259; border-radius: 6px; background: #ffffff; color: #4A1259; font-family: inherit; font-size: 12px; font-weight: 700; cursor: pointer">Alterar valor</button>
 </sc-if>
 </div>
 <div style="padding: 10px 0; border-bottom: 1px solid #eff4ff; display: flex; flex-direction: column; gap: 6px">
@@ -3758,7 +3730,7 @@ Faltam 8 placas para atingir a meta.
 </div>
 <div style="padding: 14px 0 12px; display: flex; align-items: center; justify-content: space-between; gap: 12px; border-bottom: 1px solid #eff4ff">
 <span style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 12px; color: #4a4455">Valor da proposta</span><strong class="price-pop" key="{{fin.totalKey}}" style="font-size: 22px; line-height: 26px; font-weight: 800; color: #4A1259">{{fin.total}}</strong><span style="font-size: 11px; color: #7b7487">por mês · mensalidade + adicionais</span></span>
-<a href="{{fin.shareUrl}}" target="_blank" rel="noopener" style="flex-shrink: 0; height: 40px; padding: 0 14px; border-radius: 12px; background: #1fa855; color: #ffffff; font-size: 13px; font-weight: 700; display: flex; align-items: center; gap: 6px; text-decoration: none"><img src="assets/whatsapp-branco.svg" alt="" aria-hidden="true" style="width: 16px; height: 16px">Compartilhar</a>
+<a href="{{fin.shareUrl}}" target="_blank" rel="noopener" style="flex-shrink: 0; height: 40px; padding: 0 14px; border-radius: 8px; background: #1fa855; color: #ffffff; font-size: 13px; font-weight: 700; display: flex; align-items: center; gap: 6px; text-decoration: none"><img src="assets/whatsapp-branco.svg" alt="" aria-hidden="true" style="width: 16px; height: 16px">Compartilhar</a>
 </div>
 <div style="padding-top: 10px; display: flex; flex-direction: column; gap: 6px">
 <div style="display: flex; align-items: center; justify-content: space-between"><span style="font-size: 11px; color: #7b7487">Comentário da proposta</span>
@@ -3766,7 +3738,7 @@ Faltam 8 placas para atingir a meta.
 </div>
 <sc-if value="{{fin.editComment}}" hint-placeholder-val="{{ false }}">
 <textarea value="{{fin.commentDraft}}" onChange="{{fin.onComment}}" rows="3" placeholder="Observações internas sobre esta proposta" style="box-sizing: border-box; width: 100%; padding: 10px 12px; border: 1px solid #4A1259; border-radius: 12px; font-family: inherit; font-size: 14px; line-height: 20px; resize: none"></textarea>
-<div style="display: flex; justify-content: flex-end; gap: 6px"><button onClick="{{fin.cancelComment}}" style="height: 34px; padding: 0 12px; border: 1px solid #ccc3d8; border-radius: 10px; background: #ffffff; color: #4a4455; font-family: inherit; font-size: 12px; font-weight: 700; cursor: pointer">Cancelar</button><button onClick="{{fin.saveComment}}" style="height: 34px; padding: 0 14px; border: 0; border-radius: 10px; background: #4A1259; color: #ffffff; font-family: inherit; font-size: 12px; font-weight: 700; cursor: pointer">Salvar</button></div>
+<div style="display: flex; justify-content: flex-end; gap: 6px"><button onClick="{{fin.cancelComment}}" style="height: 34px; padding: 0 12px; border: 1px solid #ccc3d8; border-radius: 6px; background: #ffffff; color: #4a4455; font-family: inherit; font-size: 12px; font-weight: 700; cursor: pointer">Cancelar</button><button onClick="{{fin.saveComment}}" style="height: 34px; padding: 0 14px; border: 0; border-radius: 6px; background: #4A1259; color: #ffffff; font-family: inherit; font-size: 12px; font-weight: 700; cursor: pointer">Salvar</button></div>
 </sc-if>
 <sc-if value="{{fin.notEditComment}}" hint-placeholder-val="{{ true }}"><span style="{{fin.commentStyle}}">{{fin.comment}}</span></sc-if>
 </div>
@@ -4023,7 +3995,7 @@ Faltam 8 placas para atingir a meta.
 <p style="margin: 0; font-size: 13px; line-height: 19px; color: #4a4455">{{cfText}}</p>
 <div style="width: 100%; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin-top: 4px">
 <button onClick="{{closeCf}}" style="height: 44px; border: 1.5px solid #4A1259; border-radius: 12px; background: #ffffff; color: #4A1259; font-family: inherit; font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; text-decoration: none; border-color: #ccc3d8; color: #4a4455">Cancelar</button>
-<button onClick="{{doCf}}" style="height: 48px; border: 0; border-radius: 12px; background: linear-gradient(135deg, #622773 0%, #4A1259 100%); color: #ffffff; font-family: inherit; font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; box-shadow: 0 8px 18px -8px rgba(74, 18, 89,0.6); height: 44px">Confirmar</button>
+<button onClick="{{doCf}}" style="height: 48px; border: 0; border-radius: 12px; background: linear-gradient(135deg, #22a06b 0%, #047857 100%); color: #ffffff; box-shadow: 0 8px 18px -8px rgba(4, 120, 87,0.6); font-family: inherit; font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; box-shadow: 0 8px 18px -8px rgba(74, 18, 89,0.6); height: 44px">Confirmar</button>
 </div>
 </section>
 </sc-if>
@@ -4779,7 +4751,7 @@ Compartilhar QR Code
           }),
           atSaveDisabled: draft.length ? 'false' : 'true',
           atSaveStyle: 'flex-grow:1;height:50px;border:0;border-radius:14px;font-family:inherit;font-size:15px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:8px;'
-            + (draft.length ? 'background:linear-gradient(135deg,#622773 0%,#4A1259 100%);color:#ffffff;cursor:pointer;box-shadow:0 8px 18px -8px rgba(74, 18, 89,0.6);' : 'background:#e5eeff;color:#7b7487;cursor:not-allowed;'),
+            + (draft.length ? 'background:linear-gradient(135deg,#22a06b 0%,#047857 100%);color:#ffffff;cursor:pointer;box-shadow:0 8px 18px -8px rgba(4, 120, 87,0.6);' : 'background:#e5eeff;color:#7b7487;cursor:not-allowed;'),
           saveAtalhos: () => {
             if (!draft.length) return;
             try { window.localStorage.setItem('atalhos-inicio', JSON.stringify(draft)); } catch (err) { /* armazenamento indisponível */ }
@@ -5007,9 +4979,7 @@ Compartilhar QR Code
           wNextIcon: step === 4 ? 'open_in_new' : step === 3 ? 'send' : 'arrow_forward',
           ...this.wizShareVals(st, cat, plansSel, extrasSel, set),
           wNextStyle: 'flex-grow:1;height:50px;border:0;border-radius:14px;font-family:inherit;font-size:15px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:8px;transition:all .2s;'
-            + (!valid[step] ? 'background:#e5eeff;color:#7b7487;cursor:not-allowed;'
-              : step === 3 ? 'background:linear-gradient(135deg,#22a06b 0%,#047857 100%);color:#ffffff;cursor:pointer;box-shadow:0 8px 18px -8px rgba(4, 120, 87,0.6);'
-                : 'background:linear-gradient(135deg,#622773 0%,#4A1259 100%);color:#ffffff;cursor:pointer;box-shadow:0 8px 18px -8px rgba(74, 18, 89,0.6);'),
+            + (valid[step] ? 'background:linear-gradient(135deg,#22a06b 0%,#047857 100%);color:#ffffff;cursor:pointer;box-shadow:0 8px 18px -8px rgba(4, 120, 87,0.6);' : 'background:#e5eeff;color:#7b7487;cursor:not-allowed;'),
           wGo1: () => set({ wizStep: 1 }), wGo2: () => set({ wizStep: 2 }), wGo3: () => set({ wizStep: 3 }),
 
           wCpf: st.wCpf,
@@ -5206,7 +5176,7 @@ Compartilhar QR Code
               wAdesaoTodos: on,
               wAdesaoTodosAttr: on ? 'true' : 'false',
               toggleWAdesaoTodos: () => set(on ? { wAdesaoTodos: false } : { wAdesaoTodos: true, wAdesaoValor: st.wAdesaoValor || this.maskMoney(String(Math.round(ref.adesao * 100))) }),
-              wAdesaoHint: on ? 'O valor abaixo vale para todos os planos' : 'Cada plano usa a própria adesão',
+              wAdesaoHint: 'O valor abaixo vale para todos os planos',
               wAdesaoValor: st.wAdesaoValor || '',
               onWAdesaoValor: (e) => set({ wAdesaoValor: this.maskMoney(e.target.value) }),
               wAdesaoTrack: 'flex-shrink:0;position:relative;width:40px;height:24px;border-radius:9999px;transition:background .2s;background:' + (on ? '#4A1259' : '#ccc3d8'),
@@ -5262,7 +5232,7 @@ Compartilhar QR Code
               wExtraHint: picked ? 'Valor sugerido para ' + picked.label + ': ' + this.brl(picked.price) + '/mês. Este valor será ' + (st.wExtraNeg ? 'descontado da' : 'somado à') + ' mensalidade da proposta.' : '',
               wExtraApplyDisabled: canApply ? 'false' : 'true',
               wExtraApplyStyle: 'width:100%;max-width:260px;height:46px;border:0;border-radius:9999px;font-family:inherit;font-size:13px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;transition:all .2s;'
-                + (canApply ? 'background:#4A1259;color:#ffffff;cursor:pointer;box-shadow:0 8px 18px -8px rgba(74,18,89,0.6);' : 'background:#e5eeff;color:#7b7487;cursor:not-allowed;'),
+                + (canApply ? 'background:linear-gradient(135deg,#22a06b 0%,#047857 100%);color:#ffffff;cursor:pointer;box-shadow:0 8px 18px -8px rgba(4, 120, 87,0.6);' : 'background:#e5eeff;color:#7b7487;cursor:not-allowed;'),
               applyExtra: () => {
                 if (!canApply) return;
                 const item = { id: picked.id, price: st.wExtraPrice, neg: !!st.wExtraNeg };
@@ -5629,10 +5599,10 @@ Compartilhar QR Code
           { id: 'assinatura', title: 'Assinatura do termo', done: t.assinatura, pending: t.dados && t.perguntas ? 'Pronto para enviar' : 'Aguardando perguntas e dados', ok: 'Termo enviado para assinatura', icon: 'draw', enabled: !!(t.dados && t.perguntas) }
         ];
         const allTasks = tasks.every((x) => x.done);
-        const btn = (enabled, primary) => 'flex-shrink:0;height:34px;padding:0 12px;border-radius:9999px;font-family:inherit;font-size:12px;font-weight:700;cursor:' + (enabled ? 'pointer' : 'not-allowed') + ';'
+        const btn = (enabled, primary) => 'flex-shrink:0;height:34px;padding:0 12px;border-radius:6px;font-family:inherit;font-size:12px;font-weight:700;cursor:' + (enabled ? 'pointer' : 'not-allowed') + ';'
           + (!enabled ? 'border:1px solid #e5eeff;background:#ffffff;color:#ccc3d8;' : primary ? 'border:0;background:#4A1259;color:#ffffff;' : 'border:1px solid #A192A6;background:#ffffff;color:#4A1259;');
-        const bigBtn = (enabled) => 'height:44px;border:0;border-radius:12px;font-family:inherit;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:8px;transition:all .2s;'
-          + (enabled ? 'background:linear-gradient(135deg,#622773 0%,#4A1259 100%);color:#ffffff;cursor:pointer;box-shadow:0 8px 18px -8px rgba(74, 18, 89,0.6);' : 'background:#e5eeff;color:#7b7487;cursor:not-allowed;');
+        const bigBtn = (enabled) => 'height:44px;border:0;border-radius:8px;font-family:inherit;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:8px;transition:all .2s;'
+          + (enabled ? 'background:linear-gradient(135deg,#22a06b 0%,#047857 100%);color:#ffffff;cursor:pointer;box-shadow:0 8px 18px -8px rgba(4, 120, 87,0.6);' : 'background:#e5eeff;color:#7b7487;cursor:not-allowed;');
         const s1Plan = st.s1Plan ?? (p.chosen || '');
         const s1PlanObj = cat.planos.find((x) => x.id === s1Plan);
         const s1Ok = !!s1Plan;
@@ -5857,7 +5827,7 @@ Compartilhar QR Code
               dExtraHint: picked ? 'Valor sugerido para ' + picked.label + ': ' + this.brl(picked.price) + '/mês. Este valor será ' + (st.dExtraNeg ? 'descontado da' : 'somado à') + ' mensalidade da proposta.' : '',
               dExtraApplyDisabled: canApply ? 'false' : 'true',
               dExtraApplyStyle: 'width:100%;max-width:260px;height:46px;border:0;border-radius:9999px;font-family:inherit;font-size:13px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;transition:all .2s;'
-                + (canApply ? 'background:#4A1259;color:#ffffff;cursor:pointer;box-shadow:0 8px 18px -8px rgba(74,18,89,0.6);' : 'background:#e5eeff;color:#7b7487;cursor:not-allowed;'),
+                + (canApply ? 'background:linear-gradient(135deg,#22a06b 0%,#047857 100%);color:#ffffff;cursor:pointer;box-shadow:0 8px 18px -8px rgba(4, 120, 87,0.6);' : 'background:#e5eeff;color:#7b7487;cursor:not-allowed;'),
               applyDetExtra: () => {
                 if (!canApply) return;
                 const valor = (st.dExtraNeg ? -1 : 1) * this.parseMoney(st.dExtraPrice);
@@ -5973,7 +5943,7 @@ Compartilhar QR Code
               btnLabel: on ? 'Selecionado' : 'Selecionar plano',
               btnIcon: on ? 'check_circle' : 'add_circle',
               btnStyle: 'height:44px;border-radius:12px;font-family:inherit;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:6px;cursor:pointer;transition:all .2s;' + (on ? 'border:0;background:#16a34a;color:#ffffff;box-shadow:0 8px 16px -8px rgba(22, 163, 74,0.6);' : 'border:1.5px solid #4A1259;background:#ffffff;color:#4A1259;'),
-              cardStyle: 'flex-shrink:0;width:250px;box-sizing:border-box;scroll-snap-align:start;padding:16px;border-radius:18px;background:' + (on ? 'linear-gradient(180deg,#ffffff 0%,#f0fdf4 100%)' : '#ffffff') + ';display:flex;flex-direction:column;gap:12px;transition:all .2s;' + (on ? 'border:2px solid #16a34a;box-shadow:0 10px 24px -12px rgba(22, 163, 74,0.45);' : 'border:1px solid #e5eeff;box-shadow:0 2px 12px -2px rgba(32, 7, 38,0.08);'),
+              cardStyle: 'flex-shrink:0;width:250px;box-sizing:border-box;scroll-snap-align:start;padding:16px;border-radius:12px;background:' + (on ? 'linear-gradient(180deg,#ffffff 0%,#f0fdf4 100%)' : '#ffffff') + ';display:flex;flex-direction:column;gap:12px;transition:all .2s;' + (on ? 'border:2px solid #16a34a;box-shadow:0 10px 24px -12px rgba(22, 163, 74,0.45);' : 'border:1px solid #e5eeff;box-shadow:0 2px 12px -2px rgba(32, 7, 38,0.08);'),
               toggle: () => save({ plans: on ? p.plans.filter((y) => y !== x.id) : [...p.plans, x.id] })
             };
           }),
@@ -5997,7 +5967,7 @@ Compartilhar QR Code
             const done = p.status === 'ativada' || n < p.stage;
             const cur = !isClosed && p.status !== 'ativada' && n === p.stage;
             const locked = !done && !cur;
-            const viewN = st.detStepView || (p.status === 'ativada' ? etapas.length : Math.min(etapas.length, Math.max(1, p.stage)));
+            const viewN = st.detStepView || (p.status === 'ativada' || p.stage > etapas.length ? 1 : Math.max(1, p.stage));
             const viewed = n === viewN;
             const shorts = ['Plano', 'Dados', 'Vistoria', 'Termo', 'Ativação'];
             const lineColor = (on) => 'flex:1;height:2px;background:' + (on ? '#047857' : '#e5eeff');
@@ -6048,9 +6018,10 @@ Compartilhar QR Code
               lineRight: n === etapas.length ? 'flex:1;height:2px;background:transparent' : lineColor(done),
               shortStyle: 'max-width:100%;font-size:9px;line-height:12px;letter-spacing:-0.01em;text-align:center;white-space:nowrap;transition:color .3s;font-weight:' + (viewed || cur ? '800' : '600') + ';color:' + (cur ? '#4A1259' : done ? '#047857' : viewed ? '#4A1259' : '#a8a1b3'),
               nodeIcon: done ? 'check' : ['workspace_premium', 'badge', 'photo_camera', 'draw', 'verified'][i],
-              btnStyle: 'min-width:0;padding:0;border:0;background:transparent;font-family:inherit;display:flex;flex-direction:column;align-items:center;gap:7px;cursor:pointer',
-              segStyle: this.stepSeg(done, cur),
-              nodeStyle: this.stepChip(done, cur, viewed),
+              btnStyle: 'position:relative;min-width:0;padding:0;border:0;background:transparent;font-family:inherit;display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer',
+              lineL: i === 0 ? 'display:none' : 'position:absolute;top:14px;left:-2px;right:50%;height:2px;transition:background .35s;background:' + (done || cur ? '#22a06b' : '#e5dcea'),
+              lineR: i === stageNames.length - 1 ? 'display:none' : 'position:absolute;top:14px;left:50%;right:-2px;height:2px;transition:background .35s;background:' + (done ? '#22a06b' : '#e5dcea'),
+              nodeStyle: 'position:relative;z-index:1;' + this.stepChip(done, cur, viewed),
               num: n, title: name,
               badge: done ? 'Concluída' : cur ? 'Em andamento' : 'Bloqueada',
               badgeStyle: 'flex-shrink:0;font-size:10px;font-weight:800;padding:2px 8px;border-radius:9999px;' + (done ? 'color:#047857;background:#d1fae5;' : cur ? 'color:#4A1259;background:#ece6ee;' : 'color:#7b7487;background:#f4f4f6;'),
@@ -6058,7 +6029,7 @@ Compartilhar QR Code
               circleStyle: 'flex-shrink:0;width:28px;height:28px;box-sizing:border-box;border-radius:9999px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;transition:box-shadow .2s;' + (done ? 'background:#047857;color:#ffffff;' : cur ? 'background:#4A1259;color:#ffffff;' : 'background:#ffffff;color:#7b7487;border:1.5px solid #ccc3d8;') + (viewed ? 'box-shadow:0 0 0 4px ' + (done ? '#d1fae5' : cur ? '#ece6ee' : '#eff4ff') + ';' : ''),
               circleIcon: done ? 'check' : 'lock', circleIconStyle: done ? 'font-size:16px' : locked ? 'font-size:13px' : 'display:none',
               circleNumStyle: done || locked ? 'display:none' : '',
-              cardStyle: 'flex-shrink:0;padding:16px;border-radius:16px;display:flex;flex-direction:column;gap:10px;' + (cur ? 'background:#ffffff;border:1.5px solid #A192A6;box-shadow:0 8px 20px -10px rgba(74, 18, 89,0.4);' : done ? 'background:#ffffff;border:1px solid #e5eeff;' : 'background:#f8f9fc;border:1px dashed #ccc3d8;'),
+              cardStyle: 'flex-shrink:0;margin-top:-14px;padding:16px;border-radius:0 0 10px 10px;display:flex;flex-direction:column;gap:10px;background:#ffffff;border:1px solid #e5eeff;border-top:0;box-shadow:0 10px 20px -16px rgba(32, 7, 38,0.35);',
               titleStyle: (n === 1 && !!p.chosen ? 'display:none;' : '') + 'font-size:14px;color:' + (locked ? '#7b7487' : '#0b1c30'),
               showPlano: cur && n === 1,
               showResumo: n === 1 && !!p.chosen,
@@ -6070,7 +6041,7 @@ Compartilhar QR Code
               actHint: act.ok ? (act.hint || '') : act.hint,
               hasActHint: !!(act.hint),
               actDisabled: act.ok ? 'false' : 'true',
-              actStyle: act.green && act.ok ? 'height:44px;border:0;border-radius:12px;background:#047857;color:#ffffff;font-family:inherit;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer;box-shadow:0 8px 18px -8px rgba(4,120,87,0.6)' : bigBtn(act.ok),
+              actStyle: act.green && act.ok ? 'height:44px;border:0;border-radius:8px;background:#047857;color:#ffffff;font-family:inherit;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer;box-shadow:0 8px 18px -8px rgba(4,120,87,0.6)' : bigBtn(act.ok),
               actGo: () => { if (act.ok) act.go(); }
             };
           }),
@@ -6148,7 +6119,7 @@ Compartilhar QR Code
           dsDisabled: dsMeta.ok ? 'false' : 'true',
           dsBtnLabel: dsMeta.btn || '',
           dsBtnStyle: 'width:100%;height:50px;border:0;border-radius:14px;font-family:inherit;font-size:15px;font-weight:700;transition:all .2s;'
-            + (!dsMeta.ok ? 'background:#e5eeff;color:#7b7487;cursor:not-allowed;' : dsMeta.danger ? 'background:#b42318;color:#ffffff;cursor:pointer;' : 'background:linear-gradient(135deg,#622773 0%,#4A1259 100%);color:#ffffff;cursor:pointer;box-shadow:0 8px 18px -8px rgba(74, 18, 89,0.6);'),
+            + (!dsMeta.ok ? 'background:#e5eeff;color:#7b7487;cursor:not-allowed;' : dsMeta.danger ? 'background:#b42318;color:#ffffff;cursor:pointer;' : 'background:linear-gradient(135deg,#22a06b 0%,#047857 100%);color:#ffffff;cursor:pointer;box-shadow:0 8px 18px -8px rgba(4, 120, 87,0.6);'),
           dsSubmit: () => {
             if (!dsMeta.ok) return;
             if (ds === 'perguntas') save({ tasks: { ...p.tasks, perguntas: true } }, 'Perguntas da etapa respondidas', 'Respostas salvas');
@@ -6816,7 +6787,7 @@ Compartilhar QR Code
           ifSaveDisabled: valid ? 'false' : 'true',
           ifSaveLabel: st.ifEditId ? 'Salvar alterações' : 'Adicionar indicador',
           ifSaveStyle: 'width:100%;height:50px;border:0;border-radius:14px;font-family:inherit;font-size:15px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:8px;transition:all .2s;'
-            + (valid ? 'background:linear-gradient(135deg,#622773 0%,#4A1259 100%);color:#ffffff;cursor:pointer;box-shadow:0 8px 18px -8px rgba(74, 18, 89,0.6);' : 'background:#e5eeff;color:#7b7487;cursor:not-allowed;'),
+            + (valid ? 'background:linear-gradient(135deg,#22a06b 0%,#047857 100%);color:#ffffff;cursor:pointer;box-shadow:0 8px 18px -8px rgba(4, 120, 87,0.6);' : 'background:#e5eeff;color:#7b7487;cursor:not-allowed;'),
           saveIndic: () => {
             if (!valid) return;
             const data = {
@@ -7067,8 +7038,8 @@ Compartilhar QR Code
         const linhas = [...etapaStats.map((e) => ({ ...e, tipo: 'etapa' })), { nome: 'Ativadas', count: ativadas, dias: 0, tipo: 'ativada' }];
         const funilCores = ['#4A1259', '#622773', '#7d4290', '#9a68a8', '#b996c1'];
         const funilIcones = ['workspace_premium', 'badge', 'photo_camera', 'draw', 'verified'];
-        const funilLarg = 116;
-        const funilPasso = (funilLarg - 28) / 2 / linhas.length;
+        const funilLarg = 154;
+        const funilPasso = (funilLarg - 60) / 2 / linhas.length;
         const funilSteps = linhas.map((e, i) => {
           const isGargalo = temGargalo && e.tipo === 'etapa' && e.nome === gargalo.nome;
           const on = e.count > 0;
@@ -7089,7 +7060,7 @@ Compartilhar QR Code
               if (e.tipo === 'ativada') this.setState({ propOpen: true, propTab: 'ativada', propFilters: Component.emptyPropFilters() });
               else verEtapa(e.nome);
             },
-            rowStyle: 'width:100%;height:38px;padding:0;border:0;background:transparent;font-family:inherit;text-align:left;display:grid;grid-template-columns:minmax(0,1fr) ' + funilLarg + 'px 30px;align-items:center;gap:8px;cursor:' + (on ? 'pointer' : 'default'),
+            rowStyle: 'width:100%;height:38px;padding:0;border:0;background:transparent;font-family:inherit;text-align:left;display:grid;grid-template-columns:minmax(0,1fr) ' + funilLarg + 'px;align-items:center;gap:8px;cursor:' + (on ? 'pointer' : 'default'),
             pillStyle: 'min-width:0;height:100%;box-sizing:border-box;margin-right:-' + (Math.round(b) + 14) + 'px;padding:0 ' + (Math.round(b) + 20) + 'px 0 10px;border-radius:8px;display:flex;flex-direction:column;justify-content:center;gap:1px;background:' + (isGargalo ? '#fef3f2' : '#f6f3f8'),
             labelStyle: 'overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px;line-height:15px;font-weight:700;color:' + (isGargalo ? '#b42318' : on ? '#0b1c30' : '#a7a0b2'),
             subStyle: 'overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:10px;line-height:12px;color:' + (isGargalo ? '#b42318' : '#7b7487'),
@@ -7100,6 +7071,7 @@ Compartilhar QR Code
         });
         const funilConv = (base ? Math.round((ativadas / base) * 100) : 0) + '%';
         const funilConvSub = ativadas + ' de ' + base + ' ativadas';
+        const funilMes = 'Referência: ' + new Date(hojeIso + 'T12:00:00').toLocaleDateString('pt-BR', { month: 'long', year: 'numeric' });
         const analise = temGargalo
           ? { etapa: gargalo.nome, parados: gargalo.count, tempo: diasLabel(gargalo.dias) }
           : { etapa: '', parados: 0, tempo: '' };
@@ -7125,6 +7097,7 @@ Compartilhar QR Code
           closeAnalise: () => this.setState({ analiseOpen: false }),
           funilConv,
           funilConvSub,
+          funilMes,
           funilTemGargalo: temGargalo,
           riscoValor: brl(risco.reduce((t, r) => t + r.mensalidade, 0)),
           riscoFilters: [
@@ -7375,7 +7348,7 @@ Compartilhar QR Code
             this.toastTimer = setTimeout(() => this.setState({ toast: '' }), 2500);
           },
           saveStyle: 'width:100%;height:50px;border:0;border-radius:14px;font-family:inherit;font-size:15px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:8px;transition:all .2s;'
-            + (valid ? 'background:linear-gradient(135deg,#622773 0%,#4A1259 100%);color:#ffffff;cursor:pointer;box-shadow:0 8px 18px -8px rgba(74, 18, 89,0.6);' : 'background:#e5eeff;color:#7b7487;cursor:not-allowed;'),
+            + (valid ? 'background:linear-gradient(135deg,#22a06b 0%,#047857 100%);color:#ffffff;cursor:pointer;box-shadow:0 8px 18px -8px rgba(4, 120, 87,0.6);' : 'background:#e5eeff;color:#7b7487;cursor:not-allowed;'),
           onFTitle: (e) => this.setState({ fTitle: e.target.value }),
           onFText: (e) => this.setState({ fText: e.target.value }),
           onFLead: (e) => this.setState({ fLead: e.target.value }),
