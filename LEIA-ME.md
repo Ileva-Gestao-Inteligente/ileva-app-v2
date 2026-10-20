@@ -8,7 +8,14 @@ Não precisa de backend: os dados são fictícios e o que o usuário altera fica
 - `proposta.html` — página que o cliente recebe pelo link da proposta: compara os planos, escolhe um, adiciona benefícios e confirma pelo WhatsApp. Os dados vão no próprio link (`#d=...`), então precisa ser publicada na mesma pasta do `index.html`.
 - `assets/` — imagens usadas no app.
 - `nginx.conf.exemplo` — exemplo de configuração para servir no Nginx.
-- `manifest.webmanifest`, `sw.js` e `assets/icones/` — permitem instalar o app na tela inicial do celular e abrir em tela cheia. A instalação só funciona com o site em HTTPS (ou em `localhost`).
+- `manifest.webmanifest`, `sw.js` e `assets/icones/` — fazem do app um PWA (veja abaixo).
+
+## App instalável (PWA)
+- **Instalar:** no Android/Chrome aparece o convite "Instale o app na sua tela inicial" na tela inicial; no iPhone, use Compartilhar → "Adicionar à Tela de Início". Abre em tela cheia, com ícone próprio.
+- **Sem internet:** depois do primeiro acesso, o app, a página da proposta, as imagens, o React e as fontes ficam salvos no aparelho. Sem conexão o app abre normalmente e mostra o aviso "Sem internet · usando a versão salva do app". Logos de marcas e bandeiras ficam salvos conforme vão sendo vistos.
+- **Atalhos do ícone:** segurando o ícone instalado aparecem Nova proposta, Propostas e Agenda.
+- **Publicar versão nova:** troque `VERSAO` no topo do `sw.js`. Com internet, as páginas sempre buscam a versão mais nova; a troca de `VERSAO` renova também as imagens e os demais arquivos salvos.
+- Só funciona em HTTPS (ou em `localhost`). Abrindo o `index.html` direto (file://) o app roda, mas sem instalação nem modo offline.
 
 ## Como testar localmente
 Na pasta deste arquivo:

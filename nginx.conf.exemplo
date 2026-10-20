@@ -19,6 +19,17 @@ server {
         add_header Cache-Control "no-cache";
     }
 
+    # PWA: o service worker e o manifest nunca podem ficar presos em cache,
+    # senão os aparelhos não recebem as versões novas do app
+    location = /sw.js {
+        add_header Cache-Control "no-cache";
+    }
+
+    location = /manifest.webmanifest {
+        default_type application/manifest+json;
+        add_header Cache-Control "no-cache";
+    }
+
     gzip on;
     gzip_types text/html text/css application/javascript image/svg+xml;
 }

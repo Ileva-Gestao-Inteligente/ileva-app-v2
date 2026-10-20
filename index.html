@@ -430,8 +430,10 @@
       cursor: grabbing !important
     }
 
+    /* O menu de baixo fica na frente de todas as camadas do app */
+    .nav-inferior,
     .nav-raised {
-      z-index: 32 !important
+      z-index: 50 !important
     }
 
     .acc-panel {
@@ -470,7 +472,9 @@
 
     html {
       -webkit-text-size-adjust: 100%;
-      text-size-adjust: 100%
+      text-size-adjust: 100%;
+      /* roxo desde o primeiro desenho: o iPhone usa essa cor atrás da barra de status */
+      background-color: #4A1259
     }
 
     .step-card {
@@ -695,13 +699,71 @@
       height: 100%
     }
 
+    /* Fundo por trás do app no celular: roxo em cima (barra de status) e branco embaixo (cor do menu),
+       para nenhuma sobra do iPhone aparecer como faixa clara no topo ou roxa embaixo do menu */
+    html.is-mobile,
     html.is-mobile body {
-      background: #eef1f9
+      /* a cor (não a imagem) é o que o iPhone usa no topo; sem ela aparecia um degradê branco */
+      background-color: #4A1259;
+      background-image: linear-gradient(#4A1259 50%, #ffffff 50%);
+      overscroll-behavior: none
     }
 
+    /* No celular o app ocupa toda a área que o sistema entrega. No iPhone instalado essa área pode
+       terminar antes da borda; a sobra embaixo mostra o fundo branco da página, como continuação do menu */
     html.is-mobile .app-root {
+      position: fixed !important;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: auto !important;
       max-width: none !important;
-      padding-top: env(safe-area-inset-top, 0px)
+      padding-top: env(safe-area-inset-top, 0px);
+      /* altura do menu de baixo: 72px, ou mais baixo e encostado na borda quando há a barrinha do iPhone */
+      --rodape: env(safe-area-inset-bottom, 0px);
+      --menu: max(72px, calc(56px + var(--rodape)));
+      /* faixa da barra de status (hora, bateria) na cor da marca, para o texto branco ficar legível */
+      background: linear-gradient(#4A1259 0 env(safe-area-inset-top, 0px), #eef1f9 0) !important
+    }
+
+    /* Janelas, fundos escuros e o menu lateral ficam entre a barra de status e o menu de baixo */
+    /* Sobra espaço abaixo do app (ver script de detecção): menu mais baixo, ícones encostados no limite */
+    html.is-mobile.sobra-embaixo .app-root {
+      --rodape: 0px;
+      --menu: 64px
+    }
+
+    html.is-mobile.sobra-embaixo .app-root .nav-inferior {
+      padding-bottom: 2px !important
+    }
+
+    html.is-mobile .app-root .janela {
+      top: env(safe-area-inset-top, 0px) !important;
+      bottom: var(--menu) !important
+    }
+
+    /* Menu de baixo encostado na borda do aparelho; os ícones ficam acima da barrinha do iPhone */
+    html.is-mobile .app-root .nav-inferior {
+      height: var(--menu) !important;
+      padding-bottom: max(8px, calc(var(--rodape) - 14px)) !important
+    }
+
+    html.is-mobile .app-root .painel {
+      bottom: var(--menu) !important
+    }
+
+    html.is-mobile .app-root .cot-menu.acima-menu {
+      bottom: calc(var(--menu) + 20px) !important
+    }
+
+    html.is-mobile .app-root [aria-labelledby="guia-tit"].acima-menu {
+      bottom: calc(var(--menu) + 16px) !important
+    }
+
+    /* Painéis que sobem de baixo nunca passam para baixo da barra de status */
+    html.is-mobile .app-root .painel {
+      max-height: calc(100% - env(safe-area-inset-top, 0px) - var(--menu) - 16px) !important
     }
 
     html.is-desktop body {
@@ -1032,7 +1094,7 @@ Lead quente
 
 </main>
 
-<nav class="{{navClass}}" style="height: 72px; flex-shrink: 0; box-sizing: border-box; padding: 4px 4px 8px; position: relative; z-index: 20; display: flex; align-items: center; background: rgba(255,255,255,0.95); box-shadow: 0 -8px 24px -4px rgba(32, 7, 38,0.06)">
+<nav class="nav-inferior {{navClass}}" style="height: 72px; flex-shrink: 0; box-sizing: border-box; padding: 4px 4px 8px; position: relative; z-index: 20; display: flex; align-items: center; background: rgba(255,255,255,0.95); box-shadow: 0 -8px 24px -4px rgba(32, 7, 38,0.06)">
 <a href="#" onClick="{{goHome}}" aria-current="page" style="flex: 1; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; text-decoration: none; color: #4A1259">
 <span class="ms" style="font-size: 24px; font-variation-settings: 'FILL' 1">home</span>
 <span style="font-size: 10px; font-weight: 700; white-space: nowrap">Início</span>
@@ -1057,8 +1119,8 @@ Lead quente
 </nav>
 
 <sc-if value="{{instalarGuia}}" hint-placeholder-val="{{ false }}">
-<div onClick="{{instalarGuiaFechar}}" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 40; background: rgba(32, 7, 38,0.38); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); animation: fadeIn .2s ease-out"></div>
-<section role="dialog" aria-modal="true" aria-labelledby="guia-tit" style="position: absolute; left: 12px; right: 12px; bottom: 16px; z-index: 41; padding: 20px 18px 16px; border-radius: 24px; background: #ffffff; box-shadow: 0 24px 50px -16px rgba(32, 7, 38,0.5); display: flex; flex-direction: column; gap: 14px; animation: sheetUp .32s cubic-bezier(.22,1,.36,1)">
+<div class="janela" onClick="{{instalarGuiaFechar}}" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: 40; background: rgba(32, 7, 38,0.38); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); animation: fadeIn .2s ease-out"></div>
+<section role="dialog" aria-modal="true" class="acima-menu" aria-labelledby="guia-tit" style="position: absolute; left: 12px; right: 12px; bottom: 88px; z-index: 41; padding: 20px 18px 16px; border-radius: 24px; background: #ffffff; box-shadow: 0 24px 50px -16px rgba(32, 7, 38,0.5); display: flex; flex-direction: column; gap: 14px; animation: sheetUp .32s cubic-bezier(.22,1,.36,1)">
 <div style="display: flex; align-items: center; gap: 12px"><img src="assets/icones/icone-192.png" alt="" style="width: 44px; height: 44px; border-radius: 12px"><span style="display: flex; flex-direction: column"><strong id="guia-tit" style="font-size: 16px; line-height: 20px">Adicionar à tela de início</strong><span style="font-size: 12px; color: #7b7487">É rápido: são só 3 toques no iPhone</span></span></div>
 <div style="display: flex; flex-direction: column; gap: 10px">
 <span style="display: flex; align-items: center; gap: 10px; font-size: 13px; line-height: 18px"><span style="flex-shrink: 0; width: 26px; height: 26px; border-radius: 9999px; background: #f3eef5; color: #4A1259; font-weight: 800; display: flex; align-items: center; justify-content: center">1</span><span>Toque em <strong>Compartilhar</strong> <span class="ms" style="font-size: 17px; vertical-align: -3px; color: #1d4ed8">ios_share</span> na barra do Safari.</span></span>
@@ -1070,7 +1132,7 @@ Lead quente
 </sc-if>
 
 <sc-if value="{{iaOpen}}" hint-placeholder-val="{{ false }}">
-<section role="dialog" aria-labelledby="ia-title" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: 20; background: #eef1f9; display: flex; flex-direction: column; animation: menuIn .38s cubic-bezier(.22,1,.36,1) both">
+<section class="janela" role="dialog" aria-labelledby="ia-title" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: 20; background: #eef1f9; display: flex; flex-direction: column; animation: menuIn .38s cubic-bezier(.22,1,.36,1) both">
 <div style="flex-shrink: 0; background: #ffffff; border-bottom: 1px solid #e5eeff; box-shadow: 0 1px 8px rgba(0,0,0,0.04); padding: 0 12px">
 <div style="height: 64px; margin: 0 -12px; padding: 0 12px; background: radial-gradient(circle at 92% 0%, rgba(161, 146, 166,0.55) 0%, rgba(161, 146, 166,0) 45%), #4A1259; color: #ffffff; display: flex; align-items: center; gap: 4px">
 <button onClick="{{closeIa}}" aria-label="Voltar" style="width: 44px; height: 44px; border: 0; border-radius: 9999px; background: transparent; color: #ffffff; display: flex; align-items: center; justify-content: center; cursor: pointer"><span class="ms" style="font-size: 24px">arrow_back</span></button>
@@ -1155,7 +1217,7 @@ Lead quente
 
 
 <sc-if value="{{detalheOpen}}" hint-placeholder-val="{{ false }}">
-<div onClick="{{closeDetalhe}}" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 25; background: rgba(11,28,48,0.5)"></div>
+<div class="janela" onClick="{{closeDetalhe}}" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: 25; background: rgba(11,28,48,0.5)"></div>
 <section role="dialog" aria-modal="true" aria-labelledby="detalhe-saldo-title" style="position: absolute; top: 96px; left: 20px; right: 20px; z-index: 26; background: #ffffff; border-radius: 16px; padding: 20px; box-shadow: 0 16px 40px -8px rgba(32, 7, 38,0.35); display: flex; flex-direction: column; gap: 16px">
 <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 12px">
 <div style="display: flex; flex-direction: column; gap: 4px">
@@ -1212,7 +1274,7 @@ Lead quente
 </sc-if>
 
 <sc-if value="{{menuOpen}}" hint-placeholder-val="{{ false }}">
-<div class="nosb menu-panel {{menuAnim}}" role="dialog" aria-modal="true" aria-label="Menu" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 21; background: #eef1f9; display: flex; flex-direction: column; overflow-y: auto; scrollbar-width: none">
+<div class="janela nosb menu-panel {{menuAnim}}" role="dialog" aria-modal="true" aria-label="Menu" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: 21; background: #eef1f9; display: flex; flex-direction: column; overflow-y: auto; scrollbar-width: none">
 <header style="position: relative; flex-shrink: 0; margin-bottom: 16px; height: 68px; box-sizing: border-box; padding: 0 12px 0 20px; display: flex; align-items: center; justify-content: space-between; overflow: hidden; background: radial-gradient(circle at 90% 25%, rgba(161, 146, 166,0.95) 0%, rgba(161, 146, 166,0) 32%), radial-gradient(circle at 12% 110%, rgba(98, 39, 115,0.9) 0%, rgba(98, 39, 115,0) 45%), linear-gradient(135deg, #4A1259 0%, #4A1259 100%)">
 <h2 style="margin: 0; font-size: 18px; line-height: 24px; font-weight: 700; color: #ffffff">Menu</h2>
 <button class="menu-close" onClick="{{closeMenu}}" aria-label="Fechar menu" style="position: relative; z-index: 1; width: 44px; height: 44px; padding: 0; border: 1px solid rgba(255,255,255,0.45); border-radius: 9999px; background: linear-gradient(145deg, rgba(255,255,255,0.38) 0%, rgba(255,255,255,0.12) 55%, rgba(255,255,255,0.06) 100%); backdrop-filter: blur(14px) saturate(160%); -webkit-backdrop-filter: blur(14px) saturate(160%); color: #ffffff; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: inset 0 1px 1px rgba(255,255,255,0.65), inset 0 -2px 4px rgba(255,255,255,0.08), 0 6px 16px -2px rgba(32, 7, 38,0.35)">
@@ -1313,8 +1375,8 @@ Sair
 </sc-if>
 
 <sc-if value="{{cotacaoOpen}}" hint-placeholder-val="{{ false }}">
-<div onClick="{{closeCotacao}}" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: 30; background: rgba(11,28,48,0.35); backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px); animation: fadeIn .2s ease-out"></div>
-<div role="menu" aria-label="Nova cotação" class="cot-menu" style="position: absolute; left: 50px; right: 50px; bottom: 92px; z-index: 31; display: flex; flex-direction: column; gap: 8px">
+<div class="janela" onClick="{{closeCotacao}}" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: 30; background: rgba(11,28,48,0.35); backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px); animation: fadeIn .2s ease-out"></div>
+<div role="menu" aria-label="Nova cotação" class="cot-menu acima-menu" style="position: absolute; left: 50px; right: 50px; bottom: 92px; z-index: 31; display: flex; flex-direction: column; gap: 8px">
 <span style="align-self: center; display: flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: #ffffff; padding: 0 4px 2px">
 <span class="ms" style="font-size: 14px">add_circle</span>
 Nova cotação
@@ -1343,8 +1405,8 @@ Nova cotação
 </sc-if>
 
 <sc-if value="{{dicasOpen}}" hint-placeholder-val="{{ false }}">
-<div onClick="{{closeDicas}}" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 21; background: rgba(11,28,48,0.5); animation: fadeIn .2s ease-out"></div>
-<section role="dialog" aria-modal="true" aria-labelledby="dicas-title" style="position: absolute; left: 0; right: 0; bottom: 0; z-index: 22; max-height: 88%; background: #eef1f9; border-radius: 24px 24px 0 0; box-shadow: 0 -8px 32px rgba(32, 7, 38,0.18); display: flex; flex-direction: column; animation: sheetUp .36s cubic-bezier(.22,1,.36,1)">
+<div class="janela" onClick="{{closeDicas}}" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: 21; background: rgba(11,28,48,0.5); animation: fadeIn .2s ease-out"></div>
+<section role="dialog" aria-modal="true" class="painel" aria-labelledby="dicas-title" style="position: absolute; left: 0; right: 0; bottom: 72px; z-index: 22; max-height: 88%; background: #eef1f9; border-radius: 24px 24px 0 0; box-shadow: 0 -8px 32px rgba(32, 7, 38,0.18); display: flex; flex-direction: column; animation: sheetUp .36s cubic-bezier(.22,1,.36,1)">
 <div style="flex-shrink: 0; background: #ffffff; border-radius: 24px 24px 0 0; padding: 0 20px 16px; border-bottom: 1px solid #e5eeff">
 <div style="display: flex; justify-content: center; padding: 12px 0 8px">
 <span style="width: 48px; height: 4px; border-radius: 9999px; background: #ccc3d8"></span>
@@ -1447,7 +1509,7 @@ Nova cotação
 </sc-if>
 
 <sc-if value="{{redeOpen}}" hint-placeholder-val="{{ false }}">
-<section role="dialog" aria-labelledby="rede-title" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: 18; background: #eef1f9; display: flex; flex-direction: column; animation: menuIn .38s cubic-bezier(.22,1,.36,1) both">
+<section class="janela" role="dialog" aria-labelledby="rede-title" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: 18; background: #eef1f9; display: flex; flex-direction: column; animation: menuIn .38s cubic-bezier(.22,1,.36,1) both">
 <div style="flex-shrink: 0; background: #ffffff; padding: 16px 20px 16px; border-bottom: 1px solid #e5eeff; box-shadow: 0 1px 8px rgba(0,0,0,0.04)">
 <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 12px">
 <div style="display: flex; flex-direction: column; gap: 4px">
@@ -1542,7 +1604,7 @@ Nova cotação
 </sc-if>
 
 <sc-if value="{{multiOpen}}" hint-placeholder-val="{{ false }}">
-<section role="dialog" aria-labelledby="multi-title" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: 18; background: #eef1f9; display: flex; flex-direction: column; animation: menuIn .38s cubic-bezier(.22,1,.36,1) both">
+<section class="janela" role="dialog" aria-labelledby="multi-title" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: 18; background: #eef1f9; display: flex; flex-direction: column; animation: menuIn .38s cubic-bezier(.22,1,.36,1) both">
 <div style="flex-shrink: 0; height: 64px; box-sizing: border-box; padding: 0 12px; background: radial-gradient(circle at 92% 0%, rgba(161, 146, 166,0.55) 0%, rgba(161, 146, 166,0) 45%), #4A1259; color: #ffffff; display: flex; align-items: center; gap: 4px">
 <button onClick="{{closeMulti}}" aria-label="Voltar" style="width: 44px; height: 44px; border: 0; border-radius: 9999px; background: transparent; color: #ffffff; display: flex; align-items: center; justify-content: center; cursor: pointer">
 <span class="ms" style="font-size: 24px">arrow_back</span>
@@ -1679,7 +1741,7 @@ Compartilhar QR Code
 </sc-if>
 
 <sc-if value="{{matOpen}}" hint-placeholder-val="{{ false }}">
-<section role="dialog" aria-labelledby="mat-title" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: 19; background: #eef1f9; display: flex; flex-direction: column; animation: menuIn .38s cubic-bezier(.22,1,.36,1) both">
+<section class="janela" role="dialog" aria-labelledby="mat-title" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: 19; background: #eef1f9; display: flex; flex-direction: column; animation: menuIn .38s cubic-bezier(.22,1,.36,1) both">
 <div style="flex-shrink: 0; height: 64px; box-sizing: border-box; padding: 0 12px; background: radial-gradient(circle at 92% 0%, rgba(161, 146, 166,0.55) 0%, rgba(161, 146, 166,0) 45%), #4A1259; color: #ffffff; display: flex; align-items: center; gap: 4px">
 <button onClick="{{matBack}}" aria-label="Voltar" style="width: 44px; height: 44px; border: 0; border-radius: 9999px; background: transparent; color: #ffffff; display: flex; align-items: center; justify-content: center; cursor: pointer">
 <span class="ms" style="font-size: 24px">arrow_back</span>
@@ -1740,8 +1802,8 @@ Compartilhar QR Code
 </sc-if>
 
 <sc-if value="{{previewOpen}}" hint-placeholder-val="{{ false }}">
-<div onClick="{{closePreview}}" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 23; background: rgba(11,28,48,0.88); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); animation: fadeIn .2s ease-out"></div>
-<section role="dialog" aria-modal="true" aria-label="{{preview.title}}" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 24; padding: 16px 16px 24px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; gap: 14px; pointer-events: none">
+<div class="janela" onClick="{{closePreview}}" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: 23; background: rgba(11,28,48,0.88); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); animation: fadeIn .2s ease-out"></div>
+<section class="janela" role="dialog" aria-modal="true" aria-label="{{preview.title}}" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: 24; padding: 16px 16px 24px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; gap: 14px; pointer-events: none">
 <div style="display: flex; align-items: center; justify-content: space-between; pointer-events: auto">
 <span style="font-size: 14px; font-weight: 700; color: #ffffff">{{preview.title}}</span>
 <button class="menu-close" onClick="{{closePreview}}" aria-label="Fechar visualização" style="width: 44px; height: 44px; padding: 0; border: 1px solid rgba(255,255,255,0.45); border-radius: 9999px; background: linear-gradient(145deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.08) 100%); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); color: #ffffff; display: flex; align-items: center; justify-content: center; cursor: pointer">
@@ -1779,12 +1841,10 @@ Baixar
 </sc-if>
 
 <sc-if value="{{notifOpen}}" hint-placeholder-val="{{ false }}">
-<div onClick="{{closeNotif}}" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 21; background: rgba(11,28,48,0.5); animation: fadeIn .2s ease-out"></div>
-<section role="dialog" aria-modal="true" aria-labelledby="notif-title" style="position: absolute; top: 32px; left: 0; right: 0; bottom: 0; z-index: 22; background: #eef1f9; border-radius: 24px 24px 0 0; box-shadow: 0 -8px 32px rgba(32, 7, 38,0.18); display: flex; flex-direction: column; overflow: hidden; animation: sheetUp .36s cubic-bezier(.22,1,.36,1)">
+<div class="janela" onClick="{{closeNotif}}" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: 21; background: rgba(11,28,48,0.5); animation: fadeIn .2s ease-out"></div>
+<section class="janela" role="dialog" aria-modal="true" aria-labelledby="notif-title" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: 22; background: #eef1f9; display: flex; flex-direction: column; overflow: hidden; animation: menuIn .38s cubic-bezier(.22,1,.36,1) both">
 <div style="flex-shrink: 0; background: #ffffff; padding: 0 20px 14px; border-bottom: 1px solid #e5eeff">
-<div style="display: flex; justify-content: center; padding: 12px 0 8px">
-<span style="width: 48px; height: 4px; border-radius: 9999px; background: #ccc3d8"></span>
-</div>
+<div style="height: 12px"></div>
 <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px">
 <div style="display: flex; align-items: center; gap: 10px">
 <span style="width: 36px; height: 36px; border-radius: 10px; background: linear-gradient(135deg, #622773 0%, #4A1259 100%); color: #ffffff; display: flex; align-items: center; justify-content: center">
@@ -1850,7 +1910,7 @@ Marcar todas como lidas
 </sc-if>
 
 <sc-if value="{{agendaOpen}}" hint-placeholder-val="{{ false }}">
-<section role="dialog" aria-labelledby="agenda-title" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: 19; background: #eef1f9; display: flex; flex-direction: column; animation: menuIn .38s cubic-bezier(.22,1,.36,1) both">
+<section class="janela" role="dialog" aria-labelledby="agenda-title" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: 19; background: #eef1f9; display: flex; flex-direction: column; animation: menuIn .38s cubic-bezier(.22,1,.36,1) both">
 <div style="flex-shrink: 0; background: #ffffff; border-bottom: 1px solid #e5eeff; box-shadow: 0 1px 8px rgba(0,0,0,0.04); padding: 0 12px 12px">
 <div style="height: 64px; margin: 0 -12px; padding: 0 12px; background: radial-gradient(circle at 92% 0%, rgba(161, 146, 166,0.55) 0%, rgba(161, 146, 166,0) 45%), #4A1259; color: #ffffff; display: flex; align-items: center; gap: 4px">
 <button onClick="{{closeAgenda}}" aria-label="Voltar" style="width: 44px; height: 44px; border: 0; border-radius: 9999px; background: transparent; color: #ffffff; display: flex; align-items: center; justify-content: center; cursor: pointer">
@@ -2037,12 +2097,10 @@ Agendar neste dia
 </sc-if>
 
 <sc-if value="{{notaOpen}}" hint-placeholder-val="{{ false }}">
-<div onClick="{{closeNota}}" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 21; background: rgba(11,28,48,0.5); animation: fadeIn .2s ease-out"></div>
-<section role="dialog" aria-modal="true" aria-labelledby="nota-title" style="position: absolute; top: 32px; left: 0; right: 0; bottom: 0; z-index: 22; background: #ffffff; border-radius: 24px 24px 0 0; box-shadow: 0 -8px 32px rgba(32, 7, 38,0.18); display: flex; flex-direction: column; animation: sheetUp .36s cubic-bezier(.22,1,.36,1)">
+<div class="janela" onClick="{{closeNota}}" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: 21; background: rgba(11,28,48,0.5); animation: fadeIn .2s ease-out"></div>
+<section class="janela" role="dialog" aria-modal="true" aria-labelledby="nota-title" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: 22; background: #ffffff; display: flex; flex-direction: column; animation: menuIn .38s cubic-bezier(.22,1,.36,1) both">
 <div style="flex-shrink: 0; padding: 0 20px 14px; border-bottom: 1px solid #eff4ff">
-<div style="display: flex; justify-content: center; padding: 12px 0 8px">
-<span style="width: 48px; height: 4px; border-radius: 9999px; background: #ccc3d8"></span>
-</div>
+<div style="height: 12px"></div>
 <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px">
 <div style="display: flex; align-items: center; gap: 10px">
 <span style="width: 36px; height: 36px; border-radius: 10px; background: linear-gradient(135deg, #622773 0%, #4A1259 100%); color: #ffffff; display: flex; align-items: center; justify-content: center">
@@ -2176,7 +2234,7 @@ Agendar neste dia
 </sc-if>
 
 <sc-if value="{{relOpen}}" hint-placeholder-val="{{ false }}">
-<section role="dialog" aria-labelledby="rel-title" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: 19; background: #eef1f9; display: flex; flex-direction: column; animation: menuIn .38s cubic-bezier(.22,1,.36,1) both">
+<section class="janela" role="dialog" aria-labelledby="rel-title" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: 19; background: #eef1f9; display: flex; flex-direction: column; animation: menuIn .38s cubic-bezier(.22,1,.36,1) both">
 <div style="flex-shrink: 0; background: #ffffff; border-bottom: 1px solid #e5eeff; box-shadow: 0 1px 8px rgba(0,0,0,0.04); padding: 0 12px 12px">
 <div style="height: 64px; margin: 0 -12px; padding: 0 12px; background: radial-gradient(circle at 92% 0%, rgba(161, 146, 166,0.55) 0%, rgba(161, 146, 166,0) 45%), #4A1259; color: #ffffff; display: flex; align-items: center; gap: 4px">
 <button onClick="{{closeRelatorios}}" aria-label="Voltar" style="width: 44px; height: 44px; border: 0; border-radius: 9999px; background: transparent; color: #ffffff; display: flex; align-items: center; justify-content: center; cursor: pointer">
@@ -2419,7 +2477,7 @@ Relatório em PDF gerado para conferência
 </sc-if>
 
 <sc-if value="{{indOpen}}" hint-placeholder-val="{{ false }}">
-<section role="dialog" aria-labelledby="ind-title" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: 19; background: #eef1f9; display: flex; flex-direction: column; animation: menuIn .38s cubic-bezier(.22,1,.36,1) both">
+<section class="janela" role="dialog" aria-labelledby="ind-title" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: 19; background: #eef1f9; display: flex; flex-direction: column; animation: menuIn .38s cubic-bezier(.22,1,.36,1) both">
 <div style="flex-shrink: 0; background: #ffffff; border-bottom: 1px solid #e5eeff; box-shadow: 0 1px 8px rgba(0,0,0,0.04); padding: 0 12px 12px">
 <div style="height: 64px; margin: 0 -12px; padding: 0 12px; background: radial-gradient(circle at 92% 0%, rgba(161, 146, 166,0.55) 0%, rgba(161, 146, 166,0) 45%), #4A1259; color: #ffffff; display: flex; align-items: center; gap: 4px">
 <button onClick="{{closeIndicadores}}" aria-label="Voltar" style="width: 44px; height: 44px; border: 0; border-radius: 9999px; background: transparent; color: #ffffff; display: flex; align-items: center; justify-content: center; cursor: pointer">
@@ -2577,7 +2635,7 @@ Faltam 8 placas para atingir a meta.
 </sc-if>
 
 <sc-if value="{{indicOpen}}" hint-placeholder-val="{{ false }}">
-<section role="dialog" aria-labelledby="indic-title" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: 19; background: #eef1f9; display: flex; flex-direction: column; animation: menuIn .38s cubic-bezier(.22,1,.36,1) both">
+<section class="janela" role="dialog" aria-labelledby="indic-title" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: 19; background: #eef1f9; display: flex; flex-direction: column; animation: menuIn .38s cubic-bezier(.22,1,.36,1) both">
 
 <sc-if value="{{indicIsLista}}" hint-placeholder-val="{{ true }}">
 <div style="flex-shrink: 0; background: #ffffff; border-bottom: 1px solid #e5eeff; box-shadow: 0 1px 8px rgba(0,0,0,0.04); padding: 0 12px 12px">
@@ -2709,10 +2767,10 @@ Faltam 8 placas para atingir a meta.
 </sc-if>
 
 <sc-if value="{{indicFormOpen}}" hint-placeholder-val="{{ false }}">
-<div onClick="{{closeIndicForm}}" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 21; background: rgba(11,28,48,0.5); animation: fadeIn .2s ease-out"></div>
-<section role="dialog" aria-modal="true" aria-labelledby="indic-form-title" style="position: absolute; top: 32px; left: 0; right: 0; bottom: 0; z-index: 22; background: #ffffff; border-radius: 24px 24px 0 0; box-shadow: 0 -8px 32px rgba(32, 7, 38,0.18); display: flex; flex-direction: column; animation: sheetUp .36s cubic-bezier(.22,1,.36,1)">
+<div class="janela" onClick="{{closeIndicForm}}" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: 21; background: rgba(11,28,48,0.5); animation: fadeIn .2s ease-out"></div>
+<section class="janela" role="dialog" aria-modal="true" aria-labelledby="indic-form-title" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: 22; background: #ffffff; display: flex; flex-direction: column; animation: menuIn .38s cubic-bezier(.22,1,.36,1) both">
 <div style="flex-shrink: 0; padding: 0 20px 14px; border-bottom: 1px solid #eff4ff">
-<div style="display: flex; justify-content: center; padding: 12px 0 8px"><span style="width: 48px; height: 4px; border-radius: 9999px; background: #ccc3d8"></span></div>
+<div style="height: 12px"></div>
 <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px">
 <div style="display: flex; align-items: center; gap: 10px">
 <span style="width: 36px; height: 36px; border-radius: 10px; background: linear-gradient(135deg, #2bb673 0%, #047857 100%); color: #ffffff; display: flex; align-items: center; justify-content: center"><span class="ms" style="font-size: 20px">person_add</span></span>
@@ -2808,7 +2866,7 @@ Faltam 8 placas para atingir a meta.
 </sc-if>
 
 <sc-if value="{{novOpen}}" hint-placeholder-val="{{ false }}">
-<section role="dialog" aria-labelledby="nov-title" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: 19; background: #eef1f9; display: flex; flex-direction: column; animation: menuIn .38s cubic-bezier(.22,1,.36,1) both">
+<section class="janela" role="dialog" aria-labelledby="nov-title" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: 19; background: #eef1f9; display: flex; flex-direction: column; animation: menuIn .38s cubic-bezier(.22,1,.36,1) both">
 <div style="flex-shrink: 0; height: 64px; box-sizing: border-box; padding: 0 12px; background: radial-gradient(circle at 92% 0%, rgba(161, 146, 166,0.55) 0%, rgba(161, 146, 166,0) 45%), #4A1259; color: #ffffff; display: flex; align-items: center; gap: 4px">
 <button onClick="{{closeNovidades}}" aria-label="Voltar" style="width: 44px; height: 44px; border: 0; border-radius: 9999px; background: transparent; color: #ffffff; display: flex; align-items: center; justify-content: center; cursor: pointer"><span class="ms" style="font-size: 24px">arrow_back</span></button>
 <h2 id="nov-title" style="color: #ffffff; margin: 0; font-size: 17px; line-height: 22px; font-weight: 700">Novidades desta versão</h2>
@@ -2874,7 +2932,7 @@ Faltam 8 placas para atingir a meta.
 </sc-if>
 
 <sc-if value="{{propOpen}}" hint-placeholder-val="{{ false }}">
-<section role="dialog" aria-labelledby="prop-title" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: 19; background: #eef1f9; display: flex; flex-direction: column; animation: menuIn .38s cubic-bezier(.22,1,.36,1) both">
+<section class="janela" role="dialog" aria-labelledby="prop-title" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: 19; background: #eef1f9; display: flex; flex-direction: column; animation: menuIn .38s cubic-bezier(.22,1,.36,1) both">
 <div style="flex-shrink: 0; background: #ffffff; border-bottom: 1px solid #e5eeff; box-shadow: 0 1px 8px rgba(0,0,0,0.04); padding: 0 12px 10px">
 <div style="height: 64px; margin: 0 -12px; padding: 0 12px; background: radial-gradient(circle at 92% 0%, rgba(161, 146, 166,0.55) 0%, rgba(161, 146, 166,0) 45%), #4A1259; color: #ffffff; display: flex; align-items: center; gap: 4px">
 <button onClick="{{closePropostas}}" aria-label="Voltar" style="width: 44px; height: 44px; border: 0; border-radius: 9999px; background: transparent; color: #ffffff; display: flex; align-items: center; justify-content: center; cursor: pointer"><span class="ms" style="font-size: 24px">arrow_back</span></button>
@@ -2970,8 +3028,8 @@ Faltam 8 placas para atingir a meta.
 </sc-if>
 
 <sc-if value="{{filtersMenuOpen}}" hint-placeholder-val="{{ false }}">
-<div onClick="{{closeFiltersMenu}}" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 21; background: rgba(11,28,48,0.5); animation: fadeIn .2s ease-out"></div>
-<section role="dialog" aria-modal="true" aria-labelledby="fmenu-title" style="position: absolute; left: 0; right: 0; bottom: 0; z-index: 22; max-height: 86%; background: #ffffff; border-radius: 24px 24px 0 0; box-shadow: 0 -8px 32px rgba(32, 7, 38,0.18); display: flex; flex-direction: column; animation: sheetUp .32s cubic-bezier(.22,1,.36,1)">
+<div class="janela" onClick="{{closeFiltersMenu}}" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: 21; background: rgba(11,28,48,0.5); animation: fadeIn .2s ease-out"></div>
+<section role="dialog" aria-modal="true" class="painel" aria-labelledby="fmenu-title" style="position: absolute; left: 0; right: 0; bottom: 72px; z-index: 22; max-height: 86%; background: #ffffff; border-radius: 24px 24px 0 0; box-shadow: 0 -8px 32px rgba(32, 7, 38,0.18); display: flex; flex-direction: column; animation: sheetUp .32s cubic-bezier(.22,1,.36,1)">
 <div style="flex-shrink: 0; padding: 0 20px 12px; border-bottom: 1px solid #eff4ff">
 <div style="display: flex; justify-content: center; padding: 12px 0 8px"><span style="width: 48px; height: 4px; border-radius: 9999px; background: #ccc3d8"></span></div>
 <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px">
@@ -3049,8 +3107,8 @@ Faltam 8 placas para atingir a meta.
 </sc-if>
 
 <sc-if value="{{sheetOpen}}" hint-placeholder-val="{{ false }}">
-<div onClick="{{closeSheet}}" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 21; background: rgba(11,28,48,0.5); animation: fadeIn .2s ease-out"></div>
-<section role="dialog" aria-modal="true" aria-labelledby="sheet-title" style="position: absolute; left: 0; right: 0; bottom: 0; z-index: 22; max-height: 86%; background: #ffffff; border-radius: 24px 24px 0 0; box-shadow: 0 -8px 32px rgba(32, 7, 38,0.18); display: flex; flex-direction: column; animation: sheetUp .32s cubic-bezier(.22,1,.36,1)">
+<div class="janela" onClick="{{closeSheet}}" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: 21; background: rgba(11,28,48,0.5); animation: fadeIn .2s ease-out"></div>
+<section role="dialog" aria-modal="true" class="painel" aria-labelledby="sheet-title" style="position: absolute; left: 0; right: 0; bottom: 72px; z-index: 22; max-height: 86%; background: #ffffff; border-radius: 24px 24px 0 0; box-shadow: 0 -8px 32px rgba(32, 7, 38,0.18); display: flex; flex-direction: column; animation: sheetUp .32s cubic-bezier(.22,1,.36,1)">
 <div style="flex-shrink: 0; padding: 0 20px 12px; border-bottom: 1px solid #eff4ff">
 <div style="display: flex; justify-content: center; padding: 12px 0 8px"><span style="width: 48px; height: 4px; border-radius: 9999px; background: #ccc3d8"></span></div>
 <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px">
@@ -3117,7 +3175,7 @@ Faltam 8 placas para atingir a meta.
 </sc-if>
 
 <sc-if value="{{wizOpen}}" hint-placeholder-val="{{ false }}">
-<section role="dialog" aria-modal="true" aria-labelledby="wiz-title" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 24; background: #eef1f9; display: flex; flex-direction: column; animation: sheetUp .36s cubic-bezier(.22,1,.36,1)">
+<section class="janela" role="dialog" aria-modal="true" aria-labelledby="wiz-title" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: 24; background: #eef1f9; display: flex; flex-direction: column; animation: menuIn .38s cubic-bezier(.22,1,.36,1) both">
 <div style="flex-shrink: 0; background: #ffffff; border-bottom: 1px solid #e5eeff; box-shadow: 0 1px 8px rgba(0,0,0,0.04); padding: 0 12px 12px">
 <div style="height: 64px; margin: 0 -12px; padding: 0 12px; background: radial-gradient(circle at 92% 0%, rgba(161, 146, 166,0.55) 0%, rgba(161, 146, 166,0) 45%), #4A1259; color: #ffffff; display: flex; align-items: center; gap: 4px">
 <button onClick="{{closeWiz}}" aria-label="Fechar" style="width: 44px; height: 44px; border: 0; border-radius: 9999px; background: transparent; color: #ffffff; display: flex; align-items: center; justify-content: center; cursor: pointer"><span class="ms" style="font-size: 24px">close</span></button>
@@ -3143,7 +3201,7 @@ Faltam 8 placas para atingir a meta.
 
 <sc-if value="{{wizS1}}" hint-placeholder-val="{{ true }}">
 <div key="wiz-passo-1" class="multi-list" style="display: flex; flex-direction: column; gap: 14px">
-<div style="flex-shrink: 0; padding: 16px; border-radius: 16px; background: #ffffff; border: 1px solid #e5eeff; box-shadow: 0 2px 12px -2px rgba(32, 7, 38,0.06); display: flex; flex-direction: column; gap: 12px">
+<div style="flex-shrink: 0; padding: 16px; border-radius: 10px; background: #ffffff; border: 1px solid #e5eeff; box-shadow: 0 2px 12px -2px rgba(32, 7, 38,0.06); display: flex; flex-direction: column; gap: 12px">
 <span style="font-size: 11px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: #7b7487">Buscar cadastro</span>
 <div style="display: flex; gap: 8px">
 <input class="campo" type="text" inputmode="numeric" value="{{wCpf}}" onChange="{{onWCpf}}" placeholder="CPF ou CNPJ (opcional)" aria-label="CPF ou CNPJ" style="height: 38px; box-sizing: border-box; padding: 0 12px; border: 1px solid #ccc3d8; border-radius: 10px; background: #ffffff; font-family: inherit; color: #0b1c30; outline-color: #4A1259; width: 100%; flex-grow: 1; min-width: 0; width: auto">
@@ -3162,7 +3220,7 @@ Faltam 8 placas para atingir a meta.
 </sc-if>
 </div>
 
-<div style="flex-shrink: 0; padding: 16px; border-radius: 16px; background: #ffffff; border: 1px solid #e5eeff; box-shadow: 0 2px 12px -2px rgba(32, 7, 38,0.06); display: flex; flex-direction: column; gap: 12px">
+<div style="flex-shrink: 0; padding: 16px; border-radius: 10px; background: #ffffff; border: 1px solid #e5eeff; box-shadow: 0 2px 12px -2px rgba(32, 7, 38,0.06); display: flex; flex-direction: column; gap: 12px">
 <span style="font-size: 11px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: #7b7487">Dados do cliente</span>
 <label style="display: flex; flex-direction: column; gap: 6px"><span style="font-size: 12px; font-weight: 700; color: #4a4455">Nome completo *</span><input class="campo" type="text" value="{{wNome}}" onChange="{{onWNome}}" placeholder="Nome do cliente" style="height: 38px; box-sizing: border-box; padding: 0 12px; border: 1px solid #ccc3d8; border-radius: 10px; background: #ffffff; font-family: inherit; color: #0b1c30; outline-color: #4A1259; width: 100%"></label>
 <div style="display: flex; flex-direction: column; gap: 6px"><span style="font-size: 12px; font-weight: 700; color: #4a4455">WhatsApp *</span>
@@ -3203,7 +3261,7 @@ Faltam 8 placas para atingir a meta.
 
 <sc-if value="{{wizS2}}" hint-placeholder-val="{{ false }}">
 <div key="wiz-passo-2" class="multi-list" style="display: flex; flex-direction: column; gap: 14px">
-<div style="flex-shrink: 0; padding: 16px; border-radius: 16px; background: #ffffff; border: 1px solid #e5eeff; box-shadow: 0 2px 12px -2px rgba(32, 7, 38,0.06); display: flex; flex-direction: column; gap: 12px">
+<div style="flex-shrink: 0; padding: 16px; border-radius: 10px; background: #ffffff; border: 1px solid #e5eeff; box-shadow: 0 2px 12px -2px rgba(32, 7, 38,0.06); display: flex; flex-direction: column; gap: 12px">
 <span style="font-size: 11px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: #7b7487">Buscar pela placa</span>
 <div style="display: flex; gap: 8px">
 <input class="campo" type="text" value="{{wPlaca}}" onChange="{{onWPlaca}}" onKeyDown="{{onWPlacaKey}}" readOnly="{{wPlacaLoading}}" placeholder="ABC-1D23" aria-label="Placa do veículo" style="height: 38px; box-sizing: border-box; padding: 0 12px; border: 1px solid #ccc3d8; border-radius: 10px; background: #ffffff; font-family: inherit; color: #0b1c30; outline-color: #4A1259; width: 100%; flex-grow: 1; min-width: 0; width: auto; text-transform: uppercase; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-weight: 700; letter-spacing: 0.06em">
@@ -3215,7 +3273,7 @@ Faltam 8 placas para atingir a meta.
 <span style="font-size: 11px; color: #7b7487">Teste com a placa KER-5273. Sem placa? Preencha os dados abaixo.</span>
 </div>
 
-<div style="flex-shrink: 0; padding: 16px; border-radius: 16px; background: #ffffff; border: 1px solid #e5eeff; box-shadow: 0 2px 12px -2px rgba(32, 7, 38,0.06); display: flex; flex-direction: column; gap: 12px">
+<div style="flex-shrink: 0; padding: 16px; border-radius: 10px; background: #ffffff; border: 1px solid #e5eeff; box-shadow: 0 2px 12px -2px rgba(32, 7, 38,0.06); display: flex; flex-direction: column; gap: 12px">
 <span style="font-size: 11px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: #7b7487">Dados do veículo</span>
 <label style="display: flex; flex-direction: column; gap: 6px"><span style="font-size: 12px; font-weight: 700; color: #4a4455">Tipo de veículo *</span><select class="campo" value="{{wTipo}}" onChange="{{onWTipo}}" style="height: 38px; box-sizing: border-box; padding: 0 12px; border: 1px solid #ccc3d8; border-radius: 10px; background: #ffffff; font-family: inherit; color: #0b1c30; outline-color: #4A1259; width: 100%; appearance: auto"><sc-for list="{{wTipoOpts}}" as="vt" hint-placeholder-count="3"><option value="{{vt.id}}">{{vt.label}}</option></sc-for></select></label>
 <label style="display: flex; flex-direction: column; gap: 6px"><span style="font-size: 12px; font-weight: 700; color: #4a4455">Marca *</span><select class="campo" value="{{wMarca}}" onChange="{{onWMarca}}" style="height: 38px; box-sizing: border-box; padding: 0 12px; border: 1px solid #ccc3d8; border-radius: 10px; background: #ffffff; font-family: inherit; color: #0b1c30; outline-color: #4A1259; width: 100%; appearance: auto"><option value="">Selecione a marca</option><sc-for list="{{wMarcaOpts}}" as="mk" hint-placeholder-count="3"><option value="{{mk.v}}">{{mk.v}}</option></sc-for></select></label>
@@ -3226,7 +3284,7 @@ Faltam 8 placas para atingir a meta.
 </div>
 
 <sc-if value="{{wHasVehicle}}" hint-placeholder-val="{{ false }}">
-<div style="flex-shrink: 0; position: relative; overflow: hidden; padding: 16px; border-radius: 16px; background: radial-gradient(circle at 95% 0%, rgba(161, 146, 166,0.85) 0%, rgba(161, 146, 166,0) 45%), linear-gradient(135deg, #4A1259 0%, #4A1259 100%); color: #ffffff; display: flex; flex-direction: column; gap: 14px; animation: itemIn .35s cubic-bezier(.22,1,.36,1) both">
+<div style="flex-shrink: 0; position: relative; overflow: hidden; padding: 16px; border-radius: 10px; background: radial-gradient(circle at 95% 0%, rgba(161, 146, 166,0.85) 0%, rgba(161, 146, 166,0) 45%), linear-gradient(135deg, #4A1259 0%, #4A1259 100%); color: #ffffff; display: flex; flex-direction: column; gap: 14px; animation: itemIn .35s cubic-bezier(.22,1,.36,1) both">
 <img key="{{wVehArtKey}}" src="{{wVehArt}}" onError="{{onVehArtErr}}" alt="" aria-hidden="true" style="position: absolute; top: 8px; right: 6px; width: 150px; height: 82px; object-fit: contain; object-position: right center; pointer-events: none; filter: drop-shadow(0 8px 10px rgba(20, 4, 26,0.45))">
 <div style="position: relative; max-width: calc(100% - 140px); display: flex; flex-direction: column; gap: 4px; min-height: 82px; justify-content: flex-end">
 <span key="{{wMarcaKey}}" style="width: 72px; height: 32px; display: flex; align-items: center; justify-content: flex-start">
@@ -3246,7 +3304,7 @@ Faltam 8 placas para atingir a meta.
 <sc-if value="{{wizS3}}" hint-placeholder-val="{{ false }}">
 <div key="wiz-passo-3" class="multi-list" style="display: flex; flex-direction: column; gap: 12px">
 <sc-if value="{{wHasVehicle}}" hint-placeholder-val="{{ false }}">
-<div style="flex-shrink: 0; position: relative; overflow: hidden; padding: 16px; border-radius: 16px; background: radial-gradient(circle at 95% 0%, rgba(161, 146, 166,0.85) 0%, rgba(161, 146, 166,0) 45%), linear-gradient(135deg, #4A1259 0%, #4A1259 100%); color: #ffffff; display: flex; flex-direction: column; gap: 14px; animation: itemIn .35s cubic-bezier(.22,1,.36,1) both">
+<div style="flex-shrink: 0; position: relative; overflow: hidden; padding: 16px; border-radius: 10px; background: radial-gradient(circle at 95% 0%, rgba(161, 146, 166,0.85) 0%, rgba(161, 146, 166,0) 45%), linear-gradient(135deg, #4A1259 0%, #4A1259 100%); color: #ffffff; display: flex; flex-direction: column; gap: 14px; animation: itemIn .35s cubic-bezier(.22,1,.36,1) both">
 <img key="{{wVehArtKey}}" src="{{wVehArt}}" onError="{{onVehArtErr}}" alt="" aria-hidden="true" style="position: absolute; top: 8px; right: 6px; width: 150px; height: 82px; object-fit: contain; object-position: right center; pointer-events: none; filter: drop-shadow(0 8px 10px rgba(20, 4, 26,0.45))">
 <div style="position: relative; max-width: calc(100% - 140px); display: flex; flex-direction: column; gap: 4px; min-height: 82px; justify-content: flex-end">
 <span key="{{wMarcaKey}}" style="width: 72px; height: 32px; display: flex; align-items: center; justify-content: flex-start">
@@ -3261,10 +3319,9 @@ Faltam 8 placas para atingir a meta.
 </div>
 </sc-if>
 <div style="display: flex; flex-direction: column; gap: 2px; padding: 0 2px">
-<h3 style="margin: 0; font-size: 16px; line-height: 22px; font-weight: 700">Escolha os planos para o {{wVehShort}}</h3>
-<span style="font-size: 11px; line-height: 15px; color: #4a4455">Selecione os planos para gerar o comparativo</span>
+<h3 style="margin: 0; font-size: 16px; line-height: 22px; font-weight: 700">Selecione os planos para compartilhar</h3>
 </div>
-<div style="flex-shrink: 0; padding: 10px 12px; border-radius: 14px; background: #ffffff; border: 1px solid #e5eeff; display: flex; flex-direction: column; gap: 10px">
+<div style="flex-shrink: 0; padding: 10px 12px; border-radius: 10px; background: #ffffff; border: 1px solid #e5eeff; display: flex; flex-direction: column; gap: 10px">
 <button role="switch" aria-checked="{{wAdesaoTodosAttr}}" onClick="{{toggleWAdesaoTodos}}" style="padding: 0; border: 0; background: transparent; font-family: inherit; color: inherit; text-align: left; display: flex; align-items: center; gap: 12px; cursor: pointer">
 <span class="ms" style="flex-shrink: 0; font-size: 20px; color: #4A1259">receipt_long</span>
 <span style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 1px"><span style="font-size: 13px; line-height: 17px; font-weight: 700; color: #0b1c30">Mesma adesão para todos os planos</span><sc-if value="{{wAdesaoTodos}}" hint-placeholder-val="{{ false }}"><span style="font-size: 11px; line-height: 15px; color: #7b7487">{{wAdesaoHint}}</span></sc-if></span>
@@ -3323,9 +3380,8 @@ Faltam 8 placas para atingir a meta.
 </div>
 </sc-for>
 </div>
-<div style="flex-shrink: 0; overflow: hidden; padding: 0 14px 14px; border-radius: 18px; background: #ffffff; border: 1px solid #e5eeff; box-shadow: 0 2px 12px -2px rgba(32, 7, 38,0.06); display: flex; flex-direction: column; gap: 12px">
+<div style="flex-shrink: 0; overflow: hidden; padding: 0 14px 14px; border-radius: 10px; background: #ffffff; border: 1px solid #e5eeff; box-shadow: 0 2px 12px -2px rgba(32, 7, 38,0.06); display: flex; flex-direction: column; gap: 12px">
 <div style="margin: 0 -14px; padding: 10px 14px; background: radial-gradient(circle at 95% 0%, rgba(161, 146, 166,0.85) 0%, rgba(161, 146, 166,0) 50%), linear-gradient(135deg, #622773 0%, #4A1259 100%); color: #ffffff; display: flex; align-items: center; gap: 8px">
-<span style="flex-shrink: 0; width: 26px; height: 26px; border-radius: 8px; background: rgba(255,255,255,0.16); border: 1px solid rgba(255,255,255,0.3); display: flex; align-items: center; justify-content: center"><span class="ms" style="font-size: 16px">add_box</span></span>
 <strong style="min-width: 0; font-size: 13px; line-height: 17px">Benefícios adicionais</strong>
 </div>
 <button onClick="{{openExtraModal}}" aria-disabled="{{wExtraOpenDisabled}}" style="{{wExtraOpenStyle}}"><span class="ms" style="font-size: 18px">add</span>{{wExtraOpenLabel}}</button>
@@ -3354,7 +3410,7 @@ Faltam 8 placas para atingir a meta.
 <sc-if value="{{wizS4}}" hint-placeholder-val="{{ false }}">
 <div key="wiz-passo-4" class="multi-list" style="display: flex; flex-direction: column; gap: 12px">
 
-<div style="flex-shrink: 0; position: relative; overflow: hidden; padding: 18px 16px; border-radius: 18px; background: radial-gradient(circle at 90% 10%, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0) 45%), linear-gradient(135deg, #22a06b 0%, #047857 100%); color: #ffffff; box-shadow: 0 14px 30px -14px rgba(4, 120, 87,0.6); display: flex; flex-direction: column; gap: 10px; animation: itemIn .4s cubic-bezier(.22,1,.36,1) both">
+<div style="flex-shrink: 0; position: relative; overflow: hidden; padding: 18px 16px; border-radius: 10px; background: radial-gradient(circle at 90% 10%, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0) 45%), linear-gradient(135deg, #22a06b 0%, #047857 100%); color: #ffffff; box-shadow: 0 14px 30px -14px rgba(4, 120, 87,0.6); display: flex; flex-direction: column; gap: 10px; animation: itemIn .4s cubic-bezier(.22,1,.36,1) both">
 <span aria-hidden="true" style="position: absolute; top: 14px; right: 24px; width: 8px; height: 8px; border-radius: 2px; background: #fde68a; opacity: .9; animation: avatarPop .6s 0.15s cubic-bezier(.34,1.56,.64,1) both; transform: rotate(20deg)"></span>
 <span aria-hidden="true" style="position: absolute; top: 40px; right: 60px; width: 6px; height: 6px; border-radius: 9999px; background: #ffffff; opacity: .9; animation: avatarPop .6s 0.25s cubic-bezier(.34,1.56,.64,1) both; transform: rotate(0deg)"></span>
 <span aria-hidden="true" style="position: absolute; top: 18px; right: 96px; width: 7px; height: 7px; border-radius: 2px; background: #A192A6; opacity: .9; animation: avatarPop .6s 0.35s cubic-bezier(.34,1.56,.64,1) both; transform: rotate(45deg)"></span>
@@ -3368,26 +3424,27 @@ Faltam 8 placas para atingir a meta.
 </div>
 </div>
 
-<div style="flex-shrink: 0; padding: 18px 16px 16px; border-radius: 20px; background: #ffffff; border: 1px solid #eeeaf2; box-shadow: 0 10px 28px -16px rgba(32, 7, 38,0.28); display: flex; flex-direction: column; gap: 14px; animation: itemIn .4s cubic-bezier(.22,1,.36,1) both">
+<div style="flex-shrink: 0; padding: 18px 16px 16px; border-radius: 10px; background: #ffffff; border: 1px solid #eeeaf2; box-shadow: 0 10px 28px -16px rgba(32, 7, 38,0.28); display: flex; flex-direction: column; gap: 14px; animation: itemIn .4s cubic-bezier(.22,1,.36,1) both">
 <div style="display: flex; flex-direction: column; gap: 2px"><strong style="font-size: 16px; line-height: 20px; color: #0b1c30">Enviar para o cliente</strong><span style="font-size: 12px; line-height: 16px; color: #7b7487">Escolha como o comparativo vai chegar até ele</span></div>
 <div style="{{wShareGrid}}">
-<a href="{{wShareWhats}}" target="_blank" rel="noopener" aria-label="Enviar pelo WhatsApp" style="min-width: 0; height: 86px; padding: 10px 4px; box-sizing: border-box; border: 1px solid #f0ecf3; border-radius: 16px; background: #fbfafc; font-family: inherit; color: #0b1c30; text-decoration: none; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; cursor: pointer; transition: background .2s, border-color .2s"><img src="assets/whatsapp-contorno.svg" alt="" aria-hidden="true" style="width: 28px; height: 28px"><span style="font-size: 11px; line-height: 14px; font-weight: 600; text-align: center; white-space: nowrap">WhatsApp</span></a>
+<a href="{{wShareWhats}}" target="_blank" rel="noopener" aria-label="Enviar pelo WhatsApp" style="min-width: 0; height: 86px; padding: 10px 4px; box-sizing: border-box; border: 1px solid #f0ecf3; border-radius: 10px; background: #fbfafc; font-family: inherit; color: #0b1c30; text-decoration: none; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; cursor: pointer; transition: background .2s, border-color .2s"><img src="assets/whatsapp-contorno.svg" alt="" aria-hidden="true" style="width: 28px; height: 28px"><span style="font-size: 11px; line-height: 14px; font-weight: 600; text-align: center; white-space: nowrap">WhatsApp</span></a>
 <button onClick="{{copyShareLink}}" aria-label="Copiar link da proposta" style="{{wCopyTile}}"><span class="ms" style="font-size: 27px; font-variation-settings: 'FILL' 0, 'wght' 300">{{wCopyIcon}}</span><span style="font-size: 11px; line-height: 14px; font-weight: 600; text-align: center; white-space: nowrap">{{wCopyLabel}}</span></button>
-<button onClick="{{openSharePdf}}" aria-label="Abrir PDF do comparativo" style="min-width: 0; height: 86px; padding: 10px 4px; box-sizing: border-box; border: 1px solid #f0ecf3; border-radius: 16px; background: #fbfafc; font-family: inherit; color: #0b1c30; text-decoration: none; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; cursor: pointer; transition: background .2s, border-color .2s"><span class="ms" style="font-size: 27px; color: #dc2626; font-variation-settings: 'FILL' 0, 'wght' 300">picture_as_pdf</span><span style="font-size: 11px; line-height: 14px; font-weight: 600; text-align: center; white-space: nowrap">PDF</span></button>
-<sc-if value="{{wCanNativeShare}}" hint-placeholder-val="{{ false }}"><button onClick="{{nativeShare}}" aria-label="Mais opções de compartilhamento" style="min-width: 0; height: 86px; padding: 10px 4px; box-sizing: border-box; border: 1px solid #f0ecf3; border-radius: 16px; background: #fbfafc; font-family: inherit; color: #0b1c30; text-decoration: none; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; cursor: pointer; transition: background .2s, border-color .2s"><span class="ms" style="font-size: 26px; color: #1d4ed8; font-variation-settings: 'FILL' 0, 'wght' 300">ios_share</span><span style="font-size: 11px; line-height: 14px; font-weight: 600; text-align: center; white-space: nowrap">Mais</span></button></sc-if>
+<button onClick="{{openSharePdf}}" aria-label="Abrir PDF do comparativo" style="min-width: 0; height: 86px; padding: 10px 4px; box-sizing: border-box; border: 1px solid #f0ecf3; border-radius: 10px; background: #fbfafc; font-family: inherit; color: #0b1c30; text-decoration: none; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; cursor: pointer; transition: background .2s, border-color .2s"><span class="ms" style="font-size: 27px; color: #dc2626; font-variation-settings: 'FILL' 0, 'wght' 300">picture_as_pdf</span><span style="font-size: 11px; line-height: 14px; font-weight: 600; text-align: center; white-space: nowrap">PDF</span></button>
+<sc-if value="{{wCanNativeShare}}" hint-placeholder-val="{{ false }}"><button onClick="{{nativeShare}}" aria-label="Mais opções de compartilhamento" style="min-width: 0; height: 86px; padding: 10px 4px; box-sizing: border-box; border: 1px solid #f0ecf3; border-radius: 10px; background: #fbfafc; font-family: inherit; color: #0b1c30; text-decoration: none; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; cursor: pointer; transition: background .2s, border-color .2s"><span class="ms" style="font-size: 26px; color: #1d4ed8; font-variation-settings: 'FILL' 0, 'wght' 300">ios_share</span><span style="font-size: 11px; line-height: 14px; font-weight: 600; text-align: center; white-space: nowrap">Mais</span></button></sc-if>
 </div>
 <a href="{{wShareHref}}" target="_blank" rel="noopener" style="padding: 9px 12px; border-radius: 12px; background: #f8f7fa; text-decoration: none; display: flex; align-items: center; gap: 8px"><span class="ms" style="flex-shrink: 0; font-size: 17px; color: #7b7487">link</span><span style="flex-grow: 1; min-width: 0; font-size: 12px; color: #4a4455; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{wShareLink}}</span><span style="flex-shrink: 0; font-size: 12px; font-weight: 700; color: #4A1259; display: flex; align-items: center; gap: 2px">Abrir<span class="ms" style="font-size: 15px">open_in_new</span></span></a>
 </div>
 </div>
 </sc-if>
-</div>
 
-<div style="flex-shrink: 0; padding: 12px 20px 20px; border-top: 1px solid #e5eeff; background: #ffffff; display: flex; gap: 8px">
+<div style="flex-shrink: 0; padding-top: 6px; display: flex; gap: 8px">
 <sc-if value="{{wCanBack}}" hint-placeholder-val="{{ false }}">
 <button onClick="{{wizBack}}" style="height: 44px; border: 1.5px solid #4A1259; border-radius: 12px; background: #ffffff; color: #4A1259; font-family: inherit; font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; text-decoration: none; height: 50px; width: 110px; flex-shrink: 0"><span class="ms" style="font-size: 18px">arrow_back</span>Voltar</button>
 </sc-if>
 <button onClick="{{wizNext}}" aria-disabled="{{wNextDisabled}}" style="{{wNextStyle}}">{{wNextLabel}}<span class="ms" style="font-size: 20px">{{wNextIcon}}</span></button>
 </div>
+</div>
+
 
 <sc-if value="{{wPlacaLoading}}" hint-placeholder-val="{{ false }}">
 <div role="alertdialog" aria-modal="true" aria-busy="true" aria-label="Buscando placa" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 35; background: rgba(32, 7, 38,0.35); backdrop-filter: blur(6px) saturate(140%); -webkit-backdrop-filter: blur(6px) saturate(140%); display: flex; align-items: center; justify-content: center; animation: fadeIn .2s ease-out">
@@ -3508,7 +3565,7 @@ Faltam 8 placas para atingir a meta.
 </sc-if>
 
 <sc-if value="{{detOpen}}" hint-placeholder-val="{{ false }}">
-<section role="dialog" aria-labelledby="det-title" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: 19; background: #eef1f9; display: flex; flex-direction: column; animation: menuIn .38s cubic-bezier(.22,1,.36,1) both">
+<section class="janela" role="dialog" aria-labelledby="det-title" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: 19; background: #eef1f9; display: flex; flex-direction: column; animation: menuIn .38s cubic-bezier(.22,1,.36,1) both">
 <div style="flex-shrink: 0; height: 64px; box-sizing: border-box; padding: 0 12px; background: radial-gradient(circle at 92% 0%, rgba(161, 146, 166,0.55) 0%, rgba(161, 146, 166,0) 45%), #4A1259; color: #ffffff; display: flex; align-items: center; gap: 4px">
 <button onClick="{{closeDet}}" aria-label="Voltar" style="width: 44px; height: 44px; border: 0; border-radius: 9999px; background: transparent; color: #ffffff; display: flex; align-items: center; justify-content: center; cursor: pointer"><span class="ms" style="font-size: 24px">arrow_back</span></button>
 <div style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column"><h2 id="det-title" style="color: #ffffff; margin: 0; font-size: 15px; line-height: 19px; font-weight: 700">Proposta nº {{det.num}}</h2><span style="font-size: 10px; line-height: 13px; color: rgba(255,255,255,0.78)">Criada em {{det.created}}</span></div>
@@ -3890,8 +3947,8 @@ Faltam 8 placas para atingir a meta.
 </sc-if>
 
 <sc-if value="{{dsOpen}}" hint-placeholder-val="{{ false }}">
-<div onClick="{{closeDs}}" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 25; background: rgba(11,28,48,0.5); animation: fadeIn .2s ease-out"></div>
-<section role="dialog" aria-modal="true" aria-labelledby="ds-title" style="position: absolute; left: 0; right: 0; bottom: 0; z-index: 26; max-height: 88%; background: #ffffff; border-radius: 24px 24px 0 0; box-shadow: 0 -8px 32px rgba(32, 7, 38,0.18); display: flex; flex-direction: column; animation: sheetUp .32s cubic-bezier(.22,1,.36,1)">
+<div class="janela" onClick="{{closeDs}}" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: 25; background: rgba(11,28,48,0.5); animation: fadeIn .2s ease-out"></div>
+<section role="dialog" aria-modal="true" class="painel" aria-labelledby="ds-title" style="position: absolute; left: 0; right: 0; bottom: 72px; z-index: 26; max-height: 88%; background: #ffffff; border-radius: 24px 24px 0 0; box-shadow: 0 -8px 32px rgba(32, 7, 38,0.18); display: flex; flex-direction: column; animation: sheetUp .32s cubic-bezier(.22,1,.36,1)">
 <div style="flex-shrink: 0; padding: 0 20px 12px; border-bottom: 1px solid #eff4ff">
 <div style="display: flex; justify-content: center; padding: 12px 0 8px"><span style="width: 48px; height: 4px; border-radius: 9999px; background: #ccc3d8"></span></div>
 <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px">
@@ -3988,7 +4045,7 @@ Faltam 8 placas para atingir a meta.
 </sc-if>
 
 <sc-if value="{{cfOpen}}" hint-placeholder-val="{{ false }}">
-<div onClick="{{closeCf}}" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 27; background: rgba(11,28,48,0.55); animation: fadeIn .2s ease-out"></div>
+<div class="janela" onClick="{{closeCf}}" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: 27; background: rgba(11,28,48,0.55); animation: fadeIn .2s ease-out"></div>
 <section role="alertdialog" aria-modal="true" aria-labelledby="cf-title" style="position: absolute; left: 24px; right: 24px; top: 50%; transform: translateY(-50%); z-index: 28; padding: 22px; border-radius: 20px; background: #ffffff; box-shadow: 0 20px 40px -12px rgba(0,0,0,0.45); display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center; animation: fadeIn .2s ease-out">
 <span style="width: 56px; height: 56px; border-radius: 9999px; background: #ece6ee; color: #4A1259; display: flex; align-items: center; justify-content: center"><span class="ms" style="font-size: 28px">task_alt</span></span>
 <h3 id="cf-title" style="margin: 0; font-size: 17px; line-height: 22px; font-weight: 700">{{cfTitle}}</h3>
@@ -4001,7 +4058,7 @@ Faltam 8 placas para atingir a meta.
 </sc-if>
 
 <sc-if value="{{analiseOpen}}" hint-placeholder-val="{{ false }}">
-<div onClick="{{closeAnalise}}" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 25; background: rgba(11,28,48,0.5); animation: fadeIn .2s ease-out"></div>
+<div class="janela" onClick="{{closeAnalise}}" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: 25; background: rgba(11,28,48,0.5); animation: fadeIn .2s ease-out"></div>
 <section role="dialog" aria-modal="true" aria-labelledby="analise-title" style="position: absolute; left: 20px; right: 20px; top: 50%; transform: translateY(-50%); z-index: 26; max-height: 80%; overflow-y: auto; scrollbar-width: none; padding: 20px; border-radius: 20px; background: #ffffff; box-shadow: 0 20px 40px -12px rgba(0,0,0,0.45); display: flex; flex-direction: column; gap: 14px; animation: fadeIn .2s ease-out">
 <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 12px">
 <div style="display: flex; align-items: center; gap: 10px">
@@ -4033,8 +4090,8 @@ Faltam 8 placas para atingir a meta.
 </sc-if>
 
 <sc-if value="{{atalhosOpen}}" hint-placeholder-val="{{ false }}">
-<div onClick="{{closeAtalhos}}" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 25; background: rgba(11,28,48,0.5); animation: fadeIn .2s ease-out"></div>
-<section role="dialog" aria-modal="true" aria-labelledby="atalhos-title" style="position: absolute; left: 0; right: 0; bottom: 0; z-index: 26; max-height: 90%; background: #ffffff; border-radius: 24px 24px 0 0; box-shadow: 0 -8px 32px rgba(32, 7, 38,0.18); display: flex; flex-direction: column; animation: sheetUp .34s cubic-bezier(.22,1,.36,1)">
+<div class="janela" onClick="{{closeAtalhos}}" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: 25; background: rgba(11,28,48,0.5); animation: fadeIn .2s ease-out"></div>
+<section role="dialog" aria-modal="true" class="painel" aria-labelledby="atalhos-title" style="position: absolute; left: 0; right: 0; bottom: 72px; z-index: 26; max-height: 90%; background: #ffffff; border-radius: 24px 24px 0 0; box-shadow: 0 -8px 32px rgba(32, 7, 38,0.18); display: flex; flex-direction: column; animation: sheetUp .34s cubic-bezier(.22,1,.36,1)">
 <div style="flex-shrink: 0; padding: 0 20px 12px; border-bottom: 1px solid #eff4ff">
 <div style="display: flex; justify-content: center; padding: 12px 0 8px"><span style="width: 48px; height: 4px; border-radius: 9999px; background: #ccc3d8"></span></div>
 <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px">
@@ -4093,12 +4150,10 @@ Faltam 8 placas para atingir a meta.
 </sc-if>
 
 <sc-if value="{{linkOpen}}" hint-placeholder-val="{{ false }}">
-<div onClick="{{closeLink}}" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 21; background: rgba(11,28,48,0.5); animation: fadeIn .2s ease-out"></div>
-<section role="dialog" aria-modal="true" aria-labelledby="link-title" style="position: absolute; top: 32px; left: 0; right: 0; bottom: 0; z-index: 22; background: #ffffff; border-radius: 24px 24px 0 0; box-shadow: 0 -8px 32px rgba(32, 7, 38,0.18); display: flex; flex-direction: column; animation: sheetUp .36s cubic-bezier(.22,1,.36,1)">
+<div class="janela" onClick="{{closeLink}}" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: 21; background: rgba(11,28,48,0.5); animation: fadeIn .2s ease-out"></div>
+<section class="janela" role="dialog" aria-modal="true" aria-labelledby="link-title" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: 22; background: #ffffff; display: flex; flex-direction: column; animation: menuIn .38s cubic-bezier(.22,1,.36,1) both">
 <div style="flex-shrink: 0; padding: 0 20px 14px; border-bottom: 1px solid #eff4ff">
-<div style="display: flex; justify-content: center; padding: 12px 0 8px">
-<span style="width: 48px; height: 4px; border-radius: 9999px; background: #ccc3d8"></span>
-</div>
+<div style="height: 12px"></div>
 <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px">
 <div style="display: flex; align-items: center; gap: 10px">
 <span style="width: 36px; height: 36px; border-radius: 10px; background: linear-gradient(135deg, #622773 0%, #4A1259 100%); color: #ffffff; display: flex; align-items: center; justify-content: center">
@@ -4181,7 +4236,21 @@ Compartilhar QR Code
       try { localStorage.setItem('ileva-instalado', '1'); } catch (err) { /* armazenamento indisponível */ }
       if (window.__ilevaRefresh) window.__ilevaRefresh();
     });
-    if ('serviceWorker' in navigator && location.protocol !== 'file:') navigator.serviceWorker.register('sw.js').catch(function () { });
+    if ('serviceWorker' in navigator && location.protocol !== 'file:') {
+      navigator.serviceWorker.register('sw.js').then(function (reg) { reg.update(); }).catch(function () { });
+    }
+    // Aviso discreto quando o aparelho fica sem internet: o app segue funcionando com a cópia salva.
+    (function () {
+      var aviso = document.createElement('div');
+      aviso.setAttribute('role', 'status');
+      aviso.textContent = 'Sem internet · usando a versão salva do app';
+      aviso.style.cssText = 'position:fixed;left:50%;bottom:calc(84px + env(safe-area-inset-bottom, 0px));transform:translateX(-50%);z-index:9999;padding:8px 14px;border-radius:9999px;background:#0b1c30;color:#ffffff;font:600 12px/16px "Plus Jakarta Sans",system-ui,sans-serif;box-shadow:0 8px 20px -8px rgba(0,0,0,0.5);white-space:nowrap;pointer-events:none';
+      aviso.hidden = true;
+      function atualizar() { aviso.hidden = navigator.onLine; }
+      document.addEventListener('DOMContentLoaded', function () { document.body.appendChild(aviso); atualizar(); });
+      window.addEventListener('online', atualizar);
+      window.addEventListener('offline', atualizar);
+    })();
   </script>
   <script>
     (function () {
@@ -4192,6 +4261,11 @@ Compartilhar QR Code
         cl.toggle('is-mobile', mobile); cl.toggle('is-desktop', !mobile);
         var dev = document.querySelector('.device');
         if (dev) dev.style.transform = mobile ? '' : 'scale(' + Math.min(1, (window.innerHeight - 32) / 868) + ')';
+        // App instalado no iPhone: quando o sistema entrega uma área menor que a tela, sobra espaço abaixo do app
+        // (onde fica a barrinha do iPhone). Aí o menu não precisa reservar espaço para ela e desce até o limite.
+        var instalado = window.navigator.standalone === true;
+        var sobra = Math.max(window.screen.width, window.screen.height) - window.innerHeight;
+        cl.toggle('sobra-embaixo', mobile && instalado && window.innerWidth < window.innerHeight && sobra > 10);
       }
       apply();
       (mq.addEventListener ? mq.addEventListener('change', apply) : mq.addListener(apply));
@@ -4470,6 +4544,12 @@ Compartilhar QR Code
         this.drag = null;
         this.justDragged = false;
         this.state = { hidden: false, slides: { sugestoes: 0, atalhos: 0 }, dragging: null, atalho: 'manual', detalheOpen: false, menuOpen: false, menuClosing: false, cotacaoOpen: false, dicasOpen: false, iaOpen: false, redeOpen: false, multiOpen: false, linkOpen: false, indicador: '', copied: false, qrVisible: false, matView: null, previewId: null, notifOpen: false, notifFilter: 'todas', readIds: {}, indOpen: false, indPeriod: 'mes', kpiScope: 'voce', wizOpen: false, ...Component.emptyWiz(), detOpen: false, detPid: null, detRev: 0, ds: null, cf: null, s1Plan: null, s1Cota: '', detEditValor: false, detValorDraft: '', detStepView: null, finEditAdesao: false, finAdesaoDraft: '', finEditComment: false, finCommentDraft: '', frotaPick: '', frotaNova: '', agTipo: '', agPlaca: '', agDesc: '', agValor: '', vcPlaca: '', vcCor: '', vcChassi: '', vcRenavam: '', qViagens: '', qKm: '', qApp: 'nao', aCpf: '', aNasc: '', aCep: '', aNum: '', vModelo: '', vTipo: '', arqMotivo: '', detToast: '', atalhosSel: Component.loadAtalhos(), atalhosOpen: false, atalhosDraft: [], propOpen: false, propTab: 'todas', propQuery: '', propSort: 'recentes', propExpanded: {}, propFilters: Component.emptyPropFilters(), sheetKey: null, sheetDraft: null, sheetQuery: '', novOpen: false, novFilter: 'todas', novHist: false, indicOpen: false, indicView: 'lista', indicQuery: '', indicFilter: 'todos', indicSelId: null, indicadores: Component.seedIndicadores(), indicFormOpen: false, indicToast: '', ...Component.emptyIndicForm(), relOpen: false, comSelIdx: 5, riscoFilter: 'todos', relPeriod: 'mes', relMonth: '2026-10', relInfo: false, relToast: false, agendaOpen: false, agendaTab: 'lembretes', agendaFilter: 'todos', agendaView: Component.loadDefaultView(), agendaDefault: Component.loadDefaultView(), calMonth: '2026-09', calDay: '2026-09-30', notas: Component.seedNotas(), notaOpen: false, fTitle: '', fText: '', fLead: '', fAlert: false, fDate: '', fTime: '', fNoteDate: '2026-09-30', fTipo: '', fPrio: 'media', fAvisos: [], fRepeat: '', fTags: [], fChecklist: [], fCheckInput: '', toast: '', redeExpanded: {} };
+        // Atalhos do ícone instalado (manifest "shortcuts"): index.html?atalho=agenda
+        const atalhoUrl = new URLSearchParams(window.location.search).get('atalho');
+        if (atalhoUrl) {
+          window.history.replaceState(null, '', window.location.pathname + window.location.hash);
+          setTimeout(() => this.runAtalho(atalhoUrl), 0);
+        }
       }
 
       setSlide(name, index) {
@@ -4797,7 +4877,7 @@ Compartilhar QR Code
       }
 
       static emptyWiz() {
-        return { wizStep: 1, wCpf: '', wCpfMsg: '', wCpfOk: false, wFrota: 'nao', wFrotaNome: '', wNome: '', wFone: '', wPais: 'BR', wEmail: '', wIndicador: '', wOrigem: '', wUf: '', wCidade: '', wPlaca: '', wPlacaMsg: '', wPlacaOk: false, wPlacaLoading: false, wTipo: 'carro', wMarca: '', wAno: '', wModelo: '', wFipe: 0, wCode: '', wProtegido: '', wPlans: [], wCotas: {}, wExtras: [], wExtraPick: '', wExtraModal: false, wExtraQuery: '', wExtraListOpen: false, wExtraPrice: '', wExtraNeg: false, wExtraEditId: null, wExtraDelId: null, wCotaModal: null, wGenId: null, wGenNum: null, wLinkCopied: false, wAdesaoTodos: false, wAdesaoValor: '', wAdesoes: {}, wAdesaoEdit: null, wAdesaoDraft: '' };
+        return { wizStep: 1, wCpf: '', wCpfMsg: '', wCpfOk: false, wFrota: 'nao', wFrotaNome: '', wNome: '', wFone: '', wPais: 'BR', wEmail: '', wIndicador: '', wOrigem: '', wUf: '', wCidade: '', wPlaca: 'KER-5273', wPlacaMsg: '', wPlacaOk: false, wPlacaLoading: false, wTipo: 'carro', wMarca: '', wAno: '', wModelo: '', wFipe: 0, wCode: '', wProtegido: '', wPlans: [], wCotas: {}, wExtras: [], wExtraPick: '', wExtraModal: false, wExtraQuery: '', wExtraListOpen: false, wExtraPrice: '', wExtraNeg: false, wExtraEditId: null, wExtraDelId: null, wCotaModal: null, wGenId: null, wGenNum: null, wLinkCopied: false, wAdesaoTodos: false, wAdesaoValor: '', wAdesoes: {}, wAdesaoEdit: null, wAdesaoDraft: '' };
       }
 
       brl(v) {
@@ -5075,7 +5155,6 @@ Compartilhar QR Code
           wVehIcon: tipoInfo ? tipoInfo.icon : 'directions_car',
           wVehTitle: hasVehicle ? st.wMarca + ' ' + st.wModelo : '',
           wVehSub: hasVehicle ? st.wAno + ' ' + fuel + (st.wPlaca ? ' · ' + st.wPlaca : ' · sem placa') : '',
-          wVehShort: hasVehicle ? st.wModelo.split(' ')[0] + ' ' + st.wAno : 'o veículo',
           wFipeText: this.brl(st.wFipe || 0), wFipeCode: st.wCode || '—',
           wVehArt: Component.vehFoto(st.wTipo),
           wVehArtKey: 'veh-' + (st.wTipo || 'carro'),
@@ -5099,7 +5178,7 @@ Compartilhar QR Code
               checked: on ? 'true' : 'false', isChecked: on,
               checkIcon: on ? 'check_box' : 'check_box_outline_blank',
               checkStyle: 'flex-shrink:0;font-size:24px;color:' + (on ? '#4A1259' : '#ccc3d8'),
-              cardStyle: 'flex-shrink:0;width:250px;box-sizing:border-box;scroll-snap-align:start;padding:16px;border-radius:18px;background:' + (on ? 'linear-gradient(180deg,#ffffff 0%,#f0fdf4 100%)' : '#ffffff') + ';display:flex;flex-direction:column;gap:12px;transition:all .2s;' + (on ? 'border:2px solid #16a34a;box-shadow:0 10px 24px -12px rgba(22, 163, 74,0.45);' : 'border:1px solid #e5eeff;box-shadow:0 2px 12px -2px rgba(32, 7, 38,0.08);'),
+              cardStyle: 'flex-shrink:0;width:250px;box-sizing:border-box;scroll-snap-align:start;padding:16px;border-radius:10px;background:' + (on ? 'linear-gradient(180deg,#ffffff 0%,#f0fdf4 100%)' : '#ffffff') + ';display:flex;flex-direction:column;gap:12px;transition:all .2s;' + (on ? 'border:2px solid #16a34a;box-shadow:0 10px 24px -12px rgba(22, 163, 74,0.45);' : 'border:1px solid #e5eeff;box-shadow:0 2px 12px -2px rgba(32, 7, 38,0.08);'),
               btnLabel: on ? 'Selecionado' : 'Selecionar plano',
               btnIcon: on ? 'check_circle' : 'add_circle',
               btnStyle: 'height:44px;border-radius:12px;font-family:inherit;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:6px;cursor:pointer;transition:all .2s;' + (on ? 'border:0;background:#16a34a;color:#ffffff;box-shadow:0 8px 16px -8px rgba(22, 163, 74,0.6);' : 'border:1.5px solid #4A1259;background:#ffffff;color:#4A1259;'),
@@ -5469,7 +5548,7 @@ Compartilhar QR Code
             const ok = () => { set({ wLinkCopied: true }); clearTimeout(this.copyTimer); this.copyTimer = setTimeout(() => set({ wLinkCopied: false }), 2000); };
             if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(link).then(ok, ok); else ok();
           },
-          wCopyTile: 'min-width: 0; height: 86px; padding: 10px 4px; box-sizing: border-box; border: 1px solid #f0ecf3; border-radius: 16px; background: #fbfafc; font-family: inherit; color: #0b1c30; text-decoration: none; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; cursor: pointer; transition: background .2s, border-color .2s;' + (copiado ? 'background:#ecfdf5;border-color:#bbf7d0;color:#047857;' : 'color:#4A1259;'),
+          wCopyTile: 'min-width: 0; height: 86px; padding: 10px 4px; box-sizing: border-box; border: 1px solid #f0ecf3; border-radius: 10px; background: #fbfafc; font-family: inherit; color: #0b1c30; text-decoration: none; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; cursor: pointer; transition: background .2s, border-color .2s;' + (copiado ? 'background:#ecfdf5;border-color:#bbf7d0;color:#047857;' : 'color:#4A1259;'),
           wCopyIcon: copiado ? 'check' : 'content_copy',
           wCopyLabel: copiado ? 'Copiado' : 'Copiar link',
           wShareGrid: 'display:grid;gap:8px;grid-template-columns:repeat(' + (typeof navigator !== 'undefined' && navigator.share ? 4 : 3) + ', minmax(0, 1fr))',
@@ -6020,7 +6099,7 @@ Compartilhar QR Code
               nodeIcon: done ? 'check' : ['workspace_premium', 'badge', 'photo_camera', 'draw', 'verified'][i],
               btnStyle: 'position:relative;min-width:0;padding:0;border:0;background:transparent;font-family:inherit;display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer',
               lineL: i === 0 ? 'display:none' : 'position:absolute;top:14px;left:-2px;right:50%;height:2px;transition:background .35s;background:' + (done || cur ? '#22a06b' : '#e5dcea'),
-              lineR: i === stageNames.length - 1 ? 'display:none' : 'position:absolute;top:14px;left:50%;right:-2px;height:2px;transition:background .35s;background:' + (done ? '#22a06b' : '#e5dcea'),
+              lineR: i === stageNames.length - 1 ? 'display:none' : 'position:absolute;top:14px;left:50%;right:-2px;height:2px;transition:background .35s;background:' + (done ? '#22a06b' : '#e5dcea'),
               nodeStyle: 'position:relative;z-index:1;' + this.stepChip(done, cur, viewed),
               num: n, title: name,
               badge: done ? 'Concluída' : cur ? 'Em andamento' : 'Bloqueada',
@@ -6163,6 +6242,17 @@ Compartilhar QR Code
           arqMotivo: st.arqMotivo, onArqMotivo: (e) => this.setState({ arqMotivo: e.target.value }),
           cfTitle: st.cf ? st.cf.title : '', cfText: st.cf ? st.cf.text : '',
           doCf: () => { const a = st.cf && st.cf.action; this.setState({ cf: null }); if (a) a(); }
+        };
+      }
+
+      // Fecha todas as janelas abertas; usado pelo menu de baixo para a tela escolhida ficar sempre por cima.
+      static janelasFechadas() {
+        return {
+          redeOpen: false, multiOpen: false, linkOpen: false, qrVisible: false, matView: null, previewId: null, agendaOpen: false, notaOpen: false,
+          relOpen: false, indOpen: false, indicOpen: false, indicFormOpen: false, novOpen: false, propOpen: false, sheetKey: null, filtersMenuOpen: false,
+          detOpen: false, wizOpen: false, ds: null, cf: null, dicasOpen: false, cotacaoOpen: false, detalheOpen: false, iaOpen: false, notifOpen: false,
+          analiseOpen: false, atalhosOpen: false, instalarGuia: false, menuOpen: false, menuClosing: false,
+          dCotaModal: null, dExtraListOpen: false, dExtraDelId: null, wCotaModal: null, wExtraModal: false, wExtraDelId: null
         };
       }
 
@@ -6353,7 +6443,7 @@ Compartilhar QR Code
           propNavIcon: 'font-size:24px;font-variation-settings:\'FILL\' ' + (st.propOpen ? 1 : 0),
           openPropostas: (e) => {
             if (e && e.preventDefault) e.preventDefault();
-            this.setState({ propOpen: true, relOpen: false, redeOpen: false, multiOpen: false, matView: null, agendaOpen: false, indicOpen: false, indOpen: false, novOpen: false, iaOpen: false, cotacaoOpen: false });
+            this.setState({ ...Component.janelasFechadas(), propOpen: true });
           },
           closePropostas: () => this.setState({ propOpen: false }),
           propQuery: st.propQuery,
@@ -7510,7 +7600,7 @@ Compartilhar QR Code
           iaEventos: () => this.setState({ iaOpen: false }),
           navAtendimento: () => { },
           navClass: this.state.cotacaoOpen || this.state.iaOpen ? 'nav-raised' : '',
-          navConsultor: () => this.setState({ iaOpen: !this.state.iaOpen, cotacaoOpen: false }),
+          navConsultor: () => this.setState({ ...Component.janelasFechadas(), iaOpen: !this.state.iaOpen }),
           consNavStyle: 'flex:1;min-width:0;height:100%;padding:0;border:0;background:transparent;font-family:inherit;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;cursor:pointer;color:' + (this.state.iaOpen ? '#4A1259' : '#4a4455'),
           consNavIcon: 'font-size:24px;font-variation-settings:\'FILL\' ' + (this.state.iaOpen ? 1 : 0),
           iaLinks: () => this.setState({ iaOpen: false, cotacaoOpen: false }),
@@ -7779,14 +7869,14 @@ Compartilhar QR Code
           closeRede: () => this.setState({ redeOpen: false }),
           goHome: (e) => {
             e.preventDefault();
-            this.setState({ redeOpen: false, multiOpen: false, linkOpen: false, qrVisible: false, matView: null, previewId: null, agendaOpen: false, notaOpen: false, relOpen: false, indOpen: false, indicOpen: false, indicFormOpen: false, novOpen: false, propOpen: false, sheetKey: null, detOpen: false, wizOpen: false, ds: null, cf: null, dicasOpen: false, cotacaoOpen: false, detalheOpen: false, iaOpen: false });
+            this.setState(Component.janelasFechadas());
           },
           rede: this.redeSummary(),
           redeRows: this.redeRows(this.rede),
           openDicas: () => this.setState({ dicasOpen: true }),
           closeDicas: () => this.setState({ dicasOpen: false }),
           openCotacao: () => this.setState({ cotacaoOpen: true }),
-          toggleCotacao: () => this.setState({ cotacaoOpen: !cotacaoOpen, iaOpen: false }),
+          toggleCotacao: () => this.setState(cotacaoOpen ? { cotacaoOpen: false } : { ...Component.janelasFechadas(), cotacaoOpen: true }),
           cotacaoIcon: cotacaoOpen ? 'close' : 'add',
           cotacaoLabel: cotacaoOpen ? 'Fechar nova cotação' : 'Nova cotação',
           cotacaoExpanded: cotacaoOpen ? 'true' : 'false',
@@ -7795,7 +7885,7 @@ Compartilhar QR Code
           menuAnim: menuClosing ? 'menu-out' : 'menu-in',
           openMenu: () => {
             clearTimeout(this.menuTimer);
-            this.setState({ menuOpen: true, menuClosing: false });
+            this.setState({ ...Component.janelasFechadas(), menuOpen: true });
           },
           closeMenu: () => {
             if (menuClosing) return;

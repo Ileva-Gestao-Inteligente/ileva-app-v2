@@ -1,17 +1,27 @@
 {
+  "id": "./index.html",
   "name": "ileva · App do Consultor",
   "short_name": "ileva Consultor",
   "description": "Propostas, indicadores e ferramentas de venda do consultor ileva.",
   "lang": "pt-BR",
+  "dir": "ltr",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
   "orientation": "portrait",
   "background_color": "#eef1f9",
   "theme_color": "#4A1259",
+  "categories": ["business", "productivity"],
+  "prefer_related_applications": false,
   "icons": [
     { "src": "assets/icones/icone-192.png", "sizes": "192x192", "type": "image/png" },
     { "src": "assets/icones/icone-512.png", "sizes": "512x512", "type": "image/png" },
     { "src": "assets/icones/icone-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Nova proposta", "short_name": "Proposta", "url": "./index.html?atalho=nova", "icons": [{ "src": "assets/icones/icone-192.png", "sizes": "192x192", "type": "image/png" }] },
+    { "name": "Propostas", "short_name": "Propostas", "url": "./index.html?atalho=propostas", "icons": [{ "src": "assets/icones/icone-192.png", "sizes": "192x192", "type": "image/png" }] },
+    { "name": "Agenda", "short_name": "Agenda", "url": "./index.html?atalho=agenda", "icons": [{ "src": "assets/icones/icone-192.png", "sizes": "192x192", "type": "image/png" }] }
   ]
 }
