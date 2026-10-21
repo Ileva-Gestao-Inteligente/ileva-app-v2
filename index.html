@@ -867,24 +867,24 @@
   </div>
   <script type="text/plain" id="dc-template"><div class="app-root" style="position: relative; width: 100%; max-width: 480px; margin: 0 auto; height: 844px; box-sizing: border-box; display: flex; flex-direction: column; background: #eef1f9; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; color: #0b1c30; overflow: hidden">
 
-<header style="position: relative; z-index: 1; height: 80px; margin-bottom: -2px; flex-shrink: 0; box-sizing: border-box; padding: 8px 20px 0; display: flex; align-items: center; justify-content: space-between; background: #4A1259">
-<div style="display: flex; align-items: center; gap: 10px">
-<div style="position: relative; width: 48px; height: 48px">
-<img src="assets/foto-perfil.jpg" alt="Foto de perfil de Carlos Eduardo" style="width: 48px; height: 48px; box-sizing: border-box; border-radius: 9999px; border: 2px solid rgba(255,255,255,0.85); object-fit: cover; object-position: center 30%; display: block; box-shadow: 0 1px 2px rgba(0,0,0,0.06)">
-<span style="position: absolute; bottom: 0; right: -2px; width: 10px; height: 10px; border-radius: 9999px; background: #34d399; border: 2px solid #4A1259"></span>
-</div>
-<div style="display: flex; flex-direction: column">
-<span style="font-size: 11px; font-weight: 500; color: #f4f0f5; line-height: 14px">Bem-vindo de volta,</span>
-<h1 style="margin: 0; font-size: 17px; font-weight: 700; letter-spacing: -0.01em; line-height: 22px; color: #ffffff">Carlos Eduardo</h1>
-<span style="font-size: 10px; font-weight: 500; color: #f4f0f5; line-height: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 250px">Regional (Centro-Oeste) / Equipe (Lobo Guará)</span>
-</div>
-</div>
-<div style="flex-shrink: 0; display: flex; align-items: center; margin-right: -10px">
-<button onClick="{{openNotif}}" aria-label="{{bellLabel}}" aria-haspopup="dialog" style="position: relative; width: 44px; height: 44px; border: 0; background: transparent; border-radius: 9999px; display: flex; align-items: center; justify-content: center; color: #ffffff; cursor: pointer">
-<span class="ms" style="font-size: 24px">notifications</span>
+<header style="position: relative; z-index: 1; flex-shrink: 0; box-sizing: border-box; background: #ffffff; border-bottom: 1px solid #ece7f0; box-shadow: 0 1px 8px rgba(32, 7, 38,0.05)">
+<div style="height: 64px; padding: 0 10px 0 14px; display: flex; align-items: center; gap: 6px">
+<img src="assets/logo-ileva.png" alt="ileva · Gestão inteligente" style="flex-shrink: 0; height: 26px; width: auto; display: block">
+<span style="flex-grow: 1"></span>
+<button onClick="{{openNotif}}" aria-label="{{bellLabel}}" aria-haspopup="dialog" style="position: relative; flex-shrink: 0; width: 40px; height: 40px; padding: 0; border: 0; background: transparent; border-radius: 9999px; display: flex; align-items: center; justify-content: center; color: #4A1259; cursor: pointer">
+<span class="ms" style="font-size: 26px; font-variation-settings: 'FILL' 1">notifications</span>
 <sc-if value="{{hasUnread}}" hint-placeholder-val="{{ true }}">
-<span style="position: absolute; top: 6px; right: 5px; min-width: 18px; height: 18px; box-sizing: border-box; padding: 0 5px; border-radius: 9999px; background: #ffffff; border: 2px solid #4A1259; color: #4A1259; font-size: 10px; font-weight: 800; line-height: 14px; text-align: center">{{unreadCount}}</span>
+<span style="position: absolute; top: 4px; right: 3px; min-width: 16px; height: 16px; box-sizing: border-box; padding: 0 4px; border-radius: 9999px; background: #e11d48; border: 2px solid #ffffff; color: #ffffff; font-size: 9px; font-weight: 800; line-height: 12px; text-align: center">{{unreadCount}}</span>
 </sc-if>
+</button>
+<span aria-hidden="true" style="flex-shrink: 0; width: 1px; height: 34px; background: #e2dde6"></span>
+<button onClick="{{openPerfil}}" aria-label="Editar perfil" style="min-width: 0; padding: 0 0 0 2px; border: 0; background: transparent; font-family: inherit; color: inherit; display: flex; align-items: center; gap: 6px; cursor: pointer">
+<span style="min-width: 0; display: flex; flex-direction: column; align-items: flex-end; text-align: right">
+<strong style="max-width: 150px; font-size: 12px; line-height: 16px; font-weight: 800; letter-spacing: 0.01em; text-transform: uppercase; color: #2b2b33; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{perfilNome}}</strong>
+<span style="max-width: 150px; font-size: 11px; line-height: 15px; color: #4a4455; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">Equipe Lobo Guará</span>
+</span>
+<img src="{{perfilFoto}}" alt="" aria-hidden="true" style="flex-shrink: 0; width: 38px; height: 38px; box-sizing: border-box; border-radius: 9999px; border: 2px solid #ece6f2; object-fit: cover; object-position: center 30%; display: block">
+<span class="ms" style="flex-shrink: 0; margin-left: -2px; font-size: 22px; color: #1d4ed8">expand_more</span>
 </button>
 </div>
 </header>
@@ -1117,6 +1117,109 @@ Lead quente
 <span style="font-size: 10px; font-weight: 600; white-space: nowrap">Menu</span>
 </button>
 </nav>
+
+<sc-if value="{{perfilOpen}}" hint-placeholder-val="{{ false }}">
+<section class="janela" role="dialog" aria-labelledby="perfil-title" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: 20; background: #eef1f9; display: flex; flex-direction: column; animation: menuIn .38s cubic-bezier(.22,1,.36,1) both">
+<div style="flex-shrink: 0; height: 64px; box-sizing: border-box; padding: 0 12px; background: radial-gradient(circle at 92% 0%, rgba(161, 146, 166,0.55) 0%, rgba(161, 146, 166,0) 45%), #4A1259; color: #ffffff; display: flex; align-items: center; gap: 4px">
+<button onClick="{{closePerfil}}" aria-label="Voltar" style="width: 44px; height: 44px; border: 0; border-radius: 9999px; background: transparent; color: #ffffff; display: flex; align-items: center; justify-content: center; cursor: pointer"><span class="ms" style="font-size: 24px">arrow_back</span></button>
+<h2 id="perfil-title" style="margin: 0; font-size: 17px; line-height: 22px; font-weight: 700; color: #ffffff">Editar perfil</h2>
+</div>
+<div class="nosb" style="flex-grow: 1; min-height: 0; overflow-y: auto; scrollbar-width: none; padding: 16px var(--tela-margem) 24px; display: flex; flex-direction: column; gap: 14px">
+
+<div style="flex-shrink: 0; border-radius: 10px; background: #ffffff; border: 1px solid #e5eeff; overflow: hidden">
+<div style="padding: 14px 14px 8px; display: flex; flex-direction: column; gap: 12px">
+<h3 style="margin: 0; font-size: 14px; line-height: 19px; font-weight: 800">Meus dados</h3>
+<label style="align-self: flex-start; display: flex; align-items: center; gap: 12px; cursor: pointer">
+<span style="position: relative; width: 60px; height: 60px">
+<img src="{{perfilFoto}}" alt="Foto de perfil" style="width: 60px; height: 60px; border-radius: 9999px; object-fit: cover; object-position: center 30%; border: 3px solid #f3eef5; display: block">
+<span style="position: absolute; right: -2px; bottom: 2px; width: 22px; height: 22px; border-radius: 9999px; background: #4A1259; color: #ffffff; border: 2px solid #ffffff; display: flex; align-items: center; justify-content: center"><span class="ms" style="font-size: 15px">add</span></span>
+</span>
+<span style="font-size: 12px; font-weight: 700; color: #4A1259">{{perfilFotoLabel}}</span>
+<input type="file" accept="image/*" onChange="{{onPerfilFoto}}" aria-label="Escolher foto de perfil" style="display: none">
+</label>
+</div>
+<sc-for list="{{perfilLinhas}}" as="pl2" hint-placeholder-count="6">
+<button onClick="{{pl2.abrir}}" style="width: 100%; padding: 9px 10px 9px 14px; border: 0; border-top: 1px solid #f1eef3; background: transparent; font-family: inherit; color: inherit; text-align: left; display: flex; align-items: center; gap: 10px; cursor: pointer">
+<span style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 11px; line-height: 14px; color: #7b7487">{{pl2.label}}</span><span style="{{pl2.valorStyle}}">{{pl2.valor}}</span></span>
+<span class="ms" style="flex-shrink: 0; font-size: 18px; color: #7b7487">chevron_right</span>
+</button>
+</sc-for>
+<button onClick="{{abrirExclusao}}" style="width: 100%; padding: 11px 10px 11px 14px; border: 0; border-top: 1px solid #f1eef3; background: transparent; font-family: inherit; text-align: left; display: flex; align-items: center; gap: 10px; cursor: pointer">
+<span style="flex-grow: 1; font-size: 13px; font-weight: 600; color: #b42318">Exclusão de conta</span>
+<span class="ms" style="flex-shrink: 0; font-size: 18px; color: #b42318">chevron_right</span>
+</button>
+</div>
+
+<div style="flex-shrink: 0; padding: 14px; border-radius: 10px; background: #ffffff; border: 1px solid #e5eeff; display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; flex-direction: column; gap: 2px"><h3 style="margin: 0; font-size: 14px; line-height: 19px; font-weight: 800">Documentos</h3><span style="font-size: 11px; color: #7b7487"><span style="color: #dc2626; font-weight: 800">*</span> obrigatórios</span></div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+<sc-for list="{{perfilDocs}}" as="pd2" hint-placeholder-count="4">
+<div style="min-width: 0; display: flex; flex-direction: column; gap: 6px">
+<label style="position: relative; height: 80px; border-radius: 8px; overflow: hidden; background: #ececf0; display: flex; align-items: center; justify-content: center; cursor: pointer">
+<sc-if value="{{pd2.temImg}}" hint-placeholder-val="{{ false }}"><img src="{{pd2.img}}" alt="{{pd2.label}}" style="width: 100%; height: 100%; object-fit: cover"><span style="position: absolute; top: 6px; right: 6px; width: 24px; height: 24px; border-radius: 9999px; background: rgba(255,255,255,0.92); color: #4A1259; display: flex; align-items: center; justify-content: center"><span class="ms" style="font-size: 15px">edit</span></span></sc-if>
+<sc-if value="{{pd2.semImg}}" hint-placeholder-val="{{ true }}"><span style="width: 36px; height: 36px; border-radius: 9999px; background: #a3a0a8; color: #ffffff; display: flex; align-items: center; justify-content: center"><span class="ms" style="font-size: 24px">add</span></span></sc-if>
+<input type="file" accept="image/*" onChange="{{pd2.onFile}}" aria-label="{{pd2.aria}}" style="display: none">
+</label>
+<span style="font-size: 11px; line-height: 15px; font-weight: 700; color: #0b1c30">{{pd2.label}}<sc-if value="{{pd2.obrig}}" hint-placeholder-val="{{ false }}"><span style="margin-left: 4px; color: #dc2626; font-weight: 800">*</span></sc-if></span>
+<button onClick="{{pd2.ref}}" style="height: 30px; border: 0; border-radius: 6px; background: #4A1259; color: #ffffff; font-family: inherit; font-size: 12px; font-weight: 600; cursor: pointer">Referência</button>
+</div>
+</sc-for>
+</div>
+</div>
+
+</div>
+
+<sc-if value="{{perfilEditOpen}}" hint-placeholder-val="{{ false }}">
+<div onClick="{{fecharPerfilEdit}}" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 40; background: rgba(32, 7, 38,0.38); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); animation: fadeIn .2s ease-out"></div>
+<div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 41; padding: 16px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; pointer-events: none">
+<section role="dialog" aria-modal="true" aria-labelledby="perfil-edit-tit" style="pointer-events: auto; width: 100%; max-width: 360px; max-height: 100%; overflow-y: auto; padding: 20px 18px 18px; box-sizing: border-box; border-radius: 22px; border: 1px solid #ece6f2; background: #ffffff; box-shadow: 0 24px 50px -16px rgba(32, 7, 38,0.45); display: flex; flex-direction: column; gap: 14px; animation: avatarPop .4s cubic-bezier(.34,1.56,.64,1) both">
+<h3 id="perfil-edit-tit" style="margin: 0; font-size: 17px; line-height: 22px; font-weight: 800">{{perfilEditTitulo}}</h3>
+<sc-for list="{{perfilEditCampos}}" as="pc2" hint-placeholder-count="2">
+<label style="display: flex; flex-direction: column; gap: 5px"><span style="font-size: 12px; font-weight: 700; color: #4a4455">{{pc2.label}}</span><input class="campo" type="{{pc2.type}}" inputmode="{{pc2.modo}}" value="{{pc2.value}}" onChange="{{pc2.onChange}}" placeholder="{{pc2.ph}}" autocomplete="off" style="height: 40px; box-sizing: border-box; padding: 0 12px; border: 1px solid #ccc3d8; border-radius: 8px; background: #ffffff; font-family: inherit; color: #0b1c30; outline-color: #4A1259; width: 100%"></label>
+</sc-for>
+<sc-if value="{{perfilEditErro}}" hint-placeholder-val="{{ false }}"><span style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: #b42318"><span class="ms" style="font-size: 16px">error</span>{{perfilEditErroTxt}}</span></sc-if>
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 2px">
+<button onClick="{{fecharPerfilEdit}}" style="height: 46px; border: 1px solid #e5dcea; border-radius: 9999px; background: #ffffff; color: #4a4455; font-family: inherit; font-size: 14px; font-weight: 700; cursor: pointer">Cancelar</button>
+<button onClick="{{salvarPerfilEdit}}" aria-disabled="{{perfilEditDisabled}}" style="{{perfilEditBtn}}">Salvar</button>
+</div>
+</section>
+</div>
+</sc-if>
+
+<sc-if value="{{perfilRefOpen}}" hint-placeholder-val="{{ false }}">
+<div onClick="{{fecharPerfilRef}}" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 40; background: rgba(32, 7, 38,0.38); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); animation: fadeIn .2s ease-out"></div>
+<div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 41; padding: 16px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; pointer-events: none">
+<section role="dialog" aria-modal="true" aria-labelledby="perfil-ref-tit" style="pointer-events: auto; width: 100%; max-width: 360px; max-height: 100%; overflow-y: auto; padding: 20px 18px 18px; box-sizing: border-box; border-radius: 22px; border: 1px solid #ece6f2; background: #ffffff; box-shadow: 0 24px 50px -16px rgba(32, 7, 38,0.45); display: flex; flex-direction: column; gap: 14px; animation: avatarPop .4s cubic-bezier(.34,1.56,.64,1) both; align-items: center; text-align: center">
+<span style="width: 64px; height: 64px; border-radius: 9999px; background: #f3eef5; color: #4A1259; display: flex; align-items: center; justify-content: center"><span class="ms" style="font-size: 32px">{{perfilRefIcone}}</span></span>
+<h3 id="perfil-ref-tit" style="margin: 0; font-size: 17px; line-height: 22px; font-weight: 800">{{perfilRefTitulo}}</h3>
+<div style="width: 100%; display: flex; flex-direction: column; gap: 8px; text-align: left">
+<sc-for list="{{perfilRefDicas}}" as="rd2" hint-placeholder-count="3"><span style="display: flex; align-items: flex-start; gap: 8px; font-size: 13px; line-height: 18px; color: #0b1c30"><span class="ms" style="flex-shrink: 0; font-size: 18px; color: #16a34a; font-variation-settings: 'FILL' 1">check_circle</span>{{rd2.t}}</span></sc-for>
+</div>
+<button onClick="{{fecharPerfilRef}}" style="width: 100%; height: 46px; border: 0; border-radius: 9999px; background: linear-gradient(135deg, #22a06b 0%, #047857 100%); color: #ffffff; font-family: inherit; font-size: 14px; font-weight: 700; cursor: pointer">Entendi</button>
+</section>
+</div>
+</sc-if>
+
+<sc-if value="{{perfilDelOpen}}" hint-placeholder-val="{{ false }}">
+<div onClick="{{fecharExclusao}}" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 40; background: rgba(32, 7, 38,0.38); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); animation: fadeIn .2s ease-out"></div>
+<div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 41; padding: 16px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; pointer-events: none">
+<section role="alertdialog" aria-modal="true" aria-labelledby="perfil-del-tit" style="pointer-events: auto; width: 100%; max-width: 360px; max-height: 100%; overflow-y: auto; padding: 20px 18px 18px; box-sizing: border-box; border-radius: 22px; border: 1px solid #ece6f2; background: #ffffff; box-shadow: 0 24px 50px -16px rgba(32, 7, 38,0.45); display: flex; flex-direction: column; gap: 14px; animation: avatarPop .4s cubic-bezier(.34,1.56,.64,1) both; align-items: center; text-align: center">
+<span style="width: 64px; height: 64px; border-radius: 9999px; background: linear-gradient(145deg, #ef4444 0%, #b42318 100%); color: #ffffff; box-shadow: 0 0 0 6px rgba(239, 68, 68,0.18); display: flex; align-items: center; justify-content: center"><span class="ms" style="font-size: 30px; font-variation-settings: 'FILL' 1">person_remove</span></span>
+<h3 id="perfil-del-tit" style="margin: 0; font-size: 18px; line-height: 22px; font-weight: 800">Excluir sua conta?</h3>
+<p style="margin: 0; font-size: 13px; line-height: 19px; color: #4a4455">A solicitação vai para a equipe ileva. Depois de confirmada, você perde o acesso ao app, às propostas e aos seus indicadores.</p>
+<div style="width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 10px">
+<button onClick="{{fecharExclusao}}" style="height: 46px; border: 1px solid #e5dcea; border-radius: 9999px; background: #ffffff; color: #4a4455; font-family: inherit; font-size: 14px; font-weight: 700; cursor: pointer">Cancelar</button>
+<button onClick="{{confirmarExclusao}}" style="height: 46px; border: 0; border-radius: 9999px; background: linear-gradient(145deg, #ef4444 0%, #b42318 100%); color: #ffffff; font-family: inherit; font-size: 13px; font-weight: 800; cursor: pointer">Solicitar exclusão</button>
+</div>
+</section>
+</div>
+</sc-if>
+
+<sc-if value="{{perfilToastOn}}" hint-placeholder-val="{{ false }}">
+<div role="status" style="position: absolute; left: 16px; right: 16px; bottom: 16px; z-index: 42; padding: 12px 14px; border-radius: 12px; background: #213145; color: #ffffff; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 8px; box-shadow: 0 10px 24px -8px rgba(0,0,0,0.4); animation: sheetUp .3s cubic-bezier(.22,1,.36,1)"><span class="ms" style="font-size: 18px; color: #34d399">check_circle</span>{{perfilToast}}</div>
+</sc-if>
+</section>
+</sc-if>
 
 <sc-if value="{{instalarGuia}}" hint-placeholder-val="{{ false }}">
 <div class="janela" onClick="{{instalarGuiaFechar}}" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: 40; background: rgba(32, 7, 38,0.38); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); animation: fadeIn .2s ease-out"></div>
@@ -3585,24 +3688,16 @@ Faltam 8 placas para atingir a meta.
 <a href="{{det.whatsUrl}}" target="_blank" rel="noopener" style="height: 36px; border-radius: 6px; background: #1fa855; color: #ffffff; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 6px; text-decoration: none"><img src="assets/whatsapp-branco.svg" alt="" aria-hidden="true" style="width: 14px; height: 14px">Conversar</a>
 <button onClick="{{detNota}}" style="height: 44px; border: 1.5px solid #4A1259; border-radius: 6px; background: #ffffff; color: #4A1259; font-family: inherit; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; text-decoration: none; height: 36px; border-width: 1px; border-color: #e5eeff"><span class="ms" style="font-size: 15px">edit_note</span>Agendar</button>
 </div>
-</div>
-
-<div style="flex-shrink: 0; padding: 16px; border-radius: 10px; background: #ffffff; border: 1px solid #e5eeff; box-shadow: 0 2px 12px -2px rgba(32, 7, 38,0.06); display: flex; flex-direction: column; gap: 12px">
+<div style="margin: 10px -16px 0; padding: 16px 16px 0; border-top: 1px solid #ece7f0; display: flex; flex-direction: column; gap: 12px">
 <div style="display: flex; align-items: center; gap: 8px">
 <span style="flex-shrink: 0; width: 32px; height: 40px; color: #4A1259; display: flex; align-items: center; justify-content: center"><span class="ms" style="font-size: 28px; font-variation-settings: 'FILL' 1">{{det.vehIcon}}</span></span>
-<div style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column"><strong style="font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{det.vehTitle}}</strong><span style="font-size: 12px; color: #4a4455">{{det.vehSub}}</span></div>
+<div style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column"><strong style="font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{det.vehTitle}}</strong><span style="font-size: 12px; color: #4a4455">{{det.vehSub}}</span><span style="align-self: flex-start; margin-top: 4px; padding: 2px 8px; border-radius: 6px; background: #f3eef5; font-size: 11px; font-weight: 700; color: #4A1259"><span style="font-weight: 500; color: #7b7487">Categoria:</span> {{det.categoria}}</span></div>
 <span aria-label="Placa {{det.placa}}" style="flex-shrink: 0; display: inline-flex; flex-direction: column; min-width: 78px; border: 1.5px solid #1f2937; border-radius: 6px; overflow: hidden; background: #ffffff; box-shadow: 0 1px 3px rgba(32, 7, 38,0.18)"><span aria-hidden="true" style="height: 9px; background: #1d4fa3; color: #ffffff; font-size: 6.5px; line-height: 9px; font-weight: 800; letter-spacing: 0.2em; text-align: center">BRASIL</span><span style="padding: 2px 8px 3px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px; line-height: 17px; font-weight: 800; letter-spacing: 0.08em; color: #111827; text-align: center; white-space: nowrap">{{det.placa}}</span></span>
 </div>
-<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px">
-<div style="padding: 10px; border-radius: 12px; background: #f9f6fa; display: flex; flex-direction: column"><span style="font-size: 11px; color: #4a4455">Valor FIPE</span><strong style="font-size: 15px">{{det.fipeText}}</strong><span style="font-size: 10px; color: #7b7487">Código {{det.code}}</span></div>
-<div style="padding: 10px; border-radius: 12px; background: #f9f6fa; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 11px; color: #4a4455">Valor protegido</span>
-<sc-if value="{{detEditValor}}" hint-placeholder-val="{{ false }}">
-<span style="display: flex; align-items: center; gap: 4px"><input type="text" inputmode="decimal" value="{{detValorDraft}}" onChange="{{onDetValor}}" aria-label="Novo valor protegido" style="min-width: 0; width: 100%; height: 30px; padding: 0 6px; box-sizing: border-box; border: 1px solid #4A1259; border-radius: 8px; font-family: inherit; font-size: 13px; font-weight: 700"><button onClick="{{saveDetValor}}" aria-label="Salvar valor" style="flex-shrink: 0; width: 30px; height: 30px; border: 0; border-radius: 8px; background: #4A1259; color: #ffffff; display: flex; align-items: center; justify-content: center; cursor: pointer"><span class="ms" style="font-size: 18px">check</span></button></span>
-</sc-if>
-<sc-if value="{{detNotEditValor}}" hint-placeholder-val="{{ true }}">
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0; padding: 4px 0">
+<div style="padding: 2px 4px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center"><span style="font-size: 11px; color: #4a4455">Valor FIPE</span><strong style="font-size: 15px">{{det.fipeText}}</strong><span style="font-size: 10px; color: #7b7487">Código {{det.code}}</span></div>
+<div style="padding: 2px 4px; border-left: 1px solid #ece7f0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; text-align: center"><span style="font-size: 11px; color: #4a4455">Valor protegido</span>
 <strong style="font-size: 15px">{{det.protText}}</strong>
-<button onClick="{{editDetValor}}" style="align-self: flex-start; padding: 0; border: 0; background: transparent; font-family: inherit; font-size: 11px; font-weight: 700; color: #4A1259; cursor: pointer">Alterar valor</button>
-</sc-if>
 </div>
 </div>
 <sc-if value="{{det.isFrota}}" hint-placeholder-val="{{ false }}">
@@ -3624,10 +3719,19 @@ Faltam 8 placas para atingir a meta.
 </sc-for>
 </div>
 </sc-if>
-<div style="display: flex; flex-direction: column; gap: 6px">
-<button onClick="{{openEditVeiculo}}" style="height: 42px; padding: 0 12px; border: 1px solid #e5eeff; border-radius: 12px; background: #ffffff; color: #4A1259; font-family: inherit; font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: flex-start; gap: 10px; cursor: pointer; text-align: left; width: 100%"><span class="ms" style="font-size: 18px">edit</span><span style="flex-grow: 1">Editar veículo</span><span class="ms" style="font-size: 18px; color: #A192A6">chevron_right</span></button>
-<button onClick="{{openFrota}}" style="height: 42px; padding: 0 12px; border: 1px solid #e5eeff; border-radius: 12px; background: #ffffff; color: #4A1259; font-family: inherit; font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: flex-start; gap: 10px; cursor: pointer; text-align: left; width: 100%"><span class="ms" style="font-size: 18px">local_shipping</span><span style="flex-grow: 1">{{det.frotaBtn}}</span><span class="ms" style="font-size: 18px; color: #A192A6">chevron_right</span></button>
-<button onClick="{{openAgregado}}" style="height: 42px; padding: 0 12px; border: 1px solid #e5eeff; border-radius: 12px; background: #ffffff; color: #4A1259; font-family: inherit; font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: flex-start; gap: 10px; cursor: pointer; text-align: left; width: 100%"><span class="ms" style="font-size: 18px">add_link</span><span style="flex-grow: 1">Adicionar agregado</span><span class="ms" style="font-size: 18px; color: #A192A6">chevron_right</span></button>
+<div style="position: relative">
+<button onClick="{{toggleAcoesVeic}}" aria-haspopup="menu" aria-expanded="{{acoesVeicAttr}}" style="width: 100%; height: 42px; padding: 0 12px; border: 1px solid #e5dcea; border-radius: 8px; background: #ffffff; color: #4A1259; font-family: inherit; font-size: 13px; font-weight: 700; display: flex; align-items: center; gap: 8px; cursor: pointer">
+<span class="ms" style="font-size: 19px">tune</span><span style="flex-grow: 1; text-align: left">Ações do veículo</span><span class="ms" style="{{acoesVeicSeta}}">expand_more</span>
+</button>
+<sc-if value="{{acoesVeicOpen}}" hint-placeholder-val="{{ false }}">
+<div onClick="{{fecharAcoesVeic}}" style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 4"></div>
+<div role="menu" aria-label="Ações do veículo" style="position: absolute; top: calc(100% + 6px); left: 0; right: 0; z-index: 5; padding: 6px; border: 1px solid #ece6f2; border-radius: 10px; background: #ffffff; box-shadow: 0 16px 34px -14px rgba(32, 7, 38,0.4); display: flex; flex-direction: column; animation: fadeIn .15s ease-out">
+<sc-for list="{{acoesVeic}}" as="av" hint-placeholder-count="3">
+<button role="menuitem" onClick="{{av.go}}" style="width: 100%; height: 42px; padding: 0 10px; border: 0; border-radius: 8px; background: transparent; color: #0b1c30; font-family: inherit; font-size: 13px; font-weight: 600; text-align: left; display: flex; align-items: center; gap: 10px; cursor: pointer"><span class="ms" style="font-size: 19px; color: #4A1259">{{av.icon}}</span><span style="flex-grow: 1">{{av.label}}</span><span class="ms" style="font-size: 18px; color: #A192A6">chevron_right</span></button>
+</sc-for>
+</div>
+</sc-if>
+</div>
 </div>
 </div>
 
@@ -3689,7 +3793,7 @@ Faltam 8 placas para atingir a meta.
 <span style="font-size: 10px; line-height: 14px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: #7b7487">Benefícios adicionais</span>
 <button onClick="{{openDetExtra}}" aria-disabled="{{dExtraOpenDisabled}}" style="{{dExtraOpenStyle}}"><span class="ms" style="font-size: 18px">add</span>{{dExtraOpenLabel}}</button>
 <sc-if value="{{dExtraHasItems}}" hint-placeholder-val="{{ false }}">
-<div style="display: flex; flex-direction: column">
+<div style="padding: 2px 12px; border-radius: 8px; background: #f5f4f7; display: flex; flex-direction: column">
 <sc-for list="{{dExtraItems}}" as="dxi" hint-placeholder-count="2">
 <div style="{{dxi.rowStyle}}">
 <span style="flex-grow: 1; min-width: 0; font-size: 12px; font-weight: 600; line-height: 16px">{{dxi.label}}</span>
@@ -3713,7 +3817,6 @@ Faltam 8 placas para atingir a meta.
 
 <div style="display: flex; flex-direction: column; gap: 2px; padding: 4px 2px 0">
 <h3 style="margin: 0; font-size: 16px; line-height: 22px; font-weight: 700">Etapas de finalização</h3>
-<span style="font-size: 12px; line-height: 17px; color: #4a4455">Toque numa etapa para ver os detalhes. Cada etapa libera a próxima.</span>
 </div>
 
 <div style="flex-shrink: 0; padding: 14px 8px 12px; border-radius: 10px 10px 0 0; background: #ffffff; border: 1px solid #e5eeff; border-bottom: 1px solid #f1eef3">
@@ -3732,19 +3835,10 @@ Faltam 8 placas para atingir a meta.
 <sc-for list="{{detSteps}}" as="sx" hint-placeholder-count="1">
 <sc-if value="{{sx.isViewed}}" hint-placeholder-val="{{ true }}">
 <div style="{{sx.cardStyle}}" class="step-card">
-<div style="display: flex; align-items: center; justify-content: space-between; gap: 8px">
-<div style="display: flex; flex-direction: column"><span style="font-size: 11px; color: #7b7487">Etapa {{sx.num}}</span><strong style="{{sx.titleStyle}}">{{sx.title}}</strong></div>
-<span style="{{sx.badgeStyle}}">{{sx.badge}}</span>
-</div>
 <sc-if value="{{sx.hasSummary}}" hint-placeholder-val="{{ false }}"><span style="font-size: 12px; line-height: 17px; color: #4a4455">{{sx.summary}}</span></sc-if>
 <sc-if value="{{sx.showResumo}}" hint-placeholder-val="{{ false }}">
 <div style="display: flex; flex-direction: column">
 
-<div style="display: flex; align-items: center; gap: 6px; padding-top: 4px; border-top: 1px solid #eff4ff; margin-top: 2px">
-<span class="ms" style="font-size: 18px; color: #4A1259">receipt_long</span>
-<span style="font-size: 11px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: #7b7487">Resumo da proposta</span>
-</div>
-<div style="padding: 10px 0; border-bottom: 1px solid #eff4ff; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 11px; color: #7b7487">Categoria</span><span style="font-size: 14px; font-weight: 600; color: #0b1c30">{{fin.categoria}}</span></div>
 <sc-if value="{{fin.hasAlteracao}}" hint-placeholder-val="{{ false }}">
 <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 10px 0; border-bottom: 1px solid #eff4ff">
 <span style="min-width: 0; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 11px; color: #7b7487">Alteração de valor protegido</span><span style="font-size: 14px; font-weight: 600; color: #0b1c30; font-size: 13px">{{fin.alteracao}}</span></span>
@@ -3769,7 +3863,7 @@ Faltam 8 placas para atingir a meta.
 <div style="padding: 10px 0; border-bottom: 1px solid #eff4ff; display: flex; flex-direction: column; gap: 6px">
 <div style="display: flex; align-items: center; justify-content: space-between"><span style="font-size: 11px; color: #7b7487">Benefícios adicionais</span><button onClick="{{openDetExtra}}" aria-disabled="{{dExtraOpenDisabled}}" style="flex-shrink: 0; height: 24px; padding: 0 9px 0 6px; border: 0; border-radius: 9999px; background: #f3eef5; font-family: inherit; font-size: 11px; font-weight: 700; color: #4A1259; display: flex; align-items: center; gap: 2px; cursor: pointer"><span class="ms" style="font-size: 15px">add</span>Adicionar</button></div>
 <sc-if value="{{dExtraHasItems}}" hint-placeholder-val="{{ false }}">
-<div style="display: flex; flex-direction: column">
+<div style="padding: 2px 12px; border-radius: 8px; background: #f5f4f7; display: flex; flex-direction: column">
 <sc-for list="{{dExtraItems}}" as="dxi" hint-placeholder-count="2">
 <div style="{{dxi.rowStyle}}">
 <span style="flex-grow: 1; min-width: 0; font-size: 12px; font-weight: 600; line-height: 16px">{{dxi.label}}</span>
@@ -5678,7 +5772,7 @@ Compartilhar QR Code
           { id: 'assinatura', title: 'Assinatura do termo', done: t.assinatura, pending: t.dados && t.perguntas ? 'Pronto para enviar' : 'Aguardando perguntas e dados', ok: 'Termo enviado para assinatura', icon: 'draw', enabled: !!(t.dados && t.perguntas) }
         ];
         const allTasks = tasks.every((x) => x.done);
-        const btn = (enabled, primary) => 'flex-shrink:0;height:34px;padding:0 12px;border-radius:6px;font-family:inherit;font-size:12px;font-weight:700;cursor:' + (enabled ? 'pointer' : 'not-allowed') + ';'
+        const btn = (enabled, primary) => 'flex-shrink:0;width:96px;height:34px;padding:0 8px;display:flex;align-items:center;justify-content:center;white-space:nowrap;border-radius:6px;font-family:inherit;font-size:12px;font-weight:700;cursor:' + (enabled ? 'pointer' : 'not-allowed') + ';'
           + (!enabled ? 'border:1px solid #e5eeff;background:#ffffff;color:#ccc3d8;' : primary ? 'border:0;background:#4A1259;color:#ffffff;' : 'border:1px solid #A192A6;background:#ffffff;color:#4A1259;');
         const bigBtn = (enabled) => 'height:44px;border:0;border-radius:8px;font-family:inherit;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:8px;transition:all .2s;'
           + (enabled ? 'background:linear-gradient(135deg,#22a06b 0%,#047857 100%);color:#ffffff;cursor:pointer;box-shadow:0 8px 18px -8px rgba(4, 120, 87,0.6);' : 'background:#e5eeff;color:#7b7487;cursor:not-allowed;');
@@ -5748,7 +5842,8 @@ Compartilhar QR Code
               return { style: 'flex:1;height:6px;border-radius:9999px;background:' + (done ? '#ffffff' : cur ? 'rgba(255,255,255,0.75)' : 'rgba(255,255,255,0.22)') + (cur ? ';box-shadow:0 0 0 2px rgba(255,255,255,0.25)' : '') };
             }),
             bannerStyle: 'flex-shrink:0;padding:14px 16px;border-radius:16px;color:#ffffff;display:flex;flex-direction:column;gap:10px;box-shadow:0 8px 20px -10px rgba(32, 7, 38,0.5);background:' + banner.bg,
-            vehIcon: tipoIcon, vehTitle: (p.marca ? p.marca + ' ' : '') + p.model, vehSub: { carro: 'Carro', moto: 'Moto', caminhao: 'Caminhão' }[p.type] + ' · ' + p.ano + ' ' + p.fuel,
+            vehIcon: tipoIcon, vehTitle: (p.marca ? p.marca + ' ' : '') + p.model.replace(/\s+\d{4}$/, ''), vehSub: { carro: 'Carro', moto: 'Moto', caminhao: 'Caminhão' }[p.type] + ' · Ano ' + p.ano + '/' + (p.anoModelo || p.ano) + ' · ' + p.fuel,
+            categoria: { carro: 'Carros leves', moto: 'Motos', caminhao: 'Pesados' }[p.type] || '',
             placa: p.placa, fipeText: this.brl(p.fipe), code: p.code, protText: this.brl(p.protegido),
             shareUrl: 'https://wa.me/' + this.waNum(p.phone, p.pais) + '?text=' + encodeURIComponent('Olá, ' + p.name.split(' ')[0] + '! Seguem as opções de proteção para o seu ' + p.model + ':\n' + sharePlans.map((x) => '• ' + x.name + ': ' + (this.planPrice(x, p.fipe, p.cotas[x.id]) ? this.brl(this.planPrice(x, p.fipe, p.cotas[x.id])) + '/mês' : 'sob medida')).join('\n') + '\nVeja a proposta completa: https://demo.ileva.com.br/proposta/' + p.num),
             extrasLabel: extrasSel.length ? 'Adicionais (' + extrasSel.length + ')' : 'Adicionais'
@@ -5757,6 +5852,16 @@ Compartilhar QR Code
           openEditVeiculo: () => this.setState({ ds: 'veiculo', vcPlaca: p.placa, vcCor: (p.veic || {}).cor || '', vcChassi: (p.veic || {}).chassi || '', vcRenavam: (p.veic || {}).renavam || '' }),
           openFrota: () => this.setState({ ds: 'frota', frotaPick: p.frota && p.frota !== 'Não está em frota' ? p.frota : '', frotaNova: '' }),
           openAgregado: () => this.setState({ ds: 'agregado', agTipo: '', agPlaca: '', agDesc: '', agValor: '' }),
+          acoesVeicOpen: !!st.acoesVeic,
+          acoesVeicAttr: st.acoesVeic ? 'true' : 'false',
+          acoesVeicSeta: 'font-size:20px;transition:transform .2s;' + (st.acoesVeic ? 'transform:rotate(180deg)' : ''),
+          toggleAcoesVeic: () => this.setState({ acoesVeic: !st.acoesVeic }),
+          fecharAcoesVeic: () => this.setState({ acoesVeic: false }),
+          acoesVeic: [
+            { icon: 'edit', label: 'Editar veículo', go: () => this.setState({ acoesVeic: false, ds: 'veiculo', vcPlaca: p.placa, vcCor: (p.veic || {}).cor || '', vcChassi: (p.veic || {}).chassi || '', vcRenavam: (p.veic || {}).renavam || '' }) },
+            { icon: 'local_shipping', label: p.frota && p.frota !== 'Não está em frota' ? 'Alterar frota' : 'Adicionar em frota', go: () => this.setState({ acoesVeic: false, ds: 'frota', frotaPick: p.frota && p.frota !== 'Não está em frota' ? p.frota : '', frotaNova: '' }) },
+            { icon: 'add_link', label: 'Adicionar agregado', go: () => this.setState({ acoesVeic: false, ds: 'agregado', agTipo: '', agPlaca: '', agDesc: '', agValor: '' }) }
+          ],
           frotaIsNova: st.frotaPick === 'nova',
           frotaNova: st.frotaNova || '', onFrotaNova: (e) => this.setState({ frotaNova: e.target.value }),
           frotaOpts: (() => {
@@ -5927,7 +6032,7 @@ Compartilhar QR Code
                   priceAria: 'Valor mensal de ' + (x ? x.label : id),
                   editAria: 'Editar ' + (x ? x.label : id),
                   removeAria: 'Remover ' + (x ? x.label : id),
-                  rowStyle: 'display:flex;align-items:center;gap:8px;padding:10px 0;animation:itemIn .3s cubic-bezier(.22,1,.36,1) both;' + (i < arr.length - 1 ? 'border-bottom:1px solid #eff4ff;' : ''),
+                  rowStyle: 'display:flex;align-items:center;gap:8px;padding:10px 0;animation:itemIn .3s cubic-bezier(.22,1,.36,1) both;' + (i < arr.length - 1 ? 'border-bottom:1px solid #e6e2ea;' : ''),
                   edit: () => this.setState({ ...close, dExtraModal: true, dExtraEditId: id, dExtraPick: id, dExtraQuery: x ? x.label : '', dExtraPrice: this.maskMoney(String(Math.round(Math.abs(v) * 100))), dExtraNeg: v < 0 }),
                   remove: () => this.setState({ dExtraDelId: id })
                 };
@@ -7530,6 +7635,127 @@ Compartilhar QR Code
       }
 
       // Atalho para instalar o app na tela inicial (tela cheia).
+      // Página "Editar perfil" do consultor.
+      static perfilInicial() {
+        return {
+          nome: 'Carlos Eduardo', email: 'carlos.eduardo@ileva.com.br', fone: '(62) 99999-0000',
+          cep: '74000-000', rua: 'Avenida Guarapari', numero: '120', bairro: 'Jardim Atlântico', cidade: 'Goiânia/GO',
+          banco: '', agencia: '', conta: '', pix: ''
+        };
+      }
+
+      perfilVals() {
+        const st = this.state;
+        const pf = st.perfil || (this.state.perfil = Component.perfilInicial());
+        const docs = st.perfilDocs || {};
+        const set = (patch) => this.setState(patch);
+        const iniciais = pf.nome.trim().split(/\s+/).filter(Boolean);
+        const toast = (t) => { set({ perfilToast: t }); clearTimeout(this.perfilTimer); this.perfilTimer = setTimeout(() => this.setState({ perfilToast: '' }), 2600); };
+        const lerArquivo = (chave) => (e) => {
+          const f = e.target.files && e.target.files[0];
+          if (!f) return;
+          this.setState({ perfilDocs: { ...(this.state.perfilDocs || {}), [chave]: URL.createObjectURL(f) } });
+          toast(chave === 'foto' ? 'Foto de perfil atualizada' : 'Documento enviado');
+        };
+        const endereco = [pf.rua && pf.rua + (pf.numero ? ', ' + pf.numero : ''), pf.bairro, pf.cidade].filter(Boolean).join(' · ');
+        const banco = pf.banco ? [pf.banco, pf.agencia && 'Ag. ' + pf.agencia, pf.conta && 'CC ' + pf.conta].filter(Boolean).join(' · ') : '';
+        const formularios = {
+          nome: { titulo: 'Nome', campos: [{ k: 'nome', label: 'Nome completo', type: 'text' }] },
+          email: { titulo: 'Seu e-mail', campos: [{ k: 'email', label: 'E-mail', type: 'email', modo: 'email' }] },
+          fone: { titulo: 'Seu telefone', campos: [{ k: 'fone', label: 'Telefone', type: 'tel', modo: 'numeric', mask: (v) => this.maskPhone(v, 'BR'), ph: '(00) 00000-0000' }] },
+          senha: { titulo: 'Alterar senha', campos: [{ k: 'senhaAtual', label: 'Senha atual', type: 'password' }, { k: 'senhaNova', label: 'Nova senha', type: 'password', ph: 'Mínimo de 6 caracteres' }, { k: 'senhaConf', label: 'Confirmar nova senha', type: 'password' }] },
+          endereco: { titulo: 'Endereço', campos: [{ k: 'cep', label: 'CEP', type: 'text', modo: 'numeric', ph: '00000-000', mask: (v) => { const d = v.replace(/\D/g, '').slice(0, 8); return d.length > 5 ? d.slice(0, 5) + '-' + d.slice(5) : d; } }, { k: 'rua', label: 'Rua / Avenida', type: 'text' }, { k: 'numero', label: 'Número', type: 'text', modo: 'numeric' }, { k: 'bairro', label: 'Bairro', type: 'text' }, { k: 'cidade', label: 'Cidade/UF', type: 'text', ph: 'Ex.: Goiânia/GO' }] },
+          banco: { titulo: 'Dados bancários', campos: [{ k: 'banco', label: 'Banco', type: 'text', ph: 'Ex.: Banco do Brasil' }, { k: 'agencia', label: 'Agência', type: 'text', modo: 'numeric' }, { k: 'conta', label: 'Conta', type: 'text', modo: 'numeric' }, { k: 'pix', label: 'Chave PIX', type: 'text', ph: 'CPF, e-mail, telefone ou aleatória' }] }
+        };
+        const abrirForm = (chave) => {
+          const rascunho = {};
+          formularios[chave].campos.forEach((c) => { rascunho[c.k] = chave === 'senha' ? '' : (pf[c.k] || ''); });
+          set({ perfilEdit: chave, perfilDraft: rascunho });
+        };
+        const form = st.perfilEdit ? formularios[st.perfilEdit] : null;
+        const draft = st.perfilDraft || {};
+        let erro = '';
+        if (form) {
+          if (st.perfilEdit === 'senha') {
+            if (draft.senhaNova && draft.senhaNova.length < 6) erro = 'A nova senha precisa ter pelo menos 6 caracteres.';
+            else if (draft.senhaConf && draft.senhaNova !== draft.senhaConf) erro = 'A confirmação não confere com a nova senha.';
+          } else if (st.perfilEdit === 'email' && draft.email && !/^\S+@\S+\.\S+$/.test(draft.email)) erro = 'Digite um e-mail válido.';
+        }
+        const ok = !!form && !erro && (st.perfilEdit === 'senha'
+          ? !!(draft.senhaAtual && draft.senhaNova && draft.senhaConf)
+          : String(draft[form.campos[0].k] || '').trim().length > 0);
+        const dicas = {
+          foto: { titulo: 'Foto de perfil', icone: 'face', dicas: ['Rosto de frente, bem iluminado', 'Fundo claro e sem outras pessoas', 'Sem óculos escuros, boné ou chapéu'] },
+          rgFrente: { titulo: 'RG · frente', icone: 'badge', dicas: ['Documento inteiro, sem cortar as bordas', 'Foto nítida, sem reflexo de luz', 'Lado com a sua foto'] },
+          rgVerso: { titulo: 'RG · verso', icone: 'badge', dicas: ['Lado com os seus dados e o número do RG', 'Documento inteiro e legível', 'Sem reflexo de luz'] },
+          cnh: { titulo: 'CNH · frente e verso', icone: 'id_card', dicas: ['Abra a CNH e fotografe os dois lados na mesma imagem', 'Ou envie o PDF da CNH digital', 'Todos os dados precisam estar legíveis'] }
+        };
+        const ref = st.perfilRef ? dicas[st.perfilRef] : null;
+        return {
+          openPerfil: () => this.setState({ perfilOpen: true, menuOpen: false, iaOpen: false, cotacaoOpen: false }),
+          closePerfil: () => this.setState({ perfilOpen: false, perfilEdit: null, perfilRef: null, perfilDel: false }),
+          perfilOpen: !!st.perfilOpen,
+          perfilNome: pf.nome,
+          perfilIniciais: ((iniciais[0] || '?').charAt(0) + (iniciais.length > 1 ? iniciais[iniciais.length - 1].charAt(0) : '')).toUpperCase(),
+          perfilFoto: docs.foto || 'assets/foto-perfil.jpg',
+          perfilFotoLabel: docs.foto ? 'Trocar foto de perfil' : 'Adicionar foto de perfil',
+          onPerfilFoto: lerArquivo('foto'),
+          perfilLinhas: [
+            { k: 'nome', label: 'Nome', valor: pf.nome },
+            { k: 'email', label: 'Seu e-mail', valor: pf.email },
+            { k: 'fone', label: 'Seu telefone', valor: pf.fone },
+            { k: 'senha', label: 'Alterar senha', valor: '•••••••••' },
+            { k: 'endereco', label: 'Endereço', valor: endereco },
+            { k: 'banco', label: 'Dados bancários', valor: banco }
+          ].map((l) => ({
+            ...l,
+            valor: l.valor || 'Não informado',
+            valorStyle: 'font-size:13px;line-height:17px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:' + (l.valor ? '#0b1c30' : '#a7a0b2'),
+            abrir: () => abrirForm(l.k)
+          })),
+          perfilDocs: [
+            { k: 'foto', label: 'Foto de perfil', obrig: true },
+            { k: 'rgFrente', label: 'RG · frente', obrig: false },
+            { k: 'rgVerso', label: 'RG · verso', obrig: true },
+            { k: 'cnh', label: 'CNH · frente e verso', obrig: false }
+          ].map((d) => ({
+            ...d,
+            temImg: !!(docs[d.k] || d.k === 'foto'), semImg: !(docs[d.k] || d.k === 'foto'), img: docs[d.k] || (d.k === 'foto' ? 'assets/foto-perfil.jpg' : ''),
+            aria: 'Enviar ' + d.label,
+            onFile: lerArquivo(d.k),
+            ref: () => set({ perfilRef: d.k })
+          })),
+          perfilEditOpen: !!form,
+          perfilEditTitulo: form ? form.titulo : '',
+          perfilEditCampos: form ? form.campos.map((c) => ({
+            label: c.label, type: c.type, modo: c.modo || 'text', ph: c.ph || '',
+            value: draft[c.k] || '',
+            onChange: (e) => { const v = c.mask ? c.mask(e.target.value) : e.target.value; this.setState({ perfilDraft: { ...(this.state.perfilDraft || {}), [c.k]: v } }); }
+          })) : [],
+          perfilEditErro: !!erro, perfilEditErroTxt: erro,
+          perfilEditDisabled: ok ? 'false' : 'true',
+          perfilEditBtn: 'height:46px;border:0;border-radius:9999px;font-family:inherit;font-size:14px;font-weight:700;' + (ok ? 'background:linear-gradient(135deg,#22a06b 0%,#047857 100%);color:#ffffff;cursor:pointer;box-shadow:0 8px 18px -8px rgba(4, 120, 87,0.6);' : 'background:#e5eeff;color:#7b7487;cursor:not-allowed;'),
+          fecharPerfilEdit: () => set({ perfilEdit: null }),
+          salvarPerfilEdit: () => {
+            if (!ok) return;
+            const chave = st.perfilEdit;
+            const novo = { ...pf };
+            if (chave !== 'senha') form.campos.forEach((c) => { novo[c.k] = String(draft[c.k] || '').trim(); });
+            this.setState({ perfil: novo, perfilEdit: null, perfilDraft: {} });
+            toast(chave === 'senha' ? 'Senha alterada' : form.titulo + ' atualizado');
+          },
+          perfilRefOpen: !!ref,
+          perfilRefTitulo: ref ? ref.titulo : '', perfilRefIcone: ref ? ref.icone : 'help',
+          perfilRefDicas: ref ? ref.dicas.map((t) => ({ t })) : [],
+          fecharPerfilRef: () => set({ perfilRef: null }),
+          perfilDelOpen: !!st.perfilDel,
+          abrirExclusao: () => set({ perfilDel: true }),
+          fecharExclusao: () => set({ perfilDel: false }),
+          confirmarExclusao: () => { set({ perfilDel: false }); toast('Solicitação de exclusão enviada à equipe ileva'); },
+          perfilToastOn: !!st.perfilToast, perfilToast: st.perfilToast || ''
+        };
+      }
+
       instalarVals() {
         if (!this.__refreshLigado) { this.__refreshLigado = true; window.__ilevaRefresh = () => this.setState({}); }
         let dispensado = false, instalado = false;
@@ -7562,6 +7788,7 @@ Compartilhar QR Code
         const cardBase = 'flex-shrink:0;width:82px;height:82px;box-sizing:border-box;scroll-snap-align:start;padding:10px;border:0;border-radius:12px;font-family:inherit;display:flex;flex-direction:column;justify-content:space-between;align-items:flex-start;cursor:pointer;transition:background .2s,color .2s;';
 
         return {
+          ...this.perfilVals(),
           ...this.instalarVals(),
           saldo: hidden ? mask : '3.200,00',
           adesao: hidden ? mask : 'R$ 1.200,00',
