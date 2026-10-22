@@ -1,0 +1,609 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#4A1259">
+  <title>Termo de filiação · ileva</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,300..600,0..1,0&display=block">
+  <style>
+    * {
+      box-sizing: border-box
+    }
+
+    html {
+      -webkit-text-size-adjust: 100%
+    }
+
+    body {
+      margin: 0;
+      background: #eef1f9;
+      color: #0b1c30;
+      font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased
+    }
+
+    button {
+      font-family: inherit;
+      color: inherit
+    }
+
+    .mi {
+      font-family: "Material Symbols Outlined";
+      font-weight: normal;
+      font-style: normal;
+      font-size: 20px;
+      line-height: 1;
+      display: inline-block;
+      white-space: nowrap;
+      font-feature-settings: "liga";
+      -webkit-font-smoothing: antialiased
+    }
+
+    .topo {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      background: rgba(255, 255, 255, .92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid #ece6f2
+    }
+
+    .topo .in {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px
+    }
+
+    .topo img {
+      height: 26px;
+      display: block
+    }
+
+    .topo .num {
+      flex: 1;
+      min-width: 0;
+      text-align: right;
+      font-size: 11px;
+      color: #7b7487
+    }
+
+    .topo .num b {
+      display: block;
+      color: #0b1c30;
+      font-size: 13px
+    }
+
+    main {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 16px 16px 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px
+    }
+
+    .heroi {
+      padding: 18px 16px;
+      border-radius: 14px;
+      color: #fff;
+      background: radial-gradient(circle at 90% 0%, rgba(161, 146, 166, .55) 0%, rgba(161, 146, 166, 0) 50%), #4A1259
+    }
+
+    .heroi small {
+      display: block;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      opacity: .75
+    }
+
+    .heroi h1 {
+      margin: 4px 0 6px;
+      font-size: 20px;
+      line-height: 26px
+    }
+
+    .heroi p {
+      margin: 0;
+      font-size: 13px;
+      line-height: 19px;
+      opacity: .88
+    }
+
+    .card {
+      padding: 12px 16px 16px;
+      border-radius: 10px;
+      background: #fff;
+      border: 1px solid #e5eeff;
+      box-shadow: 0 2px 12px -2px rgba(32, 7, 38, .06);
+      display: flex;
+      flex-direction: column;
+      gap: 12px
+    }
+
+    .dois {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      padding: 4px 0
+    }
+
+    .dois div {
+      padding: 2px 4px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center
+    }
+
+    .dois div+div {
+      border-left: 1px solid #ece7f0
+    }
+
+    .dois span {
+      font-size: 11px;
+      color: #4a4455
+    }
+
+    .dois strong {
+      font-size: 14px
+    }
+
+    .veic {
+      display: flex;
+      align-items: center;
+      gap: 8px
+    }
+
+    .veic .t {
+      flex: 1;
+      min-width: 0
+    }
+
+    .veic strong {
+      display: block;
+      font-size: 14px
+    }
+
+    .veic span {
+      font-size: 12px;
+      color: #4a4455
+    }
+
+    .placa {
+      flex-shrink: 0;
+      display: inline-flex;
+      flex-direction: column;
+      min-width: 78px;
+      border: 1.5px solid #1f2937;
+      border-radius: 6px;
+      overflow: hidden;
+      background: #fff
+    }
+
+    .placa i {
+      height: 9px;
+      background: #1d4fa3;
+      color: #fff;
+      font-style: normal;
+      font-size: 6.5px;
+      line-height: 9px;
+      font-weight: 800;
+      letter-spacing: .2em;
+      text-align: center
+    }
+
+    .placa b {
+      padding: 2px 8px 3px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 13px;
+      line-height: 17px;
+      letter-spacing: .08em;
+      text-align: center;
+      white-space: nowrap
+    }
+
+    .bt-pri,
+    .bt-sec {
+      width: 100%;
+      height: 50px;
+      border-radius: 14px;
+      font-size: 15px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      cursor: pointer;
+      text-decoration: none
+    }
+
+    .bt-pri {
+      border: 0;
+      background: linear-gradient(135deg, #22a06b 0%, #047857 100%);
+      color: #fff;
+      box-shadow: 0 8px 18px -8px rgba(4, 120, 87, .6)
+    }
+
+    .bt-pri[disabled] {
+      background: #e5eeff;
+      color: #7b7487;
+      box-shadow: none;
+      cursor: not-allowed
+    }
+
+    .bt-sec {
+      border: 1px solid #e5eeff;
+      background: #fff;
+      color: #4A1259
+    }
+
+    .ciente {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 12px;
+      line-height: 17px;
+      color: #4a4455;
+      cursor: pointer
+    }
+
+    .ciente input {
+      margin: 2px 0 0;
+      width: 18px;
+      height: 18px;
+      accent-color: #4A1259;
+      flex-shrink: 0
+    }
+
+    .camada {
+      position: fixed;
+      inset: 0;
+      z-index: 20;
+      background: #eef1f9;
+      display: flex;
+      flex-direction: column
+    }
+
+    .c-top {
+      flex-shrink: 0;
+      height: 56px;
+      padding: 0 8px 0 12px;
+      background: #4A1259;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 4px
+    }
+
+    .c-top h2 {
+      flex: 1;
+      margin: 0;
+      font-size: 15px
+    }
+
+    .c-top button {
+      height: 40px;
+      min-width: 40px;
+      padding: 0 10px;
+      border: 0;
+      border-radius: 99px;
+      background: none;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      cursor: pointer
+    }
+
+    .c-top button.borda {
+      height: 34px;
+      border: 1px solid rgba(255, 255, 255, .3)
+    }
+
+    .doc {
+      flex: 1;
+      min-height: 0;
+      overflow-y: auto;
+      padding: 16px
+    }
+
+    .doc article {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 18px 16px;
+      border-radius: 10px;
+      background: #fff;
+      border: 1px solid #e5eeff;
+      font-size: 13px;
+      line-height: 20px;
+      color: #33293d
+    }
+
+    .doc h3 {
+      margin: 0 0 4px;
+      font-size: 16px;
+      color: #0b1c30
+    }
+
+    .doc h4 {
+      margin: 14px 0 4px;
+      font-size: 13px;
+      color: #4A1259
+    }
+
+    .doc p {
+      margin: 0
+    }
+
+    .pad {
+      flex: 1;
+      min-height: 0;
+      padding: 14px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-width: 820px;
+      width: 100%;
+      margin: 0 auto
+    }
+
+    .pad p {
+      margin: 0;
+      font-size: 12px;
+      line-height: 17px;
+      color: #4a4455
+    }
+
+    .quadro {
+      position: relative;
+      flex: 1;
+      min-height: 200px;
+      border: 1.5px dashed #ccc3d8;
+      border-radius: 14px;
+      background: #fff;
+      overflow: hidden
+    }
+
+    .quadro .dica {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      transform: translateY(-50%);
+      text-align: center;
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: .14em;
+      color: #e5dcea;
+      pointer-events: none
+    }
+
+    .quadro .linha {
+      position: absolute;
+      left: 10%;
+      right: 10%;
+      bottom: 22%;
+      border-top: 1px solid #d9cfe0;
+      pointer-events: none
+    }
+
+    .quadro canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      touch-action: none;
+      cursor: crosshair
+    }
+
+    .base {
+      flex-shrink: 0;
+      padding: 10px 16px calc(12px + env(safe-area-inset-bottom));
+      background: #fff;
+      border-top: 1px solid #ece7f0
+    }
+
+    .base .in {
+      max-width: 640px;
+      margin: 0 auto;
+      display: flex;
+      gap: 8px
+    }
+
+    .base .bt-sec {
+      flex: 1
+    }
+
+    .base .bt-pri {
+      flex: 1.6
+    }
+
+    .fim {
+      padding: 28px 18px;
+      text-align: center;
+      align-items: center
+    }
+
+    .fim .selo-ok {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: #d1fae5;
+      color: #047857;
+      display: flex;
+      align-items: center;
+      justify-content: center
+    }
+
+    .fim .selo-ok .mi {
+      font-size: 40px
+    }
+
+    .fim h2 {
+      margin: 6px 0 0;
+      font-size: 20px
+    }
+
+    .fim p {
+      margin: 0;
+      font-size: 13px;
+      line-height: 19px;
+      color: #4a4455
+    }
+
+    .fim img {
+      max-width: 100%;
+      max-height: 110px
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app"></div>
+  <div id="camada"></div>
+
+  <script>
+    (function () {
+      // Os dados do termo vêm no próprio link (#d=...), gerados pelo App do Consultor.
+      var app = document.getElementById('app');
+      var camada = document.getElementById('camada');
+      var d = ler();
+      var leu = false;
+      var ciente = false;
+      var assinatura = '';
+      var traco = false;
+
+      function ler() {
+        var m = location.hash.match(/[#&]d=([^&]+)/);
+        if (!m) return null;
+        try {
+          var b64 = m[1].replace(/-/g, '+').replace(/_/g, '/');
+          while (b64.length % 4) b64 += '=';
+          var bin = atob(b64);
+          var bytes = new Uint8Array(bin.length);
+          for (var i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+          return JSON.parse(new TextDecoder().decode(bytes));
+        } catch (e) { return null; }
+      }
+
+      function esc(v) {
+        return String(v == null ? '' : v).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; });
+      }
+
+      function icon(n, extra) { return '<span class="mi"' + (extra ? ' style="' + extra + '"' : '') + ' aria-hidden="true">' + n + '</span>'; }
+      function primeiro(nome) { return String(nome || '').trim().split(/\s+/)[0]; }
+
+      function render() {
+        if (!d) {
+          app.innerHTML = '<main><div class="card fim">' + icon('link_off', 'font-size:40px;color:#7b7487') + '<h2>Link inválido ou incompleto</h2><p>Peça ao seu consultor para enviar o link do termo de novo.</p></div></main>';
+          return;
+        }
+        var topo = '<div class="topo"><div class="in"><img src="assets/logo-ileva.png" alt="ileva"><span class="num"><b>Termo de filiação</b>Proposta nº ' + esc(d.n) + '</span></div></div>';
+        if (assinatura) {
+          app.innerHTML = topo + '<main><div class="card fim"><span class="selo-ok">' + icon('task_alt') + '</span><h2>Termo assinado!</h2>'
+            + '<p>Obrigado, ' + esc(primeiro(d.cli.nome)) + '. ' + esc(primeiro(d.cons.nome)) + ' já foi avisado e vai seguir com a ativação da sua proteção.</p>'
+            + '<img src="' + assinatura + '" alt="Sua assinatura">'
+            + (d.cons.wa ? '<a class="bt-pri" target="_blank" rel="noopener" href="https://wa.me/' + esc(d.cons.wa) + '?text=' + encodeURIComponent('Olá, ' + primeiro(d.cons.nome) + '! Assinei o termo de filiação do veículo placa ' + d.vei.placa + '.') + '">' + icon('chat') + 'Falar com o consultor</a>' : '')
+            + '</div></main>';
+          return;
+        }
+        app.innerHTML = topo + '<main>'
+          + '<section class="heroi"><small>TERMO DE FILIAÇÃO</small><h1>Olá, ' + esc(primeiro(d.cli.nome)) + '!</h1><p>Leia o termo de filiação da sua proteção veicular e assine pelo celular. Leva menos de um minuto.</p></section>'
+          + '<div class="card"><div class="veic"><div class="t"><strong>' + esc(d.vei.modelo) + '</strong><span>' + esc(d.cli.nome) + '</span></div>'
+          + (d.vei.placa ? '<span class="placa" aria-label="Placa ' + esc(d.vei.placa) + '"><i>BRASIL</i><b>' + esc(d.vei.placa) + '</b></span>' : '') + '</div>'
+          + '<div class="dois"><div><span>Modelo do termo</span><strong>' + esc(d.termo.modelo) + '</strong></div><div><span>Tipo</span><strong>' + esc(d.termo.tipo) + '</strong></div></div>'
+          + '<button class="bt-sec" data-acao="ler">' + icon('description') + (leu ? 'Ler o termo de novo' : 'Ler o termo') + '</button></div>'
+          + '<div class="card"><label class="ciente"><input type="checkbox" data-acao="ciente"' + (ciente ? ' checked' : '') + '>Li e concordo com o termo de filiação e com as condições da minha proteção veicular.</label>'
+          + '<button class="bt-pri" data-acao="assinar"' + (ciente ? '' : ' disabled') + '>' + icon('draw') + 'Assinar termo</button></div>'
+          + '</main>';
+      }
+
+      function documento() {
+        var nome = esc(d.cli.nome), placa = esc(d.vei.placa), modelo = esc(d.vei.modelo);
+        camada.innerHTML = '<div class="camada" role="dialog" aria-modal="true" aria-label="Termo de filiação"><div class="c-top"><button data-acao="fechar" aria-label="Fechar">' + icon('close') + '</button><h2>' + esc(d.termo.modelo) + '</h2></div>'
+          + '<div class="doc"><article><h3>Termo de filiação</h3><p>Associado: <b>' + nome + '</b> · Veículo: <b>' + modelo + '</b>, placa <b>' + placa + '</b>.</p>'
+          + '<h4>1. Da filiação</h4><p>O associado declara sua adesão ao programa de proteção veicular, comprometendo-se a cumprir o regulamento e o estatuto vigentes.</p>'
+          + '<h4>2. Da proteção</h4><p>A proteção passa a valer após a aprovação da vistoria, a assinatura deste termo e a confirmação do pagamento da adesão.</p>'
+          + '<h4>3. Das contribuições</h4><p>O associado contribui mensalmente com o valor do plano escolhido, além da participação prevista em caso de evento.</p>'
+          + '<h4>4. Das informações</h4><p>O associado declara que as informações prestadas na proposta e na vistoria são verdadeiras e completas.</p>'
+          + '<h4>5. Do cancelamento</h4><p>A filiação pode ser cancelada a qualquer momento, mediante solicitação, respeitadas as regras do regulamento.</p>'
+          + '</article></div><div class="base"><div class="in"><button class="bt-pri" data-acao="li">' + icon('check') + 'Entendi</button></div></div></div>';
+      }
+
+      // Imagem da assinatura só com a área desenhada (sem o espaço vazio do quadro).
+      function recortar(c) {
+        var w = c.width, h = c.height, px = c.getContext('2d').getImageData(0, 0, w, h).data;
+        var x0 = w, y0 = h, x1 = -1, y1 = -1;
+        for (var y = 0; y < h; y++) for (var x = 0; x < w; x++) {
+          if (px[(y * w + x) * 4 + 3] > 0) { if (x < x0) x0 = x; if (x > x1) x1 = x; if (y < y0) y0 = y; if (y > y1) y1 = y; }
+        }
+        if (x1 < 0) return c.toDataURL('image/png');
+        var m = 12;
+        x0 = Math.max(0, x0 - m); y0 = Math.max(0, y0 - m); x1 = Math.min(w - 1, x1 + m); y1 = Math.min(h - 1, y1 + m);
+        var out = document.createElement('canvas');
+        out.width = x1 - x0 + 1; out.height = y1 - y0 + 1;
+        out.getContext('2d').drawImage(c, x0, y0, out.width, out.height, 0, 0, out.width, out.height);
+        return out.toDataURL('image/png');
+      }
+
+      function quadro() {
+        traco = false;
+        camada.innerHTML = '<div class="camada" role="dialog" aria-modal="true" aria-label="Assinatura"><div class="c-top"><button data-acao="fechar" aria-label="Fechar assinatura">' + icon('close') + '</button><h2>Sua assinatura</h2><button class="borda" data-acao="limpar">' + icon('ink_eraser', 'font-size:16px') + 'Limpar</button></div>'
+          + '<div class="pad"><p>Assine com o dedo no quadro abaixo, igual ao seu documento.</p><div class="quadro"><span class="dica" aria-hidden="true">ASSINE AQUI</span><span class="linha" aria-hidden="true"></span><canvas aria-label="Quadro de assinatura"></canvas></div></div>'
+          + '<div class="base"><div class="in"><button class="bt-sec" data-acao="fechar">Cancelar</button><button class="bt-pri" data-acao="confirmar" disabled>' + icon('check') + 'Confirmar</button></div></div></div>';
+        var c = camada.querySelector('canvas');
+        var r = c.getBoundingClientRect(), dpr = window.devicePixelRatio || 1;
+        c.width = Math.round(r.width * dpr); c.height = Math.round(r.height * dpr);
+        var ctx = c.getContext('2d');
+        ctx.scale(dpr, dpr); ctx.lineWidth = 2.6; ctx.lineCap = 'round'; ctx.lineJoin = 'round'; ctx.strokeStyle = '#1f1430';
+        var desenhando = false;
+        function ponto(e) { var b = c.getBoundingClientRect(); return [e.clientX - b.left, e.clientY - b.top]; }
+        c.addEventListener('pointerdown', function (e) {
+          desenhando = true; c.setPointerCapture(e.pointerId);
+          var p = ponto(e); ctx.beginPath(); ctx.moveTo(p[0], p[1]); ctx.lineTo(p[0] + 0.1, p[1] + 0.1); ctx.stroke();
+          if (!traco) { traco = true; camada.querySelector('.dica').hidden = true; camada.querySelector('[data-acao="confirmar"]').disabled = false; }
+        });
+        c.addEventListener('pointermove', function (e) { if (!desenhando) return; var p = ponto(e); ctx.lineTo(p[0], p[1]); ctx.stroke(); });
+        c.addEventListener('pointerup', function () { desenhando = false; });
+        c.addEventListener('pointercancel', function () { desenhando = false; });
+      }
+
+      document.addEventListener('click', function (e) {
+        var el = e.target.closest('[data-acao]');
+        if (!el) return;
+        var acao = el.dataset.acao;
+        if (acao === 'ler') documento();
+        else if (acao === 'li') { leu = true; camada.innerHTML = ''; render(); }
+        else if (acao === 'fechar') camada.innerHTML = '';
+        else if (acao === 'assinar') { if (ciente) quadro(); }
+        else if (acao === 'limpar') quadro();
+        else if (acao === 'confirmar') {
+          if (!traco) return;
+          assinatura = recortar(camada.querySelector('canvas'));
+          camada.innerHTML = ''; render(); window.scrollTo(0, 0);
+        }
+      });
+      document.addEventListener('change', function (e) {
+        if (e.target.dataset.acao !== 'ciente') return;
+        ciente = e.target.checked;
+        render();
+      });
+
+      render();
+    })();
+  </script>
+</body>
+
+</html>

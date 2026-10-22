@@ -1,0 +1,1155 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#4A1259">
+  <title>Vistoria a distância · ileva</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,300..600,0..1,0&display=block">
+  <style>
+    * {
+      box-sizing: border-box
+    }
+
+    html {
+      -webkit-text-size-adjust: 100%
+    }
+
+    body {
+      margin: 0;
+      background: #eef1f9;
+      color: #0b1c30;
+      font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased
+    }
+
+    button {
+      font-family: inherit;
+      color: inherit
+    }
+
+    [hidden] {
+      display: none !important
+    }
+
+    .mi {
+      font-family: "Material Symbols Outlined";
+      font-weight: normal;
+      font-style: normal;
+      font-size: 20px;
+      line-height: 1;
+      display: inline-block;
+      white-space: nowrap;
+      font-feature-settings: "liga";
+      -webkit-font-smoothing: antialiased
+    }
+
+    .topo {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      background: rgba(255, 255, 255, .92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid #ece6f2
+    }
+
+    .topo .in {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px
+    }
+
+    .topo img {
+      height: 26px;
+      display: block
+    }
+
+    .topo .num {
+      flex: 1;
+      min-width: 0;
+      text-align: right;
+      font-size: 11px;
+      color: #7b7487
+    }
+
+    .topo .num b {
+      display: block;
+      color: #0b1c30;
+      font-size: 13px
+    }
+
+    main {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 16px 16px 120px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px
+    }
+
+    .heroi {
+      padding: 18px 16px;
+      border-radius: 14px;
+      color: #fff;
+      background: radial-gradient(circle at 90% 0%, rgba(161, 146, 166, .55) 0%, rgba(161, 146, 166, 0) 50%), #4A1259
+    }
+
+    .heroi small {
+      display: block;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      opacity: .75
+    }
+
+    .heroi h1 {
+      margin: 4px 0 6px;
+      font-size: 20px;
+      line-height: 26px
+    }
+
+    .heroi p {
+      margin: 0;
+      font-size: 13px;
+      line-height: 19px;
+      opacity: .88
+    }
+
+    .card {
+      padding: 12px 16px 16px;
+      border-radius: 10px;
+      background: #fff;
+      border: 1px solid #e5eeff;
+      box-shadow: 0 2px 12px -2px rgba(32, 7, 38, .06);
+      display: flex;
+      flex-direction: column;
+      gap: 12px
+    }
+
+    .veic {
+      display: flex;
+      align-items: center;
+      gap: 8px
+    }
+
+    .veic .t {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column
+    }
+
+    .veic strong {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px
+    }
+
+    .veic strong .mi {
+      font-size: 18px;
+      color: #4A1259;
+      font-variation-settings: 'FILL' 1
+    }
+
+    .veic span {
+      font-size: 12px;
+      color: #4a4455
+    }
+
+    .placa {
+      flex-shrink: 0;
+      display: inline-flex;
+      flex-direction: column;
+      min-width: 78px;
+      border: 1.5px solid #1f2937;
+      border-radius: 6px;
+      overflow: hidden;
+      background: #fff;
+      box-shadow: 0 1px 3px rgba(32, 7, 38, .18)
+    }
+
+    .placa i {
+      height: 9px;
+      background: #1d4fa3;
+      color: #fff;
+      font-style: normal;
+      font-size: 6.5px;
+      line-height: 9px;
+      font-weight: 800;
+      letter-spacing: .2em;
+      text-align: center
+    }
+
+    .placa b {
+      padding: 2px 8px 3px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 13px;
+      line-height: 17px;
+      letter-spacing: .08em;
+      text-align: center;
+      white-space: nowrap
+    }
+
+    .passos3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px
+    }
+
+    .passos3 div {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      text-align: center;
+      font-size: 11px;
+      line-height: 14px;
+      color: #4a4455
+    }
+
+    .passos3 .mi {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: #f3eef5;
+      color: #4A1259;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center
+    }
+
+    .cab {
+      display: flex;
+      align-items: center;
+      gap: 12px
+    }
+
+    .anel {
+      flex-shrink: 0;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center
+    }
+
+    .anel span {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 800;
+      color: #4A1259
+    }
+
+    .cab h2 {
+      margin: 0;
+      font-size: 14px;
+      line-height: 18px
+    }
+
+    .cab p {
+      margin: 1px 0 0;
+      font-size: 12px;
+      line-height: 16px;
+      color: #4a4455
+    }
+
+    .grupo {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 11px;
+      color: #7b7487
+    }
+
+    .grupo b {
+      color: #4A1259
+    }
+
+    .lista {
+      display: flex;
+      flex-direction: column;
+      margin-top: -6px
+    }
+
+    .item {
+      display: flex;
+      align-items: center;
+      border-top: 1px solid #f1eef3
+    }
+
+    .item>button:first-child {
+      flex: 1;
+      min-width: 0;
+      padding: 10px 0;
+      border: 0;
+      background: none;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer
+    }
+
+    .mini {
+      flex-shrink: 0;
+      width: 52px;
+      height: 52px;
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1.5px dashed #d9cfe0;
+      background: #f7f4f9;
+      color: #4A1259
+    }
+
+    .mini.ok {
+      border: 2px solid #22a06b
+    }
+
+    .mini img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover
+    }
+
+    .item .txt {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 2px
+    }
+
+    .item .txt strong {
+      font-size: 13px;
+      line-height: 17px
+    }
+
+    .item .txt span {
+      font-size: 11px;
+      font-weight: 700;
+      color: #7b7487
+    }
+
+    .item .txt span.ok {
+      color: #047857
+    }
+
+    .bt-ex {
+      flex-shrink: 0;
+      margin-left: 8px;
+      height: 30px;
+      padding: 0 10px 0 8px;
+      border: 1px solid #e5eeff;
+      border-radius: 6px;
+      background: #fff;
+      color: #4A1259;
+      font-size: 11px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer
+    }
+
+    .bt-ex .mi {
+      font-size: 16px
+    }
+
+    .rodape {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 6;
+      padding: 10px 16px calc(12px + env(safe-area-inset-bottom));
+      background: #fff;
+      border-top: 1px solid #ece7f0
+    }
+
+    .rodape .in {
+      max-width: 608px;
+      margin: 0 auto
+    }
+
+    .bt-pri {
+      width: 100%;
+      height: 50px;
+      border: 0;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #22a06b 0%, #047857 100%);
+      color: #fff;
+      font-size: 15px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 8px 18px -8px rgba(4, 120, 87, .6)
+    }
+
+    .bt-pri:active {
+      transform: scale(.98)
+    }
+
+    /* passo a passo */
+    .passo {
+      position: fixed;
+      inset: 0;
+      z-index: 20;
+      background: #170d1d;
+      color: #fff;
+      display: flex;
+      flex-direction: column
+    }
+
+    .passo .in {
+      width: 100%;
+      max-width: 640px;
+      margin: 0 auto;
+      flex: 1;
+      min-height: 0;
+      display: flex;
+      flex-direction: column
+    }
+
+    .p-top {
+      padding: 10px 12px 0;
+      display: flex;
+      align-items: center;
+      gap: 6px
+    }
+
+    .redondo {
+      width: 40px;
+      height: 40px;
+      border: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, .1);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer
+    }
+
+    .p-top b {
+      flex: 1;
+      padding-left: 6px;
+      font-size: 14px
+    }
+
+    .p-top small {
+      font-size: 11px;
+      font-weight: 700;
+      color: rgba(255, 255, 255, .6)
+    }
+
+    .segs {
+      padding: 12px 16px 0;
+      display: flex;
+      gap: 3px
+    }
+
+    .segs i {
+      flex: 1;
+      height: 4px;
+      border-radius: 99px;
+      background: rgba(255, 255, 255, .22)
+    }
+
+    .segs i.ok {
+      background: #22a06b
+    }
+
+    .segs i.at {
+      background: #fff
+    }
+
+    .p-corpo {
+      flex: 1;
+      min-height: 0;
+      overflow-y: auto;
+      padding: 18px 16px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px
+    }
+
+    .p-corpo h3 {
+      margin: 0;
+      font-size: 20px;
+      line-height: 26px
+    }
+
+    .p-corpo p {
+      margin: 0;
+      font-size: 13px;
+      line-height: 19px;
+      color: rgba(255, 255, 255, .78)
+    }
+
+    .quadro {
+      position: relative;
+      margin-top: 6px;
+      border-radius: 16px;
+      overflow: hidden;
+      background: #fbf9fc;
+      aspect-ratio: 4/3
+    }
+
+    .quadro img {
+      width: 100%;
+      height: 100%;
+      display: block
+    }
+
+    .quadro .selo {
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 3px 10px;
+      border-radius: 99px;
+      font-size: 11px;
+      font-weight: 800;
+      background: rgba(74, 18, 89, .9)
+    }
+
+    .quadro .selo.ok {
+      background: #22a06b
+    }
+
+    .vazio {
+      margin-top: 6px;
+      aspect-ratio: 4/3;
+      border: 1.5px dashed rgba(255, 255, 255, .25);
+      border-radius: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      color: rgba(255, 255, 255, .7)
+    }
+
+    .vazio .mi {
+      font-size: 40px;
+      color: rgba(255, 255, 255, .55)
+    }
+
+    .onde {
+      padding: 8px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, .08);
+      display: flex;
+      align-items: center;
+      gap: 12px
+    }
+
+    .onde img {
+      width: 64px;
+      height: 64px;
+      border-radius: 10px;
+      flex-shrink: 0
+    }
+
+    .onde b {
+      display: block;
+      font-size: 13px
+    }
+
+    .onde span {
+      font-size: 12px;
+      line-height: 16px;
+      color: rgba(255, 255, 255, .75)
+    }
+
+    .pilula {
+      align-self: center;
+      height: 32px;
+      padding: 0 12px;
+      border: 0;
+      border-radius: 99px;
+      background: rgba(255, 255, 255, .1);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer
+    }
+
+    .pilula .mi {
+      font-size: 16px
+    }
+
+    .p-acoes {
+      padding: 8px 16px calc(14px + env(safe-area-inset-bottom));
+      display: flex;
+      flex-direction: column;
+      gap: 8px
+    }
+
+    .bt-sec {
+      height: 44px;
+      border: 1px solid rgba(255, 255, 255, .28);
+      border-radius: 12px;
+      background: none;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      cursor: pointer
+    }
+
+    .duas {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr);
+      gap: 8px
+    }
+
+    .duas .bt-sec {
+      height: 50px
+    }
+
+    .navega {
+      display: flex;
+      justify-content: space-between
+    }
+
+    .navega button {
+      height: 40px;
+      padding: 0 12px;
+      border: 0;
+      background: none;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer
+    }
+
+    .navega button:disabled {
+      opacity: .35;
+      cursor: default
+    }
+
+    /* câmera */
+    .camera {
+      position: fixed;
+      inset: 0;
+      z-index: 30;
+      background: #000
+    }
+
+    .camera video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover
+    }
+
+    .c-top {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      padding: 12px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      background: linear-gradient(180deg, rgba(0, 0, 0, .55), rgba(0, 0, 0, 0))
+    }
+
+    .c-top b {
+      flex: 1;
+      padding-top: 9px;
+      text-align: center;
+      font-size: 14px;
+      color: #fff
+    }
+
+    .c-top .redondo {
+      background: rgba(0, 0, 0, .45)
+    }
+
+    .c-ex {
+      height: 36px;
+      padding: 0 12px 0 10px;
+      border: 0;
+      border-radius: 99px;
+      background: rgba(0, 0, 0, .45);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer
+    }
+
+    .c-mini {
+      width: 92px;
+      padding: 3px;
+      border: 0;
+      border-radius: 10px;
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      cursor: pointer
+    }
+
+    .c-mini img {
+      width: 86px;
+      height: 64px;
+      border-radius: 7px;
+      object-fit: cover
+    }
+
+    .c-mini span {
+      font-size: 9px;
+      font-weight: 800;
+      color: #4A1259
+    }
+
+    .c-base {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 18px 0 calc(22px + env(safe-area-inset-bottom));
+      display: flex;
+      justify-content: center;
+      background: linear-gradient(0deg, rgba(0, 0, 0, .55), rgba(0, 0, 0, 0))
+    }
+
+    .disparo {
+      width: 74px;
+      height: 74px;
+      padding: 0;
+      border: 4px solid #fff;
+      border-radius: 50%;
+      background: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer
+    }
+
+    .disparo span {
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      background: #fff
+    }
+
+    /* exemplo */
+    .fundo {
+      position: fixed;
+      inset: 0;
+      z-index: 40;
+      background: rgba(23, 13, 29, .72);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px
+    }
+
+    .janela-ex {
+      width: 100%;
+      max-width: 520px;
+      border-radius: 8px;
+      background: #fff;
+      overflow: hidden;
+      box-shadow: 0 24px 48px -16px rgba(23, 13, 29, .6)
+    }
+
+    .janela-ex header {
+      padding: 12px 8px 10px 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px
+    }
+
+    .janela-ex header div {
+      flex: 1;
+      min-width: 0
+    }
+
+    .janela-ex header small {
+      display: block;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .06em;
+      color: #7b7487
+    }
+
+    .janela-ex header strong {
+      font-size: 15px
+    }
+
+    .janela-ex header button {
+      width: 38px;
+      height: 38px;
+      border: 0;
+      border-radius: 50%;
+      background: #f3eef5;
+      color: #4A1259;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer
+    }
+
+    .janela-ex img {
+      display: block;
+      width: 100%;
+      max-height: 60vh;
+      aspect-ratio: 4/3;
+      object-fit: contain;
+      background: #f7f4f9
+    }
+
+    /* concluída / erro */
+    .fim {
+      padding: 28px 18px;
+      text-align: center;
+      align-items: center
+    }
+
+    .fim .selo-ok {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: #d1fae5;
+      color: #047857;
+      display: flex;
+      align-items: center;
+      justify-content: center
+    }
+
+    .fim .selo-ok .mi {
+      font-size: 40px
+    }
+
+    .fim h2 {
+      margin: 6px 0 0;
+      font-size: 20px
+    }
+
+    .fim p {
+      margin: 0;
+      font-size: 13px;
+      line-height: 19px;
+      color: #4a4455
+    }
+
+    .toast {
+      position: fixed;
+      left: 16px;
+      right: 16px;
+      bottom: 96px;
+      z-index: 50;
+      max-width: 520px;
+      margin: 0 auto;
+      padding: 12px 14px;
+      border-radius: 12px;
+      background: #213145;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      opacity: 0;
+      transform: translateY(8px);
+      pointer-events: none;
+      transition: opacity .2s, transform .2s
+    }
+
+    .toast.on {
+      opacity: 1;
+      transform: none
+    }
+
+    .toast .mi {
+      font-size: 18px;
+      color: #4ade80
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app"></div>
+  <div id="camada"></div>
+  <div class="toast" id="toast" role="status"><span class="mi">check_circle</span><span id="toast-txt"></span></div>
+
+  <script>
+    (function () {
+      // Os dados da vistoria vêm no próprio link (#d=...), gerados pelo App do Consultor.
+      // A lista de fotos acompanha Component.vistFotos() do app.
+      var FOTOS = [
+        { id: 'cnh', grupo: 'doc', label: 'CNH do associado', img: 'cnh.jpg', dica: 'Coloque a CNH aberta sobre uma superfície plana e fotografe a frente inteira, sem reflexo.' },
+        { id: 'crlv', grupo: 'doc', label: 'Documento do veículo (CRLV)', img: 'crlv.jpg', dica: 'Fotografe o CRLV inteiro, com placa, chassi e Renavam legíveis.' },
+        { id: 'endereco', grupo: 'doc', label: 'Comprovante de endereço', img: 'comprovante-endereco.jpg', dica: 'Conta de luz, água ou telefone dos últimos 90 dias, com nome e endereço legíveis.' },
+        { id: 'frente', grupo: 'veic', label: 'Frente', pos: 'frente', img: 'frente.jpg', dica: 'Fique uns 3 passos à frente do veículo, com a placa no centro da foto.' },
+        { id: 'latEsq', grupo: 'veic', label: 'Lateral frente esquerda', pos: 'frenteEsq', img: 'lateral-frente-esquerda.jpg', dica: 'Fique na quina da frente do lado do motorista, mostrando a frente e a lateral juntas.' },
+        { id: 'latDir', grupo: 'veic', label: 'Lateral frente direita', pos: 'frenteDir', img: 'lateral-frente-direita.jpg', dica: 'Fique na quina da frente do lado do passageiro, mostrando a frente e a lateral juntas.' },
+        { id: 'traseira', grupo: 'veic', label: 'Traseira', pos: 'tras', img: 'traseira.jpg', dica: 'Fique uns 3 passos atrás do veículo, com a placa no centro da foto.' }
+      ];
+      var ONDE = { frente: 'De frente para o veículo, no ponto verde.', tras: 'Atrás do veículo, no ponto verde.', frenteEsq: 'Na quina da frente, do lado do motorista.', frenteDir: 'Na quina da frente, do lado do passageiro.' };
+      var ICONE_TIPO = { Carro: 'directions_car', Moto: 'two_wheeler', 'Caminhão': 'local_shipping' };
+
+      var app = document.getElementById('app');
+      var camada = document.getElementById('camada');
+      var d = ler();
+      var fotos = {};
+      var atual = null;
+      var verEx = false;
+      var camEx = false;
+      var stream = null;
+      var enviada = false;
+
+      function ler() {
+        var m = location.hash.match(/[#&]d=([^&]+)/);
+        if (!m) return null;
+        try {
+          var b64 = m[1].replace(/-/g, '+').replace(/_/g, '/');
+          while (b64.length % 4) b64 += '=';
+          var bin = atob(b64);
+          var bytes = new Uint8Array(bin.length);
+          for (var i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+          return JSON.parse(new TextDecoder().decode(bytes));
+        } catch (e) { return null; }
+      }
+
+      function esc(v) {
+        return String(v == null ? '' : v).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; });
+      }
+
+      function icon(n, extra) { return '<span class="mi"' + (extra ? ' style="' + extra + '"' : '') + ' aria-hidden="true">' + n + '</span>'; }
+
+      function toast(t) {
+        var el = document.getElementById('toast');
+        document.getElementById('toast-txt').textContent = t;
+        el.classList.add('on');
+        clearTimeout(toast.t);
+        toast.t = setTimeout(function () { el.classList.remove('on'); }, 2400);
+      }
+
+      function feitas() { return FOTOS.filter(function (f) { return fotos[f.id]; }).length; }
+      function pendente(de) {
+        for (var k = 0; k < FOTOS.length; k++) { var j = (de + k) % FOTOS.length; if (!fotos[FOTOS[j].id]) return j; }
+        return null;
+      }
+      function exemplo(f) { return 'assets/vistoria/' + f.img; }
+      function primeiro(nome) { return String(nome || '').trim().split(/\s+/)[0]; }
+
+      // Vista de cima: onde a pessoa fica em relação ao veículo (igual ao app).
+      function mapa(pos) {
+        var xy = { frente: [50, 9], tras: [50, 91], frenteEsq: [14, 12], frenteDir: [86, 12] }[pos];
+        if (!xy) return '';
+        var x = xy[0], y = xy[1];
+        var svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" rx="12" fill="#ffffff"/>'
+          + '<path d="M' + x + ' ' + y + ' L50 50" stroke="#22a06b" stroke-width="1.8" stroke-dasharray="3 3"/>'
+          + '<rect x="32" y="31" width="5" height="11" rx="2" fill="#3b2a44"/><rect x="63" y="31" width="5" height="11" rx="2" fill="#3b2a44"/><rect x="32" y="58" width="5" height="11" rx="2" fill="#3b2a44"/><rect x="63" y="58" width="5" height="11" rx="2" fill="#3b2a44"/>'
+          + '<rect x="36" y="24" width="28" height="52" rx="9" fill="#f3eef6" stroke="#4A1259" stroke-width="2"/><path d="M40 37 H60 L57 45 H43 Z" fill="#d6e4f5" stroke="#4A1259" stroke-width="1.2"/><path d="M43 30 L50 26 L57 30" fill="none" stroke="#4A1259" stroke-width="1.6" stroke-linecap="round"/>'
+          + '<circle cx="' + x + '" cy="' + y + '" r="7.5" fill="#22a06b"/><circle cx="' + x + '" cy="' + y + '" r="2.8" fill="#ffffff"/></svg>';
+        return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+      }
+
+      // ---------- página ----------
+      function render() {
+        if (!d) {
+          app.innerHTML = '<main><div class="card fim">' + icon('link_off', 'font-size:40px;color:#7b7487') + '<h2>Link inválido ou incompleto</h2><p>Peça ao seu consultor para enviar o link da vistoria de novo.</p></div></main>';
+          return;
+        }
+        var topo = '<div class="topo"><div class="in"><img src="assets/logo-ileva.png" alt="ileva"><span class="num"><b>Vistoria a distância</b>Proposta nº ' + esc(d.n) + '</span></div></div>';
+        if (enviada) {
+          app.innerHTML = topo + '<main><div class="card fim"><span class="selo-ok">' + icon('task_alt') + '</span><h2>Vistoria enviada!</h2>'
+            + '<p>Recebemos as ' + FOTOS.length + ' fotos do seu ' + esc(d.vei.modelo) + '. ' + esc(primeiro(d.cons.nome)) + ' vai analisar e te avisa pelo WhatsApp.</p>'
+            + (d.cons.wa ? '<a class="bt-pri" style="margin-top:8px" target="_blank" rel="noopener" href="https://wa.me/' + esc(d.cons.wa) + '?text=' + encodeURIComponent('Olá, ' + primeiro(d.cons.nome) + '! Enviei as fotos da vistoria do ' + d.vei.modelo + ' (placa ' + d.vei.placa + ').') + '">' + icon('chat') + 'Falar com o consultor</a>' : '')
+            + '</div></main>';
+          return;
+        }
+        var n = feitas(), total = FOTOS.length, pct = Math.round(n / total * 100);
+        var linha = function (f) {
+          var i = FOTOS.indexOf(f), foto = fotos[f.id];
+          return '<div class="item"><button data-acao="abrir" data-i="' + i + '" aria-label="' + (foto ? 'Ver foto: ' : 'Tirar foto: ') + esc(f.label) + '">'
+            + '<span class="mini' + (foto ? ' ok' : '') + '">' + (foto ? '<img src="' + foto + '" alt="">' : icon('photo_camera', 'font-size:22px')) + '</span>'
+            + '<span class="txt"><strong>' + esc(f.label) + '</strong><span' + (foto ? ' class="ok"' : '') + '>' + (foto ? 'Foto pronta' : 'Toque para fotografar') + '</span></span></button>'
+            + '<button class="bt-ex" data-acao="exemplo" data-i="' + i + '" aria-label="Ver imagem exemplo: ' + esc(f.label) + '">' + icon('visibility') + 'Exemplo</button></div>';
+        };
+        var grupo = function (g, titulo) {
+          var itens = FOTOS.filter(function (f) { return f.grupo === g; });
+          var ok = itens.filter(function (f) { return fotos[f.id]; }).length;
+          return '<div class="grupo"><span>' + titulo + '</span><b>' + ok + ' de ' + itens.length + '</b></div><div class="lista">' + itens.map(linha).join('') + '</div>';
+        };
+        var botao = n === total ? icon('send') + 'Enviar vistoria' : n === 0 ? icon('photo_camera') + 'Começar vistoria' : icon('photo_camera') + 'Continuar · faltam ' + (total - n);
+        app.innerHTML = topo + '<main>'
+          + '<section class="heroi"><small>VISTORIA A DISTÂNCIA</small><h1>Olá, ' + esc(primeiro(d.cli.nome)) + '!</h1>'
+          + '<p>Faça a vistoria do seu veículo pelo celular para finalizarmos sua proteção. São ' + total + ' fotos e leva poucos minutos.</p></section>'
+          + '<div class="card"><div class="veic"><div class="t"><strong>' + icon(ICONE_TIPO[d.vei.tipo] || 'directions_car') + esc(d.vei.modelo) + '</strong><span>' + esc(d.vei.tipo) + (d.vei.ano ? ' · Ano ' + esc(d.vei.ano) : '') + '</span></div>'
+          + (d.vei.placa ? '<span class="placa" aria-label="Placa ' + esc(d.vei.placa) + '"><i>BRASIL</i><b>' + esc(d.vei.placa) + '</b></span>' : '') + '</div>'
+          + '<div class="passos3"><div>' + icon('visibility') + 'Veja o exemplo de cada foto</div><div>' + icon('photo_camera') + 'Tire a foto no lugar indicado</div><div>' + icon('send') + 'Envie para o consultor</div></div></div>'
+          + '<div class="card"><div class="cab"><span class="anel" style="background:conic-gradient(#22a06b ' + Math.round(n / total * 360) + 'deg,#eee9f2 0deg)"><span>' + pct + '%</span></span>'
+          + '<div><h2>Fotos da vistoria</h2><p>' + (n === total ? 'Tudo pronto! Toque em Enviar vistoria.' : n + ' de ' + total + ' fotos · toque em uma foto para ' + (n ? 'continuar.' : 'começar.')) + '</p></div></div>'
+          + grupo('doc', 'Documentos') + grupo('veic', 'Veículo') + '</div>'
+          + '</main><div class="rodape"><div class="in"><button class="bt-pri" data-acao="principal">' + botao + '</button></div></div>';
+      }
+
+      // ---------- passo a passo, câmera e exemplo ----------
+      function renderCamada() {
+        if (camada.dataset.ex) {
+          var fx = FOTOS[+camada.dataset.ex];
+          camada.innerHTML = '<div class="fundo" data-acao="fechar-ex"><div class="janela-ex" role="dialog" aria-modal="true" aria-label="Imagem exemplo: ' + esc(fx.label) + '">'
+            + '<header><div><small>IMAGEM EXEMPLO</small><strong>' + esc(fx.label) + '</strong></div><button data-acao="fechar-ex" aria-label="Fechar exemplo">' + icon('close') + '</button></header>'
+            + '<img src="' + exemplo(fx) + '" alt="Exemplo: ' + esc(fx.label) + '"></div></div>';
+          return;
+        }
+        if (atual == null) { camada.innerHTML = ''; return; }
+        var f = FOTOS[atual], foto = fotos[f.id], total = FOTOS.length;
+        if (stream) {
+          camada.innerHTML = '<div class="camera"><video playsinline muted aria-label="Imagem da câmera"></video>'
+            + '<div class="c-top"><button class="redondo" data-acao="cam-fechar" aria-label="Fechar câmera">' + icon('close') + '</button><b>' + esc(f.label) + '</b>'
+            + (camEx ? '<button class="c-mini" data-acao="cam-ex" aria-label="Ocultar exemplo"><img src="' + exemplo(f) + '" alt="Exemplo da foto"><span>OCULTAR</span></button>'
+              : '<button class="c-ex" data-acao="cam-ex">' + icon('visibility', 'font-size:17px') + 'Exemplo</button>')
+            + '</div><div class="c-base"><button class="disparo" data-acao="capturar" aria-label="Tirar foto"><span></span></button></div></div>';
+          var v = camada.querySelector('video');
+          v.muted = true; v.srcObject = stream;
+          v.play().catch(function () { });
+          return;
+        }
+        var mostra = verEx || foto;
+        var segs = FOTOS.map(function (x, j) { return '<i class="' + (j === atual ? 'at' : fotos[x.id] ? 'ok' : '') + '"></i>'; }).join('');
+        var quadro = mostra
+          ? '<div class="quadro"><img src="' + (verEx ? exemplo(f) : foto) + '" alt="' + esc(f.label) + '" style="object-fit:' + (verEx ? 'contain' : 'cover') + '"><span class="selo' + (verEx ? '' : ' ok') + '">' + (verEx ? 'Exemplo' : 'Sua foto') + '</span></div>'
+          : '<div class="vazio">' + icon('add_a_photo') + 'Nenhuma foto ainda</div>';
+        var alterna = !verEx ? icon('visibility') + 'Ver exemplo' : foto ? icon('swap_horiz') + 'Ver minha foto' : icon('visibility_off') + 'Ocultar exemplo';
+        var galeria = '<label class="bt-sec">' + '<input type="file" accept="image/*" data-acao="arquivo" hidden>' + icon('photo_library', 'font-size:18px') + 'Escolher da galeria</label>';
+        var proxTxt = feitas() === total ? 'Concluir fotos' : atual === total - 1 ? 'Próxima pendente' : 'Próxima foto';
+        camada.innerHTML = '<div class="passo" role="dialog" aria-modal="true" aria-labelledby="p-tit"><div class="in">'
+          + '<div class="p-top"><button class="redondo" data-acao="fechar-passo" aria-label="Fechar">' + icon('close') + '</button><b>Foto ' + (atual + 1) + ' de ' + total + '</b><small>' + (f.grupo === 'doc' ? 'Documentos' : 'Veículo') + '</small></div>'
+          + '<div class="segs" aria-hidden="true">' + segs + '</div>'
+          + '<div class="p-corpo"><h3 id="p-tit">' + esc(f.label) + '</h3><p>' + esc(f.dica) + '</p>' + quadro
+          + (f.pos && !foto ? '<div class="onde"><img src="' + mapa(f.pos) + '" alt=""><div><b>Onde ficar</b><span>' + ONDE[f.pos] + '</span></div></div>' : '')
+          + '<button class="pilula" data-acao="alternar">' + alterna + '</button></div>'
+          + '<div class="p-acoes">'
+          + (foto
+            ? '<div class="duas"><button class="bt-sec" data-acao="tirar">' + icon('refresh') + 'Refazer</button><button class="bt-pri" data-acao="proxima">' + proxTxt + icon('arrow_forward') + '</button></div>'
+            : '<button class="bt-pri" data-acao="tirar">' + icon('photo_camera', 'font-size:22px') + 'Tirar foto</button>' + galeria)
+          + '<div class="navega"><button data-acao="anterior"' + (atual > 0 ? '' : ' disabled') + '>' + icon('chevron_left', 'font-size:18px') + 'Anterior</button><button data-acao="pular">Pular' + icon('chevron_right', 'font-size:18px') + '</button></div>'
+          + '</div></div></div>';
+      }
+
+      function ir(j) { pararCamera(); atual = j; verEx = false; renderCamada(); }
+      function fecharPasso() { pararCamera(); atual = null; verEx = false; renderCamada(); render(); }
+      function guardar(url) {
+        var f = FOTOS[atual];
+        if (fotos[f.id]) URL.revokeObjectURL(fotos[f.id]);
+        fotos[f.id] = url;
+        pararCamera(); verEx = false;
+        renderCamada(); render();
+      }
+      function pararCamera() {
+        if (stream) { stream.getTracks().forEach(function (t) { t.stop(); }); stream = null; }
+      }
+      // Sem acesso à câmera pelo navegador, abre a câmera do próprio aparelho.
+      function cameraDoSistema() {
+        var inp = document.createElement('input');
+        inp.type = 'file'; inp.accept = 'image/*'; inp.setAttribute('capture', 'environment');
+        inp.onchange = function () { var a = inp.files && inp.files[0]; if (a) guardar(URL.createObjectURL(a)); };
+        inp.click();
+      }
+      function abrirCamera() {
+        var md = navigator.mediaDevices;
+        if (!md || !md.getUserMedia) { cameraDoSistema(); return; }
+        md.getUserMedia({ video: { facingMode: { ideal: 'environment' }, width: { ideal: 1920 }, height: { ideal: 1440 } }, audio: false })
+          .then(function (s) { stream = s; camEx = false; renderCamada(); })
+          .catch(cameraDoSistema);
+      }
+      function capturar() {
+        var v = camada.querySelector('video');
+        if (!v || !v.videoWidth) return;
+        var c = document.createElement('canvas');
+        c.width = v.videoWidth; c.height = v.videoHeight;
+        c.getContext('2d').drawImage(v, 0, 0);
+        c.toBlob(function (b) { if (b) guardar(URL.createObjectURL(b)); }, 'image/jpeg', 0.85);
+      }
+
+      document.addEventListener('click', function (e) {
+        var el = e.target.closest('[data-acao]');
+        if (!el || el.dataset.acao === 'arquivo') return;
+        var acao = el.dataset.acao, total = FOTOS.length;
+        if (acao === 'fechar-ex' && el.classList.contains('fundo') && e.target !== el) return;
+        if (acao === 'abrir') ir(+el.dataset.i);
+        else if (acao === 'exemplo') { camada.dataset.ex = el.dataset.i; renderCamada(); }
+        else if (acao === 'fechar-ex') { delete camada.dataset.ex; renderCamada(); }
+        else if (acao === 'principal') {
+          if (feitas() < total) { ir(pendente(0)); return; }
+          enviada = true; render(); window.scrollTo(0, 0);
+        }
+        else if (acao === 'fechar-passo') fecharPasso();
+        else if (acao === 'alternar') { verEx = !verEx; renderCamada(); }
+        else if (acao === 'tirar') abrirCamera();
+        else if (acao === 'cam-fechar') { pararCamera(); renderCamada(); }
+        else if (acao === 'cam-ex') { camEx = !camEx; renderCamada(); }
+        else if (acao === 'capturar') capturar();
+        else if (acao === 'anterior') { if (atual > 0) ir(atual - 1); }
+        else if (acao === 'pular') ir(atual === total - 1 ? 0 : atual + 1);
+        else if (acao === 'proxima') {
+          if (feitas() === total) { fecharPasso(); toast('Todas as fotos foram tiradas'); return; }
+          ir(atual < total - 1 ? atual + 1 : pendente(0));
+        }
+      });
+      document.addEventListener('change', function (e) {
+        if (e.target.dataset.acao !== 'arquivo') return;
+        var a = e.target.files && e.target.files[0];
+        if (a) guardar(URL.createObjectURL(a));
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key !== 'Escape') return;
+        if (camada.dataset.ex) { delete camada.dataset.ex; renderCamada(); }
+        else if (stream) { pararCamera(); renderCamada(); }
+        else if (atual != null) fecharPasso();
+      });
+
+      render();
+    })();
+  </script>
+</body>
+
+</html>

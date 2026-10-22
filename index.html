@@ -459,7 +459,7 @@
 
     .prop-card:hover {
       border-color: #d9cfdc;
-      box-shadow: 0 6px 16px -8px rgba(32, 7, 38, 0.18)
+      box-shadow: 0 3px 8px rgba(32, 7, 38, 0.16), 0 18px 34px -8px rgba(32, 7, 38, 0.42)
     }
 
     .prop-act {
@@ -848,6 +848,204 @@
         display: none
       }
     }
+
+    /* ---------- Versão para computador (tela larga): menu lateral fixo e conteúdo centralizado ---------- */
+    .web-lateral {
+      display: none
+    }
+
+    html.is-web body {
+      background: #eef1f9;
+      overflow: hidden
+    }
+
+    html.is-web .stage {
+      position: fixed;
+      inset: 0;
+      display: block
+    }
+
+    html.is-web .info {
+      display: none
+    }
+
+    html.is-web .device {
+      width: auto;
+      height: 100%;
+      margin-left: var(--web-lateral);
+      padding: 0;
+      border-radius: 0;
+      background: transparent;
+      box-shadow: none;
+      transform: none !important
+    }
+
+    html.is-web .screen {
+      border-radius: 0;
+      background: transparent;
+      transform: none;
+      overflow: visible
+    }
+
+    html.is-web {
+      --web-lateral: 264px
+    }
+
+    html.is-web .screen .app-root {
+      --tela-margem: 28px;
+      max-width: none !important;
+      height: 100vh !important
+    }
+
+    /* Conteúdo das telas ocupa a largura ao lado do menu, alinhado à esquerda e sem esticar demais */
+    html.is-web .app-root .nosb>* {
+      max-width: 1120px;
+      box-sizing: border-box
+    }
+
+    /* Folhas que sobem de baixo e janelas de aviso: largura de leitura, centralizadas na área do app */
+    html.is-web .app-root .painel,
+    html.is-web .app-root [aria-labelledby="termo-sheet-title"] {
+      left: 0 !important;
+      right: 0 !important;
+      width: 640px;
+      margin: 0 auto
+    }
+
+    html.is-web .app-root [aria-labelledby="vist-ex-title"],
+    html.is-web .app-root [aria-labelledby="cf-title"],
+    html.is-web .app-root [aria-labelledby="detalhe-saldo-title"],
+    html.is-web .app-root [aria-labelledby="analise-title"],
+    html.is-web .app-root [aria-labelledby="guia-tit"] {
+      left: 0 !important;
+      right: 0 !important;
+      width: 560px;
+      margin-left: auto;
+      margin-right: auto
+    }
+
+    html.is-web .app-root .nav-inferior,
+    html.is-web .app-root .logo-topo {
+      display: none !important
+    }
+
+
+    html.is-web .app-root .janela,
+    html.is-web .app-root .painel {
+      bottom: 0 !important
+    }
+
+    html.is-web .app-root .painel {
+      max-height: calc(100% - 48px) !important
+    }
+
+    html.is-web .app-root .cot-menu.acima-menu {
+      top: 96px;
+      bottom: auto !important;
+      left: 50% !important;
+      right: auto !important;
+      width: 380px;
+      margin-left: -190px
+    }
+
+    html.is-web .web-lateral {
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      z-index: 60;
+      width: var(--web-lateral);
+      box-sizing: border-box;
+      padding: 20px 14px 16px;
+      background: #ffffff;
+      border-right: 1px solid #ece7f0;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif
+    }
+
+    .web-lateral .web-itens {
+      flex-grow: 1;
+      min-height: 0;
+      overflow-y: auto;
+      scrollbar-width: none;
+      display: flex;
+      flex-direction: column;
+      gap: 14px
+    }
+
+    .web-lateral .web-item {
+      width: 100%;
+      height: 40px;
+      padding: 0 12px;
+      border: 0;
+      border-radius: 10px;
+      background: transparent;
+      color: #4a4455;
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 600;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+      transition: background .15s, color .15s
+    }
+
+    .web-lateral .web-item:hover {
+      background: #f6f2f8;
+      color: #4A1259
+    }
+
+    .web-lateral .web-item.ativo {
+      background: #f3eef5;
+      color: #4A1259;
+      font-weight: 800
+    }
+
+    .web-lateral .web-item .ms {
+      font-size: 21px
+    }
+
+    .web-lateral .web-item.ativo .ms {
+      font-variation-settings: 'FILL' 1
+    }
+
+    .web-lateral .web-perfil {
+      padding: 10px;
+      border: 1px solid #ece7f0;
+      border-radius: 12px;
+      background: #fbfafc;
+      font-family: inherit;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer
+    }
+
+    .web-lateral .web-perfil:hover {
+      background: #f6f2f8
+    }
+
+    /* Etapas da proposta: primeiro e último ícone alinhados com as bordas do conteúdo de baixo (16px do card).
+       As 5 colunas ganham largura extra para os centros dos ícones (30px) caírem a 23px de cada lado da faixa. */
+    html.is-web .app-root .etapas-grade {
+      gap: 0 !important;
+      width: calc(125% - 57.5px);
+      margin-left: calc(28.75px - 12.5%)
+    }
+
+    /* Passo a passo das fotos e assinatura: coluna centralizada, no tamanho de um celular */
+    html.is-web .app-root section[aria-labelledby="vist-passo-title"]>*,
+    html.is-web .app-root [aria-labelledby="termo-pad-title"]>* {
+      width: 100%;
+      max-width: 600px;
+      align-self: center;
+      box-sizing: border-box
+    }
   </style>
 </head>
 
@@ -867,9 +1065,10 @@
   </div>
   <script type="text/plain" id="dc-template"><div class="app-root" style="position: relative; width: 100%; max-width: 480px; margin: 0 auto; height: 844px; box-sizing: border-box; display: flex; flex-direction: column; background: #eef1f9; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; color: #0b1c30; overflow: hidden">
 
+
 <header style="position: relative; z-index: 1; flex-shrink: 0; box-sizing: border-box; background: #ffffff; border-bottom: 1px solid #ece7f0; box-shadow: 0 1px 8px rgba(32, 7, 38,0.05)">
 <div style="height: 64px; padding: 0 10px 0 14px; display: flex; align-items: center; gap: 6px">
-<img src="assets/logo-ileva.png" alt="ileva · Gestão inteligente" style="flex-shrink: 0; height: 26px; width: auto; display: block">
+<img class="logo-topo" src="assets/logo-ileva.png" alt="ileva · Gestão inteligente" style="flex-shrink: 0; height: 26px; width: auto; display: block">
 <span style="flex-grow: 1"></span>
 <button onClick="{{openNotif}}" aria-label="{{bellLabel}}" aria-haspopup="dialog" style="position: relative; flex-shrink: 0; width: 40px; height: 40px; padding: 0; border: 0; background: transparent; border-radius: 9999px; display: flex; align-items: center; justify-content: center; color: #4A1259; cursor: pointer">
 <span class="ms" style="font-size: 26px; font-variation-settings: 'FILL' 1">notifications</span>
@@ -904,12 +1103,12 @@
 <section aria-label="Atalhos" style="flex-shrink: 0; margin-top: -8px">
 <div class="nosb drag-row" ref="{{rowAtalhos.ref}}" onMouseDown="{{rowAtalhos.down}}" onMouseMove="{{rowAtalhos.move}}" onMouseUp="{{rowAtalhos.up}}" onMouseLeave="{{rowAtalhos.up}}" onClickCapture="{{onClickCapture}}" onDragStart="{{preventNative}}" style="display: flex; gap: 4px; padding-top: 4px; overflow-x: auto; scrollbar-width: none; scroll-snap-type: x mandatory; overscroll-behavior-x: contain">
 <button class="story" onClick="{{openDesempenho}}" aria-label="Meu desempenho" style="flex: 0 0 calc((100% - 16px) / 5); scroll-snap-align: start; min-width: 0; padding: 0; border: 0; background: transparent; font-family: inherit; display: flex; flex-direction: column; align-items: center; gap: 5px; cursor: pointer">
-<span style="width: 100%; max-width: 52px; aspect-ratio: 1; box-sizing: border-box; padding: 2px; border-radius: 9999px; background: linear-gradient(135deg, #A192A6 0%, #4A1259 100%); box-shadow: 0 4px 12px -4px rgba(74, 18, 89,0.5)">
-<span style="width: 100%; height: 100%; box-sizing: border-box; border: 2px solid #ffffff; border-radius: 9999px; background: linear-gradient(135deg, #622773 0%, #4A1259 100%); color: #ffffff; display: flex; align-items: center; justify-content: center">
-<span class="ms" style="font-size: 22px">monitoring</span>
+<span style="width: 100%; max-width: 52px; aspect-ratio: 1; box-sizing: border-box; border-radius: 9999px; background: #ffffff; box-shadow: 0 2px 8px -2px rgba(32, 7, 38,0.12)">
+<span style="width: 100%; height: 100%; box-sizing: border-box; border-radius: 9999px; background: #ffffff; display: flex; align-items: center; justify-content: center">
+<span class="ms" style="font-size: 22px; font-variation-settings: 'FILL' 1; color: #4A1259">monitoring</span>
 </span>
 </span>
-<span style="max-width: 100%; font-size: 10px; line-height: 12px; font-weight: 700; color: #4A1259; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">Desempenho</span>
+<span style="max-width: 100%; font-size: 10px; line-height: 12px; font-weight: 600; color: #0b1c30; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">Desempenho</span>
 </button>
 <sc-for list="{{homeShortcuts}}" as="hs" hint-placeholder-count="4">
 <button class="story" onClick="{{hs.go}}" aria-label="{{hs.label}}" style="flex: 0 0 calc((100% - 16px) / 5); scroll-snap-align: start; min-width: 0; padding: 0; border: 0; background: transparent; font-family: inherit; display: flex; flex-direction: column; align-items: center; gap: 5px; cursor: pointer">
@@ -1119,7 +1318,7 @@ Lead quente
 </nav>
 
 <sc-if value="{{perfilOpen}}" hint-placeholder-val="{{ false }}">
-<section class="janela" role="dialog" aria-labelledby="perfil-title" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: 20; background: #eef1f9; display: flex; flex-direction: column; animation: menuIn .38s cubic-bezier(.22,1,.36,1) both">
+<section class="janela" role="dialog" aria-labelledby="perfil-title" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: {{zPg.perfilOpen}}; background: #eef1f9; display: flex; flex-direction: column; animation: menuIn .38s cubic-bezier(.22,1,.36,1) both">
 <div style="flex-shrink: 0; height: 64px; box-sizing: border-box; padding: 0 12px; background: radial-gradient(circle at 92% 0%, rgba(161, 146, 166,0.55) 0%, rgba(161, 146, 166,0) 45%), #4A1259; color: #ffffff; display: flex; align-items: center; gap: 4px">
 <button onClick="{{closePerfil}}" aria-label="Voltar" style="width: 44px; height: 44px; border: 0; border-radius: 9999px; background: transparent; color: #ffffff; display: flex; align-items: center; justify-content: center; cursor: pointer"><span class="ms" style="font-size: 24px">arrow_back</span></button>
 <h2 id="perfil-title" style="margin: 0; font-size: 17px; line-height: 22px; font-weight: 700; color: #ffffff">Editar perfil</h2>
@@ -1235,7 +1434,7 @@ Lead quente
 </sc-if>
 
 <sc-if value="{{iaOpen}}" hint-placeholder-val="{{ false }}">
-<section class="janela" role="dialog" aria-labelledby="ia-title" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: 20; background: #eef1f9; display: flex; flex-direction: column; animation: menuIn .38s cubic-bezier(.22,1,.36,1) both">
+<section class="janela" role="dialog" aria-labelledby="ia-title" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: {{zPg.iaOpen}}; background: #eef1f9; display: flex; flex-direction: column; animation: menuIn .38s cubic-bezier(.22,1,.36,1) both">
 <div style="flex-shrink: 0; background: #ffffff; border-bottom: 1px solid #e5eeff; box-shadow: 0 1px 8px rgba(0,0,0,0.04); padding: 0 12px">
 <div style="height: 64px; margin: 0 -12px; padding: 0 12px; background: radial-gradient(circle at 92% 0%, rgba(161, 146, 166,0.55) 0%, rgba(161, 146, 166,0) 45%), #4A1259; color: #ffffff; display: flex; align-items: center; gap: 4px">
 <button onClick="{{closeIa}}" aria-label="Voltar" style="width: 44px; height: 44px; border: 0; border-radius: 9999px; background: transparent; color: #ffffff; display: flex; align-items: center; justify-content: center; cursor: pointer"><span class="ms" style="font-size: 24px">arrow_back</span></button>
@@ -1377,7 +1576,7 @@ Lead quente
 </sc-if>
 
 <sc-if value="{{menuOpen}}" hint-placeholder-val="{{ false }}">
-<div class="janela nosb menu-panel {{menuAnim}}" role="dialog" aria-modal="true" aria-label="Menu" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: 21; background: #eef1f9; display: flex; flex-direction: column; overflow-y: auto; scrollbar-width: none">
+<div class="janela nosb menu-panel {{menuAnim}}" role="dialog" aria-modal="true" aria-label="Menu" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: {{zPg.menuOpen}}; background: #eef1f9; display: flex; flex-direction: column; overflow-y: auto; scrollbar-width: none">
 <header style="position: relative; flex-shrink: 0; margin-bottom: 16px; height: 68px; box-sizing: border-box; padding: 0 12px 0 20px; display: flex; align-items: center; justify-content: space-between; overflow: hidden; background: radial-gradient(circle at 90% 25%, rgba(161, 146, 166,0.95) 0%, rgba(161, 146, 166,0) 32%), radial-gradient(circle at 12% 110%, rgba(98, 39, 115,0.9) 0%, rgba(98, 39, 115,0) 45%), linear-gradient(135deg, #4A1259 0%, #4A1259 100%)">
 <h2 style="margin: 0; font-size: 18px; line-height: 24px; font-weight: 700; color: #ffffff">Menu</h2>
 <button class="menu-close" onClick="{{closeMenu}}" aria-label="Fechar menu" style="position: relative; z-index: 1; width: 44px; height: 44px; padding: 0; border: 1px solid rgba(255,255,255,0.45); border-radius: 9999px; background: linear-gradient(145deg, rgba(255,255,255,0.38) 0%, rgba(255,255,255,0.12) 55%, rgba(255,255,255,0.06) 100%); backdrop-filter: blur(14px) saturate(160%); -webkit-backdrop-filter: blur(14px) saturate(160%); color: #ffffff; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: inset 0 1px 1px rgba(255,255,255,0.65), inset 0 -2px 4px rgba(255,255,255,0.08), 0 6px 16px -2px rgba(32, 7, 38,0.35)">
@@ -1508,8 +1707,8 @@ Nova cotação
 </sc-if>
 
 <sc-if value="{{dicasOpen}}" hint-placeholder-val="{{ false }}">
-<div class="janela" onClick="{{closeDicas}}" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: 21; background: rgba(11,28,48,0.5); animation: fadeIn .2s ease-out"></div>
-<section role="dialog" aria-modal="true" class="painel" aria-labelledby="dicas-title" style="position: absolute; left: 0; right: 0; bottom: 72px; z-index: 22; max-height: 88%; background: #eef1f9; border-radius: 24px 24px 0 0; box-shadow: 0 -8px 32px rgba(32, 7, 38,0.18); display: flex; flex-direction: column; animation: sheetUp .36s cubic-bezier(.22,1,.36,1)">
+<div class="janela" onClick="{{closeDicas}}" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: {{zPg.dicasOpen}}; background: rgba(11,28,48,0.5); animation: fadeIn .2s ease-out"></div>
+<section role="dialog" aria-modal="true" class="painel" aria-labelledby="dicas-title" style="position: absolute; left: 0; right: 0; bottom: 72px; z-index: {{zPg.dicasOpen}}; max-height: 88%; background: #eef1f9; border-radius: 24px 24px 0 0; box-shadow: 0 -8px 32px rgba(32, 7, 38,0.18); display: flex; flex-direction: column; animation: sheetUp .36s cubic-bezier(.22,1,.36,1)">
 <div style="flex-shrink: 0; background: #ffffff; border-radius: 24px 24px 0 0; padding: 0 20px 16px; border-bottom: 1px solid #e5eeff">
 <div style="display: flex; justify-content: center; padding: 12px 0 8px">
 <span style="width: 48px; height: 4px; border-radius: 9999px; background: #ccc3d8"></span>
@@ -1612,7 +1811,7 @@ Nova cotação
 </sc-if>
 
 <sc-if value="{{redeOpen}}" hint-placeholder-val="{{ false }}">
-<section class="janela" role="dialog" aria-labelledby="rede-title" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: 18; background: #eef1f9; display: flex; flex-direction: column; animation: menuIn .38s cubic-bezier(.22,1,.36,1) both">
+<section class="janela" role="dialog" aria-labelledby="rede-title" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: {{zPg.redeOpen}}; background: #eef1f9; display: flex; flex-direction: column; animation: menuIn .38s cubic-bezier(.22,1,.36,1) both">
 <div style="flex-shrink: 0; background: #ffffff; padding: 16px 20px 16px; border-bottom: 1px solid #e5eeff; box-shadow: 0 1px 8px rgba(0,0,0,0.04)">
 <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 12px">
 <div style="display: flex; flex-direction: column; gap: 4px">
@@ -1707,7 +1906,7 @@ Nova cotação
 </sc-if>
 
 <sc-if value="{{multiOpen}}" hint-placeholder-val="{{ false }}">
-<section class="janela" role="dialog" aria-labelledby="multi-title" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: 18; background: #eef1f9; display: flex; flex-direction: column; animation: menuIn .38s cubic-bezier(.22,1,.36,1) both">
+<section class="janela" role="dialog" aria-labelledby="multi-title" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: {{zPg.multiOpen}}; background: #eef1f9; display: flex; flex-direction: column; animation: menuIn .38s cubic-bezier(.22,1,.36,1) both">
 <div style="flex-shrink: 0; height: 64px; box-sizing: border-box; padding: 0 12px; background: radial-gradient(circle at 92% 0%, rgba(161, 146, 166,0.55) 0%, rgba(161, 146, 166,0) 45%), #4A1259; color: #ffffff; display: flex; align-items: center; gap: 4px">
 <button onClick="{{closeMulti}}" aria-label="Voltar" style="width: 44px; height: 44px; border: 0; border-radius: 9999px; background: transparent; color: #ffffff; display: flex; align-items: center; justify-content: center; cursor: pointer">
 <span class="ms" style="font-size: 24px">arrow_back</span>
@@ -1844,7 +2043,7 @@ Compartilhar QR Code
 </sc-if>
 
 <sc-if value="{{matOpen}}" hint-placeholder-val="{{ false }}">
-<section class="janela" role="dialog" aria-labelledby="mat-title" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: 19; background: #eef1f9; display: flex; flex-direction: column; animation: menuIn .38s cubic-bezier(.22,1,.36,1) both">
+<section class="janela" role="dialog" aria-labelledby="mat-title" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: {{zPg.matView}}; background: #eef1f9; display: flex; flex-direction: column; animation: menuIn .38s cubic-bezier(.22,1,.36,1) both">
 <div style="flex-shrink: 0; height: 64px; box-sizing: border-box; padding: 0 12px; background: radial-gradient(circle at 92% 0%, rgba(161, 146, 166,0.55) 0%, rgba(161, 146, 166,0) 45%), #4A1259; color: #ffffff; display: flex; align-items: center; gap: 4px">
 <button onClick="{{matBack}}" aria-label="Voltar" style="width: 44px; height: 44px; border: 0; border-radius: 9999px; background: transparent; color: #ffffff; display: flex; align-items: center; justify-content: center; cursor: pointer">
 <span class="ms" style="font-size: 24px">arrow_back</span>
@@ -1944,8 +2143,8 @@ Baixar
 </sc-if>
 
 <sc-if value="{{notifOpen}}" hint-placeholder-val="{{ false }}">
-<div class="janela" onClick="{{closeNotif}}" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: 21; background: rgba(11,28,48,0.5); animation: fadeIn .2s ease-out"></div>
-<section class="janela" role="dialog" aria-modal="true" aria-labelledby="notif-title" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: 22; background: #eef1f9; display: flex; flex-direction: column; overflow: hidden; animation: menuIn .38s cubic-bezier(.22,1,.36,1) both">
+<div class="janela" onClick="{{closeNotif}}" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: {{zPg.notifOpen}}; background: rgba(11,28,48,0.5); animation: fadeIn .2s ease-out"></div>
+<section class="janela" role="dialog" aria-modal="true" aria-labelledby="notif-title" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: {{zPg.notifOpen}}; background: #eef1f9; display: flex; flex-direction: column; overflow: hidden; animation: menuIn .38s cubic-bezier(.22,1,.36,1) both">
 <div style="flex-shrink: 0; background: #ffffff; padding: 0 20px 14px; border-bottom: 1px solid #e5eeff">
 <div style="height: 12px"></div>
 <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px">
@@ -2013,7 +2212,7 @@ Marcar todas como lidas
 </sc-if>
 
 <sc-if value="{{agendaOpen}}" hint-placeholder-val="{{ false }}">
-<section class="janela" role="dialog" aria-labelledby="agenda-title" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: 19; background: #eef1f9; display: flex; flex-direction: column; animation: menuIn .38s cubic-bezier(.22,1,.36,1) both">
+<section class="janela" role="dialog" aria-labelledby="agenda-title" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: {{zPg.agendaOpen}}; background: #eef1f9; display: flex; flex-direction: column; animation: menuIn .38s cubic-bezier(.22,1,.36,1) both">
 <div style="flex-shrink: 0; background: #ffffff; border-bottom: 1px solid #e5eeff; box-shadow: 0 1px 8px rgba(0,0,0,0.04); padding: 0 12px 12px">
 <div style="height: 64px; margin: 0 -12px; padding: 0 12px; background: radial-gradient(circle at 92% 0%, rgba(161, 146, 166,0.55) 0%, rgba(161, 146, 166,0) 45%), #4A1259; color: #ffffff; display: flex; align-items: center; gap: 4px">
 <button onClick="{{closeAgenda}}" aria-label="Voltar" style="width: 44px; height: 44px; border: 0; border-radius: 9999px; background: transparent; color: #ffffff; display: flex; align-items: center; justify-content: center; cursor: pointer">
@@ -2337,7 +2536,7 @@ Agendar neste dia
 </sc-if>
 
 <sc-if value="{{relOpen}}" hint-placeholder-val="{{ false }}">
-<section class="janela" role="dialog" aria-labelledby="rel-title" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: 19; background: #eef1f9; display: flex; flex-direction: column; animation: menuIn .38s cubic-bezier(.22,1,.36,1) both">
+<section class="janela" role="dialog" aria-labelledby="rel-title" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: {{zPg.relOpen}}; background: #eef1f9; display: flex; flex-direction: column; animation: menuIn .38s cubic-bezier(.22,1,.36,1) both">
 <div style="flex-shrink: 0; background: #ffffff; border-bottom: 1px solid #e5eeff; box-shadow: 0 1px 8px rgba(0,0,0,0.04); padding: 0 12px 12px">
 <div style="height: 64px; margin: 0 -12px; padding: 0 12px; background: radial-gradient(circle at 92% 0%, rgba(161, 146, 166,0.55) 0%, rgba(161, 146, 166,0) 45%), #4A1259; color: #ffffff; display: flex; align-items: center; gap: 4px">
 <button onClick="{{closeRelatorios}}" aria-label="Voltar" style="width: 44px; height: 44px; border: 0; border-radius: 9999px; background: transparent; color: #ffffff; display: flex; align-items: center; justify-content: center; cursor: pointer">
@@ -2580,7 +2779,7 @@ Relatório em PDF gerado para conferência
 </sc-if>
 
 <sc-if value="{{indOpen}}" hint-placeholder-val="{{ false }}">
-<section class="janela" role="dialog" aria-labelledby="ind-title" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: 19; background: #eef1f9; display: flex; flex-direction: column; animation: menuIn .38s cubic-bezier(.22,1,.36,1) both">
+<section class="janela" role="dialog" aria-labelledby="ind-title" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: {{zPg.indOpen}}; background: #eef1f9; display: flex; flex-direction: column; animation: menuIn .38s cubic-bezier(.22,1,.36,1) both">
 <div style="flex-shrink: 0; background: #ffffff; border-bottom: 1px solid #e5eeff; box-shadow: 0 1px 8px rgba(0,0,0,0.04); padding: 0 12px 12px">
 <div style="height: 64px; margin: 0 -12px; padding: 0 12px; background: radial-gradient(circle at 92% 0%, rgba(161, 146, 166,0.55) 0%, rgba(161, 146, 166,0) 45%), #4A1259; color: #ffffff; display: flex; align-items: center; gap: 4px">
 <button onClick="{{closeIndicadores}}" aria-label="Voltar" style="width: 44px; height: 44px; border: 0; border-radius: 9999px; background: transparent; color: #ffffff; display: flex; align-items: center; justify-content: center; cursor: pointer">
@@ -2738,7 +2937,7 @@ Faltam 8 placas para atingir a meta.
 </sc-if>
 
 <sc-if value="{{indicOpen}}" hint-placeholder-val="{{ false }}">
-<section class="janela" role="dialog" aria-labelledby="indic-title" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: 19; background: #eef1f9; display: flex; flex-direction: column; animation: menuIn .38s cubic-bezier(.22,1,.36,1) both">
+<section class="janela" role="dialog" aria-labelledby="indic-title" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: {{zPg.indicOpen}}; background: #eef1f9; display: flex; flex-direction: column; animation: menuIn .38s cubic-bezier(.22,1,.36,1) both">
 
 <sc-if value="{{indicIsLista}}" hint-placeholder-val="{{ true }}">
 <div style="flex-shrink: 0; background: #ffffff; border-bottom: 1px solid #e5eeff; box-shadow: 0 1px 8px rgba(0,0,0,0.04); padding: 0 12px 12px">
@@ -2969,7 +3168,7 @@ Faltam 8 placas para atingir a meta.
 </sc-if>
 
 <sc-if value="{{novOpen}}" hint-placeholder-val="{{ false }}">
-<section class="janela" role="dialog" aria-labelledby="nov-title" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: 19; background: #eef1f9; display: flex; flex-direction: column; animation: menuIn .38s cubic-bezier(.22,1,.36,1) both">
+<section class="janela" role="dialog" aria-labelledby="nov-title" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: {{zPg.novOpen}}; background: #eef1f9; display: flex; flex-direction: column; animation: menuIn .38s cubic-bezier(.22,1,.36,1) both">
 <div style="flex-shrink: 0; height: 64px; box-sizing: border-box; padding: 0 12px; background: radial-gradient(circle at 92% 0%, rgba(161, 146, 166,0.55) 0%, rgba(161, 146, 166,0) 45%), #4A1259; color: #ffffff; display: flex; align-items: center; gap: 4px">
 <button onClick="{{closeNovidades}}" aria-label="Voltar" style="width: 44px; height: 44px; border: 0; border-radius: 9999px; background: transparent; color: #ffffff; display: flex; align-items: center; justify-content: center; cursor: pointer"><span class="ms" style="font-size: 24px">arrow_back</span></button>
 <h2 id="nov-title" style="color: #ffffff; margin: 0; font-size: 17px; line-height: 22px; font-weight: 700">Novidades desta versão</h2>
@@ -3035,7 +3234,7 @@ Faltam 8 placas para atingir a meta.
 </sc-if>
 
 <sc-if value="{{propOpen}}" hint-placeholder-val="{{ false }}">
-<section class="janela" role="dialog" aria-labelledby="prop-title" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: 19; background: #eef1f9; display: flex; flex-direction: column; animation: menuIn .38s cubic-bezier(.22,1,.36,1) both">
+<section class="janela" role="dialog" aria-labelledby="prop-title" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: {{zPg.propOpen}}; background: #eef1f9; display: flex; flex-direction: column; animation: menuIn .38s cubic-bezier(.22,1,.36,1) both">
 <div style="flex-shrink: 0; background: #ffffff; border-bottom: 1px solid #e5eeff; box-shadow: 0 1px 8px rgba(0,0,0,0.04); padding: 0 12px 10px">
 <div style="height: 64px; margin: 0 -12px; padding: 0 12px; background: radial-gradient(circle at 92% 0%, rgba(161, 146, 166,0.55) 0%, rgba(161, 146, 166,0) 45%), #4A1259; color: #ffffff; display: flex; align-items: center; gap: 4px">
 <button onClick="{{closePropostas}}" aria-label="Voltar" style="width: 44px; height: 44px; border: 0; border-radius: 9999px; background: transparent; color: #ffffff; display: flex; align-items: center; justify-content: center; cursor: pointer"><span class="ms" style="font-size: 24px">arrow_back</span></button>
@@ -3064,7 +3263,7 @@ Faltam 8 placas para atingir a meta.
 </div>
 
 <sc-for list="{{propItems}}" as="pr" hint-placeholder-count="4">
-<article class="prop-card" onClick="{{pr.open}}" style="cursor: pointer; flex-shrink: 0; border-radius: 10px; background: #ffffff; border: 1px solid #ece7f0; box-shadow: 0 1px 2px rgba(32, 7, 38,0.04), 0 8px 22px -14px rgba(32, 7, 38,0.28); display: flex; flex-direction: column; overflow: hidden; animation: itemIn .3s cubic-bezier(.22,1,.36,1) both">
+<article class="prop-card" onClick="{{pr.open}}" style="cursor: pointer; flex-shrink: 0; border-radius: 10px; background: #ffffff; border: 1px solid #e2dbe7; box-shadow: 0 2px 6px rgba(32, 7, 38,0.14), 0 14px 30px -8px rgba(32, 7, 38,0.38); display: flex; flex-direction: column; overflow: hidden; animation: itemIn .3s cubic-bezier(.22,1,.36,1) both">
 <div role="button" tabindex="0" aria-label="{{pr.openLabel}}" style="padding: 16px 16px 12px; display: flex; flex-direction: column; gap: 12px">
 <div style="display: flex; align-items: flex-start; gap: 10px">
 <div style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px">
@@ -3278,7 +3477,7 @@ Faltam 8 placas para atingir a meta.
 </sc-if>
 
 <sc-if value="{{wizOpen}}" hint-placeholder-val="{{ false }}">
-<section class="janela" role="dialog" aria-modal="true" aria-labelledby="wiz-title" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: 24; background: #eef1f9; display: flex; flex-direction: column; animation: menuIn .38s cubic-bezier(.22,1,.36,1) both">
+<section class="janela" role="dialog" aria-modal="true" aria-labelledby="wiz-title" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: {{zPg.wizOpen}}; background: #eef1f9; display: flex; flex-direction: column; animation: menuIn .38s cubic-bezier(.22,1,.36,1) both">
 <div style="flex-shrink: 0; background: #ffffff; border-bottom: 1px solid #e5eeff; box-shadow: 0 1px 8px rgba(0,0,0,0.04); padding: 0 12px 12px">
 <div style="height: 64px; margin: 0 -12px; padding: 0 12px; background: radial-gradient(circle at 92% 0%, rgba(161, 146, 166,0.55) 0%, rgba(161, 146, 166,0) 45%), #4A1259; color: #ffffff; display: flex; align-items: center; gap: 4px">
 <button onClick="{{closeWiz}}" aria-label="Fechar" style="width: 44px; height: 44px; border: 0; border-radius: 9999px; background: transparent; color: #ffffff; display: flex; align-items: center; justify-content: center; cursor: pointer"><span class="ms" style="font-size: 24px">close</span></button>
@@ -3357,6 +3556,37 @@ Faltam 8 placas para atingir a meta.
 <div style="display: flex; flex-direction: column; gap: 12px">
 <label style="display: flex; flex-direction: column; gap: 6px"><span style="font-size: 12px; font-weight: 700; color: #4a4455">Estado</span><select class="campo" value="{{wUf}}" onChange="{{onWUf}}" style="height: 38px; box-sizing: border-box; padding: 0 12px; border: 1px solid #ccc3d8; border-radius: 10px; background: #ffffff; font-family: inherit; color: #0b1c30; outline-color: #4A1259; width: 100%; appearance: auto"><option value="">Selecione o estado</option><sc-for list="{{wUfOpts}}" as="uf" hint-placeholder-count="3"><option value="{{uf.v}}">{{uf.label}}</option></sc-for></select></label>
 <label style="display: flex; flex-direction: column; gap: 6px"><span style="font-size: 12px; font-weight: 700; color: #4a4455">Cidade</span><select class="campo" value="{{wCidade}}" onChange="{{onWCidade}}" disabled="{{wCidadeDisabled}}" style="height: 38px; box-sizing: border-box; padding: 0 12px; border: 1px solid #ccc3d8; border-radius: 10px; background: #ffffff; font-family: inherit; color: #0b1c30; outline-color: #4A1259; width: 100%; appearance: auto"><option value="">{{wCidadePh}}</option><sc-for list="{{wCidadeOpts}}" as="ci" hint-placeholder-count="3"><option value="{{ci.v}}">{{ci.v}}</option></sc-for></select></label>
+</div>
+<div style="border-top: 1px solid #f1eef3; padding-top: 12px; display: flex; flex-direction: column; gap: 12px">
+<button type="button" onClick="{{wAssocAlternar}}" aria-expanded="{{wAssocAria}}" style="padding: 0; border: 0; background: transparent; font-family: inherit; color: inherit; text-align: left; display: flex; align-items: center; gap: 10px; cursor: pointer">
+<span class="ms" style="flex-shrink: 0; width: 32px; height: 32px; border-radius: 9px; background: #f3eef5; color: #4A1259; font-size: 18px; display: flex; align-items: center; justify-content: center">badge</span>
+<span style="flex-grow: 1; display: flex; flex-direction: column; gap: 1px"><strong style="font-size: 13px; color: #0b1c30">Dados complementares do associado</strong><span style="font-size: 11px; color: #7b7487">{{wAssocResumo}}</span></span>
+<span class="ms" style="{{wAssocSeta}}">expand_more</span>
+</button>
+<sc-if value="{{wAssocOpen}}" hint-placeholder-val="{{ false }}">
+<h4 style="margin: 4px 0 0; font-size: 14px; line-height: 18px; font-weight: 800; color: #4A1259">Dados pessoais</h4>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 10px">
+<sc-for list="{{wAssocPessoal}}" as="ac" hint-placeholder-count="4">
+<label style="{{ac.estilo}}"><span style="font-size: 12px; font-weight: 700; color: #4a4455">{{ac.label}}</span>
+<sc-if value="{{ac.ehTexto}}" hint-placeholder-val="{{ true }}"><input class="campo" type="{{ac.tipo}}" inputmode="{{ac.modo}}" value="{{ac.valor}}" onChange="{{ac.onChange}}" placeholder="{{ac.ph}}" style="height: 38px; box-sizing: border-box; padding: 0 12px; border: 1px solid #ccc3d8; border-radius: 10px; background: #ffffff; font-family: inherit; font-size: 14px; color: #0b1c30; outline-color: #4A1259; width: 100%; min-width: 0"></sc-if>
+<sc-if value="{{ac.ehLista}}" hint-placeholder-val="{{ false }}"><select class="campo" value="{{ac.valor}}" onChange="{{ac.onChange}}" style="height: 38px; box-sizing: border-box; padding: 0 12px; border: 1px solid #ccc3d8; border-radius: 10px; background: #ffffff; font-family: inherit; font-size: 14px; color: #0b1c30; outline-color: #4A1259; width: 100%; min-width: 0; appearance: auto"><sc-for list="{{ac.opcoes}}" as="aco" hint-placeholder-count="3"><option value="{{aco.v}}">{{aco.label}}</option></sc-for></select></sc-if>
+</label>
+</sc-for>
+</div>
+<h4 style="margin: 4px 0 0; font-size: 14px; line-height: 18px; font-weight: 800; color: #4A1259">Endereço</h4>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 10px">
+<sc-for list="{{wAssocEndereco}}" as="ac" hint-placeholder-count="4">
+<label style="{{ac.estilo}}"><span style="font-size: 12px; font-weight: 700; color: #4a4455">{{ac.label}}</span>
+<sc-if value="{{ac.ehTexto}}" hint-placeholder-val="{{ true }}"><input class="campo" type="{{ac.tipo}}" inputmode="{{ac.modo}}" value="{{ac.valor}}" onChange="{{ac.onChange}}" placeholder="{{ac.ph}}" style="height: 38px; box-sizing: border-box; padding: 0 12px; border: 1px solid #ccc3d8; border-radius: 10px; background: #ffffff; font-family: inherit; font-size: 14px; color: #0b1c30; outline-color: #4A1259; width: 100%; min-width: 0"></sc-if>
+<sc-if value="{{ac.ehLista}}" hint-placeholder-val="{{ false }}"><select class="campo" value="{{ac.valor}}" onChange="{{ac.onChange}}" style="height: 38px; box-sizing: border-box; padding: 0 12px; border: 1px solid #ccc3d8; border-radius: 10px; background: #ffffff; font-family: inherit; font-size: 14px; color: #0b1c30; outline-color: #4A1259; width: 100%; min-width: 0; appearance: auto"><sc-for list="{{ac.opcoes}}" as="aco" hint-placeholder-count="3"><option value="{{aco.v}}">{{aco.label}}</option></sc-for></select></sc-if>
+</label>
+</sc-for>
+</div>
+<h4 style="margin: 4px 0 0; font-size: 14px; line-height: 18px; font-weight: 800; color: #4A1259">Cobrança por</h4>
+<div style="display: flex; flex-wrap: wrap; gap: 12px 28px">
+<sc-for list="{{wAssocCobranca}}" as="cb" hint-placeholder-count="2"><button type="button" role="checkbox" aria-checked="{{cb.aria}}" onClick="{{cb.alternar}}" style="padding: 0; border: 0; background: transparent; font-family: inherit; font-size: 14px; color: #0b1c30; display: flex; align-items: center; gap: 10px; cursor: pointer"><span class="ms" style="{{cb.caixa}}">{{cb.icone}}</span>{{cb.label}}</button></sc-for>
+</div>
+</sc-if>
 </div>
 </div>
 </div>
@@ -3668,7 +3898,7 @@ Faltam 8 placas para atingir a meta.
 </sc-if>
 
 <sc-if value="{{detOpen}}" hint-placeholder-val="{{ false }}">
-<section class="janela" role="dialog" aria-labelledby="det-title" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: 19; background: #eef1f9; display: flex; flex-direction: column; animation: menuIn .38s cubic-bezier(.22,1,.36,1) both">
+<section class="janela" role="dialog" aria-labelledby="det-title" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: {{zPg.detOpen}}; background: #eef1f9; display: flex; flex-direction: column; animation: menuIn .38s cubic-bezier(.22,1,.36,1) both">
 <div style="flex-shrink: 0; height: 64px; box-sizing: border-box; padding: 0 12px; background: radial-gradient(circle at 92% 0%, rgba(161, 146, 166,0.55) 0%, rgba(161, 146, 166,0) 45%), #4A1259; color: #ffffff; display: flex; align-items: center; gap: 4px">
 <button onClick="{{closeDet}}" aria-label="Voltar" style="width: 44px; height: 44px; border: 0; border-radius: 9999px; background: transparent; color: #ffffff; display: flex; align-items: center; justify-content: center; cursor: pointer"><span class="ms" style="font-size: 24px">arrow_back</span></button>
 <div style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column"><h2 id="det-title" style="color: #ffffff; margin: 0; font-size: 15px; line-height: 19px; font-weight: 700">Proposta nº {{det.num}}</h2><span style="font-size: 10px; line-height: 13px; color: rgba(255,255,255,0.78)">Criada em {{det.created}}</span></div>
@@ -3680,18 +3910,16 @@ Faltam 8 placas para atingir a meta.
 
 <div style="flex-shrink: 0; padding: 12px 16px 16px; border-radius: 10px; background: #ffffff; border: 1px solid #e5eeff; box-shadow: 0 2px 12px -2px rgba(32, 7, 38,0.06); display: flex; flex-direction: column; gap: 8px">
 <div style="margin-bottom: 4px; display: flex; align-items: flex-start; gap: 6px">
-<span class="ms" aria-hidden="true" style="flex-shrink: 0; margin-top: 2px; font-size: 24px; line-height: 24px; color: #4A1259; font-variation-settings: 'FILL' 0, 'wght' 300">person</span>
-<div style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 1px"><h3 style="margin: 0; font-size: 14px; line-height: 18px; font-weight: 800">{{det.name}}</h3><span style="font-size: 12px; line-height: 16px; color: #4a4455">{{det.phone}}</span><sc-if value="{{det.hasEmail}}" hint-placeholder-val="{{ true }}"><span style="font-size: 12px; line-height: 16px; color: #4a4455">{{det.email}}</span></sc-if></div>
+<div style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px"><span style="display: flex; align-items: center; gap: 6px; min-width: 0"><span class="ms" aria-hidden="true" style="flex-shrink: 0; font-size: 18px; color: #4A1259; font-variation-settings: 'FILL' 1">person</span><h3 style="min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin: 0; font-size: 14px; line-height: 18px; font-weight: 800">{{det.name}}</h3></span><span style="display: flex; align-items: center; gap: 8px; min-width: 0; padding-left: 1px"><span class="ms" aria-hidden="true" style="flex-shrink: 0; font-size: 15px; color: #4A1259; font-variation-settings: 'FILL' 1">call</span><span style="min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: 12px; line-height: 16px; color: #4a4455">{{det.phone}}</span></span><sc-if value="{{det.hasEmail}}" hint-placeholder-val="{{ true }}"><span style="display: flex; align-items: center; gap: 8px; min-width: 0; padding-left: 1px"><span class="ms" aria-hidden="true" style="flex-shrink: 0; font-size: 15px; color: #4A1259; font-variation-settings: 'FILL' 1">mail</span><span style="min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: 12px; line-height: 16px; color: #4a4455">{{det.email}}</span></span></sc-if></div>
 </div>
 <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px">
-<a href="{{det.tel}}" style="height: 44px; border: 1.5px solid #4A1259; border-radius: 6px; background: #ffffff; color: #4A1259; font-family: inherit; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; text-decoration: none; height: 36px; border-width: 1px; border-color: #e5eeff"><span class="ms" style="font-size: 15px">call</span>Ligar</a>
-<a href="{{det.whatsUrl}}" target="_blank" rel="noopener" style="height: 36px; border-radius: 6px; background: #1fa855; color: #ffffff; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 6px; text-decoration: none"><img src="assets/whatsapp-branco.svg" alt="" aria-hidden="true" style="width: 14px; height: 14px">Conversar</a>
-<button onClick="{{detNota}}" style="height: 44px; border: 1.5px solid #4A1259; border-radius: 6px; background: #ffffff; color: #4A1259; font-family: inherit; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; text-decoration: none; height: 36px; border-width: 1px; border-color: #e5eeff"><span class="ms" style="font-size: 15px">edit_note</span>Agendar</button>
+<a href="{{det.tel}}" style="box-sizing: border-box; height: 44px; border: 1.5px solid #4A1259; border-radius: 6px; background: #ffffff; color: #4A1259; font-family: inherit; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; text-decoration: none; height: 30px; border-width: 1px; border-color: #e5eeff"><span class="ms" style="font-size: 15px">call</span>Ligar</a>
+<a href="{{det.whatsUrl}}" target="_blank" rel="noopener" style="height: 30px; border-radius: 6px; background: #1fa855; color: #ffffff; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 6px; text-decoration: none"><img src="assets/whatsapp-branco.svg" alt="" aria-hidden="true" style="width: 14px; height: 14px">Conversar</a>
+<button onClick="{{detNota}}" style="height: 44px; border: 1.5px solid #4A1259; border-radius: 6px; background: #ffffff; color: #4A1259; font-family: inherit; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; text-decoration: none; height: 30px; border-width: 1px; border-color: #e5eeff"><span class="ms" style="font-size: 15px">edit_note</span>Agendar</button>
 </div>
 <div style="margin: 10px -16px 0; padding: 16px 16px 0; border-top: 1px solid #ece7f0; display: flex; flex-direction: column; gap: 12px">
 <div style="display: flex; align-items: center; gap: 8px">
-<span style="flex-shrink: 0; width: 32px; height: 40px; color: #4A1259; display: flex; align-items: center; justify-content: center"><span class="ms" style="font-size: 28px; font-variation-settings: 'FILL' 1">{{det.vehIcon}}</span></span>
-<div style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column"><strong style="font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{det.vehTitle}}</strong><span style="font-size: 12px; color: #4a4455">{{det.vehSub}}</span><span style="align-self: flex-start; margin-top: 4px; padding: 2px 8px; border-radius: 6px; background: #f3eef5; font-size: 11px; font-weight: 700; color: #4A1259"><span style="font-weight: 500; color: #7b7487">Categoria:</span> {{det.categoria}}</span></div>
+<div style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column"><span style="display: flex; align-items: center; gap: 6px; min-width: 0"><span class="ms" aria-hidden="true" style="flex-shrink: 0; font-size: 18px; color: #4A1259; font-variation-settings: 'FILL' 1">{{det.vehIcon}}</span><strong style="min-width: 0; font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{det.vehTitle}}</strong></span><span style="font-size: 12px; color: #4a4455">{{det.vehSub}}</span><span style="align-self: flex-start; margin-top: 2px; font-size: 12px; font-weight: 700; color: #4A1259"><span style="font-weight: 500; color: #7b7487">Categoria:</span> {{det.categoria}}</span></div>
 <span aria-label="Placa {{det.placa}}" style="flex-shrink: 0; display: inline-flex; flex-direction: column; min-width: 78px; border: 1.5px solid #1f2937; border-radius: 6px; overflow: hidden; background: #ffffff; box-shadow: 0 1px 3px rgba(32, 7, 38,0.18)"><span aria-hidden="true" style="height: 9px; background: #1d4fa3; color: #ffffff; font-size: 6.5px; line-height: 9px; font-weight: 800; letter-spacing: 0.2em; text-align: center">BRASIL</span><span style="padding: 2px 8px 3px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px; line-height: 17px; font-weight: 800; letter-spacing: 0.08em; color: #111827; text-align: center; white-space: nowrap">{{det.placa}}</span></span>
 </div>
 <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0; padding: 4px 0">
@@ -3721,7 +3949,7 @@ Faltam 8 placas para atingir a meta.
 </sc-if>
 <div style="position: relative">
 <button onClick="{{toggleAcoesVeic}}" aria-haspopup="menu" aria-expanded="{{acoesVeicAttr}}" style="width: 100%; height: 42px; padding: 0 12px; border: 1px solid #e5dcea; border-radius: 8px; background: #ffffff; color: #4A1259; font-family: inherit; font-size: 13px; font-weight: 700; display: flex; align-items: center; gap: 8px; cursor: pointer">
-<span class="ms" style="font-size: 19px">tune</span><span style="flex-grow: 1; text-align: left">Ações do veículo</span><span class="ms" style="{{acoesVeicSeta}}">expand_more</span>
+<span style="flex-grow: 1; text-align: left">Ações do veículo</span><span class="ms" style="{{acoesVeicSeta}}">expand_more</span>
 </button>
 <sc-if value="{{acoesVeicOpen}}" hint-placeholder-val="{{ false }}">
 <div onClick="{{fecharAcoesVeic}}" style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 4"></div>
@@ -3820,7 +4048,7 @@ Faltam 8 placas para atingir a meta.
 </div>
 
 <div style="flex-shrink: 0; padding: 14px 8px 12px; border-radius: 10px 10px 0 0; background: #ffffff; border: 1px solid #e5eeff; border-bottom: 1px solid #f1eef3">
-<div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 3px">
+<div class="etapas-grade" style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 3px">
 <sc-for list="{{detSteps}}" as="hz" hint-placeholder-count="5">
 <button onClick="{{hz.pick}}" aria-label="{{hz.aria}}" aria-current="{{hz.ariaCurrent}}" style="{{hz.btnStyle}}">
 <span aria-hidden="true" style="{{hz.lineL}}"></span>
@@ -3857,7 +4085,7 @@ Faltam 8 placas para atingir a meta.
 <sc-if value="{{fin.notEditAdesao}}" hint-placeholder-val="{{ true }}"><span style="font-size: 14px; font-weight: 600; color: #0b1c30">{{fin.adesao}}</span></sc-if>
 </span>
 <sc-if value="{{fin.notEditAdesao}}" hint-placeholder-val="{{ true }}">
-<button onClick="{{fin.editAdesaoGo}}" style="flex-shrink: 0; height: 34px; padding: 0 12px; border: 1.5px solid #4A1259; border-radius: 6px; background: #ffffff; color: #4A1259; font-family: inherit; font-size: 12px; font-weight: 700; cursor: pointer">Alterar valor</button>
+<button onClick="{{fin.editAdesaoGo}}" style="flex-shrink: 0; box-sizing: border-box; width: 124px; height: 34px; padding: 0 8px; border: 1.5px solid #4A1259; border-radius: 6px; background: #ffffff; color: #4A1259; font-family: inherit; font-size: 12px; font-weight: 700; cursor: pointer">Alterar valor</button>
 </sc-if>
 </div>
 <div style="padding: 10px 0; border-bottom: 1px solid #eff4ff; display: flex; flex-direction: column; gap: 6px">
@@ -3881,7 +4109,7 @@ Faltam 8 placas para atingir a meta.
 </div>
 <div style="padding: 14px 0 12px; display: flex; align-items: center; justify-content: space-between; gap: 12px; border-bottom: 1px solid #eff4ff">
 <span style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 12px; color: #4a4455">Valor da proposta</span><strong class="price-pop" key="{{fin.totalKey}}" style="font-size: 22px; line-height: 26px; font-weight: 800; color: #4A1259">{{fin.total}}</strong><span style="font-size: 11px; color: #7b7487">por mês · mensalidade + adicionais</span></span>
-<a href="{{fin.shareUrl}}" target="_blank" rel="noopener" style="flex-shrink: 0; height: 40px; padding: 0 14px; border-radius: 8px; background: #1fa855; color: #ffffff; font-size: 13px; font-weight: 700; display: flex; align-items: center; gap: 6px; text-decoration: none"><img src="assets/whatsapp-branco.svg" alt="" aria-hidden="true" style="width: 16px; height: 16px">Compartilhar</a>
+<a href="{{fin.shareUrl}}" target="_blank" rel="noopener" style="flex-shrink: 0; box-sizing: border-box; width: 124px; height: 34px; padding: 0 8px; justify-content: center; border-radius: 6px; background: #1fa855; color: #ffffff; font-size: 12px; font-weight: 700; display: flex; align-items: center; gap: 6px; text-decoration: none"><img src="assets/whatsapp-branco.svg" alt="" aria-hidden="true" style="width: 14px; height: 14px">Compartilhar</a>
 </div>
 <div style="padding-top: 10px; display: flex; flex-direction: column; gap: 6px">
 <div style="display: flex; align-items: center; justify-content: space-between"><span style="font-size: 11px; color: #7b7487">Comentário da proposta</span>
@@ -3917,11 +4145,7 @@ Faltam 8 placas para atingir a meta.
 </sc-if>
 
 <sc-if value="{{sx.showVeiculo}}" hint-placeholder-val="{{ false }}">
-<div style="padding: 12px; border-radius: 12px; background: #f9f6fa; display: flex; align-items: center; gap: 10px">
-<span class="ms" style="flex-shrink: 0; font-size: 24px; color: #4A1259; font-variation-settings: 'FILL' 1">directions_car</span>
-<span style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px"><strong style="font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{vehBox.title}}</strong><span style="font-size: 11px; color: #4a4455">{{vehBox.extra}}</span></span>
-<span aria-label="Placa {{vehBox.placa}}" style="flex-shrink: 0; display: inline-flex; flex-direction: column; min-width: 78px; border: 1.5px solid #1f2937; border-radius: 6px; overflow: hidden; background: #ffffff; box-shadow: 0 1px 3px rgba(32, 7, 38,0.18)"><span aria-hidden="true" style="height: 9px; background: #1d4fa3; color: #ffffff; font-size: 6.5px; line-height: 9px; font-weight: 800; letter-spacing: 0.2em; text-align: center">BRASIL</span><span style="padding: 2px 8px 3px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; line-height: 16px; font-weight: 800; letter-spacing: 0.08em; color: #111827; text-align: center; white-space: nowrap">{{vehBox.placa}}</span></span>
-</div>
+<div style="padding: 10px 12px; border-radius: 12px; background: #f9f6fa; font-size: 12px; line-height: 16px; color: #4a4455">{{vehBox.extra}}</div>
 </sc-if>
 
 <sc-for list="{{sx.tasks}}" as="tk" hint-placeholder-count="1">
@@ -3935,6 +4159,13 @@ Faltam 8 placas para atingir a meta.
 <sc-if value="{{sx.hasAct}}" hint-placeholder-val="{{ false }}">
 <sc-if value="{{sx.hasActHint}}" hint-placeholder-val="{{ false }}"><span style="font-size: 11px; line-height: 15px; color: #7b7487">{{sx.actHint}}</span></sc-if>
 <button onClick="{{sx.actGo}}" aria-disabled="{{sx.actDisabled}}" style="{{sx.actStyle}}">{{sx.actLabel}}<span class="ms" style="font-size: 18px">{{sx.actIcon}}</span></button>
+</sc-if>
+<sc-if value="{{sx.showDica}}" hint-placeholder-val="{{ false }}"><span style="display: flex; align-items: center; gap: 6px; font-size: 11px; line-height: 15px; color: #7b7487"><span class="ms" style="flex-shrink: 0; font-size: 16px">info</span>{{sx.actHint}}</span></sc-if>
+<sc-if value="{{sx.showAguardando}}" hint-placeholder-val="{{ false }}">
+<div style="padding: 12px; border-radius: 12px; background: #fffbeb; display: flex; align-items: flex-start; gap: 10px">
+<span class="ms" style="flex-shrink: 0; font-size: 22px; color: #b45309">hourglass_top</span>
+<span style="display: flex; flex-direction: column; gap: 2px"><strong style="font-size: 13px; color: #b45309">Aguardando ativação</strong><span style="font-size: 12px; line-height: 17px; color: #4a4455">Todas as etapas foram concluídas. A proteção será ativada após a confirmação do pagamento da adesão.</span></span>
+</div>
 </sc-if>
 </div>
 </sc-if>
@@ -4040,6 +4271,339 @@ Faltam 8 placas para atingir a meta.
 </section>
 </sc-if>
 
+<sc-if value="{{termoOpen}}" hint-placeholder-val="{{ false }}">
+<section class="janela" role="dialog" aria-labelledby="termo-title" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: {{zPg.termoOpen}}; background: #eef1f9; display: flex; flex-direction: column; animation: menuIn .38s cubic-bezier(.22,1,.36,1) both">
+<div style="flex-shrink: 0; height: 64px; box-sizing: border-box; padding: 0 12px; background: radial-gradient(circle at 92% 0%, rgba(161, 146, 166,0.55) 0%, rgba(161, 146, 166,0) 45%), #4A1259; color: #ffffff; display: flex; align-items: center; gap: 4px">
+<button onClick="{{closeTermo}}" aria-label="Voltar" style="width: 44px; height: 44px; border: 0; border-radius: 9999px; background: transparent; color: #ffffff; display: flex; align-items: center; justify-content: center; cursor: pointer"><span class="ms" style="font-size: 24px">arrow_back</span></button>
+<div style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column"><h2 id="termo-title" style="color: #ffffff; margin: 0; font-size: 15px; line-height: 19px; font-weight: 700">Assinatura do termo de filiação</h2><span style="font-size: 10px; line-height: 13px; color: rgba(255,255,255,0.78); white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{termoNome}}</span></div>
+</div>
+<div class="nosb" style="flex-grow: 1; min-height: 0; overflow-y: auto; scrollbar-width: none; padding: 14px var(--tela-margem) 20px; display: flex; flex-direction: column; gap: 12px">
+
+<div style="flex-shrink: 0; padding: 12px 16px 16px; border-radius: 10px; background: #ffffff; border: 1px solid #e5eeff; box-shadow: 0 2px 12px -2px rgba(32, 7, 38,0.06); display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; align-items: center; gap: 8px">
+<div style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column">
+<span style="display: flex; align-items: center; gap: 6px; min-width: 0"><span class="ms" aria-hidden="true" style="flex-shrink: 0; font-size: 18px; color: #4A1259; font-variation-settings: 'FILL' 1">{{termoTipoIcon}}</span><strong style="min-width: 0; font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{termoVeiculo}}</strong></span>
+<span style="font-size: 12px; color: #4a4455">{{termoTipoNome}}</span>
+</div>
+<span aria-label="Placa {{termoPlaca}}" style="flex-shrink: 0; display: inline-flex; flex-direction: column; min-width: 78px; border: 1.5px solid #1f2937; border-radius: 6px; overflow: hidden; background: #ffffff; box-shadow: 0 1px 3px rgba(32, 7, 38,0.18)"><span aria-hidden="true" style="height: 9px; background: #1d4fa3; color: #ffffff; font-size: 6.5px; line-height: 9px; font-weight: 800; letter-spacing: 0.2em; text-align: center">BRASIL</span><span style="padding: 2px 8px 3px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px; line-height: 17px; font-weight: 800; letter-spacing: 0.08em; color: #111827; text-align: center; white-space: nowrap">{{termoPlaca}}</span></span>
+</div>
+<sc-if value="{{termoEditavel}}" hint-placeholder-val="{{ true }}">
+<label style="display: flex; flex-direction: column; gap: 6px"><span style="font-size: 13px; font-weight: 700; color: #0b1c30">Tipo de termo de filiação</span><select class="campo" value="{{termoTipo}}" onChange="{{onTermoTipo}}" style="height: 38px; box-sizing: border-box; padding: 0 12px; border: 1px solid #ccc3d8; border-radius: 10px; background: #ffffff; font-family: inherit; font-size: 14px; color: #0b1c30; outline-color: #4A1259; width: 100%; appearance: auto"><sc-for list="{{termoTipoOpts}}" as="to" hint-placeholder-count="4"><option value="{{to.v}}">{{to.label}}</option></sc-for></select></label>
+<label style="display: flex; flex-direction: column; gap: 6px"><span style="font-size: 13px; font-weight: 700; color: #0b1c30">Modelo do termo</span><select class="campo" value="{{termoModelo}}" onChange="{{onTermoModelo}}" style="height: 38px; box-sizing: border-box; padding: 0 12px; border: 1px solid #ccc3d8; border-radius: 10px; background: #ffffff; font-family: inherit; font-size: 14px; color: #0b1c30; outline-color: #4A1259; width: 100%; appearance: auto"><sc-for list="{{termoModeloOpts}}" as="tmo" hint-placeholder-count="6"><option value="{{tmo.v}}">{{tmo.label}}</option></sc-for></select></label>
+<sc-if value="{{termoFrota}}" hint-placeholder-val="{{ false }}"><span style="display: flex; align-items: flex-start; gap: 6px; padding: 8px 10px; border-radius: 8px; background: #f3eef5; font-size: 11px; line-height: 15px; color: #4A1259"><span class="ms" style="flex-shrink: 0; font-size: 16px">local_shipping</span>{{termoFrotaTexto}}</span></sc-if>
+</sc-if>
+<sc-if value="{{termoTravado}}" hint-placeholder-val="{{ false }}">
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); padding: 4px 0">
+<div style="padding: 2px 4px; display: flex; flex-direction: column; align-items: center; text-align: center"><span style="font-size: 11px; color: #4a4455">Tipo de termo</span><strong style="font-size: 14px; color: #0b1c30">{{termoTipoTexto}}</strong></div>
+<div style="padding: 2px 4px; border-left: 1px solid #ece7f0; display: flex; flex-direction: column; align-items: center; text-align: center"><span style="font-size: 11px; color: #4a4455">Modelo do termo</span><strong style="font-size: 14px; color: #0b1c30">{{termoModeloTexto}}</strong></div>
+</div>
+</sc-if>
+</div>
+
+<div style="flex-shrink: 0; padding: 12px 16px 16px; border-radius: 10px; background: #ffffff; border: 1px solid #e5eeff; box-shadow: 0 2px 12px -2px rgba(32, 7, 38,0.06); display: flex; flex-direction: column; gap: 8px">
+<span style="font-size: 13px; font-weight: 700; color: #0b1c30">Antes de assinar</span>
+<sc-for list="{{termoTarefas}}" as="tt" hint-placeholder-count="2">
+<div style="{{tt.rowStyle}}">
+<span class="ms" style="{{tt.iconStyle}}">{{tt.icon}}</span>
+<span style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 1px"><strong style="{{tt.titleStyle}}">{{tt.title}}</strong><span style="{{tt.statusStyle}}">{{tt.status}}</span></span>
+<sc-if value="{{tt.temBotao}}" hint-placeholder-val="{{ true }}"><button onClick="{{tt.go}}" aria-disabled="{{tt.disabled}}" style="{{tt.btnStyle}}">{{tt.btn}}</button></sc-if>
+</div>
+</sc-for>
+</div>
+
+<div style="flex-shrink: 0; padding: 12px 16px 16px; border-radius: 10px; background: #ffffff; border: 1px solid #e5eeff; box-shadow: 0 2px 12px -2px rgba(32, 7, 38,0.06); display: flex; flex-direction: column; gap: 12px">
+<span style="font-size: 13px; font-weight: 700; color: #0b1c30">Assinatura</span>
+<div style="display: flex; align-items: center; gap: 10px">
+<span class="ms" style="flex-shrink: 0; font-size: 24px; color: {{termoStatusCor}}">{{termoStatusIcon}}</span>
+<span style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 1px"><strong style="font-size: 13px; color: {{termoStatusCor}}">{{termoStatus}}</strong><span style="font-size: 11px; line-height: 15px; color: #7b7487">{{termoStatusSub}}</span></span>
+</div>
+<sc-if value="{{termoTemAssinatura}}" hint-placeholder-val="{{ false }}">
+<div style="padding: 8px; border: 1px dashed #d9cfe0; border-radius: 10px; background: #fbf9fc; display: flex; flex-direction: column; align-items: center; gap: 2px"><img src="{{termoAssinatura}}" alt="Assinatura do associado" style="display: block; width: 100%; max-height: 110px; object-fit: contain"><span style="width: 70%; border-top: 1px solid #ccc3d8; padding-top: 4px; text-align: center; font-size: 11px; color: #7b7487">{{termoNome}}</span></div>
+</sc-if>
+<sc-if value="{{termoPodeAssinar}}" hint-placeholder-val="{{ true }}">
+<div style="display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 8px">
+<button onClick="{{termoAssinar}}" aria-disabled="{{termoAssinarDis}}" style="{{termoAssinarStyle}}"><span class="ms" style="font-size: 18px">draw</span>Assinar</button>
+<button onClick="{{termoCompartilhar}}" aria-disabled="{{termoAssinarDis}}" style="{{termoCompStyle}}"><span class="ms" style="font-size: 18px">content_copy</span>Copiar link</button>
+</div>
+</sc-if>
+</div>
+</div>
+
+<sc-if value="{{termoSheetOpen}}" hint-placeholder-val="{{ false }}">
+<div onClick="{{termoFechaSheet}}" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 6; background: rgba(11,28,48,0.5); animation: fadeIn .2s ease-out"></div>
+<section role="dialog" aria-modal="true" aria-labelledby="termo-sheet-title" style="position: absolute; left: 0; right: 0; bottom: 0; z-index: 7; max-height: 88%; background: #ffffff; border-radius: 24px 24px 0 0; box-shadow: 0 -8px 32px rgba(32, 7, 38,0.18); display: flex; flex-direction: column; animation: sheetUp .32s cubic-bezier(.22,1,.36,1)">
+<div style="flex-shrink: 0; padding: 0 20px 12px; border-bottom: 1px solid #eff4ff">
+<div style="display: flex; justify-content: center; padding: 12px 0 8px"><span style="width: 48px; height: 4px; border-radius: 9999px; background: #ccc3d8"></span></div>
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 12px">
+<div style="display: flex; align-items: center; gap: 10px"><span style="width: 36px; height: 36px; border-radius: 10px; background: linear-gradient(135deg, #622773 0%, #4A1259 100%); color: #ffffff; display: flex; align-items: center; justify-content: center"><span class="ms" style="font-size: 20px">{{termoSheetIcone}}</span></span><h3 id="termo-sheet-title" style="margin: 0; font-size: 17px; line-height: 22px; font-weight: 700">{{termoSheetTitulo}}</h3></div>
+<button onClick="{{termoFechaSheet}}" aria-label="Fechar" style="width: 40px; height: 40px; border: 0; border-radius: 9999px; background: #eff4ff; color: #4a4455; display: flex; align-items: center; justify-content: center; cursor: pointer"><span class="ms" style="font-size: 20px">close</span></button>
+</div>
+</div>
+<sc-if value="{{termoSheetForm}}" hint-placeholder-val="{{ false }}">
+<div class="nosb" style="flex-grow: 1; min-height: 0; overflow-y: auto; padding: 16px 20px; display: flex; flex-direction: column; gap: 14px">
+<sc-for list="{{termoCampos}}" as="tc" hint-placeholder-count="3">
+<label style="display: flex; flex-direction: column; gap: 6px"><span style="font-size: 12px; font-weight: 700; color: #4a4455">{{tc.label}} *</span>
+<sc-if value="{{tc.ehLista}}" hint-placeholder-val="{{ true }}"><select class="campo" value="{{tc.valor}}" onChange="{{tc.onChange}}" style="height: 48px; box-sizing: border-box; padding: 0 14px; border: 1px solid #ccc3d8; border-radius: 12px; background: #ffffff; font-family: inherit; font-size: 14px; color: #0b1c30; outline-color: #4A1259; width: 100%; appearance: auto"><sc-for list="{{tc.opcoes}}" as="tco" hint-placeholder-count="3"><option value="{{tco.v}}">{{tco.label}}</option></sc-for></select></sc-if>
+<sc-if value="{{tc.ehTexto}}" hint-placeholder-val="{{ false }}"><input class="campo" type="text" inputmode="{{tc.modo}}" value="{{tc.valor}}" onChange="{{tc.onChange}}" placeholder="{{tc.ph}}" style="height: 48px; box-sizing: border-box; padding: 0 14px; border: 1px solid #ccc3d8; border-radius: 12px; background: #ffffff; font-family: inherit; font-size: 14px; color: #0b1c30; outline-color: #4A1259; width: 100%"></sc-if>
+</label>
+</sc-for>
+</div>
+<div style="flex-shrink: 0; padding: 12px 20px 16px; border-top: 1px solid #eff4ff"><button onClick="{{termoSalvar}}" aria-disabled="{{termoSalvarDis}}" style="{{termoSalvarStyle}}">Salvar</button></div>
+</sc-if>
+<sc-if value="{{termoSheetAssinar}}" hint-placeholder-val="{{ false }}">
+<div style="padding: 16px 20px 20px; display: flex; flex-direction: column; gap: 10px">
+<button onClick="{{termoNoApp}}" style="padding: 14px; border: 1px solid #e5eeff; border-radius: 14px; background: #ffffff; font-family: inherit; color: inherit; text-align: left; display: flex; align-items: center; gap: 12px; cursor: pointer">
+<span class="ms" style="flex-shrink: 0; width: 42px; height: 42px; border-radius: 12px; background: #f3eef5; color: #4A1259; font-size: 22px; display: flex; align-items: center; justify-content: center">draw</span>
+<span style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px"><strong style="font-size: 14px">Assinar agora no aplicativo</strong><span style="font-size: 12px; line-height: 16px; color: #7b7487">O associado assina na tela deste celular.</span></span>
+<span class="ms" style="font-size: 20px; color: #A192A6">chevron_right</span>
+</button>
+<button onClick="{{termoExterna}}" style="padding: 14px; border: 1px solid #e5eeff; border-radius: 14px; background: #ffffff; font-family: inherit; color: inherit; text-align: left; display: flex; align-items: center; gap: 12px; cursor: pointer">
+<span class="ms" style="flex-shrink: 0; width: 42px; height: 42px; border-radius: 12px; background: #ecfdf5; color: #047857; font-size: 22px; display: flex; align-items: center; justify-content: center">share</span>
+<span style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px"><strong style="font-size: 14px">Enviar link para o associado</strong><span style="font-size: 12px; line-height: 16px; color: #7b7487">Ele recebe pelo WhatsApp e assina pelo celular dele.</span></span>
+<span class="ms" style="font-size: 20px; color: #A192A6">chevron_right</span>
+</button>
+<button onClick="{{termoFechaSheet}}" style="height: 44px; border: 0; border-radius: 12px; background: transparent; font-family: inherit; font-size: 14px; font-weight: 700; color: #4a4455; cursor: pointer">Cancelar</button>
+</div>
+</sc-if>
+</section>
+</sc-if>
+
+<sc-if value="{{termoPadOpen}}" hint-placeholder-val="{{ false }}">
+<div role="dialog" aria-modal="true" aria-labelledby="termo-pad-title" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 8; background: #eef1f9; display: flex; flex-direction: column; animation: fadeIn .2s ease-out">
+<div style="flex-shrink: 0; height: 56px; box-sizing: border-box; padding: 0 8px 0 12px; background: #4A1259; color: #ffffff; display: flex; align-items: center; gap: 4px">
+<button onClick="{{termoPadFechar}}" aria-label="Fechar assinatura" style="width: 40px; height: 40px; border: 0; border-radius: 9999px; background: transparent; color: #ffffff; display: flex; align-items: center; justify-content: center; cursor: pointer"><span class="ms" style="font-size: 22px">close</span></button>
+<h3 id="termo-pad-title" style="flex-grow: 1; margin: 0; font-size: 15px; font-weight: 700; color: #ffffff">Assinatura do associado</h3>
+<button onClick="{{termoLimpar}}" style="height: 34px; padding: 0 12px; border: 1px solid rgba(255,255,255,0.3); border-radius: 9999px; background: transparent; color: #ffffff; font-family: inherit; font-size: 12px; font-weight: 700; display: flex; align-items: center; gap: 4px; cursor: pointer"><span class="ms" style="font-size: 16px">ink_eraser</span>Limpar</button>
+</div>
+<div style="flex-grow: 1; min-height: 0; padding: 14px var(--tela-margem); display: flex; flex-direction: column; gap: 10px">
+<span style="font-size: 12px; line-height: 17px; color: #4a4455">Peça para <strong>{{termoNome}}</strong> assinar com o dedo no quadro abaixo, igual ao documento.</span>
+<div style="position: relative; flex-grow: 1; min-height: 200px; border: 1.5px dashed #ccc3d8; border-radius: 14px; background: #ffffff; overflow: hidden">
+<sc-if value="{{termoSemTraco}}" hint-placeholder-val="{{ true }}"><span aria-hidden="true" style="position: absolute; top: 50%; left: 0; right: 0; transform: translateY(-50%); text-align: center; font-size: 22px; font-weight: 800; letter-spacing: 0.14em; color: #e5dcea; pointer-events: none">ASSINE AQUI</span></sc-if>
+<span aria-hidden="true" style="position: absolute; left: 10%; right: 10%; bottom: 22%; border-top: 1px solid #d9cfe0; pointer-events: none"></span>
+<canvas ref="{{termoCanvasRef}}" aria-label="Quadro de assinatura" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; touch-action: none; cursor: crosshair"></canvas>
+</div>
+</div>
+<div style="flex-shrink: 0; padding: 10px var(--tela-margem) 12px; background: #ffffff; border-top: 1px solid #ece7f0; display: flex; gap: 8px">
+<button onClick="{{termoPadFechar}}" style="flex: 1; height: 50px; border: 1px solid #e5eeff; border-radius: 14px; background: #ffffff; font-family: inherit; font-size: 14px; font-weight: 700; color: #4A1259; cursor: pointer">Cancelar</button>
+<button onClick="{{termoConfirmar}}" aria-disabled="{{termoConfirmarDis}}" style="{{termoConfirmarStyle}}"><span class="ms" style="font-size: 20px">check</span>Confirmar assinatura</button>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{termoToastVisible}}" hint-placeholder-val="{{ false }}">
+<div role="status" style="position: absolute; left: 16px; right: 16px; bottom: 16px; z-index: 9; padding: 12px 14px; border-radius: 12px; background: #213145; color: #ffffff; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 8px; animation: fadeIn .2s ease-out"><span class="ms" style="font-size: 18px; color: #4ade80">check_circle</span>{{termoToast}}</div>
+</sc-if>
+</section>
+</sc-if>
+
+<sc-if value="{{vistOpen}}" hint-placeholder-val="{{ false }}">
+<section class="janela" role="dialog" aria-labelledby="vist-title" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: {{zPg.vistOpen}}; background: #eef1f9; display: flex; flex-direction: column; animation: menuIn .38s cubic-bezier(.22,1,.36,1) both">
+<div style="flex-shrink: 0; height: 64px; box-sizing: border-box; padding: 0 12px; background: radial-gradient(circle at 92% 0%, rgba(161, 146, 166,0.55) 0%, rgba(161, 146, 166,0) 45%), #4A1259; color: #ffffff; display: flex; align-items: center; gap: 4px">
+<button onClick="{{closeVist}}" aria-label="Voltar" style="width: 44px; height: 44px; border: 0; border-radius: 9999px; background: transparent; color: #ffffff; display: flex; align-items: center; justify-content: center; cursor: pointer"><span class="ms" style="font-size: 24px">arrow_back</span></button>
+<div style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column"><h2 id="vist-title" style="color: #ffffff; margin: 0; font-size: 15px; line-height: 19px; font-weight: 700">Vistoria do veículo</h2><span style="font-size: 10px; line-height: 13px; color: rgba(255,255,255,0.78); white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{vistNome}}</span></div>
+</div>
+<div class="nosb" style="flex-grow: 1; min-height: 0; overflow-y: auto; scrollbar-width: none; padding: 14px var(--tela-margem) 20px; display: flex; flex-direction: column; gap: 12px">
+
+<div style="flex-shrink: 0; padding: 12px 16px 16px; border-radius: 10px; background: #ffffff; border: 1px solid #e5eeff; box-shadow: 0 2px 12px -2px rgba(32, 7, 38,0.06); display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; align-items: center; gap: 8px">
+<div style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column">
+<span style="display: flex; align-items: center; gap: 6px; min-width: 0"><span class="ms" aria-hidden="true" style="flex-shrink: 0; font-size: 18px; color: #4A1259; font-variation-settings: 'FILL' 1">{{vistTipoIcon}}</span><strong style="min-width: 0; font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{vistVeiculo}}</strong></span>
+<span style="font-size: 12px; color: #4a4455">{{vistTipoNome}}</span>
+</div>
+<span aria-label="Placa {{vistPlaca}}" style="flex-shrink: 0; display: inline-flex; flex-direction: column; min-width: 78px; border: 1.5px solid #1f2937; border-radius: 6px; overflow: hidden; background: #ffffff; box-shadow: 0 1px 3px rgba(32, 7, 38,0.18)"><span aria-hidden="true" style="height: 9px; background: #1d4fa3; color: #ffffff; font-size: 6.5px; line-height: 9px; font-weight: 800; letter-spacing: 0.2em; text-align: center">BRASIL</span><span style="padding: 2px 8px 3px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px; line-height: 17px; font-weight: 800; letter-spacing: 0.08em; color: #111827; text-align: center; white-space: nowrap">{{vistPlaca}}</span></span>
+</div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); padding: 4px 0">
+<div style="padding: 2px 4px; display: flex; flex-direction: column; align-items: center; text-align: center"><span style="font-size: 11px; color: #4a4455">Modelo de vistoria</span><strong style="font-size: 14px; color: #0b1c30">{{vistModelo}}</strong></div>
+<div style="padding: 2px 4px; border-left: 1px solid #ece7f0; display: flex; flex-direction: column; align-items: center; text-align: center"><span style="font-size: 11px; color: #4a4455">Tipo de vistoria</span><strong style="font-size: 14px; color: #0b1c30">{{vistQuem}}</strong></div>
+</div>
+<sc-if value="{{vistEditavel}}" hint-placeholder-val="{{ true }}">
+<div style="display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 6px">
+<a href="{{vistShareUrl}}" target="_blank" rel="noopener" style="box-sizing: border-box; height: 30px; border-radius: 6px; font-family: inherit; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; text-decoration: none; white-space: nowrap; background: #1fa855; color: #ffffff"><span class="ms" style="font-size: 15px">share</span>Enviar ao associado</a>
+<button onClick="{{vistCopiar}}" style="box-sizing: border-box; height: 30px; border-radius: 6px; font-family: inherit; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; text-decoration: none; white-space: nowrap; border: 1px solid #e5eeff; background: #ffffff; color: #4A1259"><span class="ms" style="font-size: 15px">content_copy</span>Copiar link</button>
+</div>
+</sc-if>
+</div>
+
+<div style="flex-shrink: 0; padding: 12px 16px 16px; border-radius: 10px; background: #ffffff; border: 1px solid #e5eeff; box-shadow: 0 2px 12px -2px rgba(32, 7, 38,0.06); display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; align-items: center; gap: 12px">
+<span aria-hidden="true" style="{{vistAnel}}"><span style="width: 40px; height: 40px; border-radius: 9999px; background: #ffffff; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; color: #4A1259">{{vistPct}}</span></span>
+<span style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 1px">
+<h3 style="margin: 0; font-size: 14px; line-height: 18px; font-weight: 800; color: #0b1c30">Fotos da vistoria</h3>
+<span style="font-size: 12px; line-height: 16px; color: #4a4455">{{vistResumo}}</span>
+</span>
+</div>
+<sc-if value="{{vistEditavel}}" hint-placeholder-val="{{ true }}">
+<div style="padding: 10px 12px; border-radius: 10px; background: #f9f6fa; display: flex; align-items: center; gap: 8px">
+<span class="ms" style="flex-shrink: 0; font-size: 20px; color: #4A1259">auto_awesome</span>
+<span style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column"><strong style="font-size: 12px; line-height: 16px; color: #0b1c30">{{vistIaTitulo}}</strong><span style="font-size: 11px; line-height: 14px; color: #7b7487">{{vistIaSub}}</span></span>
+<sc-if value="{{vistSelNormal}}" hint-placeholder-val="{{ true }}">
+<button onClick="{{vistSelIniciar}}" aria-disabled="{{vistIaSemFotos}}" style="{{vistIaSecStyle}}">Selecionar</button>
+<button onClick="{{vistValidarTodas}}" aria-disabled="{{vistIaSemFotos}}" style="{{vistIaPriStyle}}">Validar todas</button>
+</sc-if>
+<sc-if value="{{vistSelAtivo}}" hint-placeholder-val="{{ false }}">
+<button onClick="{{vistSelCancelar}}" style="{{vistIaSecStyle}}">Cancelar</button>
+<button onClick="{{vistValidarSel}}" aria-disabled="{{vistValidarSelDis}}" style="{{vistValidarSelStyle}}">{{vistValidarSelTexto}}</button>
+</sc-if>
+</div>
+</sc-if>
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 8px"><span style="font-size: 11px; color: #7b7487">Documentos</span><span style="font-size: 11px; font-weight: 700; color: #4A1259">{{vistDocsCont}}</span></div>
+<div style="display: flex; flex-direction: column; margin-top: -6px">
+<sc-for list="{{vistDocs}}" as="vf" hint-placeholder-count="3">
+<div style="border-top: 1px solid #f1eef3; padding-bottom: 2px">
+<div style="position: relative; display: flex; align-items: center">
+<button onClick="{{vf.abrir}}" aria-label="{{vf.aria}}" style="flex-grow: 1; min-width: 0; padding: 10px 0; border: 0; background: transparent; font-family: inherit; color: inherit; text-align: left; display: flex; align-items: center; gap: 12px; cursor: pointer">
+<span style="{{vf.boxStyle}}">
+<sc-if value="{{vf.temFoto}}" hint-placeholder-val="{{ false }}"><img src="{{vf.foto}}" alt="" style="width: 100%; height: 100%; object-fit: cover"></sc-if>
+<sc-if value="{{vf.semFoto}}" hint-placeholder-val="{{ true }}"><span class="ms" style="font-size: 22px; color: #4A1259">photo_camera</span></sc-if>
+</span>
+<span style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px"><strong style="font-size: 13px; line-height: 17px; color: #0b1c30">{{vf.label}}</strong><span style="{{vf.statusStyle}}">{{vf.status}}</span></span>
+</button>
+<div style="flex-shrink: 0; width: 92px; margin-left: 8px; display: flex; flex-direction: column; gap: 6px">
+<button onClick="{{vf.exemplo}}" aria-label="{{vf.exemploAria}}" style="box-sizing: border-box; width: 100%; height: 30px; padding: 0 8px; border: 1px solid #e5eeff; border-radius: 6px; background: #ffffff; color: #4A1259; font-family: inherit; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 4px; cursor: pointer"><span class="ms" style="font-size: 16px">visibility</span>Exemplo</button>
+<sc-if value="{{vf.modoNormal}}" hint-placeholder-val="{{ true }}"><button onClick="{{vf.validar}}" aria-label="{{vf.iaAria}}" aria-disabled="{{vf.iaDis}}" style="{{vf.iaBtnStyle}}"><span class="ms" style="{{vf.iaIconStyle}}">{{vf.iaIcon}}</span>Validar</button></sc-if><sc-if value="{{vf.modoSel}}" hint-placeholder-val="{{ false }}"><button role="checkbox" aria-checked="{{vf.selAria}}" aria-disabled="{{vf.iaDis}}" aria-label="Selecionar: {{vf.label}}" onClick="{{vf.alternarSel}}" style="{{vf.selStyle}}"><span class="ms" style="font-size: 16px">{{vf.selIcon}}</span>{{vf.selTexto}}</button></sc-if>
+</div>
+</div>
+<sc-if value="{{vf.iaTem}}" hint-placeholder-val="{{ false }}">
+<div style="{{vf.iaBoxStyle}}"><span class="ms" style="{{vf.iaResIconStyle}}">{{vf.iaResIcon}}</span><span style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 1px"><strong style="{{vf.iaTituloStyle}}">{{vf.iaTitulo}}</strong><span style="font-size: 11px; line-height: 15px; color: #4a4455">{{vf.iaTexto}}</span></span></div>
+</sc-if>
+</div>
+</sc-for>
+</div>
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 8px"><span style="font-size: 11px; color: #7b7487">Veículo</span><span style="font-size: 11px; font-weight: 700; color: #4A1259">{{vistVeicCont}}</span></div>
+<div style="display: flex; flex-direction: column; margin-top: -6px">
+<sc-for list="{{vistVeic}}" as="vf" hint-placeholder-count="4">
+<div style="border-top: 1px solid #f1eef3; padding-bottom: 2px">
+<div style="position: relative; display: flex; align-items: center">
+<button onClick="{{vf.abrir}}" aria-label="{{vf.aria}}" style="flex-grow: 1; min-width: 0; padding: 10px 0; border: 0; background: transparent; font-family: inherit; color: inherit; text-align: left; display: flex; align-items: center; gap: 12px; cursor: pointer">
+<span style="{{vf.boxStyle}}">
+<sc-if value="{{vf.temFoto}}" hint-placeholder-val="{{ false }}"><img src="{{vf.foto}}" alt="" style="width: 100%; height: 100%; object-fit: cover"></sc-if>
+<sc-if value="{{vf.semFoto}}" hint-placeholder-val="{{ true }}"><span class="ms" style="font-size: 22px; color: #4A1259">photo_camera</span></sc-if>
+</span>
+<span style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px"><strong style="font-size: 13px; line-height: 17px; color: #0b1c30">{{vf.label}}</strong><span style="{{vf.statusStyle}}">{{vf.status}}</span></span>
+</button>
+<div style="flex-shrink: 0; width: 92px; margin-left: 8px; display: flex; flex-direction: column; gap: 6px">
+<button onClick="{{vf.exemplo}}" aria-label="{{vf.exemploAria}}" style="box-sizing: border-box; width: 100%; height: 30px; padding: 0 8px; border: 1px solid #e5eeff; border-radius: 6px; background: #ffffff; color: #4A1259; font-family: inherit; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 4px; cursor: pointer"><span class="ms" style="font-size: 16px">visibility</span>Exemplo</button>
+<sc-if value="{{vf.modoNormal}}" hint-placeholder-val="{{ true }}"><button onClick="{{vf.validar}}" aria-label="{{vf.iaAria}}" aria-disabled="{{vf.iaDis}}" style="{{vf.iaBtnStyle}}"><span class="ms" style="{{vf.iaIconStyle}}">{{vf.iaIcon}}</span>Validar</button></sc-if><sc-if value="{{vf.modoSel}}" hint-placeholder-val="{{ false }}"><button role="checkbox" aria-checked="{{vf.selAria}}" aria-disabled="{{vf.iaDis}}" aria-label="Selecionar: {{vf.label}}" onClick="{{vf.alternarSel}}" style="{{vf.selStyle}}"><span class="ms" style="font-size: 16px">{{vf.selIcon}}</span>{{vf.selTexto}}</button></sc-if>
+</div>
+</div>
+<sc-if value="{{vf.iaTem}}" hint-placeholder-val="{{ false }}">
+<div style="{{vf.iaBoxStyle}}"><span class="ms" style="{{vf.iaResIconStyle}}">{{vf.iaResIcon}}</span><span style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 1px"><strong style="{{vf.iaTituloStyle}}">{{vf.iaTitulo}}</strong><span style="font-size: 11px; line-height: 15px; color: #4a4455">{{vf.iaTexto}}</span></span></div>
+</sc-if>
+</div>
+</sc-for>
+</div>
+</div>
+
+<div style="flex-shrink: 0; padding: 12px 16px 16px; border-radius: 10px; background: #ffffff; border: 1px solid #e5eeff; box-shadow: 0 2px 12px -2px rgba(32, 7, 38,0.06); display: flex; flex-direction: column; gap: 8px">
+<div style="display: flex; align-items: center; justify-content: space-between"><span style="font-size: 13px; font-weight: 700; color: #0b1c30">Anexos (opcional)</span><sc-if value="{{vistEditavel}}" hint-placeholder-val="{{ true }}"><label style="flex-shrink: 0; box-sizing: border-box; height: 30px; padding: 0 12px; border: 1px solid #e5eeff; border-radius: 6px; background: #ffffff; font-size: 11px; font-weight: 700; color: #4A1259; display: flex; align-items: center; cursor: pointer"><input type="file" multiple onChange="{{vistAnexar}}" style="display: none">Adicionar</label></sc-if></div>
+<sc-if value="{{vistTemAnexo}}" hint-placeholder-val="{{ false }}">
+<div style="padding: 2px 12px; border-radius: 8px; background: #f5f4f7; display: flex; flex-direction: column">
+<sc-for list="{{vistAnexos}}" as="va" hint-placeholder-count="1">
+<div style="padding: 6px 0; display: flex; align-items: center; gap: 8px">
+<span class="ms" style="flex-shrink: 0; font-size: 18px; color: #7b7487">description</span>
+<span style="flex-grow: 1; min-width: 0; font-size: 12px; font-weight: 600; color: #0b1c30; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{va.nome}}</span>
+<sc-if value="{{va.podeRemover}}" hint-placeholder-val="{{ true }}"><button onClick="{{va.remover}}" aria-label="Remover anexo" style="flex-shrink: 0; width: 28px; height: 30px; border: 0; border-radius: 9999px; background: transparent; color: #b42318; display: flex; align-items: center; justify-content: center; cursor: pointer"><span class="ms" style="font-size: 18px">delete</span></button></sc-if>
+</div>
+</sc-for>
+</div>
+</sc-if>
+<sc-if value="{{vistSemAnexo}}" hint-placeholder-val="{{ true }}"><span style="font-size: 12px; color: #7b7487">Nenhum anexo.</span></sc-if>
+</div>
+
+<div style="flex-shrink: 0; padding: 12px 16px 16px; border-radius: 10px; background: #ffffff; border: 1px solid #e5eeff; box-shadow: 0 2px 12px -2px rgba(32, 7, 38,0.06); display: flex; flex-direction: column; gap: 8px">
+<label for="vist-obs" style="font-size: 13px; font-weight: 700; color: #0b1c30">Observações da vistoria</label>
+<sc-if value="{{vistEditavel}}" hint-placeholder-val="{{ true }}"><textarea id="vist-obs" value="{{vistObs}}" onChange="{{onVistObs}}" placeholder="Anote algo importante sobre a vistoria" rows="3" style="box-sizing: border-box; width: 100%; padding: 10px 12px; border: 1px solid #e5eeff; border-radius: 12px; background: #ffffff; font-family: inherit; font-size: 14px; line-height: 20px; color: #0b1c30; resize: none; outline-color: #4A1259"></textarea></sc-if>
+<sc-if value="{{vistSoLeitura}}" hint-placeholder-val="{{ false }}"><span style="font-size: 13px; line-height: 19px; color: {{vistObsCor}}; white-space: pre-wrap">{{vistObsTexto}}</span></sc-if>
+</div>
+</div>
+
+<div style="flex-shrink: 0; padding: 10px var(--tela-margem) 12px; background: #ffffff; border-top: 1px solid #ece7f0">
+<button onClick="{{vistBtn}}" aria-disabled="{{vistBtnDis}}" style="{{vistBtnStyle}}"><span class="ms" style="font-size: 20px">{{vistBtnIcon}}</span>{{vistBtnLabel}}</button>
+</div>
+
+<sc-if value="{{vistToastVisible}}" hint-placeholder-val="{{ false }}">
+<div role="status" style="position: absolute; left: 16px; right: 16px; bottom: 84px; z-index: 5; padding: 12px 14px; border-radius: 12px; background: #213145; color: #ffffff; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 8px; animation: fadeIn .2s ease-out"><span class="ms" style="font-size: 18px; color: #4ade80">check_circle</span>{{vistToast}}</div>
+</sc-if>
+<sc-if value="{{vistExVerOpen}}" hint-placeholder-val="{{ false }}">
+<div onClick="{{vistExVerFechar}}" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 6; background: rgba(23, 13, 29,0.72); animation: fadeIn .2s ease-out"></div>
+<div role="dialog" aria-modal="true" aria-labelledby="vist-ex-title" style="position: absolute; left: 16px; right: 16px; top: 50%; z-index: 7; transform: translateY(-50%); border-radius: 8px; background: #ffffff; overflow: hidden; box-shadow: 0 24px 48px -16px rgba(23, 13, 29,0.6); animation: fadeIn .2s ease-out">
+<div style="padding: 12px 8px 10px 16px; display: flex; align-items: center; gap: 8px">
+<span style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column"><span style="font-size: 10px; font-weight: 800; letter-spacing: 0.06em; color: #7b7487">{{vistExVerRotulo}}</span><strong id="vist-ex-title" style="font-size: 15px; line-height: 20px; color: #0b1c30">{{vistExVerTitulo}}</strong></span>
+<button onClick="{{vistExVerFechar}}" aria-label="Fechar exemplo" style="flex-shrink: 0; width: 38px; height: 38px; border: 0; border-radius: 9999px; background: #f3eef5; color: #4A1259; display: flex; align-items: center; justify-content: center; cursor: pointer"><span class="ms" style="font-size: 20px">close</span></button>
+</div>
+<img src="{{vistExVerImg}}" alt="{{vistExVerTitulo}}" style="display: block; width: 100%; max-height: 60vh; aspect-ratio: 4/3; object-fit: contain; background: #f7f4f9">
+</div>
+</sc-if>
+</section>
+</sc-if>
+
+<sc-if value="{{vistPassoOpen}}" hint-placeholder-val="{{ false }}">
+<section class="janela" role="dialog" aria-modal="true" aria-labelledby="vist-passo-title" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: 38; background: #170d1d; color: #ffffff; display: flex; flex-direction: column; animation: fadeIn .2s ease-out">
+<div style="flex-shrink: 0; padding: 10px 12px 0; display: flex; align-items: center; gap: 6px">
+<button onClick="{{vistFecharPasso}}" aria-label="Fechar" style="width: 40px; height: 40px; border: 0; border-radius: 9999px; background: rgba(255,255,255,0.1); color: #ffffff; display: flex; align-items: center; justify-content: center; cursor: pointer"><span class="ms" style="font-size: 22px">close</span></button>
+<span style="flex-grow: 1; padding-left: 6px; font-size: 14px; font-weight: 700">{{vistPassoTexto}}</span>
+<span style="flex-shrink: 0; min-width: 40px; font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.6); text-align: right">{{vistPassoGrupo}}</span>
+</div>
+<div aria-hidden="true" style="flex-shrink: 0; padding: 12px 16px 0; display: flex; gap: 3px">
+<sc-for list="{{vistSegs}}" as="sg" hint-placeholder-count="7"><span style="{{sg.style}}"></span></sc-for>
+</div>
+<div class="nosb" style="flex-grow: 1; min-height: 0; overflow-y: auto; scrollbar-width: none; padding: 18px 16px 12px; display: flex; flex-direction: column; gap: 10px">
+<h3 id="vist-passo-title" style="margin: 0; font-size: 20px; line-height: 26px; font-weight: 800; color: #ffffff">{{vistPassoTitulo}}</h3>
+<p style="margin: 0; font-size: 13px; line-height: 19px; color: rgba(255,255,255,0.78)">{{vistPassoDica}}</p>
+<sc-if value="{{vistMostraImg}}" hint-placeholder-val="{{ false }}">
+<div style="position: relative; margin-top: 6px; border-radius: 16px; overflow: hidden; background: #fbf9fc">
+<img src="{{vistPassoImg}}" alt="{{vistPassoTitulo}}" style="{{vistPassoImgStyle}}">
+<span style="{{vistPassoChipStyle}}">{{vistPassoChip}}</span>
+</div>
+</sc-if>
+<sc-if value="{{vistSemImg}}" hint-placeholder-val="{{ true }}">
+<div style="margin-top: 6px; aspect-ratio: 4/3; box-sizing: border-box; border: 1.5px dashed rgba(255,255,255,0.25); border-radius: 16px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; color: rgba(255,255,255,0.7)">
+<span class="ms" style="font-size: 40px; color: rgba(255,255,255,0.55)">add_a_photo</span>
+<span style="font-size: 13px; font-weight: 600">Nenhuma foto ainda</span>
+</div>
+</sc-if>
+<sc-if value="{{vistTemMapa}}" hint-placeholder-val="{{ false }}">
+<div style="padding: 8px; border-radius: 14px; background: rgba(255,255,255,0.08); display: flex; align-items: center; gap: 12px">
+<img src="{{vistMapa}}" alt="" aria-hidden="true" style="flex-shrink: 0; display: block; width: 64px; height: 64px; border-radius: 10px">
+<span style="display: flex; flex-direction: column; gap: 2px"><strong style="font-size: 13px; color: #ffffff">Onde ficar</strong><span style="font-size: 12px; line-height: 16px; color: rgba(255,255,255,0.75)">{{vistMapaTexto}}</span></span>
+</div>
+</sc-if>
+<button onClick="{{vistAlternar}}" style="align-self: center; height: 32px; padding: 0 12px; border: 0; border-radius: 9999px; background: rgba(255,255,255,0.1); color: #ffffff; font-family: inherit; font-size: 12px; font-weight: 700; display: flex; align-items: center; gap: 6px; cursor: pointer"><span class="ms" style="font-size: 16px">{{vistAlternarIcone}}</span>{{vistAlternarTexto}}</button>
+</div>
+<div style="flex-shrink: 0; padding: 8px 16px 14px; display: flex; flex-direction: column; gap: 8px">
+<sc-if value="{{vistSemFoto}}" hint-placeholder-val="{{ true }}">
+<button onClick="{{vistAbrirCamera}}" style="height: 52px; border: 0; border-radius: 14px; background: linear-gradient(135deg,#22a06b 0%,#047857 100%); color: #ffffff; font-family: inherit; font-size: 15px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer"><span class="ms" style="font-size: 22px">photo_camera</span>Tirar foto</button>
+<label style="height: 40px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.25); color: #ffffff; font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer"><input type="file" accept="image/*" onChange="{{vistLer}}" style="display: none"><span class="ms" style="font-size: 18px">photo_library</span>Escolher da galeria</label>
+</sc-if>
+<sc-if value="{{vistTemFoto}}" hint-placeholder-val="{{ false }}">
+<div style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr); gap: 8px">
+<button onClick="{{vistAbrirCamera}}" style="height: 52px; border: 1px solid rgba(255,255,255,0.3); border-radius: 14px; background: transparent; color: #ffffff; font-family: inherit; font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer"><span class="ms" style="font-size: 20px">refresh</span>Refazer</button>
+<button onClick="{{vistProxima}}" style="height: 52px; border: 0; border-radius: 14px; background: linear-gradient(135deg,#22a06b 0%,#047857 100%); color: #ffffff; font-family: inherit; font-size: 15px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer">{{vistProximaTexto}}<span class="ms" style="font-size: 20px">arrow_forward</span></button>
+</div>
+</sc-if>
+<div style="display: flex; align-items: center; justify-content: space-between">
+<button onClick="{{vistAnterior}}" aria-disabled="{{vistAnteriorDis}}" style="{{vistAnteriorStyle}}"><span class="ms" style="font-size: 18px">chevron_left</span>Anterior</button>
+<button onClick="{{vistPular}}" style="height: 40px; padding: 0 12px; border: 0; background: transparent; color: #ffffff; font-family: inherit; font-size: 13px; font-weight: 700; display: flex; align-items: center; gap: 4px; cursor: pointer">Pular<span class="ms" style="font-size: 18px">chevron_right</span></button>
+</div>
+</div>
+<sc-if value="{{vistCam}}" hint-placeholder-val="{{ false }}">
+<div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 3; background: #000000; overflow: hidden">
+<video ref="{{vistVideoRef}}" aria-label="Imagem da câmera" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover"></video>
+<div style="position: absolute; top: 0; left: 0; right: 0; padding: 12px; display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; background: linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0) 100%)">
+<button onClick="{{vistCamFechar}}" aria-label="Fechar câmera" style="flex-shrink: 0; width: 40px; height: 40px; border: 0; border-radius: 9999px; background: rgba(0,0,0,0.45); color: #ffffff; display: flex; align-items: center; justify-content: center; cursor: pointer"><span class="ms" style="font-size: 22px">close</span></button>
+<strong style="flex-grow: 1; min-width: 0; padding-top: 9px; font-size: 14px; color: #ffffff; text-align: center">{{vistPassoTitulo}}</strong>
+<sc-if value="{{vistCamEx}}" hint-placeholder-val="{{ false }}"><button onClick="{{vistCamExAlternar}}" aria-label="Ocultar exemplo" style="flex-shrink: 0; width: 92px; padding: 3px; border: 0; border-radius: 10px; background: #ffffff; font-family: inherit; display: flex; flex-direction: column; align-items: center; gap: 2px; cursor: pointer"><img src="{{vistExemploImg}}" alt="Exemplo da foto" style="display: block; width: 86px; height: 64px; border-radius: 7px; object-fit: cover"><span style="font-size: 9px; font-weight: 800; color: #4A1259">OCULTAR</span></button></sc-if>
+<sc-if value="{{vistCamSemEx}}" hint-placeholder-val="{{ true }}"><button onClick="{{vistCamExAlternar}}" style="flex-shrink: 0; height: 36px; padding: 0 12px 0 10px; border: 0; border-radius: 9999px; background: rgba(0,0,0,0.45); color: #ffffff; font-family: inherit; font-size: 12px; font-weight: 700; display: flex; align-items: center; gap: 4px; cursor: pointer"><span class="ms" style="font-size: 17px">visibility</span>Exemplo</button></sc-if>
+</div>
+<div style="position: absolute; left: 0; right: 0; bottom: 0; padding: 18px 0 22px; display: flex; justify-content: center; background: linear-gradient(0deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0) 100%)">
+<button onClick="{{vistCapturar}}" aria-label="Tirar foto" style="width: 74px; height: 74px; padding: 0; border: 4px solid #ffffff; border-radius: 9999px; background: transparent; display: flex; align-items: center; justify-content: center; cursor: pointer"><span style="width: 58px; height: 58px; border-radius: 9999px; background: #ffffff"></span></button>
+</div>
+</div>
+</sc-if>
+</section>
+</sc-if>
+
+
 <sc-if value="{{dsOpen}}" hint-placeholder-val="{{ false }}">
 <div class="janela" onClick="{{closeDs}}" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: 25; background: rgba(11,28,48,0.5); animation: fadeIn .2s ease-out"></div>
 <section role="dialog" aria-modal="true" class="painel" aria-labelledby="ds-title" style="position: absolute; left: 0; right: 0; bottom: 72px; z-index: 26; max-height: 88%; background: #ffffff; border-radius: 24px 24px 0 0; box-shadow: 0 -8px 32px rgba(32, 7, 38,0.18); display: flex; flex-direction: column; animation: sheetUp .32s cubic-bezier(.22,1,.36,1)">
@@ -4088,11 +4652,27 @@ Faltam 8 placas para atingir a meta.
 </sc-if>
 
 <sc-if value="{{dsIsDados}}" hint-placeholder-val="{{ false }}">
-<label style="display: flex; flex-direction: column; gap: 6px"><span style="font-size: 12px; font-weight: 700; color: #4a4455">CPF *</span><input type="text" inputmode="numeric" value="{{aCpf}}" onChange="{{onACpf}}" placeholder="000.000.000-00" style="height: 48px; box-sizing: border-box; padding: 0 14px; border: 1px solid #ccc3d8; border-radius: 12px; background: #ffffff; font-family: inherit; font-size: 14px; color: #0b1c30; outline-color: #4A1259; width: 100%"></label>
-<label style="display: flex; flex-direction: column; gap: 6px"><span style="font-size: 12px; font-weight: 700; color: #4a4455">Data de nascimento *</span><input type="date" value="{{aNasc}}" onChange="{{onANasc}}" style="height: 48px; box-sizing: border-box; padding: 0 14px; border: 1px solid #ccc3d8; border-radius: 12px; background: #ffffff; font-family: inherit; font-size: 14px; color: #0b1c30; outline-color: #4A1259; width: 100%"></label>
-<div style="display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr); gap: 10px">
-<label style="display: flex; flex-direction: column; gap: 6px"><span style="font-size: 12px; font-weight: 700; color: #4a4455">CEP *</span><input type="text" inputmode="numeric" value="{{aCep}}" onChange="{{onACep}}" placeholder="00000-000" style="height: 48px; box-sizing: border-box; padding: 0 14px; border: 1px solid #ccc3d8; border-radius: 12px; background: #ffffff; font-family: inherit; font-size: 14px; color: #0b1c30; outline-color: #4A1259; width: 100%"></label>
-<label style="display: flex; flex-direction: column; gap: 6px"><span style="font-size: 12px; font-weight: 700; color: #4a4455">Número *</span><input type="text" inputmode="numeric" value="{{aNum}}" onChange="{{onANum}}" placeholder="Nº" style="height: 48px; box-sizing: border-box; padding: 0 14px; border: 1px solid #ccc3d8; border-radius: 12px; background: #ffffff; font-family: inherit; font-size: 14px; color: #0b1c30; outline-color: #4A1259; width: 100%"></label>
+<h4 style="margin: 4px 0 0; font-size: 14px; line-height: 18px; font-weight: 800; color: #4A1259">Dados pessoais</h4>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 10px">
+<sc-for list="{{dAssocPessoal}}" as="ac" hint-placeholder-count="4">
+<label style="{{ac.estilo}}"><span style="font-size: 12px; font-weight: 700; color: #4a4455">{{ac.label}}</span>
+<sc-if value="{{ac.ehTexto}}" hint-placeholder-val="{{ true }}"><input class="campo" type="{{ac.tipo}}" inputmode="{{ac.modo}}" value="{{ac.valor}}" onChange="{{ac.onChange}}" placeholder="{{ac.ph}}" style="height: 48px; box-sizing: border-box; padding: 0 12px; border: 1px solid #ccc3d8; border-radius: 12px; background: #ffffff; font-family: inherit; font-size: 14px; color: #0b1c30; outline-color: #4A1259; width: 100%; min-width: 0"></sc-if>
+<sc-if value="{{ac.ehLista}}" hint-placeholder-val="{{ false }}"><select class="campo" value="{{ac.valor}}" onChange="{{ac.onChange}}" style="height: 48px; box-sizing: border-box; padding: 0 12px; border: 1px solid #ccc3d8; border-radius: 12px; background: #ffffff; font-family: inherit; font-size: 14px; color: #0b1c30; outline-color: #4A1259; width: 100%; min-width: 0; appearance: auto"><sc-for list="{{ac.opcoes}}" as="aco" hint-placeholder-count="3"><option value="{{aco.v}}">{{aco.label}}</option></sc-for></select></sc-if>
+</label>
+</sc-for>
+</div>
+<h4 style="margin: 4px 0 0; font-size: 14px; line-height: 18px; font-weight: 800; color: #4A1259">Endereço</h4>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 10px">
+<sc-for list="{{dAssocEndereco}}" as="ac" hint-placeholder-count="4">
+<label style="{{ac.estilo}}"><span style="font-size: 12px; font-weight: 700; color: #4a4455">{{ac.label}}</span>
+<sc-if value="{{ac.ehTexto}}" hint-placeholder-val="{{ true }}"><input class="campo" type="{{ac.tipo}}" inputmode="{{ac.modo}}" value="{{ac.valor}}" onChange="{{ac.onChange}}" placeholder="{{ac.ph}}" style="height: 48px; box-sizing: border-box; padding: 0 12px; border: 1px solid #ccc3d8; border-radius: 12px; background: #ffffff; font-family: inherit; font-size: 14px; color: #0b1c30; outline-color: #4A1259; width: 100%; min-width: 0"></sc-if>
+<sc-if value="{{ac.ehLista}}" hint-placeholder-val="{{ false }}"><select class="campo" value="{{ac.valor}}" onChange="{{ac.onChange}}" style="height: 48px; box-sizing: border-box; padding: 0 12px; border: 1px solid #ccc3d8; border-radius: 12px; background: #ffffff; font-family: inherit; font-size: 14px; color: #0b1c30; outline-color: #4A1259; width: 100%; min-width: 0; appearance: auto"><sc-for list="{{ac.opcoes}}" as="aco" hint-placeholder-count="3"><option value="{{aco.v}}">{{aco.label}}</option></sc-for></select></sc-if>
+</label>
+</sc-for>
+</div>
+<h4 style="margin: 4px 0 0; font-size: 14px; line-height: 18px; font-weight: 800; color: #4A1259">Cobrança por</h4>
+<div style="display: flex; flex-wrap: wrap; gap: 12px 28px">
+<sc-for list="{{dAssocCobranca}}" as="cb" hint-placeholder-count="2"><button type="button" role="checkbox" aria-checked="{{cb.aria}}" onClick="{{cb.alternar}}" style="padding: 0; border: 0; background: transparent; font-family: inherit; font-size: 14px; color: #0b1c30; display: flex; align-items: center; gap: 10px; cursor: pointer"><span class="ms" style="{{cb.caixa}}">{{cb.icone}}</span>{{cb.label}}</button></sc-for>
 </div>
 </sc-if>
 
@@ -4244,8 +4824,8 @@ Faltam 8 placas para atingir a meta.
 </sc-if>
 
 <sc-if value="{{linkOpen}}" hint-placeholder-val="{{ false }}">
-<div class="janela" onClick="{{closeLink}}" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: 21; background: rgba(11,28,48,0.5); animation: fadeIn .2s ease-out"></div>
-<section class="janela" role="dialog" aria-modal="true" aria-labelledby="link-title" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: 22; background: #ffffff; display: flex; flex-direction: column; animation: menuIn .38s cubic-bezier(.22,1,.36,1) both">
+<div class="janela" onClick="{{closeLink}}" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: {{zPg.linkOpen}}; background: rgba(11,28,48,0.5); animation: fadeIn .2s ease-out"></div>
+<section class="janela" role="dialog" aria-modal="true" aria-labelledby="link-title" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: {{zPg.linkOpen}}; background: #ffffff; display: flex; flex-direction: column; animation: menuIn .38s cubic-bezier(.22,1,.36,1) both">
 <div style="flex-shrink: 0; padding: 0 20px 14px; border-bottom: 1px solid #eff4ff">
 <div style="height: 12px"></div>
 <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px">
@@ -4318,6 +4898,25 @@ Compartilhar QR Code
 </section>
 </sc-if>
 
+<aside class="web-lateral" aria-label="Menu principal">
+<button onClick="{{webInicio}}" aria-label="Ir para o início" style="align-self: flex-start; padding: 2px 6px; border: 0; background: transparent; cursor: pointer"><img src="assets/logo-ileva.png" alt="ileva · Gestão inteligente" style="display: block; height: 30px; width: auto"></button>
+<button onClick="{{webNovaCotacao}}" style="height: 44px; border: 0; border-radius: 12px; background: linear-gradient(135deg, #622773 0%, #4A1259 100%); color: #ffffff; font-family: inherit; font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; box-shadow: 0 10px 20px -12px rgba(74, 18, 89,0.8)"><span class="ms" style="font-size: 20px">add</span>Nova cotação</button>
+<nav class="web-itens nosb">
+<sc-for list="{{webGrupos}}" as="wg" hint-placeholder-count="3">
+<div style="display: flex; flex-direction: column; gap: 2px">
+<span style="padding: 0 12px 4px; font-size: 10px; font-weight: 800; letter-spacing: 0.08em; color: #a8a1b3">{{wg.titulo}}</span>
+<sc-for list="{{wg.itens}}" as="wi" hint-placeholder-count="4">
+<button class="{{wi.classe}}" onClick="{{wi.go}}" aria-current="{{wi.atual}}"><span class="ms">{{wi.icon}}</span><span style="flex-grow: 1">{{wi.label}}</span><sc-if value="{{wi.temBadge}}" hint-placeholder-val="{{ false }}"><span style="min-width: 20px; height: 20px; box-sizing: border-box; padding: 0 6px; border-radius: 9999px; background: #e11d48; color: #ffffff; font-size: 11px; font-weight: 800; display: flex; align-items: center; justify-content: center">{{wi.badge}}</span></sc-if></button>
+</sc-for>
+</div>
+</sc-for>
+</nav>
+<button class="web-perfil" onClick="{{openPerfil}}" aria-label="Editar perfil">
+<img src="{{perfilFoto}}" alt="" style="flex-shrink: 0; width: 38px; height: 38px; border-radius: 9999px; object-fit: cover; object-position: center 30%">
+<span style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column"><strong style="font-size: 13px; color: #0b1c30; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{perfilNome}}</strong><span style="font-size: 11px; color: #7b7487; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">Equipe Lobo Guará</span></span>
+<span class="ms" style="font-size: 18px; color: #A192A6">settings</span>
+</button>
+</aside>
 </div></script>
   <script>
     window.addEventListener('beforeinstallprompt', function (e) {
@@ -4352,9 +4951,11 @@ Compartilhar QR Code
       function apply() {
         var mobile = mq.matches;
         var cl = document.documentElement.classList;
-        cl.toggle('is-mobile', mobile); cl.toggle('is-desktop', !mobile);
+        // Computador com tela larga: layout de sistema web (menu lateral); janela estreita mantém a moldura de celular.
+        var web = !mobile && window.innerWidth >= 900;
+        cl.toggle('is-mobile', mobile); cl.toggle('is-desktop', !mobile); cl.toggle('is-web', web);
         var dev = document.querySelector('.device');
-        if (dev) dev.style.transform = mobile ? '' : 'scale(' + Math.min(1, (window.innerHeight - 32) / 868) + ')';
+        if (dev) dev.style.transform = mobile || web ? '' : 'scale(' + Math.min(1, (window.innerHeight - 32) / 868) + ')';
         // App instalado no iPhone: quando o sistema entrega uma área menor que a tela, sobra espaço abaixo do app
         // (onde fica a barrinha do iPhone). Aí o menu não precisa reservar espaço para ela e desce até o limite.
         var instalado = window.navigator.standalone === true;
@@ -4488,7 +5089,7 @@ Compartilhar QR Code
         const out = [];
         nodes.forEach((nd, idx) => {
           if (nd.text != null) { const t = interp(nd.text, scope); if (t !== '' && t != null) out.push(String(t)); return; }
-          if (nd.tag === 'sc-if') { if (interp(nd.attrs.value, scope)) out.push(...renderNodes(nd.children, scope, h)); return; }
+          if (nd.tag === 'sc-if') { if (interp(nd.attrs.value, scope)) out.push(h(React.Fragment, { key: 'se-' + idx }, ...renderNodes(nd.children, scope, h))); return; }
           if (nd.tag === 'sc-for') {
             const list = interp(nd.attrs.list, scope) || [];
             const as = nd.attrs.as || 'item';
@@ -4842,6 +5443,34 @@ Compartilhar QR Code
         return Component.defaultAtalhos();
       }
 
+      // Destinos do menu lateral (versão para computador): ids dos atalhos + início e assistente.
+      webVals() {
+        const st = this.state;
+        const topo = (this.pilha || [])[(this.pilha || []).length - 1];
+        const atual = {
+          propOpen: 'propostas', detOpen: 'propostas', vistOpen: 'propostas', termoOpen: 'propostas', wizOpen: 'propostas',
+          agendaOpen: 'agenda', indicOpen: 'indicadores', indOpen: 'desempenho', relOpen: 'relatorios', redeOpen: 'rede',
+          multiOpen: st.multiTab === 'materiais' ? 'materiais' : 'link', matView: 'materiais', notifOpen: 'notificacoes',
+          novOpen: 'novidades', dicasOpen: 'dicas', iaOpen: 'assistente', menuOpen: 'menu', perfilOpen: 'perfil', linkOpen: 'link'
+        }[topo] || 'inicio';
+        const naoLidas = (this.notificacoes || []).filter((n) => !(st.readIds || {})[n.id]).length;
+        const item = (id, label, icon, go) => ({
+          label, icon, classe: 'web-item' + (atual === id ? ' ativo' : ''), atual: atual === id ? 'page' : 'false',
+          temBadge: id === 'notificacoes' && naoLidas > 0, badge: naoLidas,
+          go: go || (() => this.runAtalho(id))
+        });
+        return {
+          webInicio: () => this.setState(Component.janelasFechadas()),
+          webNovaCotacao: () => this.setState({ ...Component.janelasFechadas(), wizOpen: true, ...Component.emptyWiz() }),
+          webGrupos: [
+            { titulo: 'PRINCIPAL', itens: [item('inicio', 'Início', 'home', () => this.setState(Component.janelasFechadas())), item('propostas', 'Propostas', 'request_quote'), item('agenda', 'Agenda', 'event_note'), item('notificacoes', 'Notificações', 'notifications')] },
+            { titulo: 'CAPTAÇÃO', itens: [item('link', 'Link de captação', 'qr_code_2'), item('materiais', 'Materiais', 'photo_library'), item('indicadores', 'Indicadores', 'diversity_1')] },
+            { titulo: 'GESTÃO', itens: [item('desempenho', 'Desempenho', 'monitoring'), item('relatorios', 'Relatórios', 'bar_chart'), item('rede', 'Minha rede', 'hub')] },
+            { titulo: 'MAIS', itens: [item('assistente', 'Assistente', 'auto_awesome', () => this.setState({ ...Component.janelasFechadas(), iaOpen: true })), item('novidades', 'Novidades', 'campaign'), item('menu', 'Mais opções', 'menu', () => this.setState({ ...Component.janelasFechadas(), menuOpen: true }))] }
+          ]
+        };
+      }
+
       runAtalho(id) {
         const closeAll = { propOpen: false, relOpen: false, redeOpen: false, multiOpen: false, matView: null, agendaOpen: false, indicOpen: false, indOpen: false, novOpen: false, iaOpen: false, cotacaoOpen: false, detOpen: false };
         const map = {
@@ -4859,7 +5488,7 @@ Compartilhar QR Code
           dicas: { dicasOpen: true },
           novidades: { novOpen: true, novFilter: 'todas' }
         };
-        this.setState({ ...closeAll, ...(map[id] || {}) });
+        this.setState({ ...Component.janelasFechadas(), ...closeAll, ...(map[id] || {}) });
       }
 
       atalhosVals() {
@@ -4971,7 +5600,7 @@ Compartilhar QR Code
       }
 
       static emptyWiz() {
-        return { wizStep: 1, wCpf: '', wCpfMsg: '', wCpfOk: false, wFrota: 'nao', wFrotaNome: '', wNome: '', wFone: '', wPais: 'BR', wEmail: '', wIndicador: '', wOrigem: '', wUf: '', wCidade: '', wPlaca: 'KER-5273', wPlacaMsg: '', wPlacaOk: false, wPlacaLoading: false, wTipo: 'carro', wMarca: '', wAno: '', wModelo: '', wFipe: 0, wCode: '', wProtegido: '', wPlans: [], wCotas: {}, wExtras: [], wExtraPick: '', wExtraModal: false, wExtraQuery: '', wExtraListOpen: false, wExtraPrice: '', wExtraNeg: false, wExtraEditId: null, wExtraDelId: null, wCotaModal: null, wGenId: null, wGenNum: null, wLinkCopied: false, wAdesaoTodos: false, wAdesaoValor: '', wAdesoes: {}, wAdesaoEdit: null, wAdesaoDraft: '' };
+        return { wizStep: 1, wCpf: '', wCpfMsg: '', wCpfOk: false, wFrota: 'nao', wFrotaNome: '', wNome: '', wFone: '', wPais: 'BR', wEmail: '', wIndicador: '', wOrigem: '', wUf: '', wCidade: '', wAssoc: {}, wAssocOpen: false, wPlaca: 'KER-5273', wPlacaMsg: '', wPlacaOk: false, wPlacaLoading: false, wTipo: 'carro', wMarca: '', wAno: '', wModelo: '', wFipe: 0, wCode: '', wProtegido: '', wPlans: [], wCotas: {}, wExtras: [], wExtraPick: '', wExtraModal: false, wExtraQuery: '', wExtraListOpen: false, wExtraPrice: '', wExtraNeg: false, wExtraEditId: null, wExtraDelId: null, wCotaModal: null, wGenId: null, wGenNum: null, wLinkCopied: false, wAdesaoTodos: false, wAdesaoValor: '', wAdesoes: {}, wAdesaoEdit: null, wAdesaoDraft: '' };
       }
 
       brl(v) {
@@ -5038,10 +5667,11 @@ Compartilhar QR Code
 
       stepChip(done, cur, viewed, size = 30) {
         return 'width:' + size + 'px;height:' + size + 'px;box-sizing:border-box;border-radius:' + Math.round(size / 3) + 'px;display:flex;align-items:center;justify-content:center;transition:all .3s cubic-bezier(.22,1,.36,1);'
-          + (cur ? 'background:linear-gradient(135deg, #622773 0%, #4A1259 100%);color:#ffffff;box-shadow:0 6px 14px -6px rgba(74, 18, 89,0.75);'
-            : done ? 'background:#dcfce7;color:#047857;'
-              : 'background:#ffffff;border:1.5px dashed #e5dcea;color:#ccc3d8;')
-          + (viewed && !cur ? 'outline:2px solid ' + (done ? '#34d399' : '#A192A6') + ';outline-offset:2px;' : '');
+          // Etapa selecionada fica vazada: fundo branco com borda na cor da etapa.
+          + (viewed ? 'background:#ffffff;border:2px solid ' + (done ? '#22a06b' : cur ? '#4A1259' : '#A192A6') + ';color:' + (done ? '#047857' : cur ? '#4A1259' : '#A192A6') + ';'
+            : cur ? 'background:linear-gradient(135deg, #622773 0%, #4A1259 100%);color:#ffffff;box-shadow:0 6px 14px -6px rgba(74, 18, 89,0.75);'
+              : done ? 'background:#dcfce7;color:#047857;'
+                : 'background:#ffffff;border:1.5px dashed #e5dcea;color:#ccc3d8;');
       }
 
       brlSinal(v) {
@@ -5112,6 +5742,8 @@ Compartilhar QR Code
             num, email: st.wEmail, marca: st.wMarca, ano: st.wAno, fuel, fipe: st.wFipe, code: st.wCode, protegido: this.parseMoney(st.wProtegido) || st.wFipe,
             plans: [...st.wPlans], cotas: { ...st.wCotas }, adesoes: Object.fromEntries(plansSel.map((x) => [x.id, this.wizAdesao(x)])), adesao: st.wAdesaoTodos ? this.parseMoney(st.wAdesaoValor) : null, extras: st.wExtras.map((it) => it.id), extraPrices: Object.fromEntries(st.wExtras.map((it) => [it.id, (it.neg ? -1 : 1) * this.parseMoney(it.price)])), stage: 1, tasks: {}, history: [{ t: 'Proposta criada', d: '30/09/2026 às 08:39 · Carlos Eduardo' }]
           };
+          p.assoc = { nome: p.name, fone: st.wFone, cpf: st.wCpf, uf: st.wUf, cidade: st.wCidade, ...(st.wAssoc || {}) };
+          if (Component.assocCompleto(p.assoc)) p.tasks = { ...(p.tasks || {}), dados: true };
           this.propostas = [p, ...(this.propostas || Component.seedPropostas())];
           this.setState({ wGenId: p.id, wGenNum: num, wizStep: 4 });
         };
@@ -5193,6 +5825,18 @@ Compartilhar QR Code
           wUf: st.wUf, onWUf: (e) => set({ wUf: e.target.value, wCidade: '' }),
           wUfOpts: Object.entries(cat.ufNames).sort((x, y) => x[1].localeCompare(y[1], 'pt-BR')).map(([v, name]) => ({ v, label: name + ' (' + v + ')' })),
           wCidade: st.wCidade, onWCidade: (e) => set({ wCidade: e.target.value }),
+          ...(() => {
+            const wa = st.wAssoc || {};
+            const f = this.assocCampos(wa, (patch) => set({ wAssoc: { ...(this.state.wAssoc || {}), ...patch } }), ['nome', 'fone', 'cpf', 'uf', 'cidade'], true);
+            const qtd = Object.entries(wa).filter(([k, v]) => k !== 'cobranca' && String(v || '').trim()).length;
+            return {
+              wAssocPessoal: f.pessoal, wAssocEndereco: f.endereco, wAssocCobranca: f.cobranca,
+              wAssocOpen: !!st.wAssocOpen, wAssocAria: st.wAssocOpen ? 'true' : 'false',
+              wAssocAlternar: () => set({ wAssocOpen: !st.wAssocOpen }),
+              wAssocSeta: 'flex-shrink:0;font-size:22px;color:#4A1259;transition:transform .2s;transform:rotate(' + (st.wAssocOpen ? '180deg' : '0deg') + ')',
+              wAssocResumo: qtd ? qtd + (qtd === 1 ? ' campo preenchido' : ' campos preenchidos') : 'Opcional · nascimento, documentos, endereço e cobrança'
+            };
+          })(),
           wCidadeDisabled: !st.wUf, wCidadePh: st.wUf ? 'Selecione a cidade' : 'Escolha a UF',
           wCidadeOpts: (cat.ufs[st.wUf] || []).map((v) => ({ v })),
 
@@ -5741,8 +6385,9 @@ Compartilhar QR Code
           });
           p.protegido = p.fipe;
           const doneUpTo = p.status === 'ativada' ? etapas.length : p.stage - 1;
-          p.tasks = { perguntas: doneUpTo >= 1, dados: doneUpTo >= 2, veiculo: doneUpTo >= 2, vistoria: doneUpTo >= 3, vistoriaInfo: doneUpTo >= 3 ? 'Vistoria padrão · Próprio consultor' : '', termoEnviado: doneUpTo >= 4, termo: doneUpTo >= 4 };
+          p.tasks = { perguntas: doneUpTo >= 1, dados: doneUpTo >= 2, veiculo: doneUpTo >= 2, vistoria: doneUpTo >= 3, vistoriaFotos: doneUpTo >= 3, vistoriaAprovada: doneUpTo >= 3, vistoriaInfo: doneUpTo >= 3 ? 'Vistoria padrão · Próprio consultor' : '', termoEnviado: doneUpTo >= 4, termo: doneUpTo >= 4 };
           if (p.etapa === 'Vistoria') p.tasks = { ...p.tasks, vistoria: true, vistoriaInfo: 'Vistoria padrão · Autovistoria' };
+          if (doneUpTo >= 4) p.termo = { tipo: 'Digital', modelo: 'Termo Padrão - ileva', info: { civil: 'Casado(a)', profissao: 'Empresário', uso: 'Trabalho' }, perguntas: p.frota && p.frota !== 'Não está em frota' ? { motoristas: '4', garagem: 'Sim', rastreador: 'Sim' } : null, assinatura: '', via: 'link', enviado: true };
           if (doneUpTo >= 1) { p.chosen = 'esmeralda'; p.chosenCota = '0'; }
           if (p.status === 'ativada') p.history.push({ t: 'Proposta ativada', d: p.activated.split('-').reverse().join('/') });
           if (p.status === 'arquivada') p.history.push({ t: 'Proposta arquivada', d: p.event });
@@ -5772,7 +6417,7 @@ Compartilhar QR Code
           { id: 'assinatura', title: 'Assinatura do termo', done: t.assinatura, pending: t.dados && t.perguntas ? 'Pronto para enviar' : 'Aguardando perguntas e dados', ok: 'Termo enviado para assinatura', icon: 'draw', enabled: !!(t.dados && t.perguntas) }
         ];
         const allTasks = tasks.every((x) => x.done);
-        const btn = (enabled, primary) => 'flex-shrink:0;width:96px;height:34px;padding:0 8px;display:flex;align-items:center;justify-content:center;white-space:nowrap;border-radius:6px;font-family:inherit;font-size:12px;font-weight:700;cursor:' + (enabled ? 'pointer' : 'not-allowed') + ';'
+        const btn = (enabled, primary) => 'flex-shrink:0;width:80px;height:28px;padding:0 6px;display:flex;align-items:center;justify-content:center;white-space:nowrap;border-radius:6px;font-family:inherit;font-size:11px;font-weight:700;cursor:' + (enabled ? 'pointer' : 'not-allowed') + ';'
           + (!enabled ? 'border:1px solid #e5eeff;background:#ffffff;color:#ccc3d8;' : primary ? 'border:0;background:#4A1259;color:#ffffff;' : 'border:1px solid #A192A6;background:#ffffff;color:#4A1259;');
         const bigBtn = (enabled) => 'height:44px;border:0;border-radius:8px;font-family:inherit;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:8px;transition:all .2s;'
           + (enabled ? 'background:linear-gradient(135deg,#22a06b 0%,#047857 100%);color:#ffffff;cursor:pointer;box-shadow:0 8px 18px -8px rgba(4, 120, 87,0.6);' : 'background:#e5eeff;color:#7b7487;cursor:not-allowed;');
@@ -5796,7 +6441,7 @@ Compartilhar QR Code
         const ds = st.ds;
         const dsMeta = {
           perguntas: { title: 'Perguntas da etapa', icon: 'quiz', btn: 'Salvar respostas', ok: !!st.qViagens && st.qKm.replace(/\D/g, '').length > 0 },
-          dados: { title: 'Dados do associado', icon: 'badge', btn: 'Salvar dados', ok: st.aCpf.replace(/\D/g, '').length === 11 && !!st.aNasc && st.aCep.replace(/\D/g, '').length === 8 && !!st.aNum },
+          dados: { title: 'Dados do associado', icon: 'badge', btn: 'Salvar dados', ok: Component.assocCompleto(st.aForm) },
           vistoria: { title: 'Criar vistoria', icon: 'photo_camera', btn: 'Criar vistoria', ok: !!st.vModelo && !!st.vTipo },
           frota: { title: p.frota && p.frota !== 'Não está em frota' ? 'Alterar frota' : 'Adicionar em frota', icon: 'local_shipping', btn: 'Salvar frota', ok: st.frotaPick === 'nova' ? (st.frotaNova || '').trim().length > 1 : !!st.frotaPick },
           agregado: { title: 'Adicionar agregado', icon: 'add_link', btn: 'Adicionar agregado', ok: !!st.agTipo && this.parseMoney(st.agValor || '') > 0 },
@@ -6176,20 +6821,24 @@ Compartilhar QR Code
               disabled: x.enabled === false ? 'true' : 'false',
               btnStyle: btn(x.enabled !== false, !x.done)
             });
+            const vistTotal = Component.vistFotos().length;
+            const tm = p.termo || {};
+            const vistFeitas = Object.keys((p.vist || {}).fotos || {}).length;
             const tasksByStep = [
               [task({ title: 'Perguntas da etapa', done: !!t.perguntas, status: t.perguntas ? 'Perguntas respondidas' : 'Perguntas pendentes', btn: t.perguntas ? 'Editar' : 'Responder', go: () => this.setState({ ds: 'perguntas' }) })],
-              [task({ title: 'Dados do associado', done: !!t.dados, status: t.dados ? 'Dados completos' : 'CPF, nascimento e endereço', btn: t.dados ? 'Editar' : 'Preencher', go: () => this.setState({ ds: 'dados' }) }),
+              [task({ title: 'Dados do associado', done: !!t.dados, status: t.dados ? 'Dados completos' : 'CPF, nascimento e endereço', btn: t.dados ? 'Editar' : 'Preencher', go: () => this.setState({ ds: 'dados', aForm: { nome: p.name, fone: p.phone, ...(p.assoc || {}) } }) }),
                 task({ title: 'Dados do veículo', done: !!t.veiculo, status: t.veiculo ? 'Dados conferidos' : 'Confira placa, cor, chassi e Renavam', btn: 'Alterar', go: () => this.setState({ ds: 'veiculo', vcPlaca: p.placa, vcCor: v.cor || '', vcChassi: v.chassi || '', vcRenavam: v.renavam || '' }) })],
-              [task({ title: 'Vistoria do veículo', done: !!t.vistoria, status: t.vistoria ? (t.vistoriaInfo || 'Vistoria criada') + ' · fotos recebidas' : 'Aguardando criar vistoria', btn: t.vistoria ? 'Editar' : 'Criar', go: () => this.setState({ ds: 'vistoria' }) })],
-              [task({ title: 'Assinatura do termo de filiação', done: !!t.termoEnviado, status: t.termoEnviado ? 'Enviado por WhatsApp · aguardando assinatura' : 'Pronto para enviar ao associado', btn: t.termoEnviado ? 'Reenviar' : 'Enviar', go: () => save({ tasks: { ...p.tasks, termoEnviado: true } }, 'Termo de filiação enviado por WhatsApp', 'Termo enviado para ' + p.name.split(' ')[0]) })],
+              [task({ title: 'Vistoria do veículo', done: !!t.vistoriaFotos, status: !t.vistoria ? 'Aguardando criar vistoria' : (t.vistoriaInfo || 'Vistoria criada') + ' · ' + (t.vistoriaAprovada ? 'vistoria aprovada' : t.vistoriaFotos ? 'em análise' : vistFeitas + ' de ' + vistTotal + ' fotos'), btn: t.vistoriaFotos && !t.vistoriaAprovada && p.stage <= 3 ? 'Em análise' : t.vistoria ? 'Visualizar' : 'Criar', go: () => this.setState(t.vistoria ? { vistOpen: true, vistPasso: null, vistEx: false } : { ds: 'vistoria' }) })],
+              [task({ title: 'Assinatura do termo de filiação', done: !!t.termo, status: t.termo ? (tm.modelo ? tm.modelo + ' · ' : '') + 'assinado' : tm.modelo && tm.tipo ? tm.modelo + ' · ' + tm.tipo + ' · ' + (tm.enviado ? 'aguardando assinatura' : 'falta assinar') : 'Escolha o tipo e o modelo do termo', btn: t.termo || tm.modelo ? 'Visualizar' : 'Iniciar', go: () => this.setState({ termoOpen: true, termoSheet: null, termoPad: false }) })],
               []
             ];
             const acts = [
               { label: 'Confirmar plano', ok: !!s1Plan && !!t.perguntas, hint: !s1Plan ? 'Escolha o plano' : !t.perguntas ? 'Responda as perguntas da etapa' : '', go: () => ask('Confirmar o plano ' + (s1PlanObj ? s1PlanObj.name : '') + '?', 'Essa ação só pode ser feita uma vez. Depois, a troca de plano passa pela diretoria.', () => { this.setState({ s1Plan: null }); save({ chosen: s1Plan, chosenCota: st.s1Cota || p.cotas[s1Plan] || '0', stage: 2 }, 'Plano ' + (s1PlanObj ? s1PlanObj.name : '') + ' confirmado', 'Plano confirmado'); }) },
               { label: 'Avançar para vistoria', ok: !!t.dados, hint: t.dados ? '' : 'Preencha os dados do associado', go: () => save({ stage: 3, tasks: { ...p.tasks, veiculo: true } }, 'Dados complementares concluídos', 'Etapa concluída') },
-              { label: 'Aprovar vistoria', ok: !!t.vistoria, hint: t.vistoria ? '' : 'Crie a vistoria primeiro', go: () => ask('Aprovar a vistoria?', 'Essa ação só pode ser feita uma vez.', () => save({ stage: 4 }, 'Vistoria aprovada', 'Vistoria aprovada')) },
-              { label: 'Confirmar assinatura', ok: !!t.termoEnviado, hint: t.termoEnviado ? '' : 'Envie o termo primeiro', go: () => ask('O associado assinou o termo?', 'Confirme somente após a assinatura digital do termo de filiação.', () => save({ stage: 5, tasks: { ...p.tasks, termo: true } }, 'Termo de filiação assinado', 'Termo assinado')) },
-              { label: 'Ativar proposta', ok: true, green: true, hint: 'Aguardando o pagamento da adesão. Quando confirmado, ative a proteção.', go: () => ask('Ativar a proteção?', 'O associado passa a ter cobertura a partir de agora.', () => { save({ stage: etapas.length + 1 }, 'Proposta ativada', 'Proposta ativada'); Object.assign(p, { status: 'ativada', activated: '2026-09-30', etapa: null }); this.setState({ detRev: (st.detRev || 0) + 2 }); }) }
+              { label: 'Avançar para o termo', ok: !!t.vistoriaAprovada, hint: t.vistoriaAprovada ? '' : t.vistoriaFotos ? 'Aguardando a aprovação da vistoria' : t.vistoria ? 'Aguardando as fotos da vistoria' : 'Crie a vistoria primeiro', go: () => save({ stage: 4 }, 'Avançou para o termo', 'Proposta avançou para o termo') },
+              { label: '', ok: false, hint: t.termoEnviado ? 'Assim que o associado assinar, a proposta vai para a ativação.' : 'Assim que o termo for assinado, a proposta vai para a ativação.' },
+              // Ativação: feita pela associação depois do pagamento da adesão; aqui o consultor só acompanha.
+              { label: '', ok: false }
             ];
             const act = acts[i];
             return {
@@ -6218,8 +6867,10 @@ Compartilhar QR Code
               showPlano: cur && n === 1,
               showResumo: n === 1 && !!p.chosen,
               showVeiculo: cur && n === 2,
-              tasks: cur ? tasksByStep[i] : [],
-              hasAct: cur,
+              tasks: cur || (done && (i === 2 || i === 3)) ? tasksByStep[i] : [],
+              hasAct: cur && i < stageNames.length - 2,
+              showDica: cur && i === stageNames.length - 2,
+              showAguardando: cur && i === stageNames.length - 1,
               actLabel: act.label,
               actIcon: act.green ? 'verified' : 'arrow_forward',
               actHint: act.ok ? (act.hint || '') : act.hint,
@@ -6307,10 +6958,16 @@ Compartilhar QR Code
           dsSubmit: () => {
             if (!dsMeta.ok) return;
             if (ds === 'perguntas') save({ tasks: { ...p.tasks, perguntas: true } }, 'Perguntas da etapa respondidas', 'Respostas salvas');
-            if (ds === 'dados') save({ tasks: { ...p.tasks, dados: true } }, 'Dados do associado completos', 'Dados salvos');
+            if (ds === 'dados') {
+              p.assoc = { ...st.aForm };
+              p.name = st.aForm.nome.trim();
+              p.phone = st.aForm.fone;
+              save({ tasks: { ...p.tasks, dados: true } }, 'Dados do associado completos', 'Dados salvos');
+            }
             if (ds === 'vistoria') {
               const vt = vTipos.find((x) => x.id === st.vTipo);
               save({ tasks: { ...p.tasks, vistoria: true, vistoriaInfo: st.vModelo + ' · ' + vt.label } }, 'Vistoria criada: ' + st.vModelo, 'Vistoria criada');
+              this.setState({ vistOpen: true, vistPasso: null, vistEx: false });
             }
             if (ds === 'frota') {
               const nome = st.frotaPick === 'nova' ? st.frotaNova.trim() : st.frotaPick;
@@ -6331,10 +6988,10 @@ Compartilhar QR Code
           qViagens: st.qViagens, onQViagens: (e) => this.setState({ qViagens: e.target.value }),
           qKm: st.qKm, onQKm: (e) => { const d = e.target.value.replace(/\D/g, '').slice(0, 7); this.setState({ qKm: d ? Number(d).toLocaleString('pt-BR') : '' }); },
           qApp: st.qApp, onQApp: (e) => this.setState({ qApp: e.target.value }),
-          aCpf: st.aCpf, onACpf: (e) => this.setState({ aCpf: this.maskDoc(e.target.value.replace(/\D/g, '').slice(0, 11)) }),
-          aNasc: st.aNasc, onANasc: (e) => this.setState({ aNasc: e.target.value }),
-          aCep: st.aCep, onACep: (e) => { const d = e.target.value.replace(/\D/g, '').slice(0, 8); this.setState({ aCep: d.length > 5 ? d.slice(0, 5) + '-' + d.slice(5) : d }); },
-          aNum: st.aNum, onANum: (e) => this.setState({ aNum: e.target.value.replace(/\D/g, '').slice(0, 6) }),
+          ...(() => {
+            const f = this.assocCampos(st.aForm || {}, (patch) => this.setState({ aForm: { ...(this.state.aForm || {}), ...patch } }));
+            return { dAssocPessoal: f.pessoal, dAssocEndereco: f.endereco, dAssocCobranca: f.cobranca };
+          })(),
           vModelo: st.vModelo, onVModelo: (e) => this.setState({ vModelo: e.target.value }),
           vTipoOpts: vTipos.map((v) => {
             const on = st.vTipo === v.id;
@@ -6357,7 +7014,10 @@ Compartilhar QR Code
           relOpen: false, indOpen: false, indicOpen: false, indicFormOpen: false, novOpen: false, propOpen: false, sheetKey: null, filtersMenuOpen: false,
           detOpen: false, wizOpen: false, ds: null, cf: null, dicasOpen: false, cotacaoOpen: false, detalheOpen: false, iaOpen: false, notifOpen: false,
           analiseOpen: false, atalhosOpen: false, instalarGuia: false, menuOpen: false, menuClosing: false,
-          dCotaModal: null, dExtraListOpen: false, dExtraDelId: null, wCotaModal: null, wExtraModal: false, wExtraDelId: null
+          dCotaModal: null, dExtraListOpen: false, dExtraDelId: null, wCotaModal: null, wExtraModal: false, wExtraDelId: null,
+          dExtraModal: false, acoesVeic: false, ddiOpen: null, perfilOpen: false, perfilEdit: null, perfilRef: null, perfilDel: false,
+          vistOpen: false, vistPasso: null, vistEx: false, vistCam: false, vistExVer: null, vistFotoVer: null, vistSel: null,
+          termoOpen: false, termoSheet: null, termoPad: false
         };
       }
 
@@ -6618,8 +7278,10 @@ Compartilhar QR Code
             const isFrota = p.frota !== 'Não está em frota';
             const frotaInfo = isFrota ? cat.frotas.find((f) => f.label === p.frota) : null;
             const frotaCount = isFrota ? all.filter((x) => x.frota === p.frota).length : 0;
+            const anoFab = p.ano || (p.model.match(/\d{4}$/) || [''])[0];
             return {
               ...p,
+              model: p.model.replace(/\s+\d{4}$/, '') + (anoFab ? ' - ' + anoFab + '/' + (p.anoModelo || anoFab) : ''),
               isFrota,
               frotaName: isFrota ? p.frota : '',
               frotaSub: isFrota ? (frotaInfo && frotaInfo.sub ? frotaInfo.sub + ' · ' : '') + frotaCount + (frotaCount === 1 ? ' veículo' : ' veículos') + ' na frota' : '',
@@ -7621,7 +8283,7 @@ Compartilhar QR Code
               const t = this.notifTypes[n.type];
               return {
                 ...n,
-                open: () => this.setState({ readIds: { ...readIds, [n.id]: true } }),
+                open: () => this.setState({ readIds: { ...readIds, [n.id]: true }, ...this.destinoNotificacao(n) }),
                 rowStyle: 'width:100%;padding:12px 14px;border:0;font-family:inherit;color:inherit;text-align:left;display:flex;align-items:flex-start;gap:12px;cursor:pointer;'
                   + (i < arr.length - 1 ? 'border-bottom:1px solid #eff4ff;' : '')
                   + 'background:' + (isRead ? '#ffffff' : '#f9f6fa'),
@@ -7634,13 +8296,756 @@ Compartilhar QR Code
         };
       }
 
+      // Para onde cada notificação leva; a lista de notificações fica embaixo e o voltar retorna a ela.
+      destinoNotificacao(n) {
+        if (n.type === 'proposta') {
+          const props = this.propostas || (this.propostas = Component.seedPropostas());
+          const p = props.find((x) => n.text.includes(x.name) || n.text.includes(x.name.split(' ').slice(0, 2).join(' ')));
+          return p ? { detOpen: true, detPid: p.id, detStepView: null, s1Plan: null } : { propOpen: true };
+        }
+        if (n.type === 'financeiro') return /boleto/i.test(n.title) ? { relOpen: true, riscoFilter: 'todos' } : { indOpen: true };
+        if (n.type === 'rede') return { redeOpen: true };
+        if (n.type === 'sistema') return { novOpen: true };
+        return {};
+      }
+
       // Atalho para instalar o app na tela inicial (tela cheia).
+      // ---------- Navegação ----------
+      // Páginas abertas ficam numa pilha: a última aberta aparece por cima e o "voltar" fecha a de cima.
+      static PAGINAS = ['menuOpen', 'iaOpen', 'propOpen', 'agendaOpen', 'indOpen', 'indicOpen', 'relOpen', 'redeOpen', 'multiOpen', 'matView', 'novOpen', 'notifOpen', 'dicasOpen', 'linkOpen', 'perfilOpen', 'detOpen', 'vistOpen', 'termoOpen', 'wizOpen'];
+
+      // Janelas e modais que o "voltar" do aparelho fecha antes das páginas (da mais alta para a mais baixa).
+      static MODAIS = [
+        ['termoPad', false], ['termoSheet', null],
+        ['vistExVer', null], ['vistFotoVer', null], ['vistCam', false], ['vistPasso', null], ['vistSel', null],
+        ['cf', null], ['ds', null], ['perfilDel', false], ['perfilRef', null], ['perfilEdit', null],
+        ['wExtraDelId', null], ['wExtraModal', false], ['wCotaModal', null], ['dExtraDelId', null], ['dExtraModal', false], ['dCotaModal', null],
+        ['instalarGuia', false], ['analiseOpen', false], ['atalhosOpen', false], ['notaOpen', false], ['indicFormOpen', false],
+        ['filtersMenuOpen', false], ['sheetKey', null], ['previewId', null], ['detalheOpen', false], ['cotacaoOpen', false],
+        ['acoesVeic', false], ['ddiOpen', null], ['indicSelId', null]
+      ];
+
+      static aberto(v) { return v !== undefined && v !== null && v !== false && v !== ''; }
+
+      setState(patch) {
+        const p = typeof patch === 'function' ? patch(this.state) : patch;
+        if (p && typeof p === 'object') this.registrarPilha(p);
+        super.setState(p);
+        if (p && typeof p === 'object') this.sincronizarHistorico({ ...this.state, ...p });
+      }
+
+      registrarPilha(p) {
+        let pilha = (this.pilha || []).filter((k) => !(k in p) || Component.aberto(p[k]));
+        Component.PAGINAS.forEach((k) => {
+          if (k in p && Component.aberto(p[k])) { pilha = pilha.filter((x) => x !== k); pilha.push(k); }
+        });
+        this.pilha = pilha;
+      }
+
+      algoAberto(st) {
+        return (this.pilha || []).length > 0 || Component.MODAIS.some(([k]) => Component.aberto(st[k]));
+      }
+
+      // Mantém uma entrada no histórico enquanto houver página ou janela aberta, para o "voltar" do aparelho fechar em vez de sair do app.
+      sincronizarHistorico(st) {
+        if (typeof window === 'undefined' || !window.history || !window.history.pushState) return;
+        const aberto = this.algoAberto(st);
+        if (aberto && !this.guarda) {
+          this.guarda = true;
+          try { window.history.pushState({ ileva: true }, ''); } catch (err) { this.guarda = false; }
+        } else if (!aberto && this.guarda) {
+          this.guarda = false;
+          this.ignorarVolta = true;
+          try { window.history.back(); } catch (err) { this.ignorarVolta = false; }
+        }
+      }
+
+      voltar() {
+        const st = this.state;
+        const modal = Component.MODAIS.find(([k]) => Component.aberto(st[k]));
+        if (modal) { this.setState({ [modal[0]]: modal[1] }); return true; }
+        const topo = (this.pilha || [])[this.pilha.length - 1];
+        if (topo) {
+          const fechar = { [topo]: topo === 'matView' ? null : false };
+          if (topo === 'menuOpen') fechar.menuClosing = false;
+          this.setState(fechar);
+          return true;
+        }
+        return false;
+      }
+
+      ligarVoltar() {
+        if (this.voltarLigado || typeof window === 'undefined') return;
+        this.voltarLigado = true;
+        this.pilha = Component.PAGINAS.filter((k) => Component.aberto(this.state[k]));
+        setTimeout(() => this.sincronizarHistorico(this.state), 0);
+        window.addEventListener('popstate', () => {
+          if (this.ignorarVolta) { this.ignorarVolta = false; return; }
+          this.guarda = false;
+          this.voltar();
+          this.sincronizarHistorico(this.state);
+        });
+      }
+
+      camadas() {
+        const z = {};
+        Component.PAGINAS.forEach((k) => { z[k] = 10; });
+        (this.pilha || []).forEach((k, i) => { z[k] = 11 + Math.min(i, 8); });
+        return z;
+      }
+
       // Página "Editar perfil" do consultor.
       static perfilInicial() {
         return {
           nome: 'Carlos Eduardo', email: 'carlos.eduardo@ileva.com.br', fone: '(62) 99999-0000',
           cep: '74000-000', rua: 'Avenida Guarapari', numero: '120', bairro: 'Jardim Atlântico', cidade: 'Goiânia/GO',
           banco: '', agencia: '', conta: '', pix: ''
+        };
+      }
+
+      // Termo de filiação: tipos e modelos cadastrados na associação.
+      static termoTipos() { return ['Digital', 'Manuscrito', 'Híbrido']; }
+
+      static termoModelos() {
+        return ['Termo Padrão - ileva', 'Termo Padrão para Teste', 'Termo Protege Agora', 'TERMO PADRÃO - AASC', 'Termo AASC SUL - Carros antigos', 'Termo Megarv', 'Termo vipseg', 'Termo de bikes elétricas', 'Kairós - Último'];
+      }
+
+      // Dados do associado: os mesmos campos na nova proposta e na folha "Dados do associado" da proposta.
+      static assocDefs() {
+        return [
+          { k: 'nome', label: 'Nome completo', grupo: 'pessoal', req: true, ph: 'Nome do associado' },
+          { k: 'fone', label: 'Telefone/WhatsApp', grupo: 'pessoal', req: true, tipo: 'tel', modo: 'numeric', ph: '(00) 00000-0000' },
+          { k: 'cpf', label: 'CPF ou CNPJ', grupo: 'pessoal', req: true, modo: 'numeric', ph: '000.000.000-00' },
+          { k: 'nasc', label: 'Data de nascimento', grupo: 'pessoal', req: true, tipo: 'date' },
+          { k: 'rg', label: 'RG', grupo: 'pessoal', meia: true, ph: 'Número do RG' },
+          { k: 'orgao', label: 'Órgão expedidor', grupo: 'pessoal', meia: true, ph: 'Ex.: SSP/GO' },
+          { k: 'sexo', label: 'Sexo', grupo: 'pessoal', opcoes: ['Feminino', 'Masculino', 'Prefiro não informar'] },
+          { k: 'cnh', label: 'Nº da CNH', grupo: 'pessoal', meia: true, modo: 'numeric', ph: '00000000000' },
+          { k: 'cnhTipo', label: 'CNH tipo', grupo: 'pessoal', meia: true, opcoes: ['A', 'B', 'AB', 'C', 'D', 'E', 'AC', 'AD', 'AE', 'ACC'] },
+          { k: 'cep', label: 'CEP', grupo: 'endereco', req: true, modo: 'numeric', ph: '00000-000' },
+          { k: 'endereco', label: 'Endereço', grupo: 'endereco', req: true, ph: 'Rua, avenida, quadra…' },
+          { k: 'numero', label: 'Número', grupo: 'endereco', req: true, meia: true, ph: 'Nº ou sn' },
+          { k: 'bairro', label: 'Bairro', grupo: 'endereco', req: true, meia: true, ph: 'Bairro' },
+          { k: 'uf', label: 'Estado', grupo: 'endereco', req: true, meia: true, lista: 'uf' },
+          { k: 'cidade', label: 'Cidade', grupo: 'endereco', req: true, meia: true, lista: 'cidade' }
+        ];
+      }
+
+      static assocCompleto(d) {
+        return Component.assocDefs().filter((f) => f.req).every((f) => String((d || {})[f.k] || '').trim());
+      }
+
+      // Campos prontos para o template: d = valores, mudar(patch) grava, omitir = campos pedidos em outro lugar da tela,
+      // opcional = seção sem campos obrigatórios (nova proposta).
+      assocCampos(d, mudar, omitir = [], opcional = false) {
+        const cat = Component.ccCatalog();
+        const mascara = {
+          fone: (v) => this.maskPhone(v, 'BR'),
+          cpf: (v) => this.maskDoc(v),
+          cep: (v) => { const x = v.replace(/\D/g, '').slice(0, 8); return x.length > 5 ? x.slice(0, 5) + '-' + x.slice(5) : x; },
+          cnh: (v) => v.replace(/\D/g, '').slice(0, 11),
+          rg: (v) => v.replace(/[^\dA-Za-z.-]/g, '').slice(0, 15),
+          orgao: (v) => v.toUpperCase().slice(0, 12)
+        };
+        const listas = {
+          uf: Object.entries(cat.ufNames).sort((x, y) => x[1].localeCompare(y[1], 'pt-BR')).map(([v, label]) => ({ v, label })),
+          cidade: (cat.ufs[d.uf] || []).map((v) => ({ v, label: v }))
+        };
+        const campo = (f) => {
+          const lista = f.lista ? listas[f.lista] : f.opcoes ? f.opcoes.map((v) => ({ v, label: v })) : null;
+          return {
+            label: f.label + (f.req && !opcional ? ' *' : ''), valor: d[f.k] || '', ph: f.ph || '', tipo: f.tipo || 'text', modo: f.modo || 'text',
+            ehLista: !!lista, ehTexto: !lista,
+            opcoes: [{ v: '', label: f.lista === 'cidade' && !d.uf ? 'Escolha o estado primeiro' : 'Selecione' }, ...(lista || [])],
+            estilo: 'display:flex;flex-direction:column;gap:6px;min-width:0;grid-column:span ' + (f.meia ? 1 : 2),
+            onChange: (e) => {
+              const v = mascara[f.k] ? mascara[f.k](e.target.value) : e.target.value;
+              mudar(f.k === 'uf' ? { uf: v, cidade: '' } : { [f.k]: v });
+            }
+          };
+        };
+        const defs = Component.assocDefs().filter((f) => !omitir.includes(f.k));
+        const cob = d.cobranca || {};
+        return {
+          pessoal: defs.filter((f) => f.grupo === 'pessoal').map(campo),
+          endereco: defs.filter((f) => f.grupo === 'endereco').map(campo),
+          cobranca: [['whatsapp', 'WhatsApp'], ['email', 'E-mail']].map(([k, label]) => ({
+            label, aria: cob[k] ? 'true' : 'false', icone: cob[k] ? 'check' : '',
+            caixa: 'width:22px;height:22px;box-sizing:border-box;border-radius:6px;font-size:16px;display:flex;align-items:center;justify-content:center;'
+              + (cob[k] ? 'border:0;background:#4A1259;color:#ffffff;' : 'border:1.5px solid #ccc3d8;background:#ffffff;color:transparent;'),
+            alternar: () => mudar({ cobranca: { ...cob, [k]: !cob[k] } })
+          }))
+        };
+      }
+
+      // Link da página em que o associado lê e assina o termo (termo.html), com os dados no próprio endereço.
+      linkTermo(p) {
+        const pf = this.state.perfil || Component.perfilInicial();
+        const tm = p.termo || {};
+        const dados = {
+          n: p.num || p.id,
+          cli: { nome: p.name },
+          vei: { modelo: p.model.replace(/\s+\d{4}$/, ''), placa: p.placa },
+          termo: { modelo: tm.modelo || '', tipo: tm.tipo || '' },
+          cons: { nome: pf.nome, wa: this.waNum(pf.fone, 'BR') }
+        };
+        const bytes = new TextEncoder().encode(JSON.stringify(dados));
+        let bin = '';
+        for (let i = 0; i < bytes.length; i++) bin += String.fromCharCode(bytes[i]);
+        const cod = btoa(bin).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+        let base = 'termo.html';
+        try { base = new URL('termo.html', window.location.href).href; } catch (e) { }
+        return base + '#d=' + cod;
+      }
+
+      // Imagem da assinatura só com a área desenhada (sem o espaço vazio do quadro).
+      static recortarAssinatura(c) {
+        const { width: w, height: h } = c;
+        const px = c.getContext('2d').getImageData(0, 0, w, h).data;
+        let x0 = w, y0 = h, x1 = -1, y1 = -1;
+        for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
+          if (px[(y * w + x) * 4 + 3] > 0) { if (x < x0) x0 = x; if (x > x1) x1 = x; if (y < y0) y0 = y; if (y > y1) y1 = y; }
+        }
+        if (x1 < 0) return c.toDataURL('image/png');
+        const m = 12;
+        x0 = Math.max(0, x0 - m); y0 = Math.max(0, y0 - m); x1 = Math.min(w - 1, x1 + m); y1 = Math.min(h - 1, y1 + m);
+        const out = document.createElement('canvas');
+        out.width = x1 - x0 + 1; out.height = y1 - y0 + 1;
+        out.getContext('2d').drawImage(c, x0, y0, out.width, out.height, 0, 0, out.width, out.height);
+        return out.toDataURL('image/png');
+      }
+
+      termoVals() {
+        const st = this.state;
+        const p = (this.propostas || []).find((x) => x.id === st.detPid);
+        const vazio = { termoOpen: false, termoSheetOpen: false, termoPadOpen: false, termoTarefas: [], termoTipoOpts: [], termoModeloOpts: [], termoCampos: [] };
+        if (!st.termoOpen || !p) return vazio;
+        const tm = p.termo || (p.termo = { tipo: '', modelo: '', info: null, perguntas: null, assinatura: '', via: '', enviado: false });
+        const assinado = !!(p.tasks && p.tasks.termo);
+        const frota = !!p.frota && p.frota !== 'Não está em frota';
+        const frotaQtd = frota ? (this.propostas || []).filter((x) => x.frota === p.frota).length : 1;
+        const configurado = !!tm.tipo && !!tm.modelo;
+        const pronto = configurado && !!tm.info && (!frota || !!tm.perguntas);
+        const primeiro = p.name.split(' ')[0];
+        const pf = st.perfil || Component.perfilInicial();
+        const link = this.linkTermo(p);
+        const atualizar = (patch) => this.setState({ termoRev: (this.state.termoRev || 0) + 1, ...patch });
+        const toast = (txt) => { this.setState({ termoToast: txt }); clearTimeout(this.termoTimer); this.termoTimer = setTimeout(() => this.setState({ termoToast: '' }), 2600); };
+        const historico = (t) => { p.history = [...(p.history || []), { t, d: '30/09/2026 · ' + pf.nome }]; };
+        // Termo assinado: a proposta vai direto para a ativação.
+        const marcarAssinado = (via, texto) => {
+          p.tasks = { ...p.tasks, termo: true, termoEnviado: true };
+          tm.via = via;
+          historico(texto);
+          const etapas = Component.propCatalog().etapas;
+          p.stage = etapas.length;
+          p.status = 'funil';
+          p.etapa = etapas[etapas.length - 1];
+          historico('Proposta aguardando ativação');
+        };
+
+        // Formulários do termo: informações adicionais e perguntas da frota.
+        const formularios = {
+          info: {
+            titulo: 'Informações adicionais', icone: 'person_add',
+            campos: [
+              { k: 'civil', label: 'Estado civil', opcoes: ['Solteiro(a)', 'Casado(a)', 'União estável', 'Divorciado(a)', 'Viúvo(a)'] },
+              { k: 'profissao', label: 'Profissão', ph: 'Ex.: Motorista, Professor' },
+              { k: 'uso', label: 'Uso principal do veículo', opcoes: ['Particular', 'Trabalho', 'Aplicativo de transporte'] }
+            ]
+          },
+          perguntas: {
+            titulo: 'Perguntas da frota', icone: 'local_shipping',
+            campos: [
+              { k: 'motoristas', label: 'Quantos motoristas usam os veículos?', ph: 'Ex.: 3', modo: 'numeric' },
+              { k: 'garagem', label: 'Os veículos pernoitam em garagem?', opcoes: ['Sim', 'Não', 'Alguns'] },
+              { k: 'rastreador', label: 'Os veículos têm rastreador?', opcoes: ['Sim', 'Não'] }
+            ]
+          }
+        };
+        const aba = st.termoSheet && formularios[st.termoSheet] ? formularios[st.termoSheet] : null;
+        const rasc = st.termoForm || {};
+        const formOk = !!aba && aba.campos.every((c) => String(rasc[c.k] || '').trim());
+
+        const tarefa = (x) => ({
+          ...x,
+          icon: x.done ? 'check_circle' : x.enabled === false ? 'lock' : 'schedule',
+          iconStyle: 'flex-shrink:0;font-size:22px;color:' + (x.done ? '#047857' : x.enabled === false ? '#ccc3d8' : '#d97706'),
+          titleStyle: 'font-size:13px;color:' + (x.enabled === false ? '#7b7487' : '#0b1c30'),
+          statusStyle: 'font-size:11px;color:' + (x.done ? '#047857' : '#7b7487'),
+          rowStyle: 'display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:12px;' + (x.done ? 'background:#f2fbf7;' : 'background:#f9f6fa;'),
+          disabled: x.enabled === false || assinado ? 'true' : 'false',
+          temBotao: !assinado,
+          btnStyle: 'flex-shrink:0;width:80px;height:28px;padding:0 6px;display:flex;align-items:center;justify-content:center;white-space:nowrap;border-radius:6px;font-family:inherit;font-size:11px;font-weight:700;'
+            + (x.enabled === false ? 'border:1px solid #e5eeff;background:#ffffff;color:#b9b0c4;cursor:not-allowed;' : x.done ? 'border:1px solid #e5eeff;background:#ffffff;color:#4A1259;cursor:pointer;' : 'border:0;background:#4A1259;color:#ffffff;cursor:pointer;')
+        });
+        const abrirForm = (k) => () => { if (!configurado) { toast('Escolha o tipo e o modelo do termo primeiro'); return; } this.setState({ termoSheet: k, termoForm: { ...(tm[k] || {}) } }); };
+        const resumo = (k) => tm[k] ? formularios[k].campos.map((c) => tm[k][c.k]).filter(Boolean).join(' · ') : '';
+
+        const btnBase = 'box-sizing:border-box;height:38px;border-radius:10px;font-family:inherit;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:6px;white-space:nowrap;';
+        const sel = (lista, atual) => [{ v: '', label: 'Selecione' }, ...lista.map((x) => ({ v: x, label: x }))].map((o) => ({ ...o, selected: o.v === atual }));
+
+        return {
+          termoOpen: true,
+          closeTermo: () => this.setState({ termoOpen: false, termoSheet: null, termoPad: false }),
+          termoNome: p.name,
+          termoVeiculo: p.model.replace(/\s+\d{4}$/, ''),
+          termoPlaca: p.placa,
+          termoTipoIcon: { carro: 'directions_car', moto: 'two_wheeler', caminhao: 'local_shipping' }[p.type] || 'directions_car',
+          termoTipoNome: ({ carro: 'Carro', moto: 'Moto', caminhao: 'Caminhão' }[p.type] || 'Carro') + (p.ano ? ' · Ano ' + p.ano + '/' + (p.anoModelo || p.ano) : ''),
+          termoEditavel: !assinado, termoTravado: assinado,
+          termoTipo: tm.tipo, termoModelo: tm.modelo,
+          termoTipoTexto: tm.tipo || '—', termoModeloTexto: tm.modelo || '—',
+          termoTipoOpts: sel(Component.termoTipos(), tm.tipo),
+          termoModeloOpts: sel(Component.termoModelos(), tm.modelo),
+          onTermoTipo: (e) => { tm.tipo = e.target.value; atualizar(); },
+          onTermoModelo: (e) => { tm.modelo = e.target.value; atualizar(); },
+          termoFrota: frota,
+          termoFrotaTexto: 'Esta escolha vale para os ' + frotaQtd + ' veículos da frota ' + p.frota + '.',
+
+          termoTarefas: [
+            tarefa({ k: 'info', title: 'Informações adicionais', done: !!tm.info, enabled: configurado, status: tm.info ? resumo('info') : configurado ? 'Estado civil, profissão e uso do veículo' : 'Escolha o tipo e o modelo do termo', btn: tm.info ? 'Editar' : 'Preencher', go: abrirForm('info') }),
+            ...(frota ? [tarefa({ k: 'perguntas', title: 'Perguntas da frota', done: !!tm.perguntas, enabled: configurado, status: tm.perguntas ? resumo('perguntas') : configurado ? 'Motoristas, garagem e rastreador' : 'Escolha o tipo e o modelo do termo', btn: tm.perguntas ? 'Editar' : 'Responder', go: abrirForm('perguntas') })] : [])
+          ],
+
+          termoStatusIcon: assinado ? 'task_alt' : tm.enviado ? 'schedule_send' : 'schedule',
+          termoStatusCor: assinado ? '#047857' : '#d97706',
+          termoStatus: assinado ? (tm.via === 'app' ? 'Assinado no aplicativo' : 'Assinado pelo associado') : tm.enviado ? 'Link enviado · aguardando assinatura' : pronto ? 'Pronto para assinar' : 'Aguardando assinatura',
+          termoStatusSub: assinado ? 'Termo de filiação assinado em 30/09/2026.' : pronto ? 'Escolha como o associado vai assinar.' : 'Preencha as informações acima para liberar a assinatura.',
+          termoTemAssinatura: !!tm.assinatura,
+          termoAssinatura: tm.assinatura || '',
+          termoPodeAssinar: !assinado,
+          termoAssinarDis: pronto ? 'false' : 'true',
+          termoAssinarStyle: btnBase + (pronto ? 'border:0;background:linear-gradient(135deg,#622773 0%,#4A1259 100%);color:#ffffff;cursor:pointer;box-shadow:0 8px 18px -10px rgba(74, 18, 89,0.7);' : 'border:0;background:#ece6f0;color:#b9b0c4;cursor:not-allowed;'),
+          termoCompStyle: btnBase + (pronto ? 'border:1px solid #e5eeff;background:#ffffff;color:#4A1259;cursor:pointer;' : 'border:1px solid #e5eeff;background:#ffffff;color:#b9b0c4;cursor:not-allowed;'),
+          termoAssinar: () => { if (!pronto) { toast('Preencha as informações para liberar a assinatura'); return; } this.setState({ termoSheet: 'assinar' }); },
+          termoCompartilhar: () => {
+            if (!pronto) { toast('Preencha as informações para liberar a assinatura'); return; }
+            const ok = () => toast('Link do termo copiado');
+            try { navigator.clipboard.writeText(link).then(ok, ok); } catch (err) { ok(); }
+          },
+
+          // folha inferior: formulários e escolha de como assinar
+          termoSheetOpen: !!st.termoSheet,
+          termoSheetForm: !!aba,
+          termoSheetAssinar: st.termoSheet === 'assinar',
+          termoSheetTitulo: aba ? aba.titulo : 'Como o associado vai assinar?',
+          termoSheetIcone: aba ? aba.icone : 'draw',
+          termoFechaSheet: () => this.setState({ termoSheet: null }),
+          termoCampos: aba ? aba.campos.map((c) => ({
+            label: c.label, ph: c.ph || '', modo: c.modo || 'text', valor: rasc[c.k] || '',
+            ehLista: !!c.opcoes, ehTexto: !c.opcoes,
+            opcoes: c.opcoes ? [{ v: '', label: 'Selecione', selected: !rasc[c.k] }, ...c.opcoes.map((o) => ({ v: o, label: o, selected: rasc[c.k] === o }))] : [],
+            onChange: (e) => this.setState({ termoForm: { ...(this.state.termoForm || {}), [c.k]: c.modo === 'numeric' ? e.target.value.replace(/\D/g, '').slice(0, 3) : e.target.value } })
+          })) : [],
+          termoSalvarDis: formOk ? 'false' : 'true',
+          termoSalvarStyle: 'width:100%;height:50px;border:0;border-radius:14px;font-family:inherit;font-size:15px;font-weight:700;'
+            + (formOk ? 'background:linear-gradient(135deg,#22a06b 0%,#047857 100%);color:#ffffff;cursor:pointer;box-shadow:0 8px 18px -8px rgba(4, 120, 87,0.6);' : 'background:#e5eeff;color:#7b7487;cursor:not-allowed;'),
+          termoSalvar: () => {
+            if (!formOk) return;
+            const novo = !tm[st.termoSheet];
+            tm[st.termoSheet] = { ...rasc };
+            if (novo) historico(aba.titulo + (st.termoSheet === 'perguntas' ? ' respondidas' : ' preenchidas'));
+            atualizar({ termoSheet: null, termoForm: null });
+            toast(aba.titulo + ' salvas');
+          },
+          termoNoApp: () => this.setState({ termoSheet: null, termoPad: true, termoTraco: false }),
+          termoExterna: () => {
+            const msg = '*Termo de Filiação*\nOlá *' + primeiro + '*, aqui é o(a) Consultor ' + pf.nome + ', consultor da *Ileva Gestão Inteligente (Centro-Oeste)*. Seu termo de filiação do veículo placa *' + p.placa + '* está pronto. Leia e assine pelo link:\n' + link;
+            window.open('https://wa.me/' + this.waNum(p.phone, p.pais) + '?text=' + encodeURIComponent(msg), '_blank', 'noopener');
+            if (!tm.enviado) historico('Termo de filiação enviado por WhatsApp');
+            tm.enviado = true;
+            p.tasks = { ...p.tasks, termoEnviado: true };
+            atualizar({ termoSheet: null, detRev: (this.state.detRev || 0) + 1 });
+            toast('Link do termo enviado para ' + primeiro);
+            // Simulação: o associado assina pelo link pouco depois do envio.
+            clearTimeout(this.termoAssinaTimer);
+            this.termoAssinaTimer = setTimeout(() => {
+              if (p.tasks.termo) return;
+              marcarAssinado('link', 'Termo de filiação assinado pelo associado (link)');
+              clearTimeout(this.detTimer);
+              this.detTimer = setTimeout(() => this.setState({ detToast: '' }), 3000);
+              this.setState({ termoRev: (this.state.termoRev || 0) + 1, detRev: (this.state.detRev || 0) + 1, detStepView: null, detToast: primeiro + ' assinou o termo! Proposta aguardando ativação' });
+            }, 10000);
+          },
+
+          // assinatura na tela do aparelho
+          termoPadOpen: !!st.termoPad,
+          termoPadFechar: () => this.setState({ termoPad: false }),
+          termoTraco: !!st.termoTraco,
+          termoSemTraco: !st.termoTraco,
+          termoLimpar: () => { const c = this.termoCanvas; if (c) c.getContext('2d').clearRect(0, 0, c.width, c.height); this.setState({ termoTraco: false }); },
+          termoConfirmarDis: st.termoTraco ? 'false' : 'true',
+          termoConfirmarStyle: 'flex:1.6;height:50px;border:0;border-radius:14px;font-family:inherit;font-size:15px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:6px;'
+            + (st.termoTraco ? 'background:linear-gradient(135deg,#22a06b 0%,#047857 100%);color:#ffffff;cursor:pointer;' : 'background:#e5eeff;color:#7b7487;cursor:not-allowed;'),
+          termoConfirmar: () => {
+            const c = this.termoCanvas;
+            if (!st.termoTraco || !c) return;
+            tm.assinatura = Component.recortarAssinatura(c);
+            marcarAssinado('app', 'Termo de filiação assinado no aplicativo');
+            clearTimeout(this.termoAssinaTimer);
+            atualizar({ termoPad: false, detRev: (this.state.detRev || 0) + 1, detStepView: null });
+            toast('Termo assinado! Proposta aguardando ativação');
+          },
+          termoCanvasRef: this.termoCanvasRef || (this.termoCanvasRef = (el) => {
+            this.termoCanvas = el;
+            if (!el || el.dataset.pronto) return;
+            el.dataset.pronto = '1';
+            const ajustar = () => {
+              const r = el.getBoundingClientRect();
+              const dpr = window.devicePixelRatio || 1;
+              el.width = Math.round(r.width * dpr); el.height = Math.round(r.height * dpr);
+              const ctx = el.getContext('2d');
+              ctx.scale(dpr, dpr); ctx.lineWidth = 2.6; ctx.lineCap = 'round'; ctx.lineJoin = 'round'; ctx.strokeStyle = '#1f1430';
+            };
+            requestAnimationFrame(ajustar);
+            let desenhando = false;
+            const ponto = (e) => { const r = el.getBoundingClientRect(); return [e.clientX - r.left, e.clientY - r.top]; };
+            el.addEventListener('pointerdown', (e) => {
+              desenhando = true; el.setPointerCapture(e.pointerId);
+              const ctx = el.getContext('2d'); const [x, y] = ponto(e);
+              ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x + 0.1, y + 0.1); ctx.stroke();
+              if (!this.state.termoTraco) this.setState({ termoTraco: true });
+            });
+            el.addEventListener('pointermove', (e) => {
+              if (!desenhando) return;
+              const ctx = el.getContext('2d'); const [x, y] = ponto(e);
+              ctx.lineTo(x, y); ctx.stroke();
+            });
+            const fim = () => { desenhando = false; };
+            el.addEventListener('pointerup', fim); el.addEventListener('pointercancel', fim);
+          }),
+
+          termoToastVisible: !!st.termoToast, termoToast: st.termoToast || ''
+        };
+      }
+
+      // Link da página em que o associado faz a vistoria sozinho (vistoria.html), com os dados no próprio endereço.
+      linkVistoria(p) {
+        const pf = this.state.perfil || Component.perfilInicial();
+        const dados = {
+          n: p.num || p.id,
+          cli: { nome: p.name },
+          vei: { modelo: p.model.replace(/\s+\d{4}$/, ''), tipo: { carro: 'Carro', moto: 'Moto', caminhao: 'Caminhão' }[p.type] || 'Veículo', ano: p.ano ? p.ano + '/' + (p.anoModelo || p.ano) : '', placa: p.placa },
+          cons: { nome: pf.nome, wa: this.waNum(pf.fone, 'BR') }
+        };
+        const bytes = new TextEncoder().encode(JSON.stringify(dados));
+        let bin = '';
+        for (let i = 0; i < bytes.length; i++) bin += String.fromCharCode(bytes[i]);
+        const cod = btoa(bin).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+        let base = 'vistoria.html';
+        try { base = new URL('vistoria.html', window.location.href).href; } catch (e) { }
+        return base + '#d=' + cod;
+      }
+
+      // Vistoria do veículo: fotos pedidas, na ordem do passo a passo, com a imagem de exemplo de assets/vistoria.
+      static vistFotos() {
+        return [
+          { id: 'cnh', grupo: 'doc', label: 'CNH do associado', img: 'cnh.jpg', dica: 'Coloque a CNH aberta sobre uma superfície plana e fotografe a frente inteira, sem reflexo.' },
+          { id: 'crlv', grupo: 'doc', label: 'Documento do veículo (CRLV)', img: 'crlv.jpg', dica: 'Fotografe o CRLV inteiro, com placa, chassi e Renavam legíveis.' },
+          { id: 'endereco', grupo: 'doc', label: 'Comprovante de endereço', img: 'comprovante-endereco.jpg', dica: 'Conta de luz, água ou telefone dos últimos 90 dias, com nome e endereço legíveis.' },
+          { id: 'frente', grupo: 'veic', label: 'Frente', pos: 'frente', img: 'frente.jpg', dica: 'Fique uns 3 passos à frente do veículo, com a placa no centro da foto.' },
+          { id: 'latEsq', grupo: 'veic', label: 'Lateral frente esquerda', pos: 'frenteEsq', img: 'lateral-frente-esquerda.jpg', dica: 'Fique na quina da frente do lado do motorista, mostrando a frente e a lateral juntas.' },
+          { id: 'latDir', grupo: 'veic', label: 'Lateral frente direita', pos: 'frenteDir', img: 'lateral-frente-direita.jpg', dica: 'Fique na quina da frente do lado do passageiro, mostrando a frente e a lateral juntas.' },
+          { id: 'traseira', grupo: 'veic', label: 'Traseira', pos: 'tras', img: 'traseira.jpg', dica: 'Fique uns 3 passos atrás do veículo, com a placa no centro da foto.' }
+        ];
+      }
+
+      // Vista de cima: onde a pessoa fica em relação ao veículo para tirar a foto.
+      static vistMapa(pos) {
+        const xy = { frente: [50, 9], tras: [50, 91], frenteEsq: [14, 12], frenteDir: [86, 12] }[pos];
+        if (!xy) return '';
+        const [x, y] = xy;
+        const svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" rx="12" fill="#ffffff"/>'
+          + '<path d="M' + x + ' ' + y + ' L50 50" stroke="#22a06b" stroke-width="1.8" stroke-dasharray="3 3"/>'
+          + '<rect x="32" y="31" width="5" height="11" rx="2" fill="#3b2a44"/><rect x="63" y="31" width="5" height="11" rx="2" fill="#3b2a44"/><rect x="32" y="58" width="5" height="11" rx="2" fill="#3b2a44"/><rect x="63" y="58" width="5" height="11" rx="2" fill="#3b2a44"/>'
+          + '<rect x="36" y="24" width="28" height="52" rx="9" fill="#f3eef6" stroke="#4A1259" stroke-width="2"/><path d="M40 37 H60 L57 45 H43 Z" fill="#d6e4f5" stroke="#4A1259" stroke-width="1.2"/><path d="M43 30 L50 26 L57 30" fill="none" stroke="#4A1259" stroke-width="1.6" stroke-linecap="round"/>'
+          + '<circle cx="' + x + '" cy="' + y + '" r="7.5" fill="#22a06b"/><circle cx="' + x + '" cy="' + y + '" r="2.8" fill="#ffffff"/></svg>';
+        return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+      }
+
+      vistVals() {
+        const st = this.state;
+        const p = (this.propostas || []).find((x) => x.id === st.detPid);
+        const vazio = { vistOpen: false, vistPassoOpen: false, vistCam: false, vistDocs: [], vistVeic: [], vistAnexos: [], vistSegs: [] };
+        // Câmera fechada (botão, voltar ou saída da tela) libera o aparelho.
+        if (this.vistStream && !(st.vistCam && st.vistOpen && st.vistPasso != null)) { this.vistStream.getTracks().forEach((tr) => tr.stop()); this.vistStream = null; }
+        if (!st.vistOpen || !p) return vazio;
+        const vs = p.vist || (p.vist = { fotos: {}, anexos: [], obs: '' });
+        const t = p.tasks || (p.tasks = {});
+        const lista = Component.vistFotos();
+        const feitas = lista.filter((f) => vs.fotos[f.id]).length;
+        const total = lista.length;
+        const completa = feitas === total;
+        const enviada = !!(p.tasks && p.tasks.vistoriaFotos);
+        const aprovada = enviada && (!!p.tasks.vistoriaAprovada || p.stage > 3);
+        const editavel = !enviada;
+        const [modelo, quem] = (t.vistoriaInfo || 'Vistoria padrão · Autovistoria').split(' · ');
+        const link = this.linkVistoria(p);
+        const consultor = (st.perfil || Component.perfilInicial()).nome;
+        const atualizar = (patch) => this.setState({ vistRev: (this.state.vistRev || 0) + 1, ...patch });
+        const toast = (txt) => { this.setState({ vistToast: txt }); clearTimeout(this.vistTimer); this.vistTimer = setTimeout(() => this.setState({ vistToast: '' }), 2500); };
+        const pendente = (de) => { for (let k = 0; k < total; k++) { const j = (de + k) % total; if (!vs.fotos[lista[j].id]) return j; } return null; };
+        const irPara = (j) => this.setState({ vistPasso: j, vistEx: false, vistCam: false });
+
+        // Validação simulada pela IA: cada foto tem um resultado fixo, só para demonstrar a experiência.
+        const ia = vs.ia || (vs.ia = {});
+        const iaSimulada = {
+          cnh: { nivel: 'ok', conf: 97, texto: 'Documento legível. Nome e CPF conferem com o cadastro.' },
+          crlv: { nivel: 'alerta', conf: 72, texto: 'Renavam parcialmente ilegível. Refaça com mais luz.' },
+          endereco: { nivel: 'ok', conf: 94, texto: 'Comprovante recente e endereço confere com a proposta.' },
+          frente: { nivel: 'ok', conf: 96, texto: 'Placa ' + p.placa + ' identificada. Sem avarias aparentes.' },
+          latEsq: { nivel: 'alerta', conf: 68, texto: 'Reflexo forte na lateral. Possível risco no para-lama.' },
+          latDir: { nivel: 'ok', conf: 93, texto: 'Lateral completa e nítida, sem avarias aparentes.' },
+          traseira: { nivel: 'erro', conf: 41, texto: 'Placa não legível. Tire a foto mais de perto.' }
+        };
+        const iaNivel = { ok: { titulo: 'Aprovada pela IA', icone: 'verified', cor: '#047857', fundo: '#ecfdf5' }, alerta: { titulo: 'Atenção', icone: 'warning', cor: '#b45309', fundo: '#fffbeb' }, erro: { titulo: 'Reprovada pela IA', icone: 'error', cor: '#b42318', fundo: '#fef3f2' } };
+        // Envia as fotos para a análise; cada resultado chega com um pequeno intervalo, como numa fila.
+        const iniciar = (ids) => {
+          const fila = ids.filter((id) => vs.fotos[id] && ia[id] !== 'analisando');
+          fila.forEach((id, k) => {
+            ia[id] = 'analisando';
+            setTimeout(() => { if (ia[id] === 'analisando') { ia[id] = iaSimulada[id]; atualizar(); } }, 1400 + k * 450);
+          });
+          return fila.length;
+        };
+        const validar = (f, temFoto) => () => {
+          if (!temFoto) { toast('Tire a foto antes de validar'); return; }
+          if (iniciar([f.id])) atualizar();
+        };
+        const sel = Array.isArray(st.vistSel) ? st.vistSel : null;
+        const comFoto = lista.filter((x) => vs.fotos[x.id]).map((x) => x.id);
+        const alternarSel = (f, temFoto) => () => {
+          if (!temFoto) { toast('Tire a foto antes de validar'); return; }
+          this.setState({ vistSel: sel.includes(f.id) ? sel.filter((x) => x !== f.id) : [...sel, f.id] });
+        };
+        const iaItem = (f, temFoto) => {
+          const r = ia[f.id];
+          const analisando = r === 'analisando';
+          const nv = r && !analisando ? iaNivel[r.nivel] : null;
+          const marcado = !!sel && sel.includes(f.id);
+          return {
+            modoSel: !!sel, modoNormal: !sel && editavel,
+            alternarSel: alternarSel(f, temFoto),
+            selAria: marcado ? 'true' : 'false',
+            selIcon: marcado ? 'check_box' : 'check_box_outline_blank',
+            selTexto: marcado ? 'Marcada' : 'Marcar',
+            selStyle: 'box-sizing:border-box;width:100%;height:30px;padding:0 8px;border-radius:6px;font-family:inherit;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:4px;'
+              + (!temFoto ? 'border:1px dashed #ddd5e3;background:#faf8fb;color:#b9b0c4;cursor:not-allowed;' : marcado ? 'border:0;background:linear-gradient(135deg,#622773 0%,#4A1259 100%);color:#ffffff;cursor:pointer;' : 'border:1px solid #ccc3d8;background:#ffffff;color:#4A1259;cursor:pointer;'),
+            validar: validar(f, temFoto),
+            iaAria: (r && !analisando ? 'Validar de novo com IA: ' : 'Validar com IA: ') + f.label,
+            iaDis: temFoto && !analisando ? 'false' : 'true',
+            iaIcon: analisando ? 'progress_activity' : 'auto_awesome',
+            iaIconStyle: 'font-size:16px;' + (analisando ? 'animation:spin 1s linear infinite;' : ''),
+            iaBtnStyle: 'box-sizing:border-box;width:100%;height:30px;padding:0 8px;border-radius:6px;font-family:inherit;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:4px;'
+              + (temFoto ? 'border:0;background:linear-gradient(135deg,#622773 0%,#4A1259 100%);color:#ffffff;cursor:pointer;' : 'border:1px solid #e5eeff;background:#ffffff;color:#b9b0c4;cursor:not-allowed;'),
+            iaTem: !!r,
+            iaBoxStyle: 'margin:0 0 8px 64px;padding:7px 10px;border-radius:8px;display:flex;align-items:flex-start;gap:8px;animation:fadeIn .25s ease-out;background:' + (nv ? nv.fundo : '#f7f4f9'),
+            iaResIcon: nv ? nv.icone : 'progress_activity',
+            iaResIconStyle: 'flex-shrink:0;font-size:17px;color:' + (nv ? nv.cor : '#4A1259') + ';' + (analisando ? 'animation:spin 1s linear infinite;' : "font-variation-settings:'FILL' 1;"),
+            iaTitulo: nv ? nv.titulo + ' · ' + r.conf + '% de confiança' : 'Analisando a foto…',
+            iaTituloStyle: 'font-size:11px;line-height:15px;color:' + (nv ? nv.cor : '#4A1259'),
+            iaTexto: nv ? r.texto : 'A IA está conferindo nitidez, enquadramento e dados.'
+          };
+        };
+        const tile = (f) => {
+          const i = lista.indexOf(f);
+          const foto = vs.fotos[f.id] || '';
+          return {
+            label: f.label, foto, temFoto: !!foto, semFoto: !foto,
+            aria: (foto || !editavel ? 'Ver foto: ' : 'Tirar foto: ') + f.label,
+            exemploAria: 'Ver imagem exemplo: ' + f.label,
+            ...iaItem(f, !!foto),
+            abrir: sel ? alternarSel(f, !!foto) : editavel ? () => irPara(i) : () => { if (foto) this.setState({ vistFotoVer: f.id }); },
+            exemplo: () => this.setState({ vistExVer: f.id }),
+            status: foto ? 'Foto enviada' : editavel ? 'Toque para fotografar' : 'Sem foto',
+            statusStyle: 'display:flex;align-items:center;gap:4px;font-size:11px;line-height:14px;font-weight:700;color:' + (foto ? '#047857' : '#7b7487'),
+            boxStyle: 'flex-shrink:0;width:52px;height:52px;box-sizing:border-box;border-radius:12px;overflow:hidden;display:flex;align-items:center;justify-content:center;'
+              + (foto ? 'border:2px solid #22a06b;' : 'border:1.5px dashed #d9cfe0;background:#f7f4f9;')
+          };
+        };
+
+        const fotoVer = !st.vistExVer && st.vistFotoVer && vs.fotos[st.vistFotoVer] ? lista.find((x) => x.id === st.vistFotoVer) : null;
+        const exVer = lista.find((x) => x.id === st.vistExVer) || fotoVer;
+        const i = st.vistPasso;
+        const f = i != null && lista[i] ? lista[i] : null;
+        const fotoAtual = f ? vs.fotos[f.id] || '' : '';
+        const verEx = !!st.vistEx;
+        const verFoto = !!fotoAtual && !verEx;
+        const ultima = i === total - 1;
+        const ler = (e) => {
+          const arq = e.target.files && e.target.files[0];
+          e.target.value = '';
+          if (!arq || !f) return;
+          vs.fotos = { ...vs.fotos, [f.id]: URL.createObjectURL(arq) };
+          delete ia[f.id];
+          atualizar({ vistEx: false });
+        };
+        const guardar = (url) => { vs.fotos = { ...vs.fotos, [f.id]: url }; delete ia[f.id]; atualizar({ vistCam: false, vistEx: false }); };
+        // Sem acesso à câmera pelo navegador, abre a câmera do próprio aparelho.
+        const cameraDoSistema = () => {
+          const inp = document.createElement('input');
+          inp.type = 'file'; inp.accept = 'image/*'; inp.setAttribute('capture', 'environment');
+          inp.onchange = () => { const arq = inp.files && inp.files[0]; if (arq && f) guardar(URL.createObjectURL(arq)); };
+          inp.click();
+        };
+        const abrirCamera = () => {
+          const md = navigator.mediaDevices;
+          if (!md || !md.getUserMedia) { cameraDoSistema(); return; }
+          md.getUserMedia({ video: { facingMode: { ideal: 'environment' }, width: { ideal: 1920 }, height: { ideal: 1440 } }, audio: false })
+            .then((stream) => { this.vistStream = stream; this.setState({ vistCam: true, vistCamEx: false }); })
+            .catch(cameraDoSistema);
+        };
+        const capturar = () => {
+          const v = this.vistVideo;
+          if (!v || !v.videoWidth || !f) return;
+          const c = document.createElement('canvas');
+          c.width = v.videoWidth; c.height = v.videoHeight;
+          c.getContext('2d').drawImage(v, 0, 0);
+          c.toBlob((blob) => { if (blob) guardar(URL.createObjectURL(blob)); }, 'image/jpeg', 0.85);
+        };
+        const proxima = () => {
+          if (feitas === total) { this.setState({ vistPasso: null, vistEx: false }); toast('Todas as fotos foram tiradas'); return; }
+          if (!ultima) irPara(i + 1);
+          else irPara(pendente(0));
+        };
+
+        return {
+          vistOpen: true,
+          closeVist: () => this.setState({ vistOpen: false, vistPasso: null, vistEx: false, vistCam: false, vistExVer: null, vistFotoVer: null, vistSel: null }),
+          vistNome: p.name,
+          vistModelo: modelo,
+          vistQuem: quem || 'Autovistoria',
+          vistVeiculo: p.model.replace(/\s+\d{4}$/, ''),
+          vistTipoNome: ({ carro: 'Carro', moto: 'Moto', caminhao: 'Caminhão' }[p.type] || 'Carro') + (p.ano ? ' · Ano ' + p.ano + '/' + (p.anoModelo || p.ano) : ''),
+          vistTipoIcon: { carro: 'directions_car', moto: 'two_wheeler', caminhao: 'local_shipping' }[p.type] || 'directions_car',
+          vistPlaca: p.placa,
+          vistShareUrl: 'https://wa.me/' + this.waNum(p.phone, p.pais) + '?text=' + encodeURIComponent('*Vistoria a Distância*\nOlá *' + p.name.split(' ')[0] + '*, aqui é o(a) Consultor ' + consultor + ', consultor da *Ileva Gestão Inteligente (Centro-Oeste)*, realize a vistoria do seu veículo placa *' + p.placa + '* para finalizarmos sua proteção.\n' + link),
+          vistCopiar: () => {
+            const ok = () => toast('Link da vistoria copiado');
+            try { navigator.clipboard.writeText(link).then(ok, ok); } catch (err) { ok(); }
+          },
+          vistPct: Math.round((feitas / total) * 100) + '%',
+          vistAnel: 'flex-shrink:0;width:48px;height:48px;border-radius:9999px;display:flex;align-items:center;justify-content:center;transition:background .4s;background:conic-gradient(#22a06b ' + Math.round((feitas / total) * 360) + 'deg, #eee9f2 0deg)',
+          vistResumo: !editavel ? (aprovada ? 'Vistoria aprovada' : 'Em análise') + ' · ' + feitas + ' de ' + total + ' fotos enviadas.' : completa ? 'Todas as ' + total + ' fotos foram enviadas.' : feitas + ' de ' + total + ' fotos · toque em uma foto para ' + (feitas ? 'continuar.' : 'começar.'),
+          vistDocsCont: lista.filter((x) => x.grupo === 'doc' && vs.fotos[x.id]).length + ' de ' + lista.filter((x) => x.grupo === 'doc').length,
+          vistVeicCont: lista.filter((x) => x.grupo === 'veic' && vs.fotos[x.id]).length + ' de ' + lista.filter((x) => x.grupo === 'veic').length,
+          vistDocs: lista.filter((x) => x.grupo === 'doc').map(tile),
+          vistVeic: lista.filter((x) => x.grupo === 'veic').map(tile),
+          vistAnexos: vs.anexos.map((a, k) => ({ nome: a.nome, podeRemover: editavel, remover: () => { vs.anexos = vs.anexos.filter((_, j) => j !== k); atualizar(); } })),
+          vistTemAnexo: vs.anexos.length > 0, vistSemAnexo: vs.anexos.length === 0,
+          vistAnexar: (e) => {
+            const arqs = Array.from(e.target.files || []);
+            e.target.value = '';
+            if (!arqs.length) return;
+            vs.anexos = [...vs.anexos, ...arqs.map((a) => ({ nome: a.name, url: URL.createObjectURL(a) }))];
+            atualizar();
+            toast(arqs.length === 1 ? 'Anexo adicionado' : arqs.length + ' anexos adicionados');
+          },
+          vistObs: vs.obs,
+          vistSoLeitura: !editavel,
+          vistObsTexto: vs.obs.trim() || 'Sem observações.',
+          vistObsCor: vs.obs.trim() ? '#0b1c30' : '#7b7487',
+          onVistObs: (e) => { vs.obs = e.target.value; atualizar(); },
+          vistBtnLabel: aprovada ? 'Vistoria aprovada' : enviada ? 'Em análise' : completa ? 'Concluir vistoria' : feitas === 0 ? 'Realizar vistoria' : 'Continuar vistoria · faltam ' + (total - feitas),
+          vistBtnIcon: aprovada ? 'verified' : enviada ? 'hourglass_top' : completa ? 'task_alt' : 'photo_camera',
+          vistBtnDis: enviada ? 'true' : 'false',
+          vistBtnStyle: 'width:100%;height:50px;border:0;border-radius:14px;font-family:inherit;font-size:15px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:8px;'
+            + (aprovada ? 'background:#d1fae5;color:#047857;cursor:default;'
+              : enviada ? 'background:#fef0c7;color:#b45309;cursor:default;'
+                : 'background:linear-gradient(135deg,#22a06b 0%,#047857 100%);color:#ffffff;cursor:pointer;box-shadow:0 8px 18px -8px rgba(4, 120, 87,0.6);'),
+          vistBtn: () => {
+            if (enviada) return;
+            if (!completa) { irPara(pendente(0)); return; }
+            p.tasks = { ...t, vistoriaFotos: true };
+            p.history = [...(p.history || []), { t: 'Fotos da vistoria enviadas (' + total + ')', d: '30/09/2026 · Carlos Eduardo' }];
+            clearTimeout(this.detTimer);
+            this.detTimer = setTimeout(() => this.setState({ detToast: '' }), 2500);
+            this.setState({ vistOpen: false, vistPasso: null, vistEx: false, detRev: (this.state.detRev || 0) + 1, detToast: 'Vistoria enviada para análise' });
+            // Simulação: a análise aprova a vistoria pouco depois do envio.
+            setTimeout(() => {
+              p.tasks = { ...p.tasks, vistoriaAprovada: true };
+              p.history = [...(p.history || []), { t: 'Vistoria aprovada na análise', d: '30/09/2026 · Análise ileva' }];
+              clearTimeout(this.detTimer);
+              this.detTimer = setTimeout(() => this.setState({ detToast: '' }), 3000);
+              this.setState({ detRev: (this.state.detRev || 0) + 1, detToast: 'Vistoria aprovada! Já pode avançar para o termo' });
+            }, 8000);
+          },
+          vistToastVisible: !!st.vistToast, vistToast: st.vistToast || '',
+          vistSelNormal: !sel, vistSelAtivo: !!sel,
+          vistIaTitulo: sel ? 'Selecione as fotos' : 'Validação por IA',
+          vistIaSub: sel ? (sel.length === 1 ? '1 selecionada' : sel.length + ' selecionadas')
+            : comFoto.length ? lista.filter((x) => ia[x.id] && ia[x.id] !== 'analisando').length + ' de ' + total + ' validadas' : 'Tire as fotos para validar',
+          vistIaSemFotos: comFoto.length ? 'false' : 'true',
+          vistIaSecStyle: 'flex-shrink:0;box-sizing:border-box;height:30px;padding:0 10px;border:1px solid #e5eeff;border-radius:6px;background:#ffffff;font-family:inherit;font-size:11px;font-weight:700;white-space:nowrap;color:' + (comFoto.length || sel ? '#4A1259;cursor:pointer' : '#b9b0c4;cursor:not-allowed'),
+          vistIaPriStyle: 'flex-shrink:0;box-sizing:border-box;height:30px;padding:0 10px;border:0;border-radius:6px;font-family:inherit;font-size:11px;font-weight:700;white-space:nowrap;'
+            + (comFoto.length ? 'background:linear-gradient(135deg,#622773 0%,#4A1259 100%);color:#ffffff;cursor:pointer' : 'background:#ece6f0;color:#b9b0c4;cursor:not-allowed'),
+          vistSelIniciar: () => { if (!comFoto.length) { toast('Tire as fotos antes de validar'); return; } this.setState({ vistSel: [] }); },
+          vistSelCancelar: () => this.setState({ vistSel: null }),
+          vistValidarTodas: () => {
+            if (!comFoto.length) { toast('Tire as fotos antes de validar'); return; }
+            const n = iniciar(comFoto);
+            atualizar();
+            toast(n ? 'Validando ' + (n === 1 ? '1 foto' : n + ' fotos') + ' com IA' : 'As fotos já estão em análise');
+          },
+          vistValidarSelDis: sel && sel.length ? 'false' : 'true',
+          vistValidarSelTexto: 'Validar' + (sel && sel.length ? ' (' + sel.length + ')' : ''),
+          vistValidarSelStyle: 'flex-shrink:0;box-sizing:border-box;height:30px;padding:0 10px;border:0;border-radius:6px;font-family:inherit;font-size:11px;font-weight:700;white-space:nowrap;'
+            + (sel && sel.length ? 'background:linear-gradient(135deg,#622773 0%,#4A1259 100%);color:#ffffff;cursor:pointer' : 'background:#ece6f0;color:#b9b0c4;cursor:not-allowed'),
+          vistValidarSel: () => {
+            if (!sel || !sel.length) return;
+            const n = iniciar(sel);
+            atualizar({ vistSel: null });
+            toast('Validando ' + (n === 1 ? '1 foto' : n + ' fotos') + ' com IA');
+          },
+          vistExVerOpen: !!exVer,
+          vistExVerTitulo: exVer ? exVer.label : '',
+          vistExVerImg: fotoVer ? vs.fotos[fotoVer.id] : exVer ? 'assets/vistoria/' + exVer.img : '',
+          vistExVerRotulo: fotoVer ? 'FOTO ENVIADA' : 'IMAGEM EXEMPLO',
+          vistExVerFechar: () => this.setState({ vistExVer: null, vistFotoVer: null }),
+          vistEditavel: editavel,
+
+          vistPassoOpen: !!f,
+          vistPassoTexto: f ? 'Foto ' + (i + 1) + ' de ' + total : '',
+          vistPassoGrupo: f && f.grupo === 'doc' ? 'Documentos' : 'Veículo',
+          vistSegs: lista.map((x, j) => ({ style: 'flex:1;height:4px;border-radius:9999px;transition:background .3s;background:' + (j === i ? '#ffffff' : vs.fotos[x.id] ? '#22a06b' : 'rgba(255,255,255,0.22)') })),
+          vistPassoTitulo: f ? f.label : '',
+          vistPassoDica: f ? f.dica : '',
+          vistMostraImg: verEx || verFoto,
+          vistSemImg: !verEx && !verFoto,
+          vistPassoImg: verFoto ? fotoAtual : f ? 'assets/vistoria/' + f.img : '',
+          vistPassoImgStyle: 'display:block;width:100%;aspect-ratio:4/3;background:#fbf9fc;object-fit:' + (verFoto ? 'cover' : 'contain'),
+          vistPassoChip: verFoto ? 'Sua foto' : 'Exemplo',
+          vistPassoChipStyle: 'position:absolute;top:10px;left:50%;transform:translateX(-50%);padding:3px 10px;border-radius:9999px;font-size:11px;font-weight:800;' + (verFoto ? 'background:#22a06b;color:#ffffff' : 'background:rgba(74, 18, 89,0.9);color:#ffffff'),
+          vistTemMapa: !!(f && f.pos) && !fotoAtual,
+          vistMapa: f && f.pos ? Component.vistMapa(f.pos) : '',
+          vistMapaTexto: f && f.pos ? { frente: 'De frente para o veículo, no ponto verde.', tras: 'Atrás do veículo, no ponto verde.', frenteEsq: 'Na quina da frente, do lado do motorista.', frenteDir: 'Na quina da frente, do lado do passageiro.' }[f.pos] : '',
+          vistTemFoto: !!fotoAtual, vistSemFoto: !fotoAtual,
+          vistAlternar: () => this.setState({ vistEx: !st.vistEx }),
+          vistAlternarTexto: !verEx ? 'Ver exemplo' : fotoAtual ? 'Ver minha foto' : 'Ocultar exemplo',
+          vistAlternarIcone: !verEx ? 'visibility' : fotoAtual ? 'swap_horiz' : 'visibility_off',
+          vistLer: ler,
+          vistAbrirCamera: abrirCamera,
+          vistCam: !!st.vistCam && !!f,
+          vistCamFechar: () => this.setState({ vistCam: false }),
+          vistCapturar: capturar,
+          vistExemploImg: f ? 'assets/vistoria/' + f.img : '',
+          vistCamEx: !!st.vistCamEx, vistCamSemEx: !st.vistCamEx,
+          vistCamExAlternar: () => this.setState({ vistCamEx: !st.vistCamEx }),
+          vistVideoRef: this.vistVideoRef || (this.vistVideoRef = (el) => {
+            this.vistVideo = el;
+            if (el && this.vistStream && el.srcObject !== this.vistStream) {
+              el.muted = true; el.setAttribute('playsinline', ''); el.srcObject = this.vistStream;
+              el.play().catch(() => { });
+            }
+          }),
+          vistProxima: proxima,
+          vistProximaTexto: feitas === total ? 'Concluir fotos' : ultima ? 'Próxima pendente' : 'Próxima foto',
+          vistAnterior: () => { if (i > 0) irPara(i - 1); },
+          vistAnteriorDis: i > 0 ? 'false' : 'true',
+          vistAnteriorStyle: 'height:40px;padding:0 12px;border:0;background:transparent;font-family:inherit;font-size:13px;font-weight:700;display:flex;align-items:center;gap:4px;color:' + (i > 0 ? '#ffffff' : 'rgba(255,255,255,0.35)') + ';cursor:' + (i > 0 ? 'pointer' : 'default'),
+          vistPular: () => irPara(ultima ? 0 : i + 1),
+          vistFecharPasso: () => this.setState({ vistPasso: null, vistEx: false, vistCam: false })
         };
       }
 
@@ -7780,6 +9185,7 @@ Compartilhar QR Code
       }
 
       renderVals() {
+        this.ligarVoltar();
         const { hidden, atalho, detalheOpen, menuOpen, menuClosing, cotacaoOpen, dicasOpen, iaOpen, redeOpen, multiOpen, linkOpen, indicador, copied, qrVisible, matView, previewId } = this.state;
         const previewPeca = this.pecas.find((p) => p.id === previewId);
         const linkUrl = 'https://demo.ileva.com.br/campanhas_novo/form?c=carlos-eduardo' + (indicador.trim() ? '&ind=' + encodeURIComponent(indicador.trim()) : '');
@@ -7788,6 +9194,7 @@ Compartilhar QR Code
         const cardBase = 'flex-shrink:0;width:82px;height:82px;box-sizing:border-box;scroll-snap-align:start;padding:10px;border:0;border-radius:12px;font-family:inherit;display:flex;flex-direction:column;justify-content:space-between;align-items:flex-start;cursor:pointer;transition:background .2s,color .2s;';
 
         return {
+          zPg: this.camadas(),
           ...this.perfilVals(),
           ...this.instalarVals(),
           saldo: hidden ? mask : '3.200,00',
@@ -7845,6 +9252,9 @@ Compartilhar QR Code
           ...this.atalhosVals(),
           ...this.wizVals(),
           ...this.detVals(),
+          ...this.vistVals(),
+          ...this.termoVals(),
+          ...this.webVals(),
           rowTabs: this.dragRow('propTabs'),
           rowAtalhos: this.dragRow('homeAtalhos'),
           rowPlans: this.dragRow('wizPlans', { snap: 262 }),

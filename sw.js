@@ -1,6 +1,6 @@
 // Service worker do App do Consultor: deixa o app instalável e funcionando sem internet.
 // Ao publicar uma versão nova, troque VERSAO para os aparelhos baixarem os arquivos de novo.
-const VERSAO = 'v15-2026-10-20';
+const VERSAO = 'v64-2026-10-22';
 const CACHE_APP = 'ileva-app-' + VERSAO;
 const CACHE_EXTERNO = 'ileva-externo-' + VERSAO;
 
@@ -8,6 +8,8 @@ const ARQUIVOS_APP = [
   './',
   'index.html',
   'proposta.html',
+  'vistoria.html',
+  'termo.html',
   'manifest.webmanifest',
   'assets/icones/apple-touch-icon.png',
   'assets/icones/icone-192.png',
@@ -21,6 +23,13 @@ const ARQUIVOS_APP = [
   'assets/whatsapp-branco.svg',
   'assets/whatsapp-contorno.svg',
   'assets/whatsapp-verde.svg',
+  'assets/vistoria/cnh.jpg',
+  'assets/vistoria/comprovante-endereco.jpg',
+  'assets/vistoria/crlv.jpg',
+  'assets/vistoria/frente.jpg',
+  'assets/vistoria/lateral-frente-direita.jpg',
+  'assets/vistoria/lateral-frente-esquerda.jpg',
+  'assets/vistoria/traseira.jpg',
   'assets/veiculos/carro.png',
   'assets/veiculos/moto.png',
   'assets/veiculos/caminhao.png',
@@ -64,7 +73,7 @@ async function pagina(request) {
   } catch (err) {
     const url = new URL(request.url);
     return (await cache.match(request, { ignoreSearch: true }))
-      || (url.pathname.endsWith('proposta.html') ? cache.match('proposta.html') : cache.match('index.html'));
+      || (url.pathname.endsWith('proposta.html') ? cache.match('proposta.html') : url.pathname.endsWith('vistoria.html') ? cache.match('vistoria.html') : url.pathname.endsWith('termo.html') ? cache.match('termo.html') : cache.match('index.html'));
   }
 }
 

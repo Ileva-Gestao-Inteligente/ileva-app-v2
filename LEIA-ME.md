@@ -6,6 +6,8 @@ Não precisa de backend: os dados são fictícios e o que o usuário altera fica
 ## Conteúdo
 - `index.html` — o app completo (layout, estilos e lógica).
 - `proposta.html` — página que o cliente recebe pelo link da proposta: compara os planos, escolhe um, adiciona benefícios e confirma pelo WhatsApp. Os dados vão no próprio link (`#d=...`), então precisa ser publicada na mesma pasta do `index.html`.
+- `vistoria.html` — página que o associado recebe pelo link da vistoria a distância: vê o exemplo de cada foto, tira as fotos pelo celular (câmera ou galeria) e envia. Os dados também vão no próprio link (`#d=...`) e as imagens de exemplo ficam em `assets/vistoria/`; publique na mesma pasta do `index.html`.
+- `termo.html` — página em que o associado lê e assina o termo de filiação pelo link enviado pelo consultor. Os dados vão no próprio link (`#d=...`); publique na mesma pasta do `index.html`.
 - `assets/` — imagens usadas no app.
 - `nginx.conf.exemplo` — exemplo de configuração para servir no Nginx.
 - `manifest.webmanifest`, `sw.js` e `assets/icones/` — fazem do app um PWA (veja abaixo).
