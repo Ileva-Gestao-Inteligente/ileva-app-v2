@@ -4605,8 +4605,9 @@ Faltam 8 placas para atingir a meta.
 
 
 <sc-if value="{{dsOpen}}" hint-placeholder-val="{{ false }}">
-<div class="janela" onClick="{{closeDs}}" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: 25; background: rgba(11,28,48,0.5); animation: fadeIn .2s ease-out"></div>
-<section role="dialog" aria-modal="true" class="painel" aria-labelledby="ds-title" style="position: absolute; left: 0; right: 0; bottom: 72px; z-index: 26; max-height: 88%; background: #ffffff; border-radius: 24px 24px 0 0; box-shadow: 0 -8px 32px rgba(32, 7, 38,0.18); display: flex; flex-direction: column; animation: sheetUp .32s cubic-bezier(.22,1,.36,1)">
+<sc-if value="{{dsFolha}}" hint-placeholder-val="{{ true }}"><div class="janela" onClick="{{closeDs}}" style="position: absolute; top: 0; left: 0; right: 0; bottom: 72px; z-index: 25; background: rgba(11,28,48,0.5); animation: fadeIn .2s ease-out"></div></sc-if>
+<section role="dialog" aria-modal="true" class="{{dsClasse}}" aria-labelledby="ds-title" style="{{dsSecStyle}}">
+<sc-if value="{{dsFolha}}" hint-placeholder-val="{{ true }}">
 <div style="flex-shrink: 0; padding: 0 20px 12px; border-bottom: 1px solid #eff4ff">
 <div style="display: flex; justify-content: center; padding: 12px 0 8px"><span style="width: 48px; height: 4px; border-radius: 9999px; background: #ccc3d8"></span></div>
 <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px">
@@ -4614,13 +4615,25 @@ Faltam 8 placas para atingir a meta.
 <button onClick="{{closeDs}}" aria-label="Fechar" style="width: 40px; height: 40px; border: 0; border-radius: 9999px; background: #eff4ff; color: #4a4455; display: flex; align-items: center; justify-content: center; cursor: pointer"><span class="ms" style="font-size: 20px">close</span></button>
 </div>
 </div>
+</sc-if>
+<sc-if value="{{dsTela}}" hint-placeholder-val="{{ false }}">
+<div style="flex-shrink: 0; height: 64px; box-sizing: border-box; padding: 0 12px; background: radial-gradient(circle at 92% 0%, rgba(161, 146, 166,0.55) 0%, rgba(161, 146, 166,0) 45%), #4A1259; color: #ffffff; display: flex; align-items: center; gap: 4px">
+<button onClick="{{closeDs}}" aria-label="Voltar" style="width: 44px; height: 44px; border: 0; border-radius: 9999px; background: transparent; color: #ffffff; display: flex; align-items: center; justify-content: center; cursor: pointer"><span class="ms" style="font-size: 24px">arrow_back</span></button>
+<div style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column"><h2 id="ds-title" style="color: #ffffff; margin: 0; font-size: 15px; line-height: 19px; font-weight: 700">{{dsTitle}}</h2><span style="font-size: 10px; line-height: 13px; color: rgba(255,255,255,0.78); white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{dsSub}}</span></div>
+</div>
+</sc-if>
 <div class="nosb" style="flex-grow: 1; min-height: 0; overflow-y: auto; scrollbar-width: none; padding: 16px 20px; display: flex; flex-direction: column; gap: 14px">
 
 <sc-if value="{{dsIsVeiculo}}" hint-placeholder-val="{{ false }}">
-<label style="display: flex; flex-direction: column; gap: 6px"><span style="font-size: 12px; font-weight: 700; color: #4a4455">Placa *</span><input type="text" value="{{vcPlaca}}" onChange="{{onVcPlaca}}" placeholder="ABC-1D23" style="height: 48px; box-sizing: border-box; padding: 0 14px; border: 1px solid #ccc3d8; border-radius: 12px; background: #ffffff; font-family: inherit; font-size: 14px; color: #0b1c30; outline-color: #4A1259; width: 100%; text-transform: uppercase; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-weight: 700; letter-spacing: 0.06em"></label>
-<label style="display: flex; flex-direction: column; gap: 6px"><span style="font-size: 12px; font-weight: 700; color: #4a4455">Cor</span><input type="text" value="{{vcCor}}" onChange="{{onVcCor}}" placeholder="Ex.: Prata" style="height: 48px; box-sizing: border-box; padding: 0 14px; border: 1px solid #ccc3d8; border-radius: 12px; background: #ffffff; font-family: inherit; font-size: 14px; color: #0b1c30; outline-color: #4A1259; width: 100%"></label>
-<label style="display: flex; flex-direction: column; gap: 6px"><span style="font-size: 12px; font-weight: 700; color: #4a4455">Chassi</span><input type="text" value="{{vcChassi}}" onChange="{{onVcChassi}}" placeholder="17 caracteres" style="height: 48px; box-sizing: border-box; padding: 0 14px; border: 1px solid #ccc3d8; border-radius: 12px; background: #ffffff; font-family: inherit; font-size: 14px; color: #0b1c30; outline-color: #4A1259; width: 100%; text-transform: uppercase"></label>
-<label style="display: flex; flex-direction: column; gap: 6px"><span style="font-size: 12px; font-weight: 700; color: #4a4455">Renavam</span><input type="text" inputmode="numeric" value="{{vcRenavam}}" onChange="{{onVcRenavam}}" placeholder="11 dígitos" style="height: 48px; box-sizing: border-box; padding: 0 14px; border: 1px solid #ccc3d8; border-radius: 12px; background: #ffffff; font-family: inherit; font-size: 14px; color: #0b1c30; outline-color: #4A1259; width: 100%"></label>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 10px">
+<sc-for list="{{dVeicCampos}}" as="vc" hint-placeholder-count="6">
+<div style="{{vc.estilo}}">
+<sc-if value="{{vc.ehCheck}}" hint-placeholder-val="{{ false }}"><button type="button" role="checkbox" aria-checked="{{vc.checkAria}}" onClick="{{vc.alternar}}" style="height: 48px; padding: 0 4px; border: 0; background: transparent; font-family: inherit; font-size: 14px; color: #0b1c30; display: flex; align-items: center; gap: 10px; cursor: pointer"><span class="ms" style="{{vc.checkCaixa}}">{{vc.checkIcone}}</span>{{vc.label}}</button></sc-if>
+<sc-if value="{{vc.ehTexto}}" hint-placeholder-val="{{ true }}"><label style="display: flex; flex-direction: column; gap: 6px"><span style="font-size: 12px; font-weight: 700; color: #4a4455">{{vc.label}}</span><input class="campo" type="text" inputmode="{{vc.modo}}" value="{{vc.valor}}" onChange="{{vc.onChange}}" placeholder="{{vc.ph}}" style="height: 48px; box-sizing: border-box; padding: 0 12px; border: 1px solid #ccc3d8; border-radius: 12px; background: #ffffff; font-family: inherit; font-size: 14px; color: #0b1c30; outline-color: #4A1259; width: 100%; min-width: 0"></label></sc-if>
+<sc-if value="{{vc.ehLista}}" hint-placeholder-val="{{ false }}"><label style="display: flex; flex-direction: column; gap: 6px"><span style="font-size: 12px; font-weight: 700; color: #4a4455">{{vc.label}}</span><select class="campo" value="{{vc.valor}}" onChange="{{vc.onChange}}" style="height: 48px; box-sizing: border-box; padding: 0 12px; border: 1px solid #ccc3d8; border-radius: 12px; background: #ffffff; font-family: inherit; font-size: 14px; color: #0b1c30; outline-color: #4A1259; width: 100%; min-width: 0; appearance: auto"><sc-for list="{{vc.opcoes}}" as="vco" hint-placeholder-count="3"><option value="{{vco.v}}">{{vco.label}}</option></sc-for></select></label></sc-if>
+</div>
+</sc-for>
+</div>
 </sc-if>
 
 <sc-if value="{{dsIsFrota}}" hint-placeholder-val="{{ false }}">
@@ -5238,7 +5251,7 @@ Compartilhar QR Code
         this.elements = {};
         this.drag = null;
         this.justDragged = false;
-        this.state = { hidden: false, slides: { sugestoes: 0, atalhos: 0 }, dragging: null, atalho: 'manual', detalheOpen: false, menuOpen: false, menuClosing: false, cotacaoOpen: false, dicasOpen: false, iaOpen: false, redeOpen: false, multiOpen: false, linkOpen: false, indicador: '', copied: false, qrVisible: false, matView: null, previewId: null, notifOpen: false, notifFilter: 'todas', readIds: {}, indOpen: false, indPeriod: 'mes', kpiScope: 'voce', wizOpen: false, ...Component.emptyWiz(), detOpen: false, detPid: null, detRev: 0, ds: null, cf: null, s1Plan: null, s1Cota: '', detEditValor: false, detValorDraft: '', detStepView: null, finEditAdesao: false, finAdesaoDraft: '', finEditComment: false, finCommentDraft: '', frotaPick: '', frotaNova: '', agTipo: '', agPlaca: '', agDesc: '', agValor: '', vcPlaca: '', vcCor: '', vcChassi: '', vcRenavam: '', qViagens: '', qKm: '', qApp: 'nao', aCpf: '', aNasc: '', aCep: '', aNum: '', vModelo: '', vTipo: '', arqMotivo: '', detToast: '', atalhosSel: Component.loadAtalhos(), atalhosOpen: false, atalhosDraft: [], propOpen: false, propTab: 'todas', propQuery: '', propSort: 'recentes', propExpanded: {}, propFilters: Component.emptyPropFilters(), sheetKey: null, sheetDraft: null, sheetQuery: '', novOpen: false, novFilter: 'todas', novHist: false, indicOpen: false, indicView: 'lista', indicQuery: '', indicFilter: 'todos', indicSelId: null, indicadores: Component.seedIndicadores(), indicFormOpen: false, indicToast: '', ...Component.emptyIndicForm(), relOpen: false, comSelIdx: 5, riscoFilter: 'todos', relPeriod: 'mes', relMonth: '2026-10', relInfo: false, relToast: false, agendaOpen: false, agendaTab: 'lembretes', agendaFilter: 'todos', agendaView: Component.loadDefaultView(), agendaDefault: Component.loadDefaultView(), calMonth: '2026-09', calDay: '2026-09-30', notas: Component.seedNotas(), notaOpen: false, fTitle: '', fText: '', fLead: '', fAlert: false, fDate: '', fTime: '', fNoteDate: '2026-09-30', fTipo: '', fPrio: 'media', fAvisos: [], fRepeat: '', fTags: [], fChecklist: [], fCheckInput: '', toast: '', redeExpanded: {} };
+        this.state = { hidden: false, slides: { sugestoes: 0, atalhos: 0 }, dragging: null, atalho: 'manual', detalheOpen: false, menuOpen: false, menuClosing: false, cotacaoOpen: false, dicasOpen: false, iaOpen: false, redeOpen: false, multiOpen: false, linkOpen: false, indicador: '', copied: false, qrVisible: false, matView: null, previewId: null, notifOpen: false, notifFilter: 'todas', readIds: {}, indOpen: false, indPeriod: 'mes', kpiScope: 'voce', wizOpen: false, ...Component.emptyWiz(), detOpen: false, detPid: null, detRev: 0, ds: null, cf: null, s1Plan: null, s1Cota: '', detEditValor: false, detValorDraft: '', detStepView: null, finEditAdesao: false, finAdesaoDraft: '', finEditComment: false, finCommentDraft: '', frotaPick: '', frotaNova: '', agTipo: '', agPlaca: '', agDesc: '', agValor: '', vForm: null, qViagens: '', qKm: '', qApp: 'nao', aForm: null, vModelo: '', vTipo: '', arqMotivo: '', detToast: '', atalhosSel: Component.loadAtalhos(), atalhosOpen: false, atalhosDraft: [], propOpen: false, propTab: 'todas', propQuery: '', propSort: 'recentes', propExpanded: {}, propFilters: Component.emptyPropFilters(), sheetKey: null, sheetDraft: null, sheetQuery: '', novOpen: false, novFilter: 'todas', novHist: false, indicOpen: false, indicView: 'lista', indicQuery: '', indicFilter: 'todos', indicSelId: null, indicadores: Component.seedIndicadores(), indicFormOpen: false, indicToast: '', ...Component.emptyIndicForm(), relOpen: false, comSelIdx: 5, riscoFilter: 'todos', relPeriod: 'mes', relMonth: '2026-10', relInfo: false, relToast: false, agendaOpen: false, agendaTab: 'lembretes', agendaFilter: 'todos', agendaView: Component.loadDefaultView(), agendaDefault: Component.loadDefaultView(), calMonth: '2026-09', calDay: '2026-09-30', notas: Component.seedNotas(), notaOpen: false, fTitle: '', fText: '', fLead: '', fAlert: false, fDate: '', fTime: '', fNoteDate: '2026-09-30', fTipo: '', fPrio: 'media', fAvisos: [], fRepeat: '', fTags: [], fChecklist: [], fCheckInput: '', toast: '', redeExpanded: {} };
         // Atalhos do ícone instalado (manifest "shortcuts"): index.html?atalho=agenda
         const atalhoUrl = new URLSearchParams(window.location.search).get('atalho');
         if (atalhoUrl) {
@@ -6445,7 +6458,7 @@ Compartilhar QR Code
           vistoria: { title: 'Criar vistoria', icon: 'photo_camera', btn: 'Criar vistoria', ok: !!st.vModelo && !!st.vTipo },
           frota: { title: p.frota && p.frota !== 'Não está em frota' ? 'Alterar frota' : 'Adicionar em frota', icon: 'local_shipping', btn: 'Salvar frota', ok: st.frotaPick === 'nova' ? (st.frotaNova || '').trim().length > 1 : !!st.frotaPick },
           agregado: { title: 'Adicionar agregado', icon: 'add_link', btn: 'Adicionar agregado', ok: !!st.agTipo && this.parseMoney(st.agValor || '') > 0 },
-          veiculo: { title: 'Dados do veículo', icon: 'directions_car', btn: 'Salvar dados do veículo', ok: (st.vcPlaca || '').replace(/-/g, '').length === 7 },
+          veiculo: { title: 'Dados do veículo', icon: 'directions_car', btn: 'Salvar dados do veículo', ok: Component.veicCompleto(st.vForm) },
           extras: { title: 'Benefícios adicionais', icon: 'add_circle', btn: 'Concluir', ok: true },
           hist: { title: 'Histórico da proposta', icon: 'history', btn: '', ok: true },
           arquivar: { title: 'Arquivar proposta', icon: 'archive', btn: 'Arquivar proposta', ok: !!st.arqMotivo, danger: true }
@@ -6494,7 +6507,7 @@ Compartilhar QR Code
             extrasLabel: extrasSel.length ? 'Adicionais (' + extrasSel.length + ')' : 'Adicionais'
           },
           openHist: () => this.setState({ ds: 'hist' }),
-          openEditVeiculo: () => this.setState({ ds: 'veiculo', vcPlaca: p.placa, vcCor: (p.veic || {}).cor || '', vcChassi: (p.veic || {}).chassi || '', vcRenavam: (p.veic || {}).renavam || '' }),
+          openEditVeiculo: () => this.setState({ ds: 'veiculo', vForm: { placa: p.placa, ano: String(p.ano || ''), ...(p.veic || {}) } }),
           openFrota: () => this.setState({ ds: 'frota', frotaPick: p.frota && p.frota !== 'Não está em frota' ? p.frota : '', frotaNova: '' }),
           openAgregado: () => this.setState({ ds: 'agregado', agTipo: '', agPlaca: '', agDesc: '', agValor: '' }),
           acoesVeicOpen: !!st.acoesVeic,
@@ -6503,7 +6516,7 @@ Compartilhar QR Code
           toggleAcoesVeic: () => this.setState({ acoesVeic: !st.acoesVeic }),
           fecharAcoesVeic: () => this.setState({ acoesVeic: false }),
           acoesVeic: [
-            { icon: 'edit', label: 'Editar veículo', go: () => this.setState({ acoesVeic: false, ds: 'veiculo', vcPlaca: p.placa, vcCor: (p.veic || {}).cor || '', vcChassi: (p.veic || {}).chassi || '', vcRenavam: (p.veic || {}).renavam || '' }) },
+            { icon: 'edit', label: 'Editar veículo', go: () => this.setState({ acoesVeic: false, ds: 'veiculo', vForm: { placa: p.placa, ano: String(p.ano || ''), ...(p.veic || {}) } }) },
             { icon: 'local_shipping', label: p.frota && p.frota !== 'Não está em frota' ? 'Alterar frota' : 'Adicionar em frota', go: () => this.setState({ acoesVeic: false, ds: 'frota', frotaPick: p.frota && p.frota !== 'Não está em frota' ? p.frota : '', frotaNova: '' }) },
             { icon: 'add_link', label: 'Adicionar agregado', go: () => this.setState({ acoesVeic: false, ds: 'agregado', agTipo: '', agPlaca: '', agDesc: '', agValor: '' }) }
           ],
@@ -6827,7 +6840,7 @@ Compartilhar QR Code
             const tasksByStep = [
               [task({ title: 'Perguntas da etapa', done: !!t.perguntas, status: t.perguntas ? 'Perguntas respondidas' : 'Perguntas pendentes', btn: t.perguntas ? 'Editar' : 'Responder', go: () => this.setState({ ds: 'perguntas' }) })],
               [task({ title: 'Dados do associado', done: !!t.dados, status: t.dados ? 'Dados completos' : 'CPF, nascimento e endereço', btn: t.dados ? 'Editar' : 'Preencher', go: () => this.setState({ ds: 'dados', aForm: { nome: p.name, fone: p.phone, ...(p.assoc || {}) } }) }),
-                task({ title: 'Dados do veículo', done: !!t.veiculo, status: t.veiculo ? 'Dados conferidos' : 'Confira placa, cor, chassi e Renavam', btn: 'Alterar', go: () => this.setState({ ds: 'veiculo', vcPlaca: p.placa, vcCor: v.cor || '', vcChassi: v.chassi || '', vcRenavam: v.renavam || '' }) })],
+                task({ title: 'Dados do veículo', done: !!t.veiculo, status: t.veiculo ? 'Dados conferidos' : 'Confira placa, cor, chassi e Renavam', btn: 'Alterar', go: () => this.setState({ ds: 'veiculo', vForm: { placa: p.placa, ano: String(p.ano || ''), ...v } }) })],
               [task({ title: 'Vistoria do veículo', done: !!t.vistoriaFotos, status: !t.vistoria ? 'Aguardando criar vistoria' : (t.vistoriaInfo || 'Vistoria criada') + ' · ' + (t.vistoriaAprovada ? 'vistoria aprovada' : t.vistoriaFotos ? 'em análise' : vistFeitas + ' de ' + vistTotal + ' fotos'), btn: t.vistoriaFotos && !t.vistoriaAprovada && p.stage <= 3 ? 'Em análise' : t.vistoria ? 'Visualizar' : 'Criar', go: () => this.setState(t.vistoria ? { vistOpen: true, vistPasso: null, vistEx: false } : { ds: 'vistoria' }) })],
               [task({ title: 'Assinatura do termo de filiação', done: !!t.termo, status: t.termo ? (tm.modelo ? tm.modelo + ' · ' : '') + 'assinado' : tm.modelo && tm.tipo ? tm.modelo + ' · ' + tm.tipo + ' · ' + (tm.enviado ? 'aguardando assinatura' : 'falta assinar') : 'Escolha o tipo e o modelo do termo', btn: t.termo || tm.modelo ? 'Visualizar' : 'Iniciar', go: () => this.setState({ termoOpen: true, termoSheet: null, termoPad: false }) })],
               []
@@ -6881,10 +6894,7 @@ Compartilhar QR Code
             };
           }),
           vehBox: { title: (p.marca ? p.marca + ' ' : '') + p.model, placa: p.placa, extra: [(p.veic || {}).cor, (p.veic || {}).chassi ? 'Chassi ' + p.veic.chassi : '', (p.veic || {}).renavam ? 'Renavam ' + p.veic.renavam : ''].filter(Boolean).join(' · ') || 'Cor, chassi e Renavam ainda não informados' },
-          vcPlaca: st.vcPlaca || '', onVcPlaca: (e) => { const raw = e.target.value.toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 7); this.setState({ vcPlaca: raw.length > 3 ? raw.slice(0, 3) + '-' + raw.slice(3) : raw }); },
-          vcCor: st.vcCor || '', onVcCor: (e) => this.setState({ vcCor: e.target.value }),
-          vcChassi: st.vcChassi || '', onVcChassi: (e) => this.setState({ vcChassi: e.target.value.toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 17) }),
-          vcRenavam: st.vcRenavam || '', onVcRenavam: (e) => this.setState({ vcRenavam: e.target.value.replace(/\D/g, '').slice(0, 11) }),
+          dVeicCampos: this.veicCampos(st.vForm || {}, (patch) => this.setState({ vForm: { ...(this.state.vForm || {}), ...patch } })),
           s1Plan, onS1Plan: (e) => this.setState({ s1Plan: e.target.value, s1Cota: p.cotas[e.target.value] || '0' }),
           s1PlanOpts: (sharePlans.length ? sharePlans : cat.planos).map((x) => ({ id: x.id, label: x.name })),
           s1HasCota: !!s1PlanObj && s1PlanObj.base != null,
@@ -6946,6 +6956,12 @@ Compartilhar QR Code
           openArchive: () => this.setState({ ds: 'arquivar', arqMotivo: '' }),
 
           dsTitle: dsMeta.title || '', dsIcon: dsMeta.icon || 'edit',
+          dsTela: ds === 'dados' || ds === 'veiculo', dsFolha: ds !== 'dados' && ds !== 'veiculo',
+          dsSub: p.name + ' · Proposta nº ' + p.num,
+          dsClasse: ds === 'dados' || ds === 'veiculo' ? 'janela' : 'painel',
+          dsSecStyle: ds === 'dados' || ds === 'veiculo'
+            ? 'position:absolute;top:0;left:0;right:0;bottom:72px;z-index:26;background:#ffffff;display:flex;flex-direction:column;animation:menuIn .32s cubic-bezier(.22,1,.36,1) both'
+            : 'position:absolute;left:0;right:0;bottom:72px;z-index:26;max-height:88%;background:#ffffff;border-radius:24px 24px 0 0;box-shadow:0 -8px 32px rgba(32, 7, 38,0.18);display:flex;flex-direction:column;animation:sheetUp .32s cubic-bezier(.22,1,.36,1)',
           dsIsVeiculo: ds === 'veiculo',
           dsIsFrota: ds === 'frota',
           dsIsAgregado: ds === 'agregado',
@@ -6977,7 +6993,10 @@ Compartilhar QR Code
               const ag = { id: 'ag' + Date.now(), tipo: st.agTipo, placa: st.agPlaca, desc: st.agDesc.trim(), valor: this.parseMoney(st.agValor) };
               save({ agregados: [...(p.agregados || []), ag] }, 'Agregado incluído: ' + ag.tipo, 'Agregado adicionado');
             }
-            if (ds === 'veiculo') save({ placa: st.vcPlaca, veic: { cor: st.vcCor.trim(), chassi: st.vcChassi, renavam: st.vcRenavam }, tasks: { ...p.tasks, veiculo: true } }, 'Dados do veículo alterados', 'Dados do veículo salvos');
+            if (ds === 'veiculo') {
+              const vf = st.vForm;
+              save({ placa: vf.placa || (vf.zeroKm ? 'SEM-PLACA' : p.placa), ano: vf.ano, veic: { cor: (vf.cor || '').trim(), chassi: vf.chassi || '', renavam: vf.renavam || '', motor: vf.motor || '', zeroKm: !!vf.zeroKm }, tasks: { ...p.tasks, veiculo: true } }, 'Dados do veículo alterados', 'Dados do veículo salvos');
+            }
             if (ds === 'extras') this.setState({ ds: null });
             if (ds === 'arquivar') {
               save({}, 'Arquivada: ' + st.arqMotivo, 'Proposta arquivada');
@@ -8429,6 +8448,36 @@ Compartilhar QR Code
           { k: 'uf', label: 'Estado', grupo: 'endereco', req: true, meia: true, lista: 'uf' },
           { k: 'cidade', label: 'Cidade', grupo: 'endereco', req: true, meia: true, lista: 'cidade' }
         ];
+      }
+
+      // Dados do veículo (tela "Dados do veículo" da proposta).
+      veicCampos(d, mudar) {
+        const anoAtual = 2026;
+        const anos = Array.from({ length: anoAtual + 1 - 1980 + 1 }, (_, i) => String(anoAtual + 1 - i));
+        const defs = [
+          { k: 'renavam', label: 'Renavam', ph: '11 dígitos', modo: 'numeric', m: (v) => v.replace(/\D/g, '').slice(0, 11) },
+          { k: 'chassi', label: 'Chassi', ph: '17 caracteres', meia: true, m: (v) => v.toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 17) },
+          { k: 'ano', label: 'Ano de fabricação *', meia: true, opcoes: anos },
+          { k: 'placa', label: d.zeroKm ? 'Placa (se já tiver)' : 'Placa *', ph: 'ABC-1D23', meia: true, m: (v) => { const r = v.toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 7); return r.length > 3 ? r.slice(0, 3) + '-' + r.slice(3) : r; } },
+          { k: 'zeroKm', label: 'Veículo 0 km', meia: true, check: true },
+          { k: 'motor', label: 'Número do motor', ph: 'Gravado no bloco do motor', m: (v) => v.toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 20) },
+          { k: 'cor', label: 'Cor', ph: 'Ex.: Prata' }
+        ];
+        return defs.map((f) => ({
+          label: f.label, valor: d[f.k] || '', ph: f.ph || '', tipo: 'text', modo: f.modo || 'text',
+          ehCheck: !!f.check, ehLista: !!f.opcoes, ehTexto: !f.check && !f.opcoes,
+          opcoes: f.opcoes ? [{ v: '', label: 'Selecione' }, ...f.opcoes.map((v) => ({ v, label: v }))] : [],
+          estilo: 'display:flex;flex-direction:column;gap:6px;min-width:0;grid-column:span ' + (f.meia ? 1 : 2) + (f.check ? ';justify-content:flex-end' : ''),
+          checkAria: d[f.k] ? 'true' : 'false', checkIcone: d[f.k] ? 'check' : '',
+          checkCaixa: 'flex-shrink:0;width:22px;height:22px;box-sizing:border-box;border-radius:6px;font-size:16px;display:flex;align-items:center;justify-content:center;'
+            + (d[f.k] ? 'border:0;background:#4A1259;color:#ffffff;' : 'border:1.5px solid #ccc3d8;background:#ffffff;color:transparent;'),
+          alternar: () => mudar({ [f.k]: !d[f.k] }),
+          onChange: (e) => mudar({ [f.k]: f.m ? f.m(e.target.value) : e.target.value })
+        }));
+      }
+
+      static veicCompleto(d) {
+        return !!d && !!d.ano && (d.zeroKm || (d.placa || '').replace(/-/g, '').length === 7);
       }
 
       static assocCompleto(d) {

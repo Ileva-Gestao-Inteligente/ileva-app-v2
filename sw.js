@@ -1,6 +1,6 @@
 // Service worker do App do Consultor: deixa o app instalável e funcionando sem internet.
 // Ao publicar uma versão nova, troque VERSAO para os aparelhos baixarem os arquivos de novo.
-const VERSAO = 'v64-2026-10-22';
+const VERSAO = 'v65-2026-10-22';
 const CACHE_APP = 'ileva-app-' + VERSAO;
 const CACHE_EXTERNO = 'ileva-externo-' + VERSAO;
 
